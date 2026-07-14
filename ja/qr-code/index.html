@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRコード生成 - 無料でQRコードを作成 | GetNiftyKit</title>
+  <meta name="description" content="URLやテキストを入力するだけでQRコードを即座に作成できます。PNG・SVGで無料ダウンロード、会員登録は不要です。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/qr-code/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/qr-code/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/qr-code/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/qr-code/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <base href="../../qr-code/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QRコード生成",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "テキストやURLを入力するとQRコードを即座に生成し、PNG・SVGでダウンロードできる無料のウェブツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "無料で使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、会員登録なしで無料でQRコードを作成・ダウンロードできます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "どんな形式でダウンロードできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNGとSVGの2形式でダウンロードできます。PNGは文書や印刷物にそのまま使いやすく、SVGは拡大しても劣化しないベクター形式です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力できる文字数に制限はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QRコードの特性上、あまりに長いテキストは収まりません。値が長すぎる場合は画面に案内メッセージが表示されるので、短いURLや要点だけを入力することをおすすめします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wi-Fiや名刺の情報もQRコードにできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。上部のカテゴリからWi-Fi、連絡先、メール、電話、SMS、予定（カレンダー）、位置情報を選ぶと、それぞれの目的に合ったQRコードを作成できます。例えばWi-Fi用QRコードは、スキャンするだけでそのネットワークに自動接続されます。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>QRコード生成</h1>
+    <p class="subtitle">テキストやURLを入力するとQRコードを即座に作成します</p>
+    <p class="tagline-extra">Wi-Fi共有から名刺、メニュー表まで — 無料でQRコードを作成してPNG・SVGでダウンロード。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="qr-input-section" aria-label="QRコードの値を入力">
+      <div class="qr-category-tabs" id="qr-category-tabs"></div>
+      <p class="qr-category-desc" id="qr-category-desc"></p>
+      <div class="qr-form-container" id="qr-form-container"></div>
+    </section>
+
+    <div class="qr-workspace">
+      <section class="qr-preview-section" aria-label="QRコードのプレビューとダウンロード">
+        <div class="qr-preview-box">
+          <canvas id="qr-preview" class="qr-preview" hidden></canvas>
+          <p class="qr-empty-message" id="qr-empty-message"></p>
+          <p class="qr-error-message" id="qr-error-message" hidden></p>
+        </div>
+        <div class="qr-download-row">
+          <button type="button" id="download-png" disabled>PNG</button>
+          <button type="button" id="download-svg" class="download-btn-svg" disabled>SVG</button>
+        </div>
+      </section>
+
+      <section class="qr-design-section" aria-label="">
+        <button type="button" id="design-toggle" class="design-toggle" aria-expanded="false" aria-controls="design-panel">
+          <span></span>
+          <svg class="design-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="qr-design-panel" id="design-panel" hidden>
+          <div class="qr-design-field">
+            <label for="design-color-dark"></label>
+            <input type="color" id="design-color-dark" value="#000000" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-color-light"></label>
+            <input type="color" id="design-color-light" value="#ffffff" />
+          </div>
+          <p class="qr-design-warning" id="design-contrast-warning" hidden></p>
+          <div class="qr-design-field">
+            <label for="design-margin"> (<span id="design-margin-value"></span>)</label>
+            <input type="range" id="design-margin" min="0" max="160" value="64" />
+          </div>
+          <div class="qr-design-field qr-design-field-checkbox">
+            <input type="checkbox" id="design-border-enabled" />
+            <label for="design-border-enabled"></label>
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-width"> (<span id="design-border-width-value"></span>)</label>
+            <input type="range" id="design-border-width" min="2" max="40" value="8" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-color"></label>
+            <input type="color" id="design-border-color" value="#0d9488" />
+          </div>
+          <div class="qr-design-divider"></div>
+
+          <div class="qr-logo-section">
+            <label for="design-logo-file" id="logo-file-label" class="qr-logo-file-label"></label>
+            <input type="file" id="design-logo-file" accept="image/png,image/jpeg,image/svg+xml" />
+            <p class="qr-design-warning" id="logo-file-warning" hidden></p>
+
+            <div class="qr-logo-preview-row" id="logo-preview-row" hidden>
+              <img id="logo-thumbnail" alt="" />
+              <button type="button" id="logo-remove-btn" class="design-reset"></button>
+            </div>
+
+            <div class="qr-logo-position-grid" id="logo-position-grid" hidden></div>
+
+            <div class="qr-design-field" id="logo-size-row" hidden>
+              <label for="logo-size"><span id="logo-size-label"></span> (<span id="logo-size-value"></span>)</label>
+              <input type="range" id="logo-size" min="10" max="25" value="20" />
+            </div>
+            <p class="qr-design-warning" id="logo-size-warning" hidden></p>
+          </div>
+
+          <button type="button" id="design-reset" class="design-reset"></button>
+        </div>
+      </section>
+    </div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>QRコード生成とは？</h2>
+      <p>
+        QRコード生成は、URLやWi-Fi情報、短いメッセージなど、好きなテキストを入力するとその場でQRコードに変換してくれるツールです。名刺やメニュー表、ポスター、発表資料などにQRコードが必要なとき、別途ソフトをインストールせずにすぐ作成できます。生成したQRコードはPNGまたはSVGファイルとして無料でダウンロードでき、すべての処理はブラウザ上で即座に行われます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        まず作りたいQRコードの種類（URL、テキスト、Wi-Fi、連絡先、メール、電話、SMS、予定、位置情報）を選び、それに合った項目を入力してください。入力すると同時に、下にQRコードのプレビューが表示されます。希望する結果になったら「PNG」または「SVG」ボタンを押してファイルとしてダウンロードしてください。入力した値が長すぎてQRコードに収まらない場合は、案内メッセージが表示されます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>Wi-Fiのパスワードやウェブサイトのアドレスをすばやく共有したいとき</li>
+        <li>名刺やチラシにQRコードを入れたいとき</li>
+        <li>印刷したメニュー表をオンライン注文ページにリンクさせたいとき</li>
+        <li>発表資料やポスターにQRコードを挿入したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>無料で使えますか？</dt>
+          <dd>はい、会員登録なしで無料でQRコードを作成・ダウンロードできます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>どんな形式でダウンロードできますか？</dt>
+          <dd>PNGとSVGの2形式でダウンロードできます。PNGは文書や印刷物にそのまま使いやすく、SVGは拡大しても劣化しないベクター形式です。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>入力できる文字数に制限はありますか？</dt>
+          <dd>QRコードの特性上、あまりに長いテキストは収まりません。値が長すぎる場合は画面に案内メッセージが表示されるので、短いURLや要点だけを入力することをおすすめします。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Wi-Fiや名刺の情報もQRコードにできますか？</dt>
+          <dd>はい。上部のカテゴリからWi-Fi、連絡先、メール、電話、SMS、予定（カレンダー）、位置情報を選ぶと、それぞれの目的に合ったQRコードを作成できます。例えばWi-Fi用QRコードは、スキャンするだけでそのネットワークに自動接続されます。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはQRコードの生成をすべてブラウザ上でローカルに行い、入力された内容をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <!-- QRCode.js (davidshimjs/qrcodejs, MIT License) - https://github.com/davidshimjs/qrcodejs
+       저장소에 정식 버전 태그가 없어서, 커밋 해시로 고정해 안정적으로 불러옵니다.
+       qrcode.min.js(압축본)는 저장소에서 실제 소스(qrcode.js)와 오래 전부터 동기화가
+       안 되어 있어 SVG 기능이 빠져있는 걸 직접 확인해서, 비압축 원본을 그대로 씁니다. -->
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708418cb7b96fc563eacae0fbf77674/qrcode.js"></script>
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

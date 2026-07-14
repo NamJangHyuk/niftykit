@@ -1,0 +1,54 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Stair Calculator - Steps, Riser & Tread Depth | GetNiftyKit",
+  "metaDescription": "Enter just the floor-to-floor height and this free tool automatically calculates the number of steps, riser height, tread depth, and total horizontal run using standard design guidelines.",
+  "softwareAppName": "Stair Calculator",
+  "softwareAppDescription": "A free construction tool that calculates the number of stair steps, riser height, tread depth, and total horizontal run from a single floor-to-floor height input, using standard stair design guidelines.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Stair Calc",
+  "subtitle": "Enter the floor-to-floor height and get the step count, riser, and tread depth instantly",
+  "taglineExtra": "Uses the classic 2R+T design formula to work out even risers and a comfortable tread depth automatically.",
+  "setupAria": "Floor-to-floor height",
+  "resultAria": "Calculated results",
+  "floorHeightLabel": "Floor-to-floor height",
+  "floorHeightUnit": "cm",
+  "floorHeightPlaceholder": "e.g. 285",
+  "invalidHeightError": "Please enter a height greater than 0 (recommended range: 50-600cm).",
+  "resultStepsLabel": "Number of steps",
+  "resultStepsUnit": "steps",
+  "resultRiserLabel": "Actual riser height",
+  "resultTreadLabel": "Recommended tread depth",
+  "resultRunLabel": "Total horizontal run",
+  "riserWarning": "⚠ The riser height falls outside the standard recommended range (15-20cm). Please double-check your floor height.",
+  "treadWarning": "⚠ The tread depth is narrower than the recommended minimum (26cm). Consider widening it for the actual build.",
+  "diagramAriaLabel": "Stair side-profile diagram",
+  "disclaimerText": "This result is a reference based on common design guidelines and does not guarantee compliance with legal building codes. Always check your local building regulations before construction.",
+  "infoIntroH2": "What is this stair calculator?",
+  "infoIntroP": "Stair Calc automatically works out the key numbers for stair design from a single input: the floor-to-floor height (the total vertical rise between floors). Riser height is generally recommended to stay between 15-20cm, with 17-18cm considered the most comfortable range to climb, and this tool automatically picks a step count so every riser within that range comes out equal. It then applies the long-used \"2R+T rule\" (2 × riser height + tread depth ≈ 60-65cm) to calculate a comfortable tread depth, and shows the total horizontal run the whole staircase takes up.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter the floor-to-floor height in centimeters, and the step count, actual riser height, recommended tread depth, and total horizontal run are calculated and shown instantly. If the calculated riser or tread falls outside the standard recommended range, a warning appears — in that case, double-check your height or consult a professional.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Designing a loft or mezzanine staircase yourself for a self-renovation project",
+    "Quickly checking standard stair dimensions on-site as a carpenter or contractor",
+    "Checking whether an existing staircase falls within standard ranges before a remodel",
+    "Getting a rough sense of stair dimensions before drawing up detailed plans"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Does this result fully satisfy building codes?",
+      "a": "No. This tool only calculates a reference based on commonly used design guidelines — actual legal requirements vary by building type and jurisdiction. Always check your local building regulations before construction."
+    },
+    {
+      "q": "Why is the riser height based on a 15-20cm range?",
+      "a": "This range is a widely used comfort standard for climbing stairs without strain. Anything higher feels steep, and anything lower makes the staircase unnecessarily long."
+    },
+    {
+      "q": "How is the tread depth calculated?",
+      "a": "It uses the \"2R+T rule\": twice the riser height (R) plus the tread depth (T) totaling roughly 60-65cm is considered the most natural match for a typical walking stride."
+    }
+  ],
+  "privacyNote": "This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server."
+}

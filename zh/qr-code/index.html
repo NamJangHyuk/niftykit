@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>二维码生成器 - 免费制作二维码 | GetNiftyKit</title>
+  <meta name="description" content="输入网址或文本，立即生成二维码。免费下载PNG·SVG，无需注册。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/qr-code/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/qr-code/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/qr-code/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/qr-code/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <base href="../../qr-code/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "二维码生成器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "一款输入文本或网址即可立即生成二维码，并支持PNG·SVG下载的免费网页工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "可以免费使用吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，无需注册即可免费生成并下载二维码。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以下载哪些格式？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "支持PNG和SVG两种格式。PNG适合直接用于文档和打印，SVG是放大也不会失真的矢量格式。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "输入的字数有限制吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "由于二维码本身的容量限制，内容过长可能无法生成。若内容过长，页面会显示提示信息，建议使用较短的网址或精简文本。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以制作Wi-Fi或名片二维码吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。在顶部分类中选择Wi-Fi、联系人、邮件、电话、短信、日程或位置，即可生成对应用途的二维码。例如Wi-Fi二维码在扫描后会自动连接到该网络。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>二维码生成器</h1>
+    <p class="subtitle">输入文本或网址，立即生成二维码</p>
+    <p class="tagline-extra">从共享Wi-Fi密码到名片、菜单——免费制作二维码，支持PNG·SVG下载。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="qr-input-section" aria-label="二维码内容输入">
+      <div class="qr-category-tabs" id="qr-category-tabs"></div>
+      <p class="qr-category-desc" id="qr-category-desc"></p>
+      <div class="qr-form-container" id="qr-form-container"></div>
+    </section>
+
+    <div class="qr-workspace">
+      <section class="qr-preview-section" aria-label="二维码预览与下载">
+        <div class="qr-preview-box">
+          <canvas id="qr-preview" class="qr-preview" hidden></canvas>
+          <p class="qr-empty-message" id="qr-empty-message"></p>
+          <p class="qr-error-message" id="qr-error-message" hidden></p>
+        </div>
+        <div class="qr-download-row">
+          <button type="button" id="download-png" disabled>PNG</button>
+          <button type="button" id="download-svg" class="download-btn-svg" disabled>SVG</button>
+        </div>
+      </section>
+
+      <section class="qr-design-section" aria-label="">
+        <button type="button" id="design-toggle" class="design-toggle" aria-expanded="false" aria-controls="design-panel">
+          <span></span>
+          <svg class="design-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="qr-design-panel" id="design-panel" hidden>
+          <div class="qr-design-field">
+            <label for="design-color-dark"></label>
+            <input type="color" id="design-color-dark" value="#000000" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-color-light"></label>
+            <input type="color" id="design-color-light" value="#ffffff" />
+          </div>
+          <p class="qr-design-warning" id="design-contrast-warning" hidden></p>
+          <div class="qr-design-field">
+            <label for="design-margin"> (<span id="design-margin-value"></span>)</label>
+            <input type="range" id="design-margin" min="0" max="160" value="64" />
+          </div>
+          <div class="qr-design-field qr-design-field-checkbox">
+            <input type="checkbox" id="design-border-enabled" />
+            <label for="design-border-enabled"></label>
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-width"> (<span id="design-border-width-value"></span>)</label>
+            <input type="range" id="design-border-width" min="2" max="40" value="8" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-color"></label>
+            <input type="color" id="design-border-color" value="#0d9488" />
+          </div>
+          <div class="qr-design-divider"></div>
+
+          <div class="qr-logo-section">
+            <label for="design-logo-file" id="logo-file-label" class="qr-logo-file-label"></label>
+            <input type="file" id="design-logo-file" accept="image/png,image/jpeg,image/svg+xml" />
+            <p class="qr-design-warning" id="logo-file-warning" hidden></p>
+
+            <div class="qr-logo-preview-row" id="logo-preview-row" hidden>
+              <img id="logo-thumbnail" alt="" />
+              <button type="button" id="logo-remove-btn" class="design-reset"></button>
+            </div>
+
+            <div class="qr-logo-position-grid" id="logo-position-grid" hidden></div>
+
+            <div class="qr-design-field" id="logo-size-row" hidden>
+              <label for="logo-size"><span id="logo-size-label"></span> (<span id="logo-size-value"></span>)</label>
+              <input type="range" id="logo-size" min="10" max="25" value="20" />
+            </div>
+            <p class="qr-design-warning" id="logo-size-warning" hidden></p>
+          </div>
+
+          <button type="button" id="design-reset" class="design-reset"></button>
+        </div>
+      </section>
+    </div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是二维码生成器？</h2>
+      <p>
+        二维码生成器是一款可以将网址、Wi-Fi 信息、简短消息等任意文本立即转换为二维码的工具。无论是名片、菜单、海报还是演示文稿都需要二维码时，无需安装任何软件即可立即生成。生成的二维码可免费下载为 PNG 或 SVG 文件，所有处理均在浏览器中即时完成。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        首先选择您需要的二维码类型（网址、文本、Wi-Fi、联系人、邮件、电话、短信、日程或位置），然后填写相应字段，输入的同时下方会立即显示二维码预览。满意后点击「PNG」或「SVG」按钮即可下载文件。如果输入内容过长无法生成二维码，页面会显示提示信息。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>快速分享 Wi-Fi 密码或网站地址</li>
+        <li>在名片或宣传单上添加二维码</li>
+        <li>将印刷菜单链接到在线点餐页面</li>
+        <li>在演示文稿或海报中嵌入二维码</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>可以免费使用吗？</dt>
+          <dd>可以，无需注册即可免费生成并下载二维码。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>可以下载哪些格式？</dt>
+          <dd>支持PNG和SVG两种格式。PNG适合直接用于文档和打印，SVG是放大也不会失真的矢量格式。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>输入的字数有限制吗？</dt>
+          <dd>由于二维码本身的容量限制，内容过长可能无法生成。若内容过长，页面会显示提示信息，建议使用较短的网址或精简文本。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>可以制作Wi-Fi或名片二维码吗？</dt>
+          <dd>可以。在顶部分类中选择Wi-Fi、联系人、邮件、电话、短信、日程或位置，即可生成对应用途的二维码。例如Wi-Fi二维码在扫描后会自动连接到该网络。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的二维码生成过程完全在您的浏览器本地完成，您输入的内容不会被发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <!-- QRCode.js (davidshimjs/qrcodejs, MIT License) - https://github.com/davidshimjs/qrcodejs
+       저장소에 정식 버전 태그가 없어서, 커밋 해시로 고정해 안정적으로 불러옵니다.
+       qrcode.min.js(압축본)는 저장소에서 실제 소스(qrcode.js)와 오래 전부터 동기화가
+       안 되어 있어 SVG 기능이 빠져있는 걸 직접 확인해서, 비압축 원본을 그대로 씁니다. -->
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708418cb7b96fc563eacae0fbf77674/qrcode.js"></script>
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

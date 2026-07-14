@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- 임시 플레이스홀더: 같은 파일명으로 실제 아이콘 SVG를 덮어쓰면 바로 교체됩니다 -->
+  <defs>
+    <linearGradient id="grad-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="#fdf2f8"/>
+  <rect x="9" y="12" width="22" height="16" rx="4" fill="url(#grad-icon)"/>
+</svg>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free QR Code Generator - Wi-Fi, Business Card &amp; URL QR Codes | GetNiftyKit</title>
+  <meta name="description" content="Create a QR code for a URL, Wi-Fi network, business card, email, phone number, SMS, event, or location — free, no sign-up. Download as PNG or SVG instantly." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/qr-code/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/qr-code/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/qr-code/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <base href="../../qr-code/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QR Code Generator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free web tool that instantly generates a QR code for a URL, Wi-Fi network, business card, email, phone number, and more — downloadable as PNG or SVG.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can create and download QR codes for free, with no account required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What formats can I download?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both PNG and SVG. PNG works great for documents and printouts, while SVG is a scalable vector format that stays crisp at any size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit to how much text I can encode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QR codes can only hold so much data. If your text is too long, you'll see a message on screen — try a shorter URL or trimming the text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make a QR code for Wi-Fi or a business card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pick Wi-Fi, Contact, Email, Phone, SMS, Event, or Location from the category tabs at the top to create a QR code for that specific purpose. For example, a Wi-Fi QR code will connect the device to that network as soon as it's scanned."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>QR Code Generator</h1>
+    <p class="subtitle">From a URL to Wi-Fi and business cards — generate the right QR code for free</p>
+    <p class="tagline-extra">Wi-Fi sharing, business card QR codes, event invites — create free QR codes and download them as PNG or SVG.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="qr-input-section" aria-label="QR code value input">
+      <div class="qr-category-tabs" id="qr-category-tabs"></div>
+      <p class="qr-category-desc" id="qr-category-desc"></p>
+      <div class="qr-form-container" id="qr-form-container"></div>
+    </section>
+
+    <div class="qr-workspace">
+      <section class="qr-preview-section" aria-label="QR code preview and download">
+        <div class="qr-preview-box">
+          <canvas id="qr-preview" class="qr-preview" hidden></canvas>
+          <p class="qr-empty-message" id="qr-empty-message"></p>
+          <p class="qr-error-message" id="qr-error-message" hidden></p>
+        </div>
+        <div class="qr-download-row">
+          <button type="button" id="download-png" disabled>PNG</button>
+          <button type="button" id="download-svg" class="download-btn-svg" disabled>SVG</button>
+        </div>
+      </section>
+
+      <section class="qr-design-section" aria-label="QR code design settings">
+        <button type="button" id="design-toggle" class="design-toggle" aria-expanded="false" aria-controls="design-panel">
+          <span>Design settings</span>
+          <svg class="design-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="qr-design-panel" id="design-panel" hidden>
+          <div class="qr-design-field">
+            <label for="design-color-dark">QR color</label>
+            <input type="color" id="design-color-dark" value="#000000" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-color-light">Background color</label>
+            <input type="color" id="design-color-light" value="#ffffff" />
+          </div>
+          <p class="qr-design-warning" id="design-contrast-warning" hidden></p>
+          <div class="qr-design-field">
+            <label for="design-margin">Margin (<span id="design-margin-value"></span>)</label>
+            <input type="range" id="design-margin" min="0" max="160" value="64" />
+          </div>
+          <div class="qr-design-field qr-design-field-checkbox">
+            <input type="checkbox" id="design-border-enabled" />
+            <label for="design-border-enabled">Show border</label>
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-width">Border width (<span id="design-border-width-value"></span>)</label>
+            <input type="range" id="design-border-width" min="2" max="40" value="8" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-color">Border color</label>
+            <input type="color" id="design-border-color" value="#0d9488" />
+          </div>
+          <div class="qr-design-divider"></div>
+
+          <div class="qr-logo-section">
+            <label for="design-logo-file" id="logo-file-label" class="qr-logo-file-label"></label>
+            <input type="file" id="design-logo-file" accept="image/png,image/jpeg,image/svg+xml" />
+            <p class="qr-design-warning" id="logo-file-warning" hidden></p>
+
+            <div class="qr-logo-preview-row" id="logo-preview-row" hidden>
+              <img id="logo-thumbnail" alt="" />
+              <button type="button" id="logo-remove-btn" class="design-reset"></button>
+            </div>
+
+            <div class="qr-logo-position-grid" id="logo-position-grid" hidden></div>
+
+            <div class="qr-design-field" id="logo-size-row" hidden>
+              <label for="logo-size"><span id="logo-size-label"></span> (<span id="logo-size-value"></span>)</label>
+              <input type="range" id="logo-size" min="10" max="25" value="20" />
+            </div>
+            <p class="qr-design-warning" id="logo-size-warning" hidden></p>
+          </div>
+
+          <button type="button" id="design-reset" class="design-reset">Reset to default</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a QR code generator?</h2>
+      <p>
+        This free QR code generator instantly creates the right QR code for your purpose — a URL, Wi-Fi login details, a business card (contact), email, phone number, SMS, calendar event, or map location. Whether you need a Wi-Fi password QR code, a QR code for a business card, or one for a menu, poster, or slide deck, you can create it right here with no software to install. Every QR code can be downloaded for free as a PNG or SVG file, and everything is processed instantly in your browser.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        First choose the type of QR code you need (URL, Text, Wi-Fi, Contact, Email, Phone, SMS, Event, or Location), then fill in the matching fields. A live preview of the QR code appears below as you type. Once you're happy with the result, click the &quot;PNG&quot; or &quot;SVG&quot; button to download it. If your input is too long to fit in a QR code, you'll see a message letting you know.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Quickly sharing a Wi-Fi password or website address</li>
+        <li>Adding a QR code to a business card or flyer</li>
+        <li>Linking a printed menu to an online ordering page</li>
+        <li>Embedding a QR code in a presentation or poster</li>
+        <li>Adding a calendar QR code to an event invitation</li>
+        <li>Creating a QR code that starts a phone call or text message</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Is this free to use?</dt>
+          <dd>Yes. You can create and download QR codes for free, with no account required.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What formats can I download?</dt>
+          <dd>Both PNG and SVG. PNG works great for documents and printouts, while SVG is a scalable vector format that stays crisp at any size.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Is there a limit to how much text I can encode?</dt>
+          <dd>QR codes can only hold so much data. If your text is too long, you'll see a message on screen — try a shorter URL or trimming the text.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Can I make a QR code for Wi-Fi or a business card?</dt>
+          <dd>Yes. Pick Wi-Fi, Contact, Email, Phone, SMS, Event, or Location from the category tabs at the top to create a QR code for that specific purpose. For example, a Wi-Fi QR code will connect the device to that network as soon as it's scanned.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool generates QR codes entirely in your browser. Your input is never sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <!-- QRCode.js (davidshimjs/qrcodejs, MIT License) - https://github.com/davidshimjs/qrcodejs
+       저장소에 정식 버전 태그가 없어서, 커밋 해시로 고정해 안정적으로 불러옵니다.
+       qrcode.min.js(압축본)는 저장소에서 실제 소스(qrcode.js)와 오래 전부터 동기화가
+       안 되어 있어 SVG 기능이 빠져있는 걸 직접 확인해서, 비압축 원본을 그대로 씁니다. -->
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708418cb7b96fc563eacae0fbf77674/qrcode.js"></script>
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pomodoro Timer - Auto-Repeating Focus &amp; Break Timer | GetNiftyKit</title>
+  <meta name="description" content="Enter your focus and break lengths and this timer automatically cycles through them using the Pomodoro Technique, with a sound and browser notification every time the phase changes." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/pomodoro-timer/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/pomodoro-timer/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/pomodoro-timer/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <base href="../../pomodoro-timer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pomodoro Timer",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free study timer that automatically cycles through focus, short break, and long break phases using the Pomodoro Technique, playing a sound and sending a browser notification every time the phase changes.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it still work accurately if I switch to another tab?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The timer recalculates the real elapsed time since it started every time it checks, so even if the browser slows down the timer in a background tab, it snaps back to the correct point the moment you return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to enable browser notifications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Even without allowing notifications, you'll still see phase changes on screen and hear a sound. Notifications are an optional extra that help when you're looking at a different tab."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I customize the focus and break lengths?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can set the focus time, short break, long break, and the number of rounds before a long break exactly how you like."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Pomodoro Timer</h1>
+    <p class="subtitle">Automatically cycles through focus and break time while counting your completed pomodoros</p>
+    <p class="tagline-extra">A sound and browser notification play every time the phase changes, and the timing stays accurate even if you switch tabs.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="pomo-display-section"
+      id="pomo-display"
+      aria-label="Pomodoro timer display"
+      data-focus-label="Focus"
+      data-short-break-label="Short Break"
+      data-long-break-label="Long Break"
+      data-ready-label="Ready"
+      data-set-template="Pomodoro {current}/{total}"
+      data-completed-label="Completed pomodoros"
+      data-notify-focus-title="Focus time"
+      data-notify-focus-body="Time to focus on this pomodoro."
+      data-notify-short-break-title="Short break"
+      data-notify-short-break-body="Take a short break, then get back to it."
+      data-notify-long-break-title="Long break"
+      data-notify-long-break-body="Take a longer rest before the next round."
+    >
+      <p class="pomo-completed-badge" id="pomo-completed"></p>
+
+      <div class="pomo-tabs" id="pomo-tabs">
+        <span class="pomo-tab" id="pomo-tab-focus" data-phase="focus">Focus</span>
+        <span class="pomo-tab" id="pomo-tab-shortBreak" data-phase="shortBreak">Short Break</span>
+        <span class="pomo-tab" id="pomo-tab-longBreak" data-phase="longBreak">Long Break</span>
+      </div>
+
+      <div class="pomo-ring-wrap">
+        <svg class="pomo-ring-svg" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="pomo-ring-track" cx="120" cy="120" r="108" />
+          <circle class="pomo-ring-progress" id="pomo-ring-progress" cx="120" cy="120" r="108" />
+        </svg>
+        <div class="pomo-ring-content">
+          <p class="pomo-time" id="pomo-time">00:00</p>
+          <p class="pomo-phase-pill" id="pomo-phase-label">Ready</p>
+        </div>
+      </div>
+
+      <p class="pomo-set-progress" id="pomo-set-progress"></p>
+    </section>
+
+    <section class="pomo-setup-section" aria-label="Pomodoro settings">
+      <div class="pomo-time-field">
+        <label id="pomo-work-label">Focus time</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-work-label">
+          <input type="number" id="pomo-work-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">h</span>
+          <input type="number" id="pomo-work-m" min="0" max="59" value="25" />
+          <span class="pomo-time-unit">m</span>
+          <input type="number" id="pomo-work-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">s</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-short-break-label">Short break</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-short-break-label">
+          <input type="number" id="pomo-short-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">h</span>
+          <input type="number" id="pomo-short-break-m" min="0" max="59" value="5" />
+          <span class="pomo-time-unit">m</span>
+          <input type="number" id="pomo-short-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">s</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-long-break-label">Long break</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-long-break-label">
+          <input type="number" id="pomo-long-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">h</span>
+          <input type="number" id="pomo-long-break-m" min="0" max="59" value="15" />
+          <span class="pomo-time-unit">m</span>
+          <input type="number" id="pomo-long-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">s</span>
+        </div>
+      </div>
+
+      <div class="pomo-field">
+        <label for="pomo-cycles">Rounds before long break</label>
+        <input type="number" id="pomo-cycles" min="1" max="12" value="4" />
+      </div>
+
+      <p class="pomo-error" id="pomo-error" hidden>Focus, short break, and long break must each be at least 1 second, and the round count must be a number of 1 or more.</p>
+
+      <div class="pomo-controls">
+        <button type="button" id="pomo-start-btn" class="pomo-btn pomo-btn-primary">Start</button>
+        <button
+          type="button"
+          id="pomo-pause-btn"
+          class="pomo-btn"
+          hidden
+          data-pause-label="Pause"
+          data-resume-label="Resume"
+        >Pause</button>
+        <button type="button" id="pomo-reset-btn" class="pomo-btn" hidden>Reset</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a Pomodoro Timer?</h2>
+      <p>
+        The Pomodoro Timer is named after the Pomodoro Technique (Italian for &quot;tomato&quot;), a time-management method that alternates focused work sessions (25 minutes by default) with short breaks (5 minutes by default), followed by a longer break (15 minutes by default) after a set number of rounds. This tool automatically calculates and cycles through the focus and break phases for you, and because it recomputes the actual elapsed time whenever you check back, the timing stays accurate even if you switch to another browser tab in the meantime.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter your focus time, short break time, and long break time as precisely as you like in hours, minutes, and seconds, set how many rounds to repeat before a long break, then press &quot;Start&quot; to begin the first focus session immediately. A sound plays every time the phase changes, and if you allow browser notifications you'll also get notified even while looking at a different tab. The completed pomodoro count goes up by one every time a focus session finishes.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Staying focused during long study or work sessions</li>
+        <li>Letting the timer decide when to take a break instead of guessing</li>
+        <li>Tracking how many pomodoros you've completed today for a sense of progress</li>
+        <li>Getting notified of phase changes even while working in another tab</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Does it still work accurately if I switch to another tab?</dt>
+          <dd>Yes. The timer recalculates the real elapsed time since it started every time it checks, so even if the browser slows down the timer in a background tab, it snaps back to the correct point the moment you return.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Do I need to enable browser notifications?</dt>
+          <dd>No. Even without allowing notifications, you'll still see phase changes on screen and hear a sound. Notifications are an optional extra that help when you're looking at a different tab.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Can I customize the focus and break lengths?</dt>
+          <dd>Yes. You can set the focus time, short break, long break, and the number of rounds before a long break exactly how you like.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool handles all timing and notifications entirely in your browser. No data is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

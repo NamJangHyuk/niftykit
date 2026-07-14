@@ -1,0 +1,52 @@
+{
+  "htmlLang": "zh",
+  "pageTitle": "CSS渐变生成器 - 免费制作渐变代码 | GetNiftyKit",
+  "metaDescription": "自由添加颜色并调整角度，实时生成CSS渐变，完成后立即复制代码。支持线性和径向渐变。",
+  "softwareAppName": "CSS渐变生成器",
+  "softwareAppDescription": "自由组合颜色和角度，实时生成可直接复制使用的CSS渐变代码的免费网页工具。",
+  "osLabel": "Any (网页浏览器)",
+  "backLinkText": "← 返回全部工具",
+  "h1": "CSS 渐变生成器",
+  "subtitle": "自由组合颜色和角度，免费创建CSS渐变",
+  "taglineExtra": "实时预览线性和径向渐变，并立即复制完成的CSS代码。",
+  "previewAria": "渐变预览",
+  "codeAria": "生成的CSS代码",
+  "typeLabel": "渐变类型",
+  "typeLinear": "线性 (Linear)",
+  "typeRadial": "径向 (Radial)",
+  "angleLabel": "角度",
+  "stopsLabel": "颜色",
+  "addStopBtnText": "添加颜色",
+  "removeStopBtnText": "删除",
+  "copyBtnText": "复制CSS代码",
+  "copiedText": "已复制！",
+  "maxStopsError": "最多可添加5种颜色。",
+  "minStopsError": "至少需要2种颜色。",
+  "infoIntroH2": "什么是CSS渐变生成器？",
+  "infoIntroP": "CSS渐变生成器是一款可以自由添加颜色并调整角度，实时生成线性（linear）或径向（radial）渐变的工具。您可以边看效果边调整，完成后一键复制即可使用的CSS代码。当背景设计、按钮或横幅需要渐变效果时，无需手动计算代码即可快速获得想要的结果。",
+  "infoHowtoH2": "使用方法",
+  "infoHowtoP": "首先选择您需要的渐变类型：线性（Linear）或径向（Radial）。使用取色器自由更改每种颜色，通过「添加颜色」按钮增加颜色，或删除不需要的颜色。如果选择了线性渐变，还可以通过角度滑块调整渐变方向。预览画面会立即显示效果，满意后点击「复制CSS代码」按钮即可直接复制使用。",
+  "infoUseCasesH2": "适用场景",
+  "infoUseCases": [
+    "想在网站背景或首屏区域添加渐变时",
+    "想为按钮或徽章增添柔和的色彩效果时",
+    "想在卡片或横幅设计中应用流行的渐变效果时",
+    "需要从设计稿中直接获取精确的CSS渐变代码时"
+  ],
+  "faqHeading": "常见问题",
+  "faq": [
+    {
+      "q": "可以免费使用吗？",
+      "a": "可以，无需注册即可免费创建渐变并复制CSS代码。"
+    },
+    {
+      "q": "最多可以添加几种颜色？",
+      "a": "最少2种，最多5种颜色，可以组合出多种多样的渐变效果。"
+    },
+    {
+      "q": "生成的代码怎么使用？",
+      "a": "将复制的代码直接粘贴为CSS的background属性值即可。例如：background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);"
+    }
+  ],
+  "privacyNote": "本工具的渐变生成过程完全在您的浏览器本地完成，不会将您输入的内容发送或存储到服务器。"
+}

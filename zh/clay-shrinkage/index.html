@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>陶土收缩率计算器 - 素烧·釉烧尺寸自动计算免费应用 | GetNiftyKit</title>
+  <meta name="description" content="只需输入素烧尺寸和釉烧（成品）尺寸中的一个，即可自动计算出考虑陶土收缩率后的另一侧尺寸的免费陶艺工具。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/clay-shrinkage/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/clay-shrinkage/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/clay-shrinkage/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <base href="../../clay-shrinkage/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "陶土收缩率计算器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "输入素烧尺寸和釉烧（成品）尺寸中的一个，即可根据陶土收缩率自动计算出另一侧尺寸的免费陶艺工具。同时计算宽度·深度·高度，并以陶器轮廓对比展示尺寸差异。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "只计算素烧与釉烧之间的收缩，还是从成型开始的整体收缩？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "系统会将您输入的收缩率（%）直接应用于素烧尺寸与釉烧尺寸之间的比例。如果您知道从成型阶段开始的总收缩率，也可以将成型尺寸输入到素烧尺寸栏中，以同样方式使用。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "两侧都已有数值时修改其中一个会怎样？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "系统会以刚修改的一侧数值为基准，自动重新计算并更新另一侧数值。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "陶土的收缩率一般是多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "因陶土种类而异，一般在5~15%左右，部分高岭土或瓷土类陶土的收缩率甚至可达15~20%。查看陶土厂商提供的资料，或亲自试烧确认，是最准确的方法。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>陶土收缩率计算器</h1>
+    <p class="subtitle">只需输入素烧或釉烧任意一侧的尺寸，另一侧就会自动计算出来</p>
+    <p class="tagline-extra">根据烧制过程中的收缩比例，双向计算宽度·深度·高度（素烧↔釉烧）。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="cs-setup-section" aria-label="收缩率输入">
+      <div class="cs-field">
+        <label for="cs-shrinkage">陶土收缩率（%）</label>
+        <input type="number" id="cs-shrinkage" min="0.01" max="99.99" step="any" placeholder="例如：12" />
+      </div>
+
+      <div class="cs-preset-group">
+        <span class="cs-preset-label">常用收缩率</span>
+        <div class="cs-preset-buttons">
+          <button type="button" class="cs-preset-btn" data-value="8">8%</button>
+          <button type="button" class="cs-preset-btn" data-value="10">10%</button>
+          <button type="button" class="cs-preset-btn" data-value="12">12%</button>
+          <button type="button" class="cs-preset-btn" data-value="15">15%</button>
+        </div>
+      </div>
+
+      <p class="cs-error" id="cs-shrinkage-error" hidden>请输入大于0且小于100的收缩率数值。</p>
+      <p class="cs-warning" id="cs-shrinkage-warning" hidden>⚠ 收缩率超出常见范围（5~20%），请重新确认所用陶土的收缩率。</p>
+    </section>
+
+    <section class="cs-dimensions-section" aria-label="素烧·釉烧尺寸输入">
+      <div class="cs-dimensions-grid">
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">素烧尺寸</h2>
+          <div class="cs-field">
+            <label for="cs-bisque-width">宽度</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-width" min="0.01" step="any" placeholder="例如：12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-depth">深度</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-depth" min="0.01" step="any" placeholder="例如：10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-height">高度</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-height" min="0.01" step="any" placeholder="例如：15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-dimensions-arrow" aria-hidden="true">⇄</div>
+
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">釉烧（成品）尺寸</h2>
+          <div class="cs-field">
+            <label for="cs-final-width">宽度</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-width" min="0.01" step="any" placeholder="例如：12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-depth">深度</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-depth" min="0.01" step="any" placeholder="例如：10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-height">高度</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-height" min="0.01" step="any" placeholder="例如：15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cs-error" id="cs-dimension-error" hidden>请输入大于0的尺寸数值。</p>
+    </section>
+
+    <section
+      class="cs-result-section"
+      aria-label="素烧·釉烧尺寸对比"
+      data-bisque-label="素烧"
+      data-final-label="釉烧"
+      data-depth-template="深度 {value}"
+    >
+      <p class="cs-empty-hint" id="cs-empty-hint">输入宽度和高度后会显示对比图。</p>
+      <svg class="cs-diagram" id="cs-diagram" viewBox="0 0 320 220" role="img" aria-label="素烧尺寸与釉烧尺寸的陶器轮廓对比" hidden>
+        <line id="cs-diagram-baseline" class="cs-diagram-baseline" />
+        <path id="cs-vase-bisque" class="cs-vase cs-vase-bisque" />
+        <path id="cs-vase-final" class="cs-vase cs-vase-final" />
+        <text id="cs-vase-bisque-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-final-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-final-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-depth" class="cs-vase-depth" text-anchor="middle"></text>
+        <text id="cs-vase-final-depth" class="cs-vase-depth" text-anchor="middle"></text>
+      </svg>
+      <p class="cs-disclaimer">实际收缩率会因陶土种类、烧制温度、干燥湿度而有所不同，重要作品建议先进行试烧以确认准确的收缩率。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是陶土收缩率计算器？</h2>
+      <p>
+        陶土在经过素烧和釉烧（正式烧制）后体积会持续收缩，收缩率通常在5~20%之间，具体因陶土种类而异。陶土收缩率计算器只需输入素烧阶段尺寸或成品釉烧尺寸中的一个，就能按照「釉烧尺寸 = 素烧尺寸 ×（1 − 收缩率）」的公式自动计算出另一侧的尺寸。宽度、深度、高度均可分别按素烧↔釉烧双向计算，因此既可以预估已完成素烧的作品最终烧成后的大小，也可以反过来根据想要的成品尺寸确认素烧阶段应做多大。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        请输入所用陶土的收缩率（%），或点击常用收缩率按钮快速选择。然后在宽度、深度、高度栏中输入您已知的素烧尺寸或釉烧（成品）尺寸，另一侧会自动填入计算结果。如果两侧都已有数值，此时修改其中一侧，系统会以刚修改的数值为基准重新计算另一侧。当宽度和高度都准备好后，会按实际尺寸比例绘制两个陶器轮廓，方便一目了然地对比。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想预估已完成素烧的作品经过釉烧后会变成多大尺寸时</li>
+        <li>想根据期望的成品（釉烧）尺寸确认素烧阶段应制作多大时</li>
+        <li>初次使用新陶土，需要按其收缩率重新计算尺寸时</li>
+        <li>需要同时兼顾宽度·深度·高度的作品，想一次性对比两侧尺寸时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>只计算素烧与釉烧之间的收缩，还是从成型开始的整体收缩？</dt>
+          <dd>系统会将您输入的收缩率（%）直接应用于素烧尺寸与釉烧尺寸之间的比例。如果您知道从成型阶段开始的总收缩率，也可以将成型尺寸输入到素烧尺寸栏中，以同样方式使用。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>两侧都已有数值时修改其中一个会怎样？</dt>
+          <dd>系统会以刚修改的一侧数值为基准，自动重新计算并更新另一侧数值。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>陶土的收缩率一般是多少？</dt>
+          <dd>因陶土种类而异，一般在5~15%左右，部分高岭土或瓷土类陶土的收缩率甚至可达15~20%。查看陶土厂商提供的资料，或亲自试烧确认，是最准确的方法。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的所有计算均在浏览器中处理，不会将您输入的数值发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

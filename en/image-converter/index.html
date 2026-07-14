@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Converter - Free PNG, JPG, WebP Converter | GetNiftyKit</title>
+  <meta name="description" content="Attach an image and click the format button you want — it converts instantly. Free PNG, JPG, and WebP image converter that runs entirely in your browser, no upload required." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/image-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/image-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/image-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <base href="../../image-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Image Converter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free image converter that lets you pick exactly the PNG, JPG, or WebP format you need and converts it instantly, right in your browser.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I convert multiple images at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — you can add several files at once, and choose a different output format for each one individually."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything happens right in your browser — nothing is uploaded or stored on a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can convert to PNG, JPG (JPEG), or WebP."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the quality get worse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG is lossless, so there's no quality loss. JPG and WebP use light lossy compression, but for everyday use the difference is barely noticeable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it just rename the file extension, or actually convert the format?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It doesn't just rename the extension — the image is redrawn on a canvas and re-encoded using the real encoding of the format you picked. That's why the file size actually changes before and after conversion."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Image Converter</h1>
+    <p class="subtitle">Upload an image and click the format you want to convert it instantly</p>
+    <p class="tagline-extra">Pick only the PNG, JPG, or WebP format you need, convert it, and save.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="ic-card" aria-label="Upload image files">
+      <div class="ic-dropzone" id="ic-dropzone" tabindex="0" role="button" aria-label="Upload image files">
+        <svg class="ic-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="ic-dropzone-text">Drag and drop an image here, or click to choose a file</p>
+        <p class="ic-dropzone-hint">Supports PNG, JPG, WebP, GIF, and more</p>
+        <button type="button" class="ic-choose-btn" id="ic-choose-btn">Choose File</button>
+        <input type="file" id="ic-file-input" accept="image/*" multiple hidden />
+      </div>
+      <p class="ic-error" id="ic-global-error" hidden></p>
+    </section>
+
+    <section
+      class="ic-file-list-section"
+      aria-label="Attached files"
+      id="ic-file-list-section"
+      hidden
+      data-format-png-label="Convert to PNG"
+      data-format-jpg-label="Convert to JPG"
+      data-format-webp-label="Convert to WebP"
+      data-same-format-hint="Same format as the original — use this to just resize or re-compress"
+      data-save-btn-text="Save"
+      data-remove-btn-text="Remove"
+      data-converting-text="Converting..."
+      data-size-change-template="{fromSize} ({fromDim}) → {toSize} ({toDim})"
+      data-unsupported-file-error="Unsupported file type. Please attach an image file."
+      data-decode-error-text="Couldn't load this image. The file may be corrupted."
+      data-file-count-template="{count} file(s)"
+    >
+      <div class="ic-file-list-header">
+        <span class="ic-file-count" id="ic-file-count"></span>
+        <button type="button" class="ic-clear-all-btn" id="ic-clear-all-btn">Clear All</button>
+      </div>
+
+      <div class="ic-settings">
+        <div class="ic-setting">
+          <label for="ic-scale-range">Image Size <span class="ic-setting-value" id="ic-scale-value">100%</span></label>
+          <input type="range" id="ic-scale-range" min="10" max="100" step="5" value="100" />
+        </div>
+        <div class="ic-setting">
+          <label for="ic-quality-range">Quality (File Size) <span class="ic-setting-value" id="ic-quality-value">92%</span></label>
+          <input type="range" id="ic-quality-range" min="50" max="100" step="1" value="92" />
+          <p class="ic-setting-hint">PNG is lossless, so the quality setting doesn't apply to it</p>
+        </div>
+      </div>
+
+      <div class="ic-file-list" id="ic-file-list"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is an Image Converter?</h2>
+      <p>
+        The Image Converter is a free tool that converts image files between formats like PNG, JPG, and WebP right in your browser. There's nothing to install and nothing to upload to a server — just add an image, click the format button you want, and download the converted file instantly. It's useful for shrinking image size with WebP for a website, switching a photo to JPG when you don't need transparency, or converting back to lossless PNG for further editing.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Drag and drop the image you want to convert, or use the Choose File button to attach it — you can add several files at once. Once a file is added, PNG, JPG, and WebP buttons appear below it; click the format you want and it converts instantly to just that format. When it's done, a Save button appears — click it to download the converted file. Want another format too? Just click a different format button on the same file.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Converting images to WebP to speed up your website</li>
+        <li>Converting to whatever format a specific program requires</li>
+        <li>Switching a photo to JPG to shrink file size when transparency isn't needed</li>
+        <li>Converting back to lossless PNG for further editing</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Can I convert multiple images at once?</dt>
+          <dd>Yes — you can add several files at once, and choose a different output format for each one individually.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Is my image uploaded to a server?</dt>
+          <dd>No. Everything happens right in your browser — nothing is uploaded or stored on a server.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What formats are supported?</dt>
+          <dd>You can convert to PNG, JPG (JPEG), or WebP.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Will the quality get worse?</dt>
+          <dd>PNG is lossless, so there's no quality loss. JPG and WebP use light lossy compression, but for everyday use the difference is barely noticeable.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Does it just rename the file extension, or actually convert the format?</dt>
+          <dd>It doesn't just rename the extension — the image is redrawn on a canvas and re-encoded using the real encoding of the format you picked. That's why the file size actually changes before and after conversion.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool performs all conversion entirely in your browser. Your images are never uploaded to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

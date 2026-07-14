@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>비밀번호 생성기 - 안전한 랜덤 비밀번호 무료 생성 | GetNiftyKit</title>
+  <meta name="description" content="대문자·소문자·숫자·특수문자를 조합해 안전한 랜덤 비밀번호를 무료로 생성하세요. 길이와 문자 종류를 자유롭게 설정하고, 강도까지 바로 확인할 수 있습니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/password-generator/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/password-generator/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/password-generator/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/password-generator/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <base href="../../password-generator/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "비밀번호 생성기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "브라우저의 암호학적 난수 생성 기능(crypto.getRandomValues)을 이용해 안전한 랜덤 비밀번호를 즉시 만들어주는 무료 웹 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "생성된 비밀번호가 안전한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. Math.random() 대신 브라우저의 암호학적 난수 생성 기능(crypto.getRandomValues)을 사용해서 예측이 거의 불가능한 진짜 무작위 값으로 만듭니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "비밀번호가 서버에 저장되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 모든 생성 과정은 브라우저 안에서만 이루어지며, 입력하거나 생성된 어떤 값도 서버로 전송되거나 저장되지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "비밀번호 길이는 어느 정도가 안전한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "일반적으로 12자 이상을 권장하며, 중요한 계정일수록 16자 이상에 대문자·소문자·숫자·특수문자를 모두 포함하는 것이 안전합니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Password Generator</h1>
+    <p class="subtitle">대문자·숫자·특수문자를 조합해 안전한 비밀번호를 무료로 만들어드려요</p>
+    <p class="tagline-extra">길이와 문자 종류를 자유롭게 설정하고, 비밀번호 강도까지 바로 확인하세요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="pw-display-section" aria-label="생성된 비밀번호">
+      <div class="pw-display-box">
+        <span id="pw-output" class="pw-output"></span>
+        <button
+          type="button"
+          id="pw-copy-btn"
+          class="pw-copy-btn"
+          data-copy-label="복사"
+          data-copied-label="복사됨!"
+        >복사</button>
+      </div>
+      <div class="pw-strength-row">
+        <div class="pw-strength-bar"><div id="pw-strength-fill" class="pw-strength-fill"></div></div>
+        <span
+          id="pw-strength-label"
+          class="pw-strength-label"
+          data-weak="약함"
+          data-medium="보통"
+          data-strong="강함"
+          data-very-strong="매우 강함"
+        ></span>
+      </div>
+      <button type="button" id="pw-generate-btn" class="pw-generate-btn">새로 생성</button>
+      <p class="pw-error" id="pw-error" hidden>문자 종류를 하나 이상 선택하세요</p>
+    </section>
+
+    <section class="pw-options-section" aria-label="비밀번호 옵션">
+      <div class="pw-option-field">
+        <label for="pw-length">길이 (<span id="pw-length-value"></span>)</label>
+        <input type="range" id="pw-length" min="4" max="64" value="16" />
+      </div>
+      <div class="pw-checkbox-grid">
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-upper" checked /> 대문자 (A-Z)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-lower" checked /> 소문자 (a-z)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-numbers" checked /> 숫자 (0-9)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-symbols" checked /> 특수문자 (!@#$...)</label>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>비밀번호 생성기란?</h2>
+      <p>
+        비밀번호 생성기(Password Generator)는 대문자, 소문자, 숫자, 특수문자를 원하는 대로 조합해 안전한 랜덤 비밀번호를 즉시 만들어주는 도구입니다. 브라우저의 암호학적으로 안전한 난수 생성 기능(crypto.getRandomValues)을 사용하기 때문에 예측이 거의 불가능한 진짜 무작위 비밀번호를 얻을 수 있습니다. 새 계정을 만들 때나 기존 비밀번호를 더 안전한 것으로 바꾸고 싶을 때 바로 사용할 수 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        원하는 비밀번호 길이를 슬라이더로 정하고, 포함할 문자 종류(대문자·소문자·숫자·특수문자)를 체크하세요. 옵션을 바꿀 때마다 비밀번호가 자동으로 새로 만들어지고, 화면에는 강도(약함~매우 강함)도 함께 표시됩니다. 마음에 드는 비밀번호가 나오면 &quot;복사&quot; 버튼을 눌러 클립보드에 바로 복사하세요.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>새로운 계정을 만들 때 안전한 비밀번호가 필요할 때</li>
+        <li>기존 비밀번호를 더 강력한 것으로 바꾸고 싶을 때</li>
+        <li>여러 사이트마다 서로 다른 비밀번호를 쓰고 싶을 때</li>
+        <li>Wi-Fi 공유기나 기기의 새 비밀번호를 정할 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>생성된 비밀번호가 안전한가요?</dt>
+          <dd>네. Math.random() 대신 브라우저의 암호학적 난수 생성 기능(crypto.getRandomValues)을 사용해서 예측이 거의 불가능한 진짜 무작위 값으로 만듭니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>비밀번호가 서버에 저장되나요?</dt>
+          <dd>아니요. 모든 생성 과정은 브라우저 안에서만 이루어지며, 입력하거나 생성된 어떤 값도 서버로 전송되거나 저장되지 않습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>비밀번호 길이는 어느 정도가 안전한가요?</dt>
+          <dd>일반적으로 12자 이상을 권장하며, 중요한 계정일수록 16자 이상에 대문자·소문자·숫자·특수문자를 모두 포함하는 것이 안전합니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 비밀번호 생성을 브라우저 로컬에서만 처리하며, 생성된 비밀번호를 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

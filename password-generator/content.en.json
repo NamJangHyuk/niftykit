@@ -1,0 +1,54 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Password Generator - Create Strong, Random Passwords Free | GetNiftyKit",
+  "metaDescription": "Generate a secure random password by combining uppercase, lowercase, numbers, and symbols. Free, instant, with a live strength indicator — no sign-up required.",
+  "softwareAppName": "Password Generator",
+  "softwareAppDescription": "A free web tool that instantly generates secure random passwords using your browser's cryptographically secure random number generator (crypto.getRandomValues).",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Password Generator",
+  "subtitle": "Combine uppercase, numbers, and symbols to create a secure password for free",
+  "taglineExtra": "Freely set the length and character types, and check the password strength instantly.",
+  "pwDisplayAria": "Generated password",
+  "pwOptionsAria": "Password options",
+  "lengthLabel": "Length",
+  "upperLabel": "Uppercase (A-Z)",
+  "lowerLabel": "Lowercase (a-z)",
+  "numbersLabel": "Numbers (0-9)",
+  "symbolsLabel": "Symbols (!@#$...)",
+  "generateBtnText": "Generate new",
+  "copyBtnText": "Copy",
+  "copiedText": "Copied!",
+  "strengthWeak": "Weak",
+  "strengthMedium": "Medium",
+  "strengthStrong": "Strong",
+  "strengthVeryStrong": "Very strong",
+  "noCharsetError": "Please select at least one character type",
+  "infoIntroH2": "What is a password generator?",
+  "infoIntroP": "Password Generator is a tool that instantly creates a secure random password by combining uppercase letters, lowercase letters, numbers, and symbols exactly the way you want. It uses your browser's cryptographically secure random number generator (crypto.getRandomValues), so you get a genuinely unpredictable password rather than one based on a weaker pattern. Use it whenever you're creating a new account or want to replace an existing password with a stronger one.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Set your desired password length with the slider, and check the character types to include (uppercase, lowercase, numbers, symbols). The password regenerates automatically every time you change an option, and its strength (Weak to Very Strong) is shown right alongside it. Once you're happy with the result, click \"Copy\" to copy it to your clipboard.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Creating a secure password for a new account",
+    "Replacing an existing password with a stronger one",
+    "Using a different password for every site",
+    "Setting a new password for a Wi-Fi router or device"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Is the generated password secure?",
+      "a": "Yes. Instead of Math.random(), it uses your browser's cryptographically secure random number generator (crypto.getRandomValues), producing a genuinely unpredictable value."
+    },
+    {
+      "q": "Is my password sent to a server?",
+      "a": "No. Everything happens entirely in your browser — nothing you enter or generate is ever sent to or stored on a server."
+    },
+    {
+      "q": "How long should a secure password be?",
+      "a": "12 characters or more is generally recommended, and for important accounts, 16+ characters combining uppercase, lowercase, numbers, and symbols is safer."
+    }
+  ],
+  "privacyNote": "This tool generates passwords entirely in your browser. Generated passwords are never sent to or stored on a server."
+}

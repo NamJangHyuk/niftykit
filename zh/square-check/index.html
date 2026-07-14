@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>直角三角形边长计算器 - 斜边·边长自动计算免费应用 | GetNiftyKit</title>
+  <meta name="description" content="只需输入直角三角形的两条边，即可自动计算出第三条边（含斜边）。三角形比例和示意图也会根据输入值实时呈现。无需角尺即可验证直角，免费工具。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/square-check/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/square-check/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/square-check/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/square-check/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <base href="../../square-check/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "直角三角形边长计算器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "输入直角三角形两条边的数值，即可通过勾股定理自动计算出第三条边，并根据输入值显示对应比例示意图的免费工具。还可与实测对角线比较，验证是否为直角。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "必须按3:4:5的比例输入吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不需要。只要输入能构成直角三角形的任意两条边数值即可。3:4:5只是其中最广为人知的例子，本计算器适用于任何比例。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "三个数值都已输入，但我想修改数值怎么办？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在三个输入栏中的任意一栏输入新数值，系统会自动重新计算并更新最早输入的那一栏。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "现场实测验证的误差容许范围是多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "与理想斜边长度相差约0.5%以内会判定为「非常接近直角」，这一余量已考虑了卷尺现场实测的误差。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>直角三角形计算器</h1>
+    <p class="subtitle">只需输入两条边，即可自动计算出第三条边</p>
+    <p class="tagline-extra">无论输入哪两条边，第三条边都会立即算出，三角形示意图也会按实际输入比例绘制。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="sqc-setup-section" aria-label="三角形边长输入">
+      <p class="sqc-setup-intro">在直角三角形的三条边中任选两处输入数值，第三条边会通过勾股定理自动计算得出。边A对应下方示意图的水平方向（底边），边B对应垂直方向（高）。更改数值时，计算结果和示意图比例都会同步更新。</p>
+
+      <div class="sqc-field">
+        <label for="sqc-side-a">边A（水平，底边）</label>
+        <input type="number" id="sqc-side-a" min="0.01" step="any" placeholder="例如：3" />
+      </div>
+      <div class="sqc-field">
+        <label for="sqc-side-b">边B（垂直，高）</label>
+        <input type="number" id="sqc-side-b" min="0.01" step="any" placeholder="例如：4" />
+      </div>
+      <div class="sqc-field">
+        <label for="sqc-hypotenuse">斜边（对角线）</label>
+        <input type="number" id="sqc-hypotenuse" min="0.01" step="any" placeholder="例如：5" />
+      </div>
+      <p
+        class="sqc-error"
+        id="sqc-error"
+        hidden
+        data-invalid-number-error="请输入大于0的数值。"
+        data-invalid-triangle-error="斜边必须比另外两条边都长，才能构成直角三角形，请重新检查数值。"
+      ></p>
+
+      <div class="sqc-controls">
+        <button type="button" id="sqc-reset-btn" class="sqc-reset-btn">重置</button>
+      </div>
+    </section>
+
+    <section class="sqc-result-section" aria-label="计算结果示意图">
+      <svg class="sqc-diagram" id="sqc-diagram" viewBox="0 0 300 200" role="img" aria-label="直角三角形示意图">
+        <line id="sqc-diagram-line-a" stroke="var(--sqc-line)" stroke-width="3" stroke-linecap="round" />
+        <line id="sqc-diagram-line-b" stroke="var(--sqc-line)" stroke-width="3" stroke-linecap="round" />
+        <line id="sqc-diagram-line-c" stroke="var(--sqc-accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 6" />
+        <rect id="sqc-diagram-marker" fill="none" stroke="var(--sqc-line)" stroke-width="2" />
+        <text text-anchor="middle" class="sqc-diagram-label" id="sqc-diagram-a"></text>
+        <text text-anchor="middle" class="sqc-diagram-label" id="sqc-diagram-b"></text>
+        <text text-anchor="middle" class="sqc-diagram-label sqc-diagram-label-accent" id="sqc-diagram-c"></text>
+      </svg>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <section class="sqc-verify-section" aria-label="现场实测验证">
+      <h2 class="sqc-verify-heading">现场实测验证（可选）</h2>
+      <p class="sqc-verify-intro">按照上方计算出的斜边长度在现场实际测量对角线，并将该数值输入下方，即可立即查看与直角相差多少。</p>
+      <div class="sqc-field">
+        <label for="sqc-actual-diagonal">实测对角线长度</label>
+        <input type="number" id="sqc-actual-diagonal" min="0.01" step="any" placeholder="实际测量的对角线长度" />
+      </div>
+      <p class="sqc-error" id="sqc-verify-error" hidden>请输入大于0的实测对角线长度。</p>
+      <p
+        class="sqc-verify-result"
+        id="sqc-verify-result"
+        hidden
+        data-pass-template="✓ 非常接近直角（误差 {diff}）"
+        data-fail-template="✗ 与直角存在差异（误差 {diff}）"
+        data-needs-hypotenuse-message="需要先计算出斜边数值，才能进行实测验证。"
+      ></p>
+    </section>
+
+    <article class="info-section">
+      <h2>什么是直角三角形边长计算器？</h2>
+      <p>
+        直角三角形边长计算器是一款利用勾股定理（边A²+边B²=斜边²），只要知道直角三角形三条边中的任意两个值，就能立即算出第三条边的工具。输入边A和边B可求出斜边（对角线）；反之输入斜边和一条边，则可求出另一条边。木工、室内装修、园林、露台施工现场广泛使用的「3:4:5法则」也可以用这个计算器直接验证，但并不局限于3:4:5，任何实际测量得到的数值都可以自由输入计算。输入值发生变化时，下方示意图的三角形比例也会随之实时反映。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        请在边A、边B、斜边中输入两个已知数值，剩余一栏会自动计算填入。若三个数值都已填写，此时又输入新的数值，系统会重新计算并更新最早输入的那一栏。按照计算出的斜边长度在现场标出两条边后，实际测量对角线并输入「现场实测验证」栏，即可立即得知与理想斜边相差多少，以及是否接近直角。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想在没有角尺或量角器的情况下快速确认墙面、地面转角是否为直角时</li>
+        <li>在露台、瓷砖、园林施工中想让基准线保持直角时</li>
+        <li>在家具或木工作业中想提前算出框架对角线长度时</li>
+        <li>想通过已知的两条边快速反推剩余边长时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>必须按3:4:5的比例输入吗？</dt>
+          <dd>不需要。只要输入能构成直角三角形的任意两条边数值即可。3:4:5只是其中最广为人知的例子，本计算器适用于任何比例。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>三个数值都已输入，但我想修改数值怎么办？</dt>
+          <dd>在三个输入栏中的任意一栏输入新数值，系统会自动重新计算并更新最早输入的那一栏。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>现场实测验证的误差容许范围是多少？</dt>
+          <dd>与理想斜边长度相差约0.5%以内会判定为「非常接近直角」，这一余量已考虑了卷尺现场实测的误差。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的所有计算均在浏览器中处理，不会将您输入的数值发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

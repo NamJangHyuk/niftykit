@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>白噪音播放器 - 白噪音·粉噪音·棕噪音免费应用 | GetNiftyKit</title>
+  <meta name="description" content="在浏览器中直接合成白噪音、粉噪音、棕噪音并无限循环播放的白噪音播放器。可调节音量并设置自动停止定时器，助力专注与睡眠。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/white-noise/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/white-noise/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/white-noise/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/white-noise/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <base href="../../white-noise/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "白噪音播放器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "通过Web Audio API实时合成白噪音·粉噪音·棕噪音并无限循环播放的免费白噪音播放器。完全不使用音频文件，以代码生成声音，无需担心版权问题。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "不同噪音类型有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "白噪音是所有频率均匀混合的声音，听起来最清晰；粉噪音强调低频，听起来更柔和；棕噪音的低频强调程度更高，听起来像波浪或瀑布声一样厚重。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "这是在下载真实的自然音文件吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不是。本工具完全不使用任何音频文件，而是在浏览器中通过Web Audio API实时计算生成声音波形，因此没有版权问题，也不占用存储空间。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "自动停止定时器是如何工作的？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在开始播放前选择自动停止时间后，到达设定时间时播放会自动停止。若设置为「关闭」，则会持续播放，直到您自己点击停止按钮为止。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>White Noise</h1>
+    <p class="subtitle">为您实时合成白噪音·粉噪音·棕噪音</p>
+    <p class="tagline-extra">无需下载音频文件，浏览器直接生成声音，并可调节音量和自动停止时间。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="wn-display-section"
+      id="wn-display"
+      aria-label="白噪音播放器画面"
+      data-ready-label="已停止"
+      data-playing-label="播放中"
+      data-remaining-template="距自动停止还剩{time}"
+    >
+      <p class="wn-status-label" id="wn-status-label">已停止</p>
+      <p class="wn-remaining" id="wn-remaining"></p>
+    </section>
+
+    <section class="wn-setup-section" aria-label="白噪音设置">
+      <fieldset class="wn-field">
+        <legend>噪音类型</legend>
+        <div class="wn-radio-group" role="radiogroup">
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-white" value="white" checked />
+            白噪音
+          </label>
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-pink" value="pink" />
+            粉噪音
+          </label>
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-brown" value="brown" />
+            棕噪音
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="wn-field">
+        <label for="wn-volume">音量</label>
+        <input type="range" id="wn-volume" min="0" max="100" value="60" />
+      </div>
+
+      <div class="wn-field">
+        <label for="wn-auto-stop">自动停止</label>
+        <select id="wn-auto-stop">
+          <option value="0">关闭（持续播放）</option>
+          <option value="15">15分钟后</option>
+          <option value="30">30分钟后</option>
+          <option value="45">45分钟后</option>
+          <option value="60">60分钟后</option>
+        </select>
+      </div>
+
+      <div class="wn-controls">
+        <button type="button" id="wn-play-btn" class="wn-btn wn-btn-primary">播放</button>
+        <button type="button" id="wn-stop-btn" class="wn-btn wn-btn-stop" hidden>停止</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是白噪音播放器？</h2>
+      <p>
+        白噪音播放器是一款可以通过浏览器的Web Audio API，实时合成白噪音、粉噪音、棕噪音三种噪音并播放给您的工具。它不是下载录制好的自然音文件，而是通过代码即时生成声音波形，因此完全没有版权问题，即使网络较慢也能流畅播放不卡顿。白噪音是所有频率均匀混合的声音，粉噪音更强调低频、听起来更柔和，棕噪音的低频强调程度更高，听起来像波浪声一样厚重。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        选择您想要的噪音类型并点击「播放」按钮，声音会立即响起。播放过程中也可以通过音量滑块调节大小，如果提前设置好自动停止时间，到时间后会自动停止播放。若要切换噪音类型，请先点击「停止」按钮暂停播放，然后重新选择。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>学习或工作时想掩盖周围噪音以保持专注时</li>
+        <li>入睡前需要舒缓的背景音时（可用自动停止定时器防止整夜播放）</li>
+        <li>想屏蔽办公室或咖啡厅的噪音时</li>
+        <li>哄宝宝入睡或冥想时需要持续背景音时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>不同噪音类型有什么区别？</dt>
+          <dd>白噪音是所有频率均匀混合的声音，听起来最清晰；粉噪音强调低频，听起来更柔和；棕噪音的低频强调程度更高，听起来像波浪或瀑布声一样厚重。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>这是在下载真实的自然音文件吗？</dt>
+          <dd>不是。本工具完全不使用任何音频文件，而是在浏览器中通过Web Audio API实时计算生成声音波形，因此没有版权问题，也不占用存储空间。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>自动停止定时器是如何工作的？</dt>
+          <dd>在开始播放前选择自动停止时间后，到达设定时间时播放会自动停止。若设置为「关闭」，则会持续播放，直到您自己点击停止按钮为止。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的声音合成与播放完全在浏览器中处理，没有任何数据会被发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>画像変換 - PNG JPG WebP無料変換 | GetNiftyKit</title>
+  <meta name="description" content="画像ファイルを添付して希望のフォーマットボタンを押すだけで即座に変換されます。PNG、JPG、WebP間の無料画像フォーマット変換、ブラウザ上でそのまま実行され、サーバーアップロードなしで安全です。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/image-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/image-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/image-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/image-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <base href="../../image-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "画像変換",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "複数の画像ファイルをPNG、JPG、WebPフォーマットの中から選んで即座に変換できる無料の画像変換ツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "複数の画像を一度に変換できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、複数のファイルを一度にアップロードでき、ファイルごとに希望のフォーマットを個別に選んで変換できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "アップロードした画像はサーバーに送信されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。すべての変換はブラウザ内でのみ処理され、ファイルがサーバーに送信・保存されることはありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "どんなフォーマットに対応していますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG、JPG（JPEG）、WebPの3種類のフォーマットに変換できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "画質は劣化しますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNGは可逆圧縮のため画質の劣化はなく、JPGとWebPは若干の非可逆圧縮が適用されますが、一般的な用途では違いをほとんど感じません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "拡張子だけが変わるのですか、それとも実際にフォーマットが変換されるのですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "単にファイル名の拡張子を変えるだけではなく、画像をキャンバスに再度描画してから、選択したフォーマットの実際のエンコード方式で新しく圧縮します。そのため変換前後でファイル容量が実際に変わることを確認できます。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>画像変換</h1>
+    <p class="subtitle">画像をアップロードして希望のフォーマットボタンを押すだけですぐに変換されます</p>
+    <p class="tagline-extra">PNG、JPG、WebPの中から必要なフォーマットだけを選んで変換・保存できます。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="ic-card" aria-label="画像ファイルのアップロード">
+      <div class="ic-dropzone" id="ic-dropzone" tabindex="0" role="button" aria-label="画像ファイルのアップロード">
+        <svg class="ic-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="ic-dropzone-text">ここに画像をドラッグ＆ドロップするか、クリックして選択してください</p>
+        <p class="ic-dropzone-hint">PNG、JPG、WebP、GIFなどの画像ファイルに対応</p>
+        <button type="button" class="ic-choose-btn" id="ic-choose-btn">ファイルを選択</button>
+        <input type="file" id="ic-file-input" accept="image/*" multiple hidden />
+      </div>
+      <p class="ic-error" id="ic-global-error" hidden></p>
+    </section>
+
+    <section
+      class="ic-file-list-section"
+      aria-label="添付されたファイル一覧"
+      id="ic-file-list-section"
+      hidden
+      data-format-png-label="PNGに変換"
+      data-format-jpg-label="JPGに変換"
+      data-format-webp-label="WebPに変換"
+      data-same-format-hint="元のファイルと同じフォーマットです。サイズや画質だけ変更したいときにお使いください"
+      data-save-btn-text="保存"
+      data-remove-btn-text="削除"
+      data-converting-text="変換中..."
+      data-size-change-template="{fromSize}（{fromDim}）→ {toSize}（{toDim}）"
+      data-unsupported-file-error="対応していないファイル形式です。画像ファイルのみ添付できます。"
+      data-decode-error-text="画像を読み込めませんでした。ファイルが破損している可能性があります。"
+      data-file-count-template="ファイル{count}個"
+    >
+      <div class="ic-file-list-header">
+        <span class="ic-file-count" id="ic-file-count"></span>
+        <button type="button" class="ic-clear-all-btn" id="ic-clear-all-btn">すべて削除</button>
+      </div>
+
+      <div class="ic-settings">
+        <div class="ic-setting">
+          <label for="ic-scale-range">画像サイズ <span class="ic-setting-value" id="ic-scale-value">100%</span></label>
+          <input type="range" id="ic-scale-range" min="10" max="100" step="5" value="100" />
+        </div>
+        <div class="ic-setting">
+          <label for="ic-quality-range">画質（容量） <span class="ic-setting-value" id="ic-quality-value">92%</span></label>
+          <input type="range" id="ic-quality-range" min="50" max="100" step="1" value="92" />
+          <p class="ic-setting-hint">PNGは可逆圧縮フォーマットのため、画質設定は適用されません</p>
+        </div>
+      </div>
+
+      <div class="ic-file-list" id="ic-file-list"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>画像変換とは？</h2>
+      <p>
+        画像変換は、PNG、JPG、WebPのような画像ファイルフォーマットをブラウザ上でそのまま相互変換してくれる無料ツールです。プログラムをインストールしたりサーバーにファイルをアップロードしたりする必要はなく、画像をアップロードして希望のフォーマットボタンを押すだけで、即座に変換されたファイルを受け取れます。ウェブサイトに掲載する画像の容量を減らしたいときにWebPに変換したり、透明背景が不要な写真をJPGに変えて容量を減らしたり、逆に編集のために可逆圧縮のPNGに変えたりと、さまざまな場面で活用できます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        変換したい画像ファイルをドラッグ＆ドロップするか、ファイル選択ボタンで添付してください。複数枚を一度にアップロードできます。ファイルが追加されると、その下にPNG、JPG、WebPの変換ボタンが表示され、希望のフォーマットボタンを押すとその形式にすぐ変換されます。変換が終わると保存ボタンが表示され、押すと変換されたファイルがダウンロードされます。別のフォーマットでも欲しい場合は、同じファイルで別のフォーマットボタンを押して追加で変換できます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>ウェブサイトの読み込み速度を上げるために画像を容量の小さいWebPに変えたいとき</li>
+        <li>特定のプログラムが要求する画像フォーマットに変換する必要があるとき</li>
+        <li>透明背景が不要な写真をJPGに変えて容量を減らしたいとき</li>
+        <li>編集作業のために可逆圧縮のPNGフォーマットが必要なとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>複数の画像を一度に変換できますか？</dt>
+          <dd>はい、複数のファイルを一度にアップロードでき、ファイルごとに希望のフォーマットを個別に選んで変換できます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>アップロードした画像はサーバーに送信されますか？</dt>
+          <dd>いいえ。すべての変換はブラウザ内でのみ処理され、ファイルがサーバーに送信・保存されることはありません。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>どんなフォーマットに対応していますか？</dt>
+          <dd>PNG、JPG（JPEG）、WebPの3種類のフォーマットに変換できます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>画質は劣化しますか？</dt>
+          <dd>PNGは可逆圧縮のため画質の劣化はなく、JPGとWebPは若干の非可逆圧縮が適用されますが、一般的な用途では違いをほとんど感じません。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>拡張子だけが変わるのですか、それとも実際にフォーマットが変換されるのですか？</dt>
+          <dd>単にファイル名の拡張子を変えるだけではなく、画像をキャンバスに再度描画してから、選択したフォーマットの実際のエンコード方式で新しく圧縮します。そのため変換前後でファイル容量が実際に変わることを確認できます。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはすべての変換作業をブラウザ上でのみ処理し、アップロードした画像をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

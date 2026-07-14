@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Right Triangle Side Calculator - Solve Any Side or Hypotenuse | GetNiftyKit</title>
+  <meta name="description" content="Enter any two sides of a right triangle and the third — including the hypotenuse — is calculated automatically. The diagram updates to match your actual ratio, and you can verify a square corner against a real measurement." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/square-check/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/square-check/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/square-check/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <base href="../../square-check/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Right Triangle Side Calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free tool that uses the Pythagorean theorem to solve for the missing side of a right triangle from any two known sides, with a diagram that reflects the actual ratio you enter. Also checks a measured diagonal against the ideal for verifying square corners.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I have to use a 3:4:5 ratio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Any two values that form a right triangle will work — 3:4:5 is just the most well-known example, and this calculator works for any ratio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I enter a new value when all three are already filled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Type into any of the three fields and the field you filled in longest ago gets recalculated and updated automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the tolerance for the on-site verification check?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A difference within about 0.5% of the ideal hypotenuse length is treated as \"very close to a true right angle\" — a margin that accounts for typical tape-measure accuracy on a job site."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Right Triangle Calculator</h1>
+    <p class="subtitle">Enter any two sides and the third is calculated automatically</p>
+    <p class="tagline-extra">Whichever two sides you enter, the third is calculated instantly, and the triangle diagram is drawn to match your actual ratio.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="sqc-setup-section" aria-label="Triangle side lengths">
+      <p class="sqc-setup-intro">Enter values for any two of the triangle's three sides, and the third is calculated automatically using the Pythagorean theorem. Side A is the horizontal side (base) in the diagram below, and Side B is the vertical side (height). Change a value and both the calculation and the diagram's ratio update to match.</p>
+
+      <div class="sqc-field">
+        <label for="sqc-side-a">Side A (horizontal, base)</label>
+        <input type="number" id="sqc-side-a" min="0.01" step="any" placeholder="e.g. 3" />
+      </div>
+      <div class="sqc-field">
+        <label for="sqc-side-b">Side B (vertical, height)</label>
+        <input type="number" id="sqc-side-b" min="0.01" step="any" placeholder="e.g. 4" />
+      </div>
+      <div class="sqc-field">
+        <label for="sqc-hypotenuse">Hypotenuse (diagonal)</label>
+        <input type="number" id="sqc-hypotenuse" min="0.01" step="any" placeholder="e.g. 5" />
+      </div>
+      <p
+        class="sqc-error"
+        id="sqc-error"
+        hidden
+        data-invalid-number-error="Please enter a value greater than 0."
+        data-invalid-triangle-error="The hypotenuse must be longer than both other sides for a right triangle to exist. Please check your values."
+      ></p>
+
+      <div class="sqc-controls">
+        <button type="button" id="sqc-reset-btn" class="sqc-reset-btn">Reset</button>
+      </div>
+    </section>
+
+    <section class="sqc-result-section" aria-label="Calculated result diagram">
+      <svg class="sqc-diagram" id="sqc-diagram" viewBox="0 0 300 200" role="img" aria-label="Right triangle diagram">
+        <line id="sqc-diagram-line-a" stroke="var(--sqc-line)" stroke-width="3" stroke-linecap="round" />
+        <line id="sqc-diagram-line-b" stroke="var(--sqc-line)" stroke-width="3" stroke-linecap="round" />
+        <line id="sqc-diagram-line-c" stroke="var(--sqc-accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 6" />
+        <rect id="sqc-diagram-marker" fill="none" stroke="var(--sqc-line)" stroke-width="2" />
+        <text text-anchor="middle" class="sqc-diagram-label" id="sqc-diagram-a"></text>
+        <text text-anchor="middle" class="sqc-diagram-label" id="sqc-diagram-b"></text>
+        <text text-anchor="middle" class="sqc-diagram-label sqc-diagram-label-accent" id="sqc-diagram-c"></text>
+      </svg>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <section class="sqc-verify-section" aria-label="On-site verification">
+      <h2 class="sqc-verify-heading">On-site verification (optional)</h2>
+      <p class="sqc-verify-intro">Mark out the two sides on-site, measure the actual diagonal, and enter it below to see exactly how far off it is from the calculated hypotenuse above.</p>
+      <div class="sqc-field">
+        <label for="sqc-actual-diagonal">Measured diagonal length</label>
+        <input type="number" id="sqc-actual-diagonal" min="0.01" step="any" placeholder="The diagonal length you actually measured" />
+      </div>
+      <p class="sqc-error" id="sqc-verify-error" hidden>Please enter a measured diagonal length greater than 0.</p>
+      <p
+        class="sqc-verify-result"
+        id="sqc-verify-result"
+        hidden
+        data-pass-template="✓ This is very close to a true right angle (off by {diff})"
+        data-fail-template="✗ This differs from a true right angle (off by {diff})"
+        data-needs-hypotenuse-message="The hypotenuse needs to be calculated first before you can verify against it."
+      ></p>
+    </section>
+
+    <article class="info-section">
+      <h2>What is this right triangle calculator?</h2>
+      <p>
+        This calculator uses the Pythagorean theorem (sideA² + sideB² = hypotenuse²) to instantly solve for the missing side of a right triangle from any two known values. Enter Side A and Side B and it solves for the hypotenuse (diagonal); enter the hypotenuse and one side and it solves for the other side. The classic &quot;3-4-5 rule&quot; used in carpentry, framing, landscaping, and deck building works perfectly here too, but you're not limited to it — plug in whatever real measurements you have. Change any value and the diagram below redraws to match your actual ratio.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter any two of Side A, Side B, and the Hypotenuse — the remaining field fills in automatically. If all three are already filled and you enter a new value somewhere, the field you filled in longest ago gets recalculated and updated instead. Mark out the two sides on-site using the calculated hypotenuse, measure the actual diagonal, and enter it in the &quot;On-site verification&quot; field to see how far off it is from the ideal and whether the corner is square.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Quickly checking whether a wall or floor corner is square without a framing square or protractor</li>
+        <li>Squaring up baselines for deck, tile, or landscaping projects</li>
+        <li>Working out a diagonal length in advance for furniture or woodworking frames</li>
+        <li>Quickly back-calculating a missing side from two measurements you already have</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Do I have to use a 3:4:5 ratio?</dt>
+          <dd>No. Any two values that form a right triangle will work — 3:4:5 is just the most well-known example, and this calculator works for any ratio.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What happens if I enter a new value when all three are already filled?</dt>
+          <dd>Type into any of the three fields and the field you filled in longest ago gets recalculated and updated automatically.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What's the tolerance for the on-site verification check?</dt>
+          <dd>A difference within about 0.5% of the ideal hypotenuse length is treated as &quot;very close to a true right angle&quot; — a margin that accounts for typical tape-measure accuracy on a job site.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "D-Day Counter - Free Countdown to Any Date | GetNiftyKit",
+  "metaDescription": "Enter a target date and instantly see the D-Day count in big numbers. Track exams, trips, anniversaries, and more, all saved right in your browser.",
+  "softwareAppName": "D-Day Counter",
+  "softwareAppDescription": "A free web tool that counts down to any target date and displays it as a D-Day number, with support for tracking multiple goals at once.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "D-Day Counter",
+  "subtitle": "Enter a target date and instantly see the D-Day count in big numbers",
+  "taglineExtra": "Exams, trips, anniversaries — track as many goals as you want, all in one place.",
+  "formAria": "Add a new goal",
+  "listAria": "Your saved goals",
+  "nameLabel": "Goal name",
+  "namePlaceholder": "e.g. Final exam day",
+  "dateLabel": "Target date",
+  "datePlaceholder": "Choose a date",
+  "prevMonthLabel": "Previous month",
+  "nextMonthLabel": "Next month",
+  "addBtnText": "Add",
+  "deleteBtnText": "Delete",
+  "emptyMessage": "No goals yet — add your first one above.",
+  "todayLabel": "D-DAY",
+  "nameRequiredError": "Please enter a goal name.",
+  "dateRequiredError": "Please choose a target date.",
+  "infoIntroH2": "What is a D-Day counter?",
+  "infoIntroP": "D-Day Counter is a tool that shows how many days remain until a date you choose, displayed as a large, easy-to-read number like D-5, D-DAY, or D+3. Whether you're tracking an exam, a trip, a wedding anniversary, or a project deadline, you can keep several dates in view at once, and every goal you add is saved in your browser so it's still there the next time you visit.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter a goal name and date, then click \"Add\" — a new card appears in the list showing the D-Day count calculated from today. Add as many goals as you like, and remove any you no longer need with the \"Delete\" button. Everything is saved in this browser, so your goals will still be there the next time you come back.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Tracking how much time is left before an exam, interview, or presentation",
+    "Counting down to a trip or event",
+    "Keeping track of anniversaries and birthdays so you never miss one",
+    "Managing multiple project or assignment deadlines at a glance"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Where are my goals stored?",
+      "a": "Only in this browser's local storage on this device. Nothing is sent to a server, and your goals won't appear on other devices or browsers."
+    },
+    {
+      "q": "Can I add a date that's already passed?",
+      "a": "Yes. If you add a past date, it will show how many days have passed, like D+3."
+    },
+    {
+      "q": "How is D-Day calculated?",
+      "a": "It's calculated from midnight today to the target date, counting whole days rather than hours — so if your goal is tomorrow, it shows D-1 no matter what time of day you check."
+    }
+  ],
+  "privacyNote": "This tool stores your goals only in this browser's local storage. Nothing is sent to a server."
+}

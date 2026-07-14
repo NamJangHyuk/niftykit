@@ -1,0 +1,57 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "White Noise Player - White, Pink & Brown Noise | GetNiftyKit",
+  "metaDescription": "A white noise player that synthesizes white, pink, and brown noise directly in your browser and loops it endlessly. Adjust the volume and set an auto-stop timer for focus or sleep.",
+  "softwareAppName": "White Noise Player",
+  "softwareAppDescription": "A free white noise player that synthesizes white, pink, and brown noise in real time using the Web Audio API and loops it endlessly. No audio files are used, so there are no copyright concerns.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "White Noise",
+  "subtitle": "White, pink, and brown noise, synthesized right in your browser",
+  "taglineExtra": "No audio files to download — your browser generates the sound itself, with adjustable volume and an auto-stop timer.",
+  "displayAria": "White noise player display",
+  "setupAria": "White noise settings",
+  "noiseTypeLabel": "Noise type",
+  "whiteNoiseLabel": "White Noise",
+  "pinkNoiseLabel": "Pink Noise",
+  "brownNoiseLabel": "Brown Noise",
+  "volumeLabel": "Volume",
+  "autoStopLabel": "Auto-stop",
+  "autoStopOffLabel": "Off (keep playing)",
+  "autoStopOption15": "After 15 min",
+  "autoStopOption30": "After 30 min",
+  "autoStopOption45": "After 45 min",
+  "autoStopOption60": "After 60 min",
+  "playBtnText": "Play",
+  "stopBtnText": "Stop",
+  "statusReadyLabel": "Stopped",
+  "statusPlayingLabel": "Playing",
+  "remainingTemplate": "Auto-stop in {time}",
+  "infoIntroH2": "What is a white noise player?",
+  "infoIntroP": "The White Noise player generates white, pink, and brown noise directly in your browser using the Web Audio API. Instead of downloading a recorded nature-sound file, it computes the sound waveform in code on the spot, so there are no copyright concerns and playback never stutters even on a slow connection. White noise mixes every frequency evenly, pink noise emphasizes the lower frequencies for a softer sound, and brown noise emphasizes the low end even further for a deep, wave-like rumble.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Pick the noise type you want and press \"Play\" to start hearing it right away. You can adjust the volume with the slider while it's playing, and if you set an auto-stop time in advance, playback stops on its own once that time has passed. To switch noise types, press \"Stop\" first, then pick a new one.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Masking background noise to stay focused while studying or working",
+    "Playing a soothing background sound before falling asleep (use the auto-stop timer so it doesn't run all night)",
+    "Blocking out office or café noise",
+    "Providing a steady background sound while putting a baby to sleep or meditating"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "What's the difference between the noise types?",
+      "a": "White noise mixes every frequency evenly and sounds the crispest, pink noise emphasizes lower frequencies for a softer sound, and brown noise emphasizes the low end even further, sounding like deep waves or a waterfall."
+    },
+    {
+      "q": "Does this download a real recorded nature sound?",
+      "a": "No. This tool doesn't use any audio files at all — the sound waveform is computed in real time in your browser using the Web Audio API, so there are no copyright concerns and no file size to worry about."
+    },
+    {
+      "q": "How does the auto-stop timer work?",
+      "a": "Choose an auto-stop time before you press Play, and playback stops automatically once that much time has passed. Leave it set to \"Off\" and it keeps playing until you press Stop yourself."
+    }
+  ],
+  "privacyNote": "This tool handles all sound synthesis and playback entirely in your browser. No data is sent to or stored on a server."
+}

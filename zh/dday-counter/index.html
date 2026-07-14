@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-Day倒计时器 - 免费目标日期倒计时 | GetNiftyKit</title>
+  <meta name="description" content="输入目标日期，立即以大号数字显示D-Day。考试、旅行、纪念日等多个目标可保存在浏览器中随时查看。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/dday-counter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/dday-counter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/dday-counter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/dday-counter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <base href="../../dday-counter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "D-Day倒计时器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "计算并以D-Day形式显示距目标日期的剩余天数，可同时管理多个目标的免费网页工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "添加的目标保存在哪里？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "仅保存在此浏览器（设备）的本地存储中，不会发送到服务器，在其他设备或浏览器上也不会显示。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以添加已经过去的日期吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。如果添加已经过去的日期，会显示自该日期起已经过去了多少天，例如D+3。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "D-Day是如何计算的？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "以今天凌晨0点为基准，计算到目标日期的剩余天数。计算单位是日期（凌晨0点）而非具体时间，因此例如明天是目标日期时，无论您在哪个时间点查看，都会始终显示为D-1。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>D-Day Counter</h1>
+    <p class="subtitle">输入目标日期，立即以大号数字显示D-Day</p>
+    <p class="tagline-extra">考试、旅行、纪念日——一次性添加并管理多个目标。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="dday-form-section" aria-label="添加新目标">
+      <div class="dday-form-row">
+        <div class="dday-field dday-field-name">
+          <label for="dday-name">目标名称</label>
+          <input type="text" id="dday-name" placeholder="例如：考试日" autocomplete="off" />
+        </div>
+        <div class="dday-field dday-field-date">
+          <label for="dday-date-trigger">目标日期</label>
+          <button
+            type="button"
+            id="dday-date-trigger"
+            class="dday-date-trigger"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            data-placeholder="请选择日期"
+          >请选择日期</button>
+        </div>
+        <button type="button" id="dday-add-btn" class="dday-add-btn">添加</button>
+      </div>
+      <p
+        class="dday-error"
+        id="dday-error"
+        hidden
+        data-name-error="请输入目标名称。"
+        data-date-error="请选择目标日期。"
+      ></p>
+
+      <div class="dday-calendar" id="dday-calendar" role="dialog" aria-label="目标日期" hidden>
+        <div class="dday-calendar-header">
+          <button type="button" id="dday-cal-prev" class="dday-cal-nav" aria-label="上个月">‹</button>
+          <span class="dday-cal-title" id="dday-cal-title"></span>
+          <button type="button" id="dday-cal-next" class="dday-cal-nav" aria-label="下个月">›</button>
+        </div>
+        <div class="dday-calendar-weekdays" id="dday-cal-weekdays"></div>
+        <div class="dday-calendar-grid" id="dday-cal-grid"></div>
+      </div>
+    </section>
+
+    <section class="dday-list-section" aria-label="已添加的目标列表">
+      <p class="dday-empty" id="dday-empty">还没有添加任何目标，请在上方添加第一个目标吧。</p>
+      <div
+        id="dday-list"
+        class="dday-list"
+        data-today-label="D-DAY"
+        data-delete-label="删除"
+      ></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是D-Day倒计时器？</h2>
+      <p>
+        D-Day倒计时器是一款工具，只需输入想要的目标日期，就能以D-5、D-DAY、D+3这样一目了然的大号数字，显示从今天到目标日期的剩余天数。无论是考试日、旅行出发日、结婚纪念日还是项目截止日，即使有多个日期需要留意，也能在同一个画面中一起管理，添加的目标会保存在浏览器中，下次访问时依然保留。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        输入目标名称和日期后点击「添加」按钮，列表中就会出现一张新卡片，并以大号数字显示以今天为基准计算出的D-Day。您可以根据需要不断添加目标，不再需要的目标可以点击「删除」按钮移除。所有目标都保存在此浏览器中，下次访问时依然可以看到。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想确认距离考试、面试、演讲等重要日期还有多久时</li>
+        <li>想为旅行或活动的出发日进行倒计时时</li>
+        <li>想不错过结婚纪念日、生日等纪念日时</li>
+        <li>想一目了然地管理项目或作业的截止日期时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>添加的目标保存在哪里？</dt>
+          <dd>仅保存在此浏览器（设备）的本地存储中，不会发送到服务器，在其他设备或浏览器上也不会显示。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>可以添加已经过去的日期吗？</dt>
+          <dd>可以。如果添加已经过去的日期，会显示自该日期起已经过去了多少天，例如D+3。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>D-Day是如何计算的？</dt>
+          <dd>以今天凌晨0点为基准，计算到目标日期的剩余天数。计算单位是日期（凌晨0点）而非具体时间，因此例如明天是目标日期时，无论您在哪个时间点查看，都会始终显示为D-1。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具仅将目标日期保存在此浏览器的本地存储中，不会发送到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

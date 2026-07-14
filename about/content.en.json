@@ -1,0 +1,15 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "About GetNiftyKit",
+  "metaDescription": "GetNiftyKit is a growing collection of free, browser-based tools built to do one job well, with no sign-up required.",
+  "backLinkText": "← All Tools",
+  "h1": "About GetNiftyKit",
+  "intro": "A small collection of free, browser-based tools built to do one job well — no sign-up, no installation, nothing to configure.",
+  "whatHeading": "What is GetNiftyKit?",
+  "whatBody": "GetNiftyKit is a collection of free web tools you use right in your browser — no sign-up, no install. It's built for anyone around the world to use for free, regardless of country or language. Small tasks like downloading flag images, searching and copying emoji or special characters, or generating a QR code come up often but are surprisingly annoying to find a good tool for, so each tool here is built to do exactly one of them well. New tools are added regularly, and every one follows the same rules: no forced sign-ups, no clutter, and whatever you type is processed only in your browser — never sent to or stored on a server.",
+  "howItWorksHeading": "How it works",
+  "howItWorksBody": "Every tool runs entirely in your browser. There's no account to create, no server-side processing of your searches, and no data collected beyond what's described in our Privacy Policy.",
+  "contactHeading": "Contact",
+  "contactBody": "Have feedback, found a bug, or have a tool idea?",
+  "contactLinkText": "Reach out here"
+}

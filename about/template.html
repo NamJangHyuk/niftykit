@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{HTML_LANG}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+{{HREFLANG_LINKS}}
+{{BASE_TAG}}  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <a href="{{BACK_LINK_HREF}}" class="back-link">{{BACK_LINK_TEXT}}</a>
+  </div>
+
+  <header class="page-header">
+    <h1>{{H1}}</h1>
+    <p class="subtitle">{{INTRO}}</p>
+  </header>
+
+  <main class="info-section">
+    <h2>{{WHAT_HEADING}}</h2>
+    <p>{{WHAT_BODY}}</p>
+
+    <h2>{{HOW_IT_WORKS_HEADING}}</h2>
+    <p>{{HOW_IT_WORKS_BODY}}</p>
+
+    <h2>{{CONTACT_HEADING}}</h2>
+    <p>{{CONTACT_BODY}} <a href="{{GOOGLE_FORM_URL}}" target="_blank" rel="noopener noreferrer">{{CONTACT_LINK_TEXT}}</a></p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="footer-links">
+      <a href="{{FOOTER_PRIVACY_HREF}}">{{FOOTER_PRIVACY_TEXT}}</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{FOOTER_ABOUT_HREF}}">{{FOOTER_ABOUT_TEXT}}</a>
+    </p>
+  </footer>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="{{SCROLL_TOP_ARIA}}" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

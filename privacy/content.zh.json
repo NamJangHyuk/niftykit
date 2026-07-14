@@ -1,0 +1,34 @@
+{
+  "htmlLang": "zh",
+  "pageTitle": "隐私政策 | GetNiftyKit",
+  "metaDescription": "GetNiftyKit 如何处理您的数据：哪些信息仅在浏览器本地处理，Google AdSense 与 Google Fonts 会收集哪些信息，以及如何联系我们。",
+  "backLinkText": "← 返回全部工具",
+  "h1": "隐私政策",
+  "lastUpdated": "最后更新: 2026年7月10日",
+  "intro": "GetNiftyKit（以下简称\"本站\"）提供国旗下载、表情符号搜索、特殊符号复制等基于浏览器的免费工具。本页面说明您在使用这些工具时，哪些信息会被收集，哪些不会。",
+  "sections": [
+    {
+      "heading": "在浏览器中处理的数据",
+      "body": "GetNiftyKit 各工具的搜索、筛选、复制或下载等核心功能，均完全在您的浏览器中运行。搜索词、筛选选项和剪贴板操作不会被发送到或存储在我们运营的任何服务器上。部分工具会使用浏览器的 localStorage 来记住\"常用项目\"，这些数据仅保存在您的设备本地，不会被发送到外部。"
+    },
+    {
+      "heading": "Cookie 与广告",
+      "body": "GetNiftyKit 通过 Google AdSense 展示广告。Google 及其合作伙伴可能会根据您在本站或其他网站的历史访问记录，使用 Cookie（包括 DoubleClick Cookie）来投放广告。如果您不希望看到个性化广告，可以通过 Google 广告设置（adssettings.google.com）或 www.aboutads.info 选择退出。"
+    },
+    {
+      "heading": "第三方服务",
+      "body": "本站使用 Google Fonts 提供网页字体，使用 Google AdSense 展示广告。这些服务在提供服务过程中可能会收集 IP 地址等基本技术信息。我们无法直接控制这些第三方如何处理该信息，详情请参阅 Google 自身的隐私政策。"
+    },
+    {
+      "heading": "儿童隐私",
+      "body": "GetNiftyKit 不会故意收集 13 岁以下儿童的个人信息。"
+    },
+    {
+      "heading": "政策变更",
+      "body": "本政策可能会不时更新，变更内容将发布在本页面上。"
+    }
+  ],
+  "contactHeading": "联系我们",
+  "contactBody": "如果您对本政策或 GetNiftyKit 的使用方式有任何疑问，",
+  "contactLinkText": "请点击这里联系我们"
+}

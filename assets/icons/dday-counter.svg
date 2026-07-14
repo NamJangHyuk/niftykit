@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- 임시 플레이스홀더: 같은 파일명으로 실제 아이콘 SVG를 덮어쓰면 바로 교체됩니다 -->
+  <rect width="40" height="40" rx="10" fill="#fff1f2"/>
+  <rect x="9" y="10" width="22" height="20" rx="3" fill="none" stroke="#e11d48" stroke-width="2"/>
+  <line x1="9" y1="16" x2="31" y2="16" stroke="#e11d48" stroke-width="2"/>
+  <line x1="14" y1="7" x2="14" y2="13" stroke="#e11d48" stroke-width="2" stroke-linecap="round"/>
+  <line x1="26" y1="7" x2="26" y2="13" stroke="#e11d48" stroke-width="2" stroke-linecap="round"/>
+  <text x="20" y="26" font-family="sans-serif" font-size="8" font-weight="700" fill="#e11d48" text-anchor="middle">D</text>
+</svg>

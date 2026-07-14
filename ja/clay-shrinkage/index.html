@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>粘土収縮率計算機 - 素焼き・本焼きサイズ自動計算無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="素焼きサイズと本焼き（完成）サイズのどちらか一方を入力するだけで、粘土の収縮率を反映して反対側のサイズを自動計算してくれる無料の陶芸ツールです。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/clay-shrinkage/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/clay-shrinkage/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/clay-shrinkage/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <base href="../../clay-shrinkage/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "粘土収縮率計算機",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "素焼きサイズと本焼き（完成）サイズのどちらか一方を入力すると、粘土の収縮率を反映して反対側のサイズを自動計算する無料の陶芸ツールです。幅・奥行き・高さを一緒に計算し、器のシルエットでサイズを比較して表示します。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "素焼きと本焼きの間の収縮だけを計算しますか、それとも成形からの全体の収縮ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "入力していただいた収縮率（%）を、素焼きサイズと本焼きサイズの間の比率としてそのまま適用します。成形段階からの全体の収縮率がわかる場合は、素焼きサイズの欄に成形時のサイズを入力する方法でも活用できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "両方にすでに値がある状態で片方を変更するとどうなりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "たった今修正した側の値を基準に、反対側の欄が新しく計算されて自動的に更新されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "粘土の収縮率は通常どれくらいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "粘土の種類によって異なりますが、一般的には5〜15%程度で、一部の高陶土・磁器系は15〜20%まで収縮することもあります。使用している粘土メーカーの資料を確認するか、実際に試し焼きをして確認するのが最も正確です。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>粘土収縮率計算機</h1>
+    <p class="subtitle">素焼きと本焼き、どちらか一方のサイズを入力するだけで反対側が自動的に計算されます</p>
+    <p class="tagline-extra">焼成過程で縮む分を反映して、幅・奥行き・高さを素焼き↔本焼きの両方向で計算します。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="cs-setup-section" aria-label="収縮率の入力">
+      <div class="cs-field">
+        <label for="cs-shrinkage">粘土収縮率（%）</label>
+        <input type="number" id="cs-shrinkage" min="0.01" max="99.99" step="any" placeholder="例: 12" />
+      </div>
+
+      <div class="cs-preset-group">
+        <span class="cs-preset-label">よく使う収縮率</span>
+        <div class="cs-preset-buttons">
+          <button type="button" class="cs-preset-btn" data-value="8">8%</button>
+          <button type="button" class="cs-preset-btn" data-value="10">10%</button>
+          <button type="button" class="cs-preset-btn" data-value="12">12%</button>
+          <button type="button" class="cs-preset-btn" data-value="15">15%</button>
+        </div>
+      </div>
+
+      <p class="cs-error" id="cs-shrinkage-error" hidden>収縮率は0より大きく100より小さい数字で入力してください。</p>
+      <p class="cs-warning" id="cs-shrinkage-warning" hidden>⚠ 収縮率が一般的な範囲（5〜20%）を外れています。使用している粘土の収縮率をもう一度確認してください。</p>
+    </section>
+
+    <section class="cs-dimensions-section" aria-label="素焼き・本焼き寸法の入力">
+      <div class="cs-dimensions-grid">
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">素焼きサイズ</h2>
+          <div class="cs-field">
+            <label for="cs-bisque-width">幅</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-width" min="0.01" step="any" placeholder="例: 12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-depth">奥行き</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-depth" min="0.01" step="any" placeholder="例: 10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-height">高さ</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-height" min="0.01" step="any" placeholder="例: 15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-dimensions-arrow" aria-hidden="true">⇄</div>
+
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">本焼き（完成）サイズ</h2>
+          <div class="cs-field">
+            <label for="cs-final-width">幅</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-width" min="0.01" step="any" placeholder="例: 12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-depth">奥行き</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-depth" min="0.01" step="any" placeholder="例: 10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-height">高さ</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-height" min="0.01" step="any" placeholder="例: 15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cs-error" id="cs-dimension-error" hidden>寸法は0より大きい数字で入力してください。</p>
+    </section>
+
+    <section
+      class="cs-result-section"
+      aria-label="素焼き・本焼きサイズの比較"
+      data-bisque-label="素焼き"
+      data-final-label="本焼き"
+      data-depth-template="奥行き {value}"
+    >
+      <p class="cs-empty-hint" id="cs-empty-hint">幅と高さを入力すると比較図が表示されます。</p>
+      <svg class="cs-diagram" id="cs-diagram" viewBox="0 0 320 220" role="img" aria-label="素焼きサイズと本焼きサイズの器のシルエット比較" hidden>
+        <line id="cs-diagram-baseline" class="cs-diagram-baseline" />
+        <path id="cs-vase-bisque" class="cs-vase cs-vase-bisque" />
+        <path id="cs-vase-final" class="cs-vase cs-vase-final" />
+        <text id="cs-vase-bisque-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-final-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-final-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-depth" class="cs-vase-depth" text-anchor="middle"></text>
+        <text id="cs-vase-final-depth" class="cs-vase-depth" text-anchor="middle"></text>
+      </svg>
+      <p class="cs-disclaimer">実際の収縮率は粘土の種類・焼成温度・乾燥時の湿度によって変わることがあるため、重要な作品の前には試し焼きで正確な収縮率を確認することをおすすめします。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>粘土収縮率計算機とは？</h2>
+      <p>
+        粘土は素焼きと本焼きを経るたびに体積が縮み続けます。この収縮率は通常5〜20%の間で、粘土の種類によって異なります。粘土収縮率計算機は、素焼き段階のサイズと完成した本焼きサイズのどちらか一方を入力するだけで、「本焼きサイズ＝素焼きサイズ×（1−収縮率）」の公式で反対側のサイズを自動的に計算してくれます。幅・奥行き・高さをそれぞれ素焼き↔本焼きの両方向で計算できるため、すでに素焼きした作品の完成サイズを事前に把握したり、逆に目標とする完成サイズに合わせて素焼き段階のサイズを確認したりするのに活用できます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        使用する粘土の収縮率（%）を入力するか、よく使う収縮率ボタンを押してすばやく選択してください。次に、素焼きサイズまたは本焼き（完成）サイズのうちわかっている値を幅・奥行き・高さの欄に入力すると、反対側の欄が自動的に埋まります。すでに両方に値がある状態でどちらかを修正すると、その値を基準に反対側が新しく計算されます。幅と高さの値が揃うと、2つの器のシルエットが実際のサイズ比率どおりに描かれ、一目で比較できます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>すでに素焼きした作品が本焼き後にどんなサイズになるか事前に把握したいとき</li>
+        <li>希望する完成（本焼き）サイズに合わせて素焼き段階でどれくらい大きく作るべきか確認したいとき</li>
+        <li>新しい粘土を初めて使い、収縮率に合わせてサイズを計算し直す必要があるとき</li>
+        <li>幅・奥行き・高さを同時に合わせる必要がある作業で両方のサイズを一度に比較したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>素焼きと本焼きの間の収縮だけを計算しますか、それとも成形からの全体の収縮ですか？</dt>
+          <dd>入力していただいた収縮率（%）を、素焼きサイズと本焼きサイズの間の比率としてそのまま適用します。成形段階からの全体の収縮率がわかる場合は、素焼きサイズの欄に成形時のサイズを入力する方法でも活用できます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>両方にすでに値がある状態で片方を変更するとどうなりますか？</dt>
+          <dd>たった今修正した側の値を基準に、反対側の欄が新しく計算されて自動的に更新されます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>粘土の収縮率は通常どれくらいですか？</dt>
+          <dd>粘土の種類によって異なりますが、一般的には5〜15%程度で、一部の高陶土・磁器系は15〜20%まで収縮することもあります。使用している粘土メーカーの資料を確認するか、実際に試し焼きをして確認するのが最も正確です。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはすべての計算をブラウザ上でのみ処理し、入力した値をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

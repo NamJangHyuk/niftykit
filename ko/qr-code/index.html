@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR코드 생성기 - 와이파이·명함·URL QR코드 무료 제작 | GetNiftyKit</title>
+  <meta name="description" content="URL, 와이파이, 명함, 이메일, 전화번호, SMS, 이벤트, 위치까지 — 목적에 맞는 QR코드를 무료로 만들고 PNG·SVG로 다운로드하세요. 회원가입 없이 바로 사용 가능합니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/qr-code/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/qr-code/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/qr-code/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/qr-code/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/qr-code/" />
+  <base href="../../qr-code/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QR코드 생성기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "URL, 와이파이, 명함, 이메일, 전화번호 등 목적에 맞는 QR코드를 즉시 생성하고 PNG·SVG로 다운로드할 수 있는 무료 웹 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "무료로 사용할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 회원가입 없이 무료로 QR코드를 만들고 다운로드할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "어떤 형식으로 다운로드할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG와 SVG 두 가지 형식으로 다운로드할 수 있습니다. PNG는 문서나 인쇄물에 바로 쓰기 좋고, SVG는 확대해도 깨지지 않는 벡터 형식입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "입력할 수 있는 글자 수에 제한이 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QR코드 특성상 너무 긴 텍스트는 담을 수 없습니다. 값이 너무 길면 화면에 안내 메시지가 표시되니, 짧은 URL이나 핵심 텍스트만 넣는 것을 추천합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wi-Fi나 명함 정보도 QR코드로 만들 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 상단 카테고리에서 Wi-Fi, 연락처(명함), 이메일, 전화, SMS, 이벤트(캘린더), 위치 중 원하는 형식을 선택하면 각 목적에 맞는 QR코드를 만들 수 있습니다. 예를 들어 Wi-Fi QR코드는 스캔하는 즉시 해당 네트워크에 자동으로 연결됩니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>QR코드 생성기</h1>
+    <p class="subtitle">URL부터 와이파이, 명함까지 — 목적에 맞는 QR코드를 무료로 만들어드려요</p>
+    <p class="tagline-extra">와이파이 공유, 명함 QR코드, 이벤트 초대장까지 — 무료로 QR코드를 만들고 PNG·SVG로 다운로드하세요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="qr-input-section" aria-label="QR코드 값 입력">
+      <div class="qr-category-tabs" id="qr-category-tabs"></div>
+      <p class="qr-category-desc" id="qr-category-desc"></p>
+      <div class="qr-form-container" id="qr-form-container"></div>
+    </section>
+
+    <div class="qr-workspace">
+      <section class="qr-preview-section" aria-label="QR코드 미리보기 및 다운로드">
+        <div class="qr-preview-box">
+          <canvas id="qr-preview" class="qr-preview" hidden></canvas>
+          <p class="qr-empty-message" id="qr-empty-message"></p>
+          <p class="qr-error-message" id="qr-error-message" hidden></p>
+        </div>
+        <div class="qr-download-row">
+          <button type="button" id="download-png" disabled>PNG</button>
+          <button type="button" id="download-svg" class="download-btn-svg" disabled>SVG</button>
+        </div>
+      </section>
+
+      <section class="qr-design-section" aria-label="QR코드 디자인 설정">
+        <button type="button" id="design-toggle" class="design-toggle" aria-expanded="false" aria-controls="design-panel">
+          <span>디자인 설정</span>
+          <svg class="design-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="qr-design-panel" id="design-panel" hidden>
+          <div class="qr-design-field">
+            <label for="design-color-dark">QR 색상</label>
+            <input type="color" id="design-color-dark" value="#000000" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-color-light">배경색</label>
+            <input type="color" id="design-color-light" value="#ffffff" />
+          </div>
+          <p class="qr-design-warning" id="design-contrast-warning" hidden></p>
+          <div class="qr-design-field">
+            <label for="design-margin">여백 (<span id="design-margin-value"></span>)</label>
+            <input type="range" id="design-margin" min="0" max="160" value="64" />
+          </div>
+          <div class="qr-design-field qr-design-field-checkbox">
+            <input type="checkbox" id="design-border-enabled" />
+            <label for="design-border-enabled">테두리 표시</label>
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-width">테두리 굵기 (<span id="design-border-width-value"></span>)</label>
+            <input type="range" id="design-border-width" min="2" max="40" value="8" />
+          </div>
+          <div class="qr-design-field">
+            <label for="design-border-color">테두리 색상</label>
+            <input type="color" id="design-border-color" value="#0d9488" />
+          </div>
+          <div class="qr-design-divider"></div>
+
+          <div class="qr-logo-section">
+            <label for="design-logo-file" id="logo-file-label" class="qr-logo-file-label"></label>
+            <input type="file" id="design-logo-file" accept="image/png,image/jpeg,image/svg+xml" />
+            <p class="qr-design-warning" id="logo-file-warning" hidden></p>
+
+            <div class="qr-logo-preview-row" id="logo-preview-row" hidden>
+              <img id="logo-thumbnail" alt="" />
+              <button type="button" id="logo-remove-btn" class="design-reset"></button>
+            </div>
+
+            <div class="qr-logo-position-grid" id="logo-position-grid" hidden></div>
+
+            <div class="qr-design-field" id="logo-size-row" hidden>
+              <label for="logo-size"><span id="logo-size-label"></span> (<span id="logo-size-value"></span>)</label>
+              <input type="range" id="logo-size" min="10" max="25" value="20" />
+            </div>
+            <p class="qr-design-warning" id="logo-size-warning" hidden></p>
+          </div>
+
+          <button type="button" id="design-reset" class="design-reset">기본값으로 초기화</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>QR코드 생성기란?</h2>
+      <p>
+        QR코드 생성기는 URL, 와이파이 접속 정보, 명함(연락처), 이메일, 전화번호, SMS, 캘린더 일정, 지도 위치 등 목적에 맞는 QR코드를 즉시 만들어주는 도구입니다. 와이파이 비밀번호 공유용 QR코드, 명함에 넣는 QR코드, 메뉴판이나 포스터, 발표 자료용 QR코드가 필요할 때 별도 프로그램 설치 없이 바로 만들 수 있습니다. 생성된 QR코드는 PNG 또는 SVG 파일로 무료 다운로드할 수 있으며, 모든 처리는 브라우저에서 즉시 이루어집니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        먼저 원하는 QR코드 종류(URL, 텍스트, Wi-Fi, 연락처, 이메일, 전화, SMS, 이벤트, 위치)를 선택하고, 그에 맞는 항목을 입력하세요. 입력하는 즉시 아래에 QR코드 미리보기가 나타납니다. 원하는 결과가 나오면 &quot;PNG&quot; 또는 &quot;SVG&quot; 버튼을 눌러 파일로 다운로드하면 됩니다. 입력한 값이 너무 길어 QR코드로 담을 수 없는 경우에는 안내 메시지가 표시됩니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>와이파이 비밀번호나 웹사이트 주소를 빠르게 공유할 때</li>
+        <li>명함이나 전단지에 QR코드를 넣고 싶을 때</li>
+        <li>인쇄된 메뉴판을 온라인 주문 페이지로 연결할 때</li>
+        <li>발표 자료나 포스터에 QR코드를 삽입할 때</li>
+        <li>행사 초대장에 캘린더 등록용 QR코드를 넣고 싶을 때</li>
+        <li>전화 상담이나 문자 문의 연결용 QR코드가 필요할 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>무료로 사용할 수 있나요?</dt>
+          <dd>네, 회원가입 없이 무료로 QR코드를 만들고 다운로드할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>어떤 형식으로 다운로드할 수 있나요?</dt>
+          <dd>PNG와 SVG 두 가지 형식으로 다운로드할 수 있습니다. PNG는 문서나 인쇄물에 바로 쓰기 좋고, SVG는 확대해도 깨지지 않는 벡터 형식입니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>입력할 수 있는 글자 수에 제한이 있나요?</dt>
+          <dd>QR코드 특성상 너무 긴 텍스트는 담을 수 없습니다. 값이 너무 길면 화면에 안내 메시지가 표시되니, 짧은 URL이나 핵심 텍스트만 넣는 것을 추천합니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Wi-Fi나 명함 정보도 QR코드로 만들 수 있나요?</dt>
+          <dd>네, 상단 카테고리에서 Wi-Fi, 연락처(명함), 이메일, 전화, SMS, 이벤트(캘린더), 위치 중 원하는 형식을 선택하면 각 목적에 맞는 QR코드를 만들 수 있습니다. 예를 들어 Wi-Fi QR코드는 스캔하는 즉시 해당 네트워크에 자동으로 연결됩니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 QR코드 생성 과정을 브라우저 로컬에서 처리하며, 입력하신 내용을 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <!-- QRCode.js (davidshimjs/qrcodejs, MIT License) - https://github.com/davidshimjs/qrcodejs
+       저장소에 정식 버전 태그가 없어서, 커밋 해시로 고정해 안정적으로 불러옵니다.
+       qrcode.min.js(압축본)는 저장소에서 실제 소스(qrcode.js)와 오래 전부터 동기화가
+       안 되어 있어 SVG 기능이 빠져있는 걸 직접 확인해서, 비압축 원본을 그대로 씁니다. -->
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708418cb7b96fc563eacae0fbf77674/qrcode.js"></script>
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

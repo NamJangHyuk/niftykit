@@ -1,0 +1,370 @@
+/* 계단 계산기(Stair Calc) 전용 스타일
+   테마: Square Check와 같은 CLAUDE.md 5-4 "전문가용 시공 도구" 카테고리라 절제된
+   다크모드를 이어가되, 목재·계단을 연상시키는 앰버(amber) 포인트 컬러를 써서
+   같은 다크모드 계열 안에서도 다른 도구(시안)와 확실히 구분되게 했습니다. */
+
+:root {
+  --stc-bg: #0f172a;
+  --stc-card-bg: #1e293b;
+  --stc-border: #334155;
+  --stc-text: #e2e8f0;
+  --stc-text-muted: #94a3b8;
+  --stc-accent: #f59e0b;
+  --stc-accent-dark: #d97706;
+  --stc-warning: #fbbf24;
+  --stc-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--stc-bg);
+  color: var(--stc-text);
+  line-height: 1.6;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--stc-bg);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--stc-card-bg);
+  border: 1px solid var(--stc-border);
+  border-radius: 999px;
+  color: var(--stc-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.back-link:hover {
+  color: var(--stc-accent);
+  border-color: var(--stc-accent);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  color: var(--stc-accent);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--stc-text-muted);
+  font-size: 1.1rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--stc-text-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.stc-setup-section {
+  margin-top: 24px;
+  background: var(--stc-card-bg);
+  border: 1px solid var(--stc-border);
+  border-radius: var(--stc-radius);
+  padding: 20px;
+}
+
+.stc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stc-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--stc-text-muted);
+}
+
+.stc-input-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stc-input-with-unit input {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 1.1rem;
+  border: 2px solid var(--stc-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--stc-text);
+  background: var(--stc-bg);
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.stc-input-with-unit input:focus {
+  border-color: var(--stc-accent);
+}
+
+.stc-unit {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--stc-text-muted);
+}
+
+.stc-error {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+.stc-result-section {
+  margin-top: 20px;
+  background: var(--stc-card-bg);
+  border: 1px solid var(--stc-border);
+  border-radius: var(--stc-radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.stc-diagram {
+  width: 100%;
+  max-width: 462px;
+  height: auto;
+}
+
+.stc-dim-line {
+  stroke: var(--stc-text-muted);
+  stroke-width: 1;
+}
+
+.stc-dim-label {
+  font-size: 11px;
+  fill: var(--stc-text-muted);
+  font-weight: 600;
+}
+
+.stc-dim-leader {
+  stroke: var(--stc-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.7;
+}
+
+.stc-dim-line-detail {
+  stroke: var(--stc-accent);
+  stroke-width: 1.5;
+}
+
+.stc-dim-label-detail {
+  font-size: 11px;
+  fill: var(--stc-accent);
+  font-weight: 700;
+}
+
+.stc-angle-arc {
+  stroke: var(--stc-text-muted);
+  stroke-width: 1.5;
+}
+
+.stc-angle-label {
+  font-size: 12px;
+  fill: var(--stc-accent);
+  font-weight: 700;
+}
+
+.stc-result-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stc-result-card {
+  background: var(--stc-bg);
+  border: 1px solid var(--stc-border);
+  border-radius: 10px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stc-result-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--stc-text-muted);
+}
+
+.stc-result-value {
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--stc-accent);
+}
+
+.stc-warning {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
+  color: var(--stc-warning);
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.stc-disclaimer {
+  margin: 16px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--stc-border);
+  font-size: 0.78rem;
+  color: var(--stc-text-muted);
+  text-align: left;
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--stc-card-bg);
+  border: 1px solid var(--stc-border);
+  border-radius: var(--stc-radius);
+  color: var(--stc-text-muted);
+  font-size: 0.85rem;
+}
+
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 892px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: var(--stc-accent);
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--stc-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--stc-text-muted);
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--stc-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--stc-accent);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--stc-text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--stc-accent);
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: var(--stc-accent-dark);
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .stc-result-value {
+    font-size: 1.1rem;
+  }
+}

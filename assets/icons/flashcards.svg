@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- 임시 플레이스홀더: 같은 파일명으로 실제 아이콘 SVG를 덮어쓰면 바로 교체됩니다 -->
+  <rect width="40" height="40" rx="10" fill="#f0fdfa"/>
+  <rect x="9" y="14" width="18" height="13" rx="2" fill="none" stroke="#0d9488" stroke-width="1.6" opacity="0.5"/>
+  <rect x="12" y="11" width="18" height="13" rx="2" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+  <line x1="16" y1="15.5" x2="26" y2="15.5" stroke="#0d9488" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="16" y1="19.5" x2="23" y2="19.5" stroke="#0d9488" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

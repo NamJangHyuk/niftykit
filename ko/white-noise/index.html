@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>백색소음 플레이어 - 화이트·핑크·브라운 노이즈 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="화이트, 핑크, 브라운 노이즈를 브라우저에서 직접 합성해 무한 재생하는 백색소음 플레이어입니다. 볼륨 조절과 자동 종료 타이머로 집중과 수면에 활용하세요." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/white-noise/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/white-noise/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/white-noise/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/white-noise/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <base href="../../white-noise/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "백색소음 플레이어",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "Web Audio API로 화이트·핑크·브라운 노이즈를 실시간으로 합성해 무한 루프로 재생하는 무료 백색소음 플레이어입니다. 별도 음원 파일 없이 코드로 소리를 만들어 저작권 걱정이 없습니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "노이즈 종류마다 어떤 차이가 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "화이트 노이즈는 모든 주파수가 고르게 섞인 소리로 가장 또렷하고, 핑크 노이즈는 저음이 강조되어 조금 더 부드럽게 들리며, 브라운 노이즈는 저음이 훨씬 더 강조되어 파도나 폭포 소리처럼 묵직하게 들립니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "실제 자연음 파일을 다운로드하는 건가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 이 도구는 음원 파일을 전혀 사용하지 않고, 브라우저에서 Web Audio API로 소리 파형을 실시간으로 계산해서 만들어냅니다. 그래서 저작권 문제가 없고 용량도 필요 없습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "자동 종료 타이머는 어떻게 동작하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "재생을 시작하기 전에 자동 종료 시간을 선택해두면, 그 시간이 지난 순간 재생이 자동으로 멈춥니다. \"끄기\"로 두면 직접 정지 버튼을 누를 때까지 계속 재생됩니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>White Noise</h1>
+    <p class="subtitle">화이트·핑크·브라운 노이즈를 그 자리에서 합성해 들려드려요</p>
+    <p class="tagline-extra">별도 음원 파일 다운로드 없이 브라우저가 직접 소리를 만들어내며, 볼륨과 자동 종료 시간을 조절할 수 있어요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="wn-display-section"
+      id="wn-display"
+      aria-label="백색소음 플레이어 화면"
+      data-ready-label="정지됨"
+      data-playing-label="재생 중"
+      data-remaining-template="자동 종료까지 {time} 남음"
+    >
+      <p class="wn-status-label" id="wn-status-label">정지됨</p>
+      <p class="wn-remaining" id="wn-remaining"></p>
+    </section>
+
+    <section class="wn-setup-section" aria-label="백색소음 설정">
+      <fieldset class="wn-field">
+        <legend>노이즈 종류</legend>
+        <div class="wn-radio-group" role="radiogroup">
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-white" value="white" checked />
+            화이트 노이즈
+          </label>
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-pink" value="pink" />
+            핑크 노이즈
+          </label>
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-brown" value="brown" />
+            브라운 노이즈
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="wn-field">
+        <label for="wn-volume">볼륨</label>
+        <input type="range" id="wn-volume" min="0" max="100" value="60" />
+      </div>
+
+      <div class="wn-field">
+        <label for="wn-auto-stop">자동 종료</label>
+        <select id="wn-auto-stop">
+          <option value="0">끄기 (계속 재생)</option>
+          <option value="15">15분 후</option>
+          <option value="30">30분 후</option>
+          <option value="45">45분 후</option>
+          <option value="60">60분 후</option>
+        </select>
+      </div>
+
+      <div class="wn-controls">
+        <button type="button" id="wn-play-btn" class="wn-btn wn-btn-primary">재생</button>
+        <button type="button" id="wn-stop-btn" class="wn-btn wn-btn-stop" hidden>정지</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>백색소음 플레이어란?</h2>
+      <p>
+        백색소음 플레이어(White Noise)는 화이트, 핑크, 브라운 세 가지 노이즈를 브라우저의 Web Audio API로 그 자리에서 직접 합성해 들려주는 도구입니다. 실제 자연음을 녹음한 파일을 다운로드하는 방식이 아니라 코드로 소리 파형을 만들어내기 때문에 저작권 문제가 전혀 없고, 인터넷 연결이 느려도 끊김 없이 재생됩니다. 화이트 노이즈는 모든 주파수가 균일하게 섞인 소리이고, 핑크 노이즈는 저음이 더 강조되어 부드럽게 들리며, 브라운 노이즈는 저음이 한층 더 강조되어 파도 소리처럼 묵직하게 들립니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        원하는 노이즈 종류를 선택하고 &quot;재생&quot; 버튼을 누르면 바로 소리가 나옵니다. 재생 중에도 볼륨 슬라이더로 크기를 조절할 수 있고, 자동 종료 시간을 미리 설정해두면 그 시간이 지난 뒤 저절로 재생이 멈춥니다. 노이즈 종류를 바꾸려면 먼저 &quot;정지&quot; 버튼을 눌러 재생을 멈춘 뒤 다시 선택하면 됩니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>공부나 업무 중 주변 소음을 덮어 집중력을 유지하고 싶을 때</li>
+        <li>잠들기 전 편안한 배경음이 필요할 때(자동 종료 타이머로 밤새 재생 방지)</li>
+        <li>사무실이나 카페의 소음을 차단하고 싶을 때</li>
+        <li>아기를 재우거나 명상할 때 일정한 배경음이 필요할 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>노이즈 종류마다 어떤 차이가 있나요?</dt>
+          <dd>화이트 노이즈는 모든 주파수가 고르게 섞인 소리로 가장 또렷하고, 핑크 노이즈는 저음이 강조되어 조금 더 부드럽게 들리며, 브라운 노이즈는 저음이 훨씬 더 강조되어 파도나 폭포 소리처럼 묵직하게 들립니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>실제 자연음 파일을 다운로드하는 건가요?</dt>
+          <dd>아니요. 이 도구는 음원 파일을 전혀 사용하지 않고, 브라우저에서 Web Audio API로 소리 파형을 실시간으로 계산해서 만들어냅니다. 그래서 저작권 문제가 없고 용량도 필요 없습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>자동 종료 타이머는 어떻게 동작하나요?</dt>
+          <dd>재생을 시작하기 전에 자동 종료 시간을 선택해두면, 그 시간이 지난 순간 재생이 자동으로 멈춥니다. &quot;끄기&quot;로 두면 직접 정지 버튼을 누를 때까지 계속 재생됩니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 소리 합성과 재생을 브라우저에서만 처리하며, 서버로 전송하거나 저장하는 데이터가 없습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

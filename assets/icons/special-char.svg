@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- 임시 플레이스홀더: 같은 파일명으로 실제 아이콘 SVG를 덮어쓰면 바로 교체됩니다 -->
+  <rect width="40" height="40" rx="10" fill="#f4edff"/>
+  <path d="M20 9l2.6 7.9H31l-6.7 4.9 2.6 7.9L20 24.8l-6.9 4.9 2.6-7.9L9 16.9h8.4z" fill="#7c3aed"/>
+</svg>

@@ -1,0 +1,396 @@
+/* 선반 간격 계산기(Shelf Spacing) 전용 스타일
+   테마: Square Check·Stair Calc와 같은 CLAUDE.md 5-4 "전문가용 시공 도구" 카테고리라
+   절제된 다크모드를 이어가되, 목재·수납을 연상시키는 그린 포인트 컬러를 써서
+   같은 다크모드 계열 안에서도 다른 도구(시안·앰버)와 확실히 구분되게 했습니다. */
+
+:root {
+  --shsp-bg: #0f172a;
+  --shsp-card-bg: #1e293b;
+  --shsp-border: #334155;
+  --shsp-text: #e2e8f0;
+  --shsp-text-muted: #94a3b8;
+  --shsp-accent: #22c55e;
+  --shsp-accent-dark: #16a34a;
+  --shsp-line: #64748b;
+  --shsp-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--shsp-bg);
+  color: var(--shsp-text);
+  line-height: 1.6;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--shsp-bg);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--shsp-card-bg);
+  border: 1px solid var(--shsp-border);
+  border-radius: 999px;
+  color: var(--shsp-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.back-link:hover {
+  color: var(--shsp-accent);
+  border-color: var(--shsp-accent);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  color: var(--shsp-accent);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--shsp-text-muted);
+  font-size: 1.1rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--shsp-text-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.shsp-setup-section {
+  margin-top: 24px;
+  background: var(--shsp-card-bg);
+  border: 1px solid var(--shsp-border);
+  border-radius: var(--shsp-radius);
+  padding: 20px;
+}
+
+.shsp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shsp-field + .shsp-field {
+  margin-top: 14px;
+}
+
+.shsp-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--shsp-text-muted);
+}
+
+.shsp-field input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1.1rem;
+  border: 2px solid var(--shsp-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--shsp-text);
+  background: var(--shsp-bg);
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.shsp-field input:focus {
+  border-color: var(--shsp-accent);
+}
+
+.shsp-input-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shsp-input-with-unit input {
+  flex: 1;
+}
+
+.shsp-unit {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--shsp-text-muted);
+}
+
+.shsp-error {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+.shsp-result-section {
+  margin-top: 20px;
+  background: var(--shsp-card-bg);
+  border: 1px solid var(--shsp-border);
+  border-radius: var(--shsp-radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.shsp-diagram {
+  width: 100%;
+  max-width: 374px;
+  height: auto;
+}
+
+.shsp-dim-line {
+  stroke: var(--shsp-text-muted);
+  stroke-width: 1;
+}
+
+.shsp-dim-label {
+  font-size: 11px;
+  fill: var(--shsp-text-muted);
+  font-weight: 600;
+}
+
+.shsp-dim-line-detail {
+  stroke: var(--shsp-accent);
+  stroke-width: 1.5;
+}
+
+.shsp-dim-label-detail {
+  font-size: 11px;
+  fill: var(--shsp-accent);
+  font-weight: 700;
+}
+
+.shsp-dim-leader {
+  stroke: var(--shsp-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.7;
+}
+
+.shsp-result-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.shsp-result-card {
+  background: var(--shsp-bg);
+  border: 1px solid var(--shsp-border);
+  border-radius: 10px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shsp-result-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--shsp-text-muted);
+}
+
+.shsp-result-value {
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--shsp-accent);
+}
+
+.shsp-warning {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.shsp-positions {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.shsp-positions-heading {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: var(--shsp-text);
+}
+
+.shsp-positions-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shsp-positions-list li {
+  padding: 8px 12px;
+  background: var(--shsp-bg);
+  border: 1px solid var(--shsp-border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: var(--shsp-text);
+}
+
+.shsp-disclaimer {
+  margin: 16px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--shsp-border);
+  font-size: 0.78rem;
+  color: var(--shsp-text-muted);
+  text-align: left;
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--shsp-card-bg);
+  border: 1px solid var(--shsp-border);
+  border-radius: var(--shsp-radius);
+  color: var(--shsp-text-muted);
+  font-size: 0.85rem;
+}
+
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 892px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: var(--shsp-accent);
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--shsp-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--shsp-text-muted);
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--shsp-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--shsp-accent);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--shsp-text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--shsp-accent);
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(34, 197, 94, 0.3);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: var(--shsp-accent-dark);
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .shsp-result-value {
+    font-size: 1.1rem;
+  }
+}

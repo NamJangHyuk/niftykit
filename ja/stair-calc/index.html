@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>階段計算機 - 段数・蹴上げ・踏み面の自動計算無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="階高を入力するだけで、標準設計基準に沿って階段の段数、蹴上げ、踏み面の奥行き、全体の水平長さを自動で計算してくれる無料ツールです。セルフリフォームや施工現場ですぐに活用できます。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/stair-calc/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/stair-calc/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/stair-calc/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/stair-calc/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <base href="../../stair-calc/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "階段計算機",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "階高を入力すると、標準設計ガイドラインに沿って階段の段数、蹴上げ、踏み面の奥行き、全体の水平長さを自動計算する無料の施工ツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "この計算結果は建築法規を完全に満たしていますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。このツールは一般的に広く使われている設計ガイドラインを参考として計算するだけであり、実際の法的基準は建物の用途や地域によって異なります。施工前には必ず管轄自治体の建築法規をご確認ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "蹴上げはなぜ15〜20cmの範囲を基準にしているのですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "この範囲は上り下りする際に無理のない、一般的な歩行のしやすさの基準として広く使われています。これより高いと急に感じられ、低いと階段全体の長さが不必要に長くなります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "踏み面の奥行きはどのように計算されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「2R+T公式」を使用します。蹴上げ（R）を2倍した値と踏み面の奥行き（T）を足した値が約60〜65cmになるようにすることが、歩行時の最も自然な歩幅に合うとされています。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Stair Calc</h1>
+    <p class="subtitle">階高を入力するだけで、階段の段数・蹴上げ・踏み面の奥行きをすぐに計算します</p>
+    <p class="tagline-extra">標準設計公式（2R+Tの法則）で均等な蹴上げと歩きやすい踏み面の奥行きを自動的に算出します。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="stc-setup-section" aria-label="階高の入力">
+      <div class="stc-field">
+        <label for="stc-height">階高（全体の高さ）</label>
+        <div class="stc-input-with-unit">
+          <input type="number" id="stc-height" min="0.1" step="any" placeholder="例: 285" />
+          <span class="stc-unit">cm</span>
+        </div>
+      </div>
+      <p class="stc-error" id="stc-error" hidden>階高は0より大きい数字で入力してください（推奨範囲: 50〜600cm）。</p>
+    </section>
+
+    <section class="stc-result-section" aria-label="計算結果" data-steps-unit="段">
+      <svg class="stc-diagram" viewBox="0 0 320 240" role="img" aria-label="階段側面ダイアグラム">
+        <line id="stc-dim-rise-line" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick1" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick2" class="stc-dim-line" />
+        <text id="stc-dim-rise-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <line id="stc-dim-run-line" class="stc-dim-line" />
+        <line id="stc-dim-run-tick1" class="stc-dim-line" />
+        <line id="stc-dim-run-tick2" class="stc-dim-line" />
+        <text id="stc-dim-run-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <path id="stc-diagram-path" fill="none" stroke="var(--stc-accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+
+        <path id="stc-angle-arc" class="stc-angle-arc" fill="none" />
+        <text id="stc-angle-label" class="stc-angle-label" text-anchor="end"></text>
+
+        <!-- 계단 단수가 많아 한 칸이 아주 작아지는 경우에도 치수가 겹쳐 보이지 않도록,
+             첫 단을 일정한 크기로 확대해 보여주는 상세 박스입니다. 실제 축척과는
+             무관하며, 점선 리더 라인으로 실제 첫 단 모서리와 연결됩니다. -->
+        <line id="stc-dim-leader" class="stc-dim-leader" />
+        <path id="stc-detail-path" fill="none" stroke="var(--stc-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+
+        <line id="stc-dim-riser-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-riser-label" class="stc-dim-label-detail" text-anchor="end"></text>
+
+        <line id="stc-dim-tread-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-tread-label" class="stc-dim-label-detail" text-anchor="middle"></text>
+      </svg>
+
+      <div class="stc-result-grid">
+        <div class="stc-result-card">
+          <span class="stc-result-label">段数</span>
+          <span class="stc-result-value" id="stc-result-steps">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">実際の蹴上げ</span>
+          <span class="stc-result-value" id="stc-result-riser">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">推奨踏み面の奥行き</span>
+          <span class="stc-result-value" id="stc-result-tread">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">全体の水平長さ</span>
+          <span class="stc-result-value" id="stc-result-run">–</span>
+        </div>
+      </div>
+
+      <p class="stc-warning" id="stc-riser-warning" hidden>⚠ 蹴上げが標準推奨範囲（15〜20cm）を外れています。階高をもう一度確認してください。</p>
+      <p class="stc-warning" id="stc-tread-warning" hidden>⚠ 踏み面の奥行きが最小推奨値（26cm）より狭くなっています。実際の施工ではより広く調整することをおすすめします。</p>
+
+      <p class="stc-disclaimer">この計算結果は一般的な設計ガイドラインを参考として提供するものであり、法的基準を保証するものではありません。実際の施工前には必ず管轄自治体の建築法規をご確認ください。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>階段計算機とは？</h2>
+      <p>
+        階段計算機は、階高（床から次の階の床までの全体の高さ）を入力するだけで、階段設計に必要な主要な数値を自動的に計算してくれるツールです。階段の蹴上げは通常15〜20cm、その中でも17〜18cmが上り下りしやすい範囲として推奨されており、このツールはその範囲内ですべての段の高さが均等になるように段数を自動的に決定します。続いて、古くから使われている「2R+T公式」（蹴上げ×2＋踏み面の奥行き ≈ 60〜65cm）を利用して歩きやすい踏み面の奥行きを計算し、階段全体が占める水平長さも一緒に表示します。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        階高をcm単位で入力すると、段数、実際の蹴上げ、推奨踏み面の奥行き、全体の水平長さが即座に計算されて表示されます。計算された蹴上げや踏み面の奥行きが標準推奨範囲を外れている場合は警告文が一緒に表示されるので、その場合は階高を再確認するか、専門家に相談することをおすすめします。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>セルフリフォームでロフトや複層階段を自分で設計したいとき</li>
+        <li>大工や施工者が現場で素早く標準階段規格を確認したいとき</li>
+        <li>リフォーム前に既存の階段が標準範囲に合っているか点検したいとき</li>
+        <li>設計図を描く前におおよその階段数値を事前に把握したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>この計算結果は建築法規を完全に満たしていますか？</dt>
+          <dd>いいえ。このツールは一般的に広く使われている設計ガイドラインを参考として計算するだけであり、実際の法的基準は建物の用途や地域によって異なります。施工前には必ず管轄自治体の建築法規をご確認ください。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>蹴上げはなぜ15〜20cmの範囲を基準にしているのですか？</dt>
+          <dd>この範囲は上り下りする際に無理のない、一般的な歩行のしやすさの基準として広く使われています。これより高いと急に感じられ、低いと階段全体の長さが不必要に長くなります。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>踏み面の奥行きはどのように計算されますか？</dt>
+          <dd>「2R+T公式」を使用します。蹴上げ（R）を2倍した値と踏み面の奥行き（T）を足した値が約60〜65cmになるようにすることが、歩行時の最も自然な歩幅に合うとされています。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはすべての計算をブラウザ上でのみ処理し、入力した値をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

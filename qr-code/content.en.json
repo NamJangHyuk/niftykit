@@ -1,0 +1,58 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Free QR Code Generator - Wi-Fi, Business Card & URL QR Codes | GetNiftyKit",
+  "metaDescription": "Create a QR code for a URL, Wi-Fi network, business card, email, phone number, SMS, event, or location — free, no sign-up. Download as PNG or SVG instantly.",
+  "softwareAppName": "QR Code Generator",
+  "softwareAppDescription": "A free web tool that instantly generates a QR code for a URL, Wi-Fi network, business card, email, phone number, and more — downloadable as PNG or SVG.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "QR Code Generator",
+  "subtitle": "From a URL to Wi-Fi and business cards — generate the right QR code for free",
+  "taglineExtra": "Wi-Fi sharing, business card QR codes, event invites — create free QR codes and download them as PNG or SVG.",
+  "inputSectionAria": "QR code value input",
+  "inputLabel": "What should the QR code contain?",
+  "inputPlaceholder": "Enter text or a URL (e.g. https://example.com)",
+  "previewSectionAria": "QR code preview and download",
+  "designSectionAria": "QR code design settings",
+  "designToggleText": "Design settings",
+  "designColorLabel": "QR color",
+  "designBgLabel": "Background color",
+  "designMarginLabel": "Margin",
+  "designBorderEnabledLabel": "Show border",
+  "designBorderWidthLabel": "Border width",
+  "designBorderColorLabel": "Border color",
+  "designResetText": "Reset to default",
+  "infoIntroH2": "What is a QR code generator?",
+  "infoIntroP": "This free QR code generator instantly creates the right QR code for your purpose — a URL, Wi-Fi login details, a business card (contact), email, phone number, SMS, calendar event, or map location. Whether you need a Wi-Fi password QR code, a QR code for a business card, or one for a menu, poster, or slide deck, you can create it right here with no software to install. Every QR code can be downloaded for free as a PNG or SVG file, and everything is processed instantly in your browser.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "First choose the type of QR code you need (URL, Text, Wi-Fi, Contact, Email, Phone, SMS, Event, or Location), then fill in the matching fields. A live preview of the QR code appears below as you type. Once you're happy with the result, click the \"PNG\" or \"SVG\" button to download it. If your input is too long to fit in a QR code, you'll see a message letting you know.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Quickly sharing a Wi-Fi password or website address",
+    "Adding a QR code to a business card or flyer",
+    "Linking a printed menu to an online ordering page",
+    "Embedding a QR code in a presentation or poster",
+    "Adding a calendar QR code to an event invitation",
+    "Creating a QR code that starts a phone call or text message"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Is this free to use?",
+      "a": "Yes. You can create and download QR codes for free, with no account required."
+    },
+    {
+      "q": "What formats can I download?",
+      "a": "Both PNG and SVG. PNG works great for documents and printouts, while SVG is a scalable vector format that stays crisp at any size."
+    },
+    {
+      "q": "Is there a limit to how much text I can encode?",
+      "a": "QR codes can only hold so much data. If your text is too long, you'll see a message on screen — try a shorter URL or trimming the text."
+    },
+    {
+      "q": "Can I make a QR code for Wi-Fi or a business card?",
+      "a": "Yes. Pick Wi-Fi, Contact, Email, Phone, SMS, Event, or Location from the category tabs at the top to create a QR code for that specific purpose. For example, a Wi-Fi QR code will connect the device to that network as soon as it's scanned."
+    }
+  ],
+  "privacyNote": "This tool generates QR codes entirely in your browser. Your input is never sent to or stored on a server."
+}

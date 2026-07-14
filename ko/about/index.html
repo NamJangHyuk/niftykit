@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GetNiftyKit 소개</title>
+  <meta name="description" content="GetNiftyKit은 회원가입이나 설치 없이 브라우저에서 바로 쓰는 무료 웹 도구 모음입니다. 한 가지 목적에 집중한 작고 빠른 도구들을 계속 추가하고 있습니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/about/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/about/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/about/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/about/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <base href="../../" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>GetNiftyKit 소개</h1>
+    <p class="subtitle">회원가입도, 설치도, 별도 설정도 필요 없이 한 가지 일을 제대로 해내는 작은 무료 브라우저 도구 모음입니다.</p>
+  </header>
+
+  <main class="info-section">
+    <h2>GetNiftyKit이란?</h2>
+    <p>GetNiftyKit은 회원가입이나 프로그램 설치 없이 브라우저에서 바로 쓸 수 있는 무료 웹 도구 모음입니다. 특정 국가나 언어에 국한되지 않고, 전 세계 누구나 비용 부담 없이 이용할 수 있도록 만들어졌습니다. 국기 이미지 다운로드, 이모지·특수문자 검색과 복사, QR코드 생성처럼 일상이나 업무에서 종종 필요하지만 막상 찾으려면 번거로운 작업들을, 각각 한 가지 목적에 집중한 도구로 빠르고 간단하게 처리할 수 있도록 만들었습니다. 검색을 통해 필요한 도구를 찾아오신 분들이 불필요한 화면 없이 원하는 결과를 바로 얻어갈 수 있게 하는 것이 목표입니다. 도구는 계속 추가되고 있으며, 새로 생기는 도구도 모두 같은 원칙을 따릅니다 — 광고성 회원가입이나 복잡한 설정 없이 필요한 기능만 즉시 사용할 수 있고, 입력하신 내용은 서버로 전송되거나 저장되지 않고 브라우저 안에서만 처리됩니다.</p>
+
+    <h2>동작 방식</h2>
+    <p>모든 도구는 브라우저 안에서만 동작합니다. 회원가입도 없고, 검색어가 서버로 전송되지도 않으며, 개인정보 처리방침에 명시된 것 이상의 데이터는 수집하지 않습니다.</p>
+
+    <h2>문의</h2>
+    <p>의견이나 버그 제보, 도구 아이디어가 있으시면 <a href="https://forms.gle/3NPQoMPL7oJo2pwV7" target="_blank" rel="noopener noreferrer">여기서 알려주세요</a></p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

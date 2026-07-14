@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>직각삼각형 변 계산기 - 빗변·변 길이 자동 계산 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="직각삼각형의 두 변만 입력하면 나머지 한 변(빗변 포함)이 자동으로 계산됩니다. 입력한 값에 따라 삼각형 비율과 다이어그램도 그대로 반영돼요. 직각자 없이 코너 검증까지 가능한 무료 도구입니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/square-check/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/square-check/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/square-check/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/square-check/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/square-check/" />
+  <base href="../../square-check/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "직각삼각형 변 계산기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "직각삼각형의 두 변 값을 입력하면 피타고라스 정리로 나머지 한 변을 자동 계산하고, 입력값에 따라 삼각형 비율이 그대로 반영되는 다이어그램을 보여주는 무료 도구입니다. 실측 대각선과 비교해 직각 여부도 검증할 수 있습니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "꼭 3:4:5 비율로 입력해야 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 어떤 값이든 직각삼각형을 이루는 두 변만 입력하면 됩니다. 3:4:5는 그 중 가장 잘 알려진 예시일 뿐이고, 이 계산기는 모든 비율에 대해 동작합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "세 값을 모두 입력했는데 값을 바꾸고 싶어요.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "세 칸 중 아무 곳이나 새로운 값을 입력하면, 가장 오래전에 입력됐던 나머지 한 칸이 새로 계산되어 자동으로 갱신됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "실측 검증의 오차 허용 범위는 어떻게 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "이상적인 빗변 길이의 약 0.5% 이내 차이면 '거의 정확한 직각'으로 판정합니다. 줄자로 재는 현장 실측 오차를 고려한 여유값입니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>직각삼각형 계산기</h1>
+    <p class="subtitle">두 변만 입력하면 나머지 한 변이 자동으로 계산돼요</p>
+    <p class="tagline-extra">어떤 두 변을 입력하든 나머지 변이 즉시 계산되고, 삼각형 다이어그램도 실제 입력값 비율 그대로 그려져요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="sqc-setup-section" aria-label="삼각형 변 길이 입력">
+      <p class="sqc-setup-intro">직각삼각형의 세 변 중 아무 두 곳에 값을 입력하면 나머지 한 변이 피타고라스 정리로 자동 계산됩니다. 변 A는 아래 다이어그램의 가로(밑변), 변 B는 세로(높이)를 가리켜요. 값을 바꾸면 계산도, 다이어그램의 비율도 그대로 따라가요.</p>
+
+      <div class="sqc-field">
+        <label for="sqc-side-a">변 A (가로, 밑변)</label>
+        <input type="number" id="sqc-side-a" min="0.01" step="any" placeholder="예: 3" />
+      </div>
+      <div class="sqc-field">
+        <label for="sqc-side-b">변 B (세로, 높이)</label>
+        <input type="number" id="sqc-side-b" min="0.01" step="any" placeholder="예: 4" />
+      </div>
+      <div class="sqc-field">
+        <label for="sqc-hypotenuse">빗변 (대각선)</label>
+        <input type="number" id="sqc-hypotenuse" min="0.01" step="any" placeholder="예: 5" />
+      </div>
+      <p
+        class="sqc-error"
+        id="sqc-error"
+        hidden
+        data-invalid-number-error="값은 0보다 큰 숫자로 입력하세요."
+        data-invalid-triangle-error="빗변은 다른 두 변보다 길어야 직각삼각형이 성립해요. 값을 다시 확인해 주세요."
+      ></p>
+
+      <div class="sqc-controls">
+        <button type="button" id="sqc-reset-btn" class="sqc-reset-btn">초기화</button>
+      </div>
+    </section>
+
+    <section class="sqc-result-section" aria-label="계산 결과 다이어그램">
+      <svg class="sqc-diagram" id="sqc-diagram" viewBox="0 0 300 200" role="img" aria-label="직각 삼각형 다이어그램">
+        <line id="sqc-diagram-line-a" stroke="var(--sqc-line)" stroke-width="3" stroke-linecap="round" />
+        <line id="sqc-diagram-line-b" stroke="var(--sqc-line)" stroke-width="3" stroke-linecap="round" />
+        <line id="sqc-diagram-line-c" stroke="var(--sqc-accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 6" />
+        <rect id="sqc-diagram-marker" fill="none" stroke="var(--sqc-line)" stroke-width="2" />
+        <text text-anchor="middle" class="sqc-diagram-label" id="sqc-diagram-a"></text>
+        <text text-anchor="middle" class="sqc-diagram-label" id="sqc-diagram-b"></text>
+        <text text-anchor="middle" class="sqc-diagram-label sqc-diagram-label-accent" id="sqc-diagram-c"></text>
+      </svg>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <section class="sqc-verify-section" aria-label="현장 실측 검증">
+      <h2 class="sqc-verify-heading">현장 실측 검증 (선택)</h2>
+      <p class="sqc-verify-intro">위에서 계산된 빗변 길이대로 현장에서 대각선을 실제로 재보고, 그 값을 아래에 입력하면 직각과 얼마나 차이 나는지 바로 확인할 수 있어요.</p>
+      <div class="sqc-field">
+        <label for="sqc-actual-diagonal">실측 대각선 길이</label>
+        <input type="number" id="sqc-actual-diagonal" min="0.01" step="any" placeholder="실제로 측정한 대각선 길이" />
+      </div>
+      <p class="sqc-error" id="sqc-verify-error" hidden>실측 대각선 길이를 0보다 큰 숫자로 입력하세요.</p>
+      <p
+        class="sqc-verify-result"
+        id="sqc-verify-result"
+        hidden
+        data-pass-template="✓ 거의 정확한 직각입니다 (오차 {diff})"
+        data-fail-template="✗ 직각과 차이가 있습니다 (오차 {diff})"
+        data-needs-hypotenuse-message="빗변 값이 먼저 계산되어야 실측 검증을 할 수 있어요."
+      ></p>
+    </section>
+
+    <article class="info-section">
+      <h2>직각삼각형 변 계산기란?</h2>
+      <p>
+        직각삼각형 변 계산기는 피타고라스 정리(변A²+변B²=빗변²)를 이용해, 직각삼각형의 세 변 중 아무 두 값만 알아도 나머지 한 변을 즉시 계산해주는 도구입니다. 변 A와 변 B를 입력하면 빗변(대각선)을 구해주고, 반대로 빗변과 한 변을 입력하면 나머지 한 변을 구해줍니다. 목공·인테리어·조경·데크 시공 현장에서 널리 쓰이는 '3:4:5 법칙'도 이 계산기로 그대로 확인할 수 있지만, 3:4:5에 얽매이지 않고 실제로 측정한 어떤 값이든 자유롭게 넣어 계산할 수 있습니다. 입력값이 바뀌면 아래 다이어그램의 삼각형 비율도 그 값 그대로 반영됩니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        변 A, 변 B, 빗변 중 아는 값 두 개를 입력하세요. 나머지 한 칸은 자동으로 계산되어 채워집니다. 이미 세 값이 모두 채워진 상태에서 다른 값을 새로 입력하면, 가장 오래전에 입력했던 값이 새로 계산되어 갱신됩니다. 계산된 빗변 길이대로 현장에서 두 변을 표시한 뒤 대각선을 실제로 재서 '현장 실측 검증' 칸에 입력하면, 이상적인 빗변과 얼마나 차이 나는지와 직각에 가까운지를 바로 알려드립니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>직각자나 각도기 없이 벽·바닥 모서리가 직각인지 빠르게 확인하고 싶을 때</li>
+        <li>데크, 타일, 조경 시공에서 기초 라인을 직각으로 맞추고 싶을 때</li>
+        <li>가구나 목공 작업에서 프레임의 대각선 길이를 미리 계산하고 싶을 때</li>
+        <li>이미 알고 있는 두 변 값으로 나머지 변을 빠르게 역산하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>꼭 3:4:5 비율로 입력해야 하나요?</dt>
+          <dd>아니요. 어떤 값이든 직각삼각형을 이루는 두 변만 입력하면 됩니다. 3:4:5는 그 중 가장 잘 알려진 예시일 뿐이고, 이 계산기는 모든 비율에 대해 동작합니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>세 값을 모두 입력했는데 값을 바꾸고 싶어요.</dt>
+          <dd>세 칸 중 아무 곳이나 새로운 값을 입력하면, 가장 오래전에 입력됐던 나머지 한 칸이 새로 계산되어 자동으로 갱신됩니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>실측 검증의 오차 허용 범위는 어떻게 되나요?</dt>
+          <dd>이상적인 빗변 길이의 약 0.5% 이내 차이면 '거의 정확한 직각'으로 판정합니다. 줄자로 재는 현장 실측 오차를 고려한 여유값입니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 계산을 브라우저에서만 처리하며, 입력한 값을 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

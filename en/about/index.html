@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About GetNiftyKit</title>
+  <meta name="description" content="GetNiftyKit is a growing collection of free, browser-based tools built to do one job well, with no sign-up required." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/about/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/about/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/about/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <base href="../../" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>About GetNiftyKit</h1>
+    <p class="subtitle">A small collection of free, browser-based tools built to do one job well — no sign-up, no installation, nothing to configure.</p>
+  </header>
+
+  <main class="info-section">
+    <h2>What is GetNiftyKit?</h2>
+    <p>GetNiftyKit is a collection of free web tools you use right in your browser — no sign-up, no install. It's built for anyone around the world to use for free, regardless of country or language. Small tasks like downloading flag images, searching and copying emoji or special characters, or generating a QR code come up often but are surprisingly annoying to find a good tool for, so each tool here is built to do exactly one of them well. New tools are added regularly, and every one follows the same rules: no forced sign-ups, no clutter, and whatever you type is processed only in your browser — never sent to or stored on a server.</p>
+
+    <h2>How it works</h2>
+    <p>Every tool runs entirely in your browser. There's no account to create, no server-side processing of your searches, and no data collected beyond what's described in our Privacy Policy.</p>
+
+    <h2>Contact</h2>
+    <p>Have feedback, found a bug, or have a tool idea? <a href="https://forms.gle/3NPQoMPL7oJo2pwV7" target="_blank" rel="noopener noreferrer">Reach out here</a></p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="{{HTML_LANG}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+{{HREFLANG_LINKS}}
+{{BASE_TAG}}  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{{SOFTWAREAPP_JSONLD}}
+  </script>
+  <script type="application/ld+json">
+{{FAQ_JSONLD}}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="{{BACK_LINK_HREF}}" class="back-link">{{BACK_LINK_TEXT}}</a>
+  </div>
+
+  <header class="page-header">
+    <h1>{{H1}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <p class="tagline-extra">{{TAGLINE_EXTRA}}</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="pw-display-section" aria-label="{{PW_DISPLAY_ARIA}}">
+      <div class="pw-display-box">
+        <span id="pw-output" class="pw-output"></span>
+        <button
+          type="button"
+          id="pw-copy-btn"
+          class="pw-copy-btn"
+          data-copy-label="{{COPY_BTN_TEXT}}"
+          data-copied-label="{{COPIED_TEXT}}"
+        >{{COPY_BTN_TEXT}}</button>
+      </div>
+      <div class="pw-strength-row">
+        <div class="pw-strength-bar"><div id="pw-strength-fill" class="pw-strength-fill"></div></div>
+        <span
+          id="pw-strength-label"
+          class="pw-strength-label"
+          data-weak="{{STRENGTH_WEAK}}"
+          data-medium="{{STRENGTH_MEDIUM}}"
+          data-strong="{{STRENGTH_STRONG}}"
+          data-very-strong="{{STRENGTH_VERY_STRONG}}"
+        ></span>
+      </div>
+      <button type="button" id="pw-generate-btn" class="pw-generate-btn">{{GENERATE_BTN_TEXT}}</button>
+      <p class="pw-error" id="pw-error" hidden>{{NO_CHARSET_ERROR}}</p>
+    </section>
+
+    <section class="pw-options-section" aria-label="{{PW_OPTIONS_ARIA}}">
+      <div class="pw-option-field">
+        <label for="pw-length">{{LENGTH_LABEL}} (<span id="pw-length-value"></span>)</label>
+        <input type="range" id="pw-length" min="4" max="64" value="16" />
+      </div>
+      <div class="pw-checkbox-grid">
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-upper" checked /> {{UPPER_LABEL}}</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-lower" checked /> {{LOWER_LABEL}}</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-numbers" checked /> {{NUMBERS_LABEL}}</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-symbols" checked /> {{SYMBOLS_LABEL}}</label>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>{{INFO_INTRO_H2}}</h2>
+      <p>
+        {{INFO_INTRO_P}}
+      </p>
+
+      <h2>{{INFO_HOWTO_H2}}</h2>
+      <p>
+        {{INFO_HOWTO_P}}
+      </p>
+
+      <h2>{{INFO_USECASES_H2}}</h2>
+      <ul>
+{{INFO_USECASES_HTML}}
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">{{FAQ_HEADING}}</h2>
+      <dl class="faq-list">
+{{FAQ_HTML}}
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      {{PRIVACY_NOTE}}
+    </p>
+    <p class="footer-links">
+      <a href="{{FOOTER_PRIVACY_HREF}}">{{FOOTER_PRIVACY_TEXT}}</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{FOOTER_ABOUT_HREF}}">{{FOOTER_ABOUT_TEXT}}</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="{{SCROLL_TOP_ARIA}}" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

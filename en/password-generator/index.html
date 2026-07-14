@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Generator - Create Strong, Random Passwords Free | GetNiftyKit</title>
+  <meta name="description" content="Generate a secure random password by combining uppercase, lowercase, numbers, and symbols. Free, instant, with a live strength indicator — no sign-up required." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/password-generator/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/password-generator/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/password-generator/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <base href="../../password-generator/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Password Generator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free web tool that instantly generates secure random passwords using your browser's cryptographically secure random number generator (crypto.getRandomValues).",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the generated password secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Instead of Math.random(), it uses your browser's cryptographically secure random number generator (crypto.getRandomValues), producing a genuinely unpredictable value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my password sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything happens entirely in your browser — nothing you enter or generate is ever sent to or stored on a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should a secure password be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "12 characters or more is generally recommended, and for important accounts, 16+ characters combining uppercase, lowercase, numbers, and symbols is safer."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Password Generator</h1>
+    <p class="subtitle">Combine uppercase, numbers, and symbols to create a secure password for free</p>
+    <p class="tagline-extra">Freely set the length and character types, and check the password strength instantly.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="pw-display-section" aria-label="Generated password">
+      <div class="pw-display-box">
+        <span id="pw-output" class="pw-output"></span>
+        <button
+          type="button"
+          id="pw-copy-btn"
+          class="pw-copy-btn"
+          data-copy-label="Copy"
+          data-copied-label="Copied!"
+        >Copy</button>
+      </div>
+      <div class="pw-strength-row">
+        <div class="pw-strength-bar"><div id="pw-strength-fill" class="pw-strength-fill"></div></div>
+        <span
+          id="pw-strength-label"
+          class="pw-strength-label"
+          data-weak="Weak"
+          data-medium="Medium"
+          data-strong="Strong"
+          data-very-strong="Very strong"
+        ></span>
+      </div>
+      <button type="button" id="pw-generate-btn" class="pw-generate-btn">Generate new</button>
+      <p class="pw-error" id="pw-error" hidden>Please select at least one character type</p>
+    </section>
+
+    <section class="pw-options-section" aria-label="Password options">
+      <div class="pw-option-field">
+        <label for="pw-length">Length (<span id="pw-length-value"></span>)</label>
+        <input type="range" id="pw-length" min="4" max="64" value="16" />
+      </div>
+      <div class="pw-checkbox-grid">
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-upper" checked /> Uppercase (A-Z)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-lower" checked /> Lowercase (a-z)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-numbers" checked /> Numbers (0-9)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-symbols" checked /> Symbols (!@#$...)</label>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a password generator?</h2>
+      <p>
+        Password Generator is a tool that instantly creates a secure random password by combining uppercase letters, lowercase letters, numbers, and symbols exactly the way you want. It uses your browser's cryptographically secure random number generator (crypto.getRandomValues), so you get a genuinely unpredictable password rather than one based on a weaker pattern. Use it whenever you're creating a new account or want to replace an existing password with a stronger one.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Set your desired password length with the slider, and check the character types to include (uppercase, lowercase, numbers, symbols). The password regenerates automatically every time you change an option, and its strength (Weak to Very Strong) is shown right alongside it. Once you're happy with the result, click &quot;Copy&quot; to copy it to your clipboard.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Creating a secure password for a new account</li>
+        <li>Replacing an existing password with a stronger one</li>
+        <li>Using a different password for every site</li>
+        <li>Setting a new password for a Wi-Fi router or device</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Is the generated password secure?</dt>
+          <dd>Yes. Instead of Math.random(), it uses your browser's cryptographically secure random number generator (crypto.getRandomValues), producing a genuinely unpredictable value.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Is my password sent to a server?</dt>
+          <dd>No. Everything happens entirely in your browser — nothing you enter or generate is ever sent to or stored on a server.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How long should a secure password be?</dt>
+          <dd>12 characters or more is generally recommended, and for important accounts, 16+ characters combining uppercase, lowercase, numbers, and symbols is safer.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool generates passwords entirely in your browser. Generated passwords are never sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

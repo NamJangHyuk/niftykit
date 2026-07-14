@@ -37,7 +37,9 @@
       "Afġānistān"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ax",
@@ -74,7 +76,9 @@
       "Aland"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1674
   },
   {
     "code": "al",
@@ -117,7 +121,9 @@
       "Shqipnia"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1829
   },
   {
     "code": "dz",
@@ -159,7 +165,9 @@
       "Dzayer"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "as",
@@ -195,7 +203,9 @@
       "Sāmoa Amelika"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ad",
@@ -233,7 +243,9 @@
       "Principat d'Andorra"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1792
   },
   {
     "code": "ao",
@@ -270,7 +282,9 @@
       "ʁɛpublika de an'ɡɔla"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ai",
@@ -298,7 +312,9 @@
       "AI"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "aq",
@@ -331,7 +347,9 @@
       "AQ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ag",
@@ -364,7 +382,9 @@
       "AG"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ar",
@@ -402,7 +422,9 @@
       "AR"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1600
   },
   {
     "code": "am",
@@ -444,7 +466,9 @@
       "Հայաստանի Հանրապետություն"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "aw",
@@ -471,7 +495,9 @@
       "AW"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "au",
@@ -510,7 +536,9 @@
       "AU"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "at",
@@ -552,7 +580,9 @@
       "Oesterreich"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "az",
@@ -594,7 +624,9 @@
       "Azərbaycan Respublikası"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "bs",
@@ -631,7 +663,9 @@
       "BS"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "bh",
@@ -671,7 +705,9 @@
       "Mamlakat al-Baḥrayn"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "bd",
@@ -710,7 +746,9 @@
       "Gônôprôjatôntri Bangladesh"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "bb",
@@ -738,7 +776,9 @@
       "BB"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "by",
@@ -781,7 +821,9 @@
       "Республика Белоруссия"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "be",
@@ -824,7 +866,9 @@
       "Koninkrijk België"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 2219
   },
   {
     "code": "bz",
@@ -852,7 +896,9 @@
       "BZ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "bj",
@@ -891,7 +937,9 @@
       "BJ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "bm",
@@ -925,7 +973,9 @@
       "Somers Isles"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "bt",
@@ -965,7 +1015,9 @@
       "BT"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "bo",
@@ -1011,7 +1063,9 @@
       "Tetã Volívia"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1745
   },
   {
     "code": "ba",
@@ -1045,7 +1099,9 @@
       "Босна и Херцеговина"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "bw",
@@ -1083,7 +1139,9 @@
       "Lefatshe la Botswana"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "bv",
@@ -1116,7 +1174,9 @@
       "Bouvet-øya"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1862
   },
   {
     "code": "br",
@@ -1156,7 +1216,9 @@
       "BR"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1792
   },
   {
     "code": "io",
@@ -1191,7 +1253,9 @@
       "IO"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "vg",
@@ -1230,7 +1294,9 @@
       "Virgin Islands, British"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "bn",
@@ -1270,7 +1336,9 @@
       "the Abode of Peace"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "bg",
@@ -1311,7 +1379,9 @@
       "Република България"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "bf",
@@ -1340,7 +1410,9 @@
       "BF"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "bi",
@@ -1377,7 +1449,9 @@
       "Republika y'Uburundi"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "kh",
@@ -1418,7 +1492,9 @@
       "KH"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1638
   },
   {
     "code": "cm",
@@ -1459,7 +1535,9 @@
       "CM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ca",
@@ -1488,7 +1566,9 @@
       "CA"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "cv",
@@ -1527,7 +1607,9 @@
       "CV"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1506
   },
   {
     "code": "bq",
@@ -1568,7 +1650,9 @@
       "Bonaire Sint Eustatius and Saba"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ky",
@@ -1601,7 +1685,9 @@
       "KY"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "cf",
@@ -1635,7 +1721,9 @@
       "CF"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "td",
@@ -1675,7 +1763,9 @@
       "TD"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "cl",
@@ -1713,7 +1803,9 @@
       "CL"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "cn",
@@ -1754,7 +1846,9 @@
       "Zhōnghuá Rénmín Gònghéguó"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "cx",
@@ -1791,7 +1885,9 @@
       "CX"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "cc",
@@ -1831,7 +1927,9 @@
       "Cocos Islands"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "co",
@@ -1871,7 +1969,9 @@
       "CO"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "km",
@@ -1913,7 +2013,9 @@
       "al-Ittiḥād al-Qumurī"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "ck",
@@ -1946,7 +2048,9 @@
       "Kūki 'Āirani"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "cr",
@@ -1983,7 +2087,9 @@
       "CR"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "hr",
@@ -2026,7 +2132,9 @@
       "Republika Hrvatska"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "cu",
@@ -2063,7 +2171,9 @@
       "CU"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "cw",
@@ -2102,7 +2212,9 @@
       "Pais Kòrsou"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "cy",
@@ -2145,7 +2257,9 @@
       "Kıbrıs Cumhuriyeti"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "cz",
@@ -2186,7 +2300,9 @@
       "Česko"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "dk",
@@ -2228,7 +2344,9 @@
       "Kongeriget Danmark"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1937
   },
   {
     "code": "dj",
@@ -2270,7 +2388,9 @@
       "Jamhuuriyadda Jabuuti"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "dm",
@@ -2307,7 +2427,9 @@
       "Wai‘tu kubuli"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "do",
@@ -2339,7 +2461,9 @@
       "DO"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "cd",
@@ -2380,7 +2504,9 @@
       "DRC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1920
   },
   {
     "code": "ec",
@@ -2419,7 +2545,9 @@
       "EC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "eg",
@@ -2460,7 +2588,9 @@
       "EG"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sv",
@@ -2497,7 +2627,9 @@
       "SV"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1444
   },
   {
     "code": "gq",
@@ -2538,7 +2670,9 @@
       "GQ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "er",
@@ -2580,7 +2714,9 @@
       "Iritriyā"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ee",
@@ -2622,7 +2758,9 @@
       "Eesti Vabariik"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1629
   },
   {
     "code": "sz",
@@ -2666,7 +2804,9 @@
       "Umbuso weSwatini"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "et",
@@ -2709,7 +2849,9 @@
       "የኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "eu",
@@ -2730,7 +2872,9 @@
       "European Union"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "fk",
@@ -2764,7 +2908,9 @@
       "Falkland Islands (Malvinas)"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "fo",
@@ -2801,7 +2947,9 @@
       "Faeroe Islands"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1862
   },
   {
     "code": "fj",
@@ -2843,7 +2991,9 @@
       "Fijī Gaṇarājya"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "fi",
@@ -2887,7 +3037,9 @@
       "Republiken Finland"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1564
   },
   {
     "code": "fr",
@@ -2927,7 +3079,9 @@
       "FR"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gf",
@@ -2962,7 +3116,9 @@
       "GF"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "pf",
@@ -2995,7 +3151,9 @@
       "Pōrīnetia Farāni"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tf",
@@ -3035,7 +3193,9 @@
       "French Southern Territories"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ga",
@@ -3076,7 +3236,9 @@
       "République Gabonaise"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1920
   },
   {
     "code": "gm",
@@ -3115,7 +3277,9 @@
       "GM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ge",
@@ -3147,7 +3311,9 @@
       "Sakartvelo"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "de",
@@ -3188,7 +3354,9 @@
       "DE"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "gh",
@@ -3226,7 +3394,9 @@
       "GH"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gi",
@@ -3253,7 +3423,9 @@
       "GI"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "gr",
@@ -3295,7 +3467,9 @@
       "Ελληνική Δημοκρατία"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gl",
@@ -3328,7 +3502,9 @@
       "Grønland"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gd",
@@ -3357,7 +3533,9 @@
       "GD"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "gp",
@@ -3387,7 +3565,9 @@
       "Gwadloup"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gu",
@@ -3415,7 +3595,9 @@
       "Guåhån"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1374
   },
   {
     "code": "gt",
@@ -3452,7 +3634,9 @@
       "GT"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1600
   },
   {
     "code": "gg",
@@ -3487,7 +3671,9 @@
       "GG"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gn",
@@ -3526,7 +3712,9 @@
       "GN"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gw",
@@ -3566,7 +3754,9 @@
       "GW"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "gy",
@@ -3604,7 +3794,9 @@
       "GY"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "ht",
@@ -3644,7 +3836,9 @@
       "Repiblik Ayiti"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "hm",
@@ -3677,7 +3871,9 @@
       "HM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "hn",
@@ -3713,7 +3909,9 @@
       "HN"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "hk",
@@ -3750,7 +3948,9 @@
       "HK"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "hu",
@@ -3782,7 +3982,9 @@
       "HU"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "is",
@@ -3817,7 +4019,9 @@
       "Lýðveldið Ísland"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1843
   },
   {
     "code": "in",
@@ -3859,7 +4063,9 @@
       "இந்தியா"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "id",
@@ -3900,7 +4106,9 @@
       "Republik Indonesia"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ir",
@@ -3940,7 +4148,9 @@
       "Jomhuri-ye Eslāmi-ye Irān"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1463
   },
   {
     "code": "iq",
@@ -3980,7 +4190,9 @@
       "Jumhūriyyat al-‘Irāq"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ie",
@@ -4020,7 +4232,9 @@
       "Poblacht na hÉireann"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "im",
@@ -4054,7 +4268,9 @@
       "Mannin"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "il",
@@ -4092,7 +4308,9 @@
       "Medīnat Yisrā'el"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1862
   },
   {
     "code": "it",
@@ -4133,7 +4351,9 @@
       "Repubblica italiana"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ci",
@@ -4175,7 +4395,9 @@
       "République de Côte d'Ivoire"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "jm",
@@ -4204,7 +4426,9 @@
       "JM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "jp",
@@ -4237,7 +4461,9 @@
       "Nihon"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "je",
@@ -4272,7 +4498,9 @@
       "Bailliage dé Jèrri"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "jo",
@@ -4314,7 +4542,9 @@
       "al-Mamlakah al-Urdunīyah al-Hāshimīyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "kz",
@@ -4358,7 +4588,9 @@
       "Respublika Kazakhstan"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ke",
@@ -4398,7 +4630,9 @@
       "Jamhuri ya Kenya"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ki",
@@ -4437,7 +4671,9 @@
       "Ribaberiki Kiribati"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "xk",
@@ -4474,7 +4710,9 @@
       "Република Косово"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1829
   },
   {
     "code": "kw",
@@ -4513,7 +4751,9 @@
       "Dawlat al-Kuwait"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "kg",
@@ -4556,7 +4796,9 @@
       "Kyrgyz Respublikasy"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "la",
@@ -4595,7 +4837,9 @@
       "Sathalanalat Paxathipatai Paxaxon Lao"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "lv",
@@ -4637,7 +4881,9 @@
       "Latvijas Republika"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "lb",
@@ -4677,7 +4923,9 @@
       "Al-Jumhūrīyah Al-Libnānīyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ls",
@@ -4716,7 +4964,9 @@
       "Muso oa Lesotho"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "lr",
@@ -4754,7 +5004,9 @@
       "LR"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1347
   },
   {
     "code": "ly",
@@ -4794,7 +5046,9 @@
       "Dawlat Libya"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "li",
@@ -4830,7 +5084,9 @@
       "LI"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "lt",
@@ -4872,7 +5128,9 @@
       "Lietuvos Respublika"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "lu",
@@ -4913,7 +5171,9 @@
       "Groussherzogtum Lëtzebuerg"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "mo",
@@ -4953,7 +5213,9 @@
       "Região Administrativa Especial de Macau da República Popular da China"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mg",
@@ -4993,7 +5255,9 @@
       "Repoblikan'i Madagasikara"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mw",
@@ -5030,7 +5294,9 @@
       "MW"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "my",
@@ -5061,7 +5327,9 @@
       "MY"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "mv",
@@ -5102,7 +5370,9 @@
       "Dhivehi Raajjeyge Jumhooriyya"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ml",
@@ -5139,7 +5409,9 @@
       "ML"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mt",
@@ -5177,7 +5449,9 @@
       "Repubblika ta' Malta"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mh",
@@ -5219,7 +5493,9 @@
       "Aolepān Aorōkin M̧ajeļ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1347
   },
   {
     "code": "mq",
@@ -5248,7 +5524,9 @@
       "MQ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mr",
@@ -5289,7 +5567,9 @@
       "al-Jumhūriyyah al-ʾIslāmiyyah al-Mūrītāniyyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mu",
@@ -5329,7 +5609,9 @@
       "MU"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "yt",
@@ -5362,7 +5644,9 @@
       "YT"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mx",
@@ -5402,7 +5686,9 @@
       "Mexicanos"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1463
   },
   {
     "code": "fm",
@@ -5442,7 +5728,9 @@
       "Micronesia, Federated States of"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1347
   },
   {
     "code": "md",
@@ -5485,7 +5773,9 @@
       "Republica Moldova"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "mc",
@@ -5523,7 +5813,9 @@
       "MC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 2048
   },
   {
     "code": "mn",
@@ -5556,7 +5848,9 @@
       "MN"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "me",
@@ -5585,7 +5879,9 @@
       "Crna Gora"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ms",
@@ -5612,7 +5908,9 @@
       "MS"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ma",
@@ -5654,7 +5952,9 @@
       "Al-Mamlakah al-Maġribiyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mz",
@@ -5693,7 +5993,9 @@
       "MZ"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "mm",
@@ -5733,7 +6035,9 @@
       "Pyidaunzu Thanmăda Myăma Nainngandaw"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "na",
@@ -5773,7 +6077,9 @@
       "Namibië"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "nr",
@@ -5812,7 +6118,9 @@
       "Ripublik Naoero"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "np",
@@ -5851,7 +6159,9 @@
       "Loktāntrik Ganatantra Nepāl"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 3121
   },
   {
     "code": "nl",
@@ -5888,7 +6198,9 @@
       "The Netherlands"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "nc",
@@ -5920,7 +6232,9 @@
       "NC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "nz",
@@ -5954,7 +6268,9 @@
       "Aotearoa"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ni",
@@ -5992,7 +6308,9 @@
       "NI"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "ne",
@@ -6031,7 +6349,9 @@
       "Nijar"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 2194
   },
   {
     "code": "ng",
@@ -6071,7 +6391,9 @@
       "Naíjíríà"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "nu",
@@ -6098,7 +6420,9 @@
       "NU"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "nf",
@@ -6137,7 +6461,9 @@
       "Teratri of Norf'k Ailen"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "kp",
@@ -6182,7 +6508,9 @@
       "북조선"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "mk",
@@ -6227,7 +6555,9 @@
       "Macedonia"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "mp",
@@ -6266,7 +6596,9 @@
       "Sankattan Siha Na Islas Mariånas"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "no",
@@ -6310,7 +6642,9 @@
       "Kongeriket Noreg"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1862
   },
   {
     "code": "om",
@@ -6350,7 +6684,9 @@
       "Salṭanat ʻUmān"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1463
   },
   {
     "code": "pk",
@@ -6391,7 +6727,9 @@
       "Islāmī Jumhūriya'eh Pākistān"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "pw",
@@ -6429,7 +6767,9 @@
       "Beluu er a Belau"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1600
   },
   {
     "code": "ps",
@@ -6469,7 +6809,9 @@
       "Dawlat Filasṭin"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "pa",
@@ -6507,7 +6849,9 @@
       "PA"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "pg",
@@ -6548,7 +6892,9 @@
       "Independen Stet bilong Papua Niugini"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1920
   },
   {
     "code": "py",
@@ -6588,7 +6934,9 @@
       "Tetã Paraguái"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1408
   },
   {
     "code": "pe",
@@ -6628,7 +6976,9 @@
       "República del Perú"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ph",
@@ -6668,7 +7018,9 @@
       "Repúblika ng Pilipinas"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "pn",
@@ -6706,7 +7058,9 @@
       "Pitcairn Henderson Ducie and Oeno Islands"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "pl",
@@ -6748,7 +7102,9 @@
       "Rzeczpospolita Polska"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1600
   },
   {
     "code": "pt",
@@ -6786,7 +7142,9 @@
       "Portuguesa"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "pr",
@@ -6821,7 +7179,9 @@
       "Estado Libre Asociado de Puerto Rico"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "qa",
@@ -6861,7 +7221,9 @@
       "Dawlat Qaṭar"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1006
   },
   {
     "code": "cg",
@@ -6896,7 +7258,9 @@
       "Congo-Brazzaville"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "re",
@@ -6931,7 +7295,9 @@
       "Reunion"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ro",
@@ -6965,7 +7331,9 @@
       "România"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ru",
@@ -7006,7 +7374,9 @@
       "RU"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "rw",
@@ -7046,7 +7416,9 @@
       "République du Rwanda"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "bl",
@@ -7086,7 +7458,9 @@
       "St. Barthelemy"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sh",
@@ -7120,7 +7494,9 @@
       "St. Helena, Ascension and Tristan da Cunha"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "kn",
@@ -7161,7 +7537,9 @@
       "KN"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "lc",
@@ -7192,7 +7570,9 @@
       "LC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "mf",
@@ -7226,7 +7606,9 @@
       "Saint Martin (French part)"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "pm",
@@ -7260,7 +7642,9 @@
       "Collectivité territoriale de Saint-Pierre-et-Miquelon"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "vc",
@@ -7295,7 +7679,9 @@
       "VC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ws",
@@ -7332,7 +7718,9 @@
       "Malo Saʻoloto Tutoʻatasi o Sāmoa"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "sm",
@@ -7372,7 +7760,9 @@
       "Repubblica di San Marino"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1920
   },
   {
     "code": "st",
@@ -7414,7 +7804,9 @@
       "Sao Tome and Principe"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "sa",
@@ -7457,7 +7849,9 @@
       "Al-Mamlakah al-‘Arabiyyah as-Su‘ūdiyyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sn",
@@ -7495,7 +7889,9 @@
       "SN"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "rs",
@@ -7539,7 +7935,9 @@
       "Република Србија"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sc",
@@ -7579,7 +7977,9 @@
       "Repiblik Sesel"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "sl",
@@ -7617,7 +8017,9 @@
       "SL"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sg",
@@ -7658,7 +8060,9 @@
       "Republik Singapura"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sx",
@@ -7689,7 +8093,9 @@
       "Sint Maarten (Dutch part)"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sk",
@@ -7730,7 +8136,9 @@
       "Slovenská republika"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "si",
@@ -7772,7 +8180,9 @@
       "Republika Slovenija"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "sb",
@@ -7805,7 +8215,9 @@
       "SB"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "so",
@@ -7847,7 +8259,9 @@
       "Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "za",
@@ -7889,7 +8303,9 @@
       "Suid-Afrika"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "gs",
@@ -7927,7 +8343,9 @@
       "GS"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "kr",
@@ -7971,7 +8389,9 @@
       "남조선"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ss",
@@ -8012,7 +8432,9 @@
       "SS"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "es",
@@ -8052,7 +8474,9 @@
       "ES"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "lk",
@@ -8090,7 +8514,9 @@
       "ilaṅkai"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "sd",
@@ -8131,7 +8557,9 @@
       "Jumhūrīyat as-Sūdān"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "sr",
@@ -8172,7 +8600,9 @@
       "Republiek Suriname"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "sj",
@@ -8208,7 +8638,9 @@
       "Svalbard and Jan Mayen Islands"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1862
   },
   {
     "code": "se",
@@ -8250,7 +8682,9 @@
       "Konungariket Sverige"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1600
   },
   {
     "code": "ch",
@@ -8293,7 +8727,9 @@
       "Svizra"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 2560
   },
   {
     "code": "sy",
@@ -8335,7 +8771,9 @@
       "Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tw",
@@ -8379,7 +8817,9 @@
       "Chinese Taipei"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tj",
@@ -8423,7 +8863,9 @@
       "Çumhuriyi Toçikiston"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "tz",
@@ -8465,7 +8907,9 @@
       "Jamhuri ya Muungano wa Tanzania"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "th",
@@ -8509,7 +8953,9 @@
       "Ratcha Anachak Thai"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tl",
@@ -8553,7 +8999,9 @@
       "Timor Lorosae"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "tg",
@@ -8592,7 +9040,9 @@
       "République Togolaise"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1582
   },
   {
     "code": "tk",
@@ -8622,7 +9072,9 @@
       "TK"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "to",
@@ -8658,7 +9110,9 @@
       "TO"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "tt",
@@ -8699,7 +9153,9 @@
       "TT"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "tn",
@@ -8742,7 +9198,9 @@
       "al-Jumhūriyyah at-Tūnisiyyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tr",
@@ -8786,7 +9244,9 @@
       "Türkiye Cumhuriyeti"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tm",
@@ -8818,7 +9278,9 @@
       "TM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "tc",
@@ -8853,7 +9315,9 @@
       "TC"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "tv",
@@ -8880,7 +9344,9 @@
       "TV"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ug",
@@ -8919,7 +9385,9 @@
       "Jamhuri ya Uganda"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ua",
@@ -8949,7 +9417,9 @@
       "Ukrayina"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "ae",
@@ -8985,7 +9455,9 @@
       "Emirates"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "gb",
@@ -9027,7 +9499,9 @@
       "Great Britain"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "un",
@@ -9048,7 +9522,9 @@
       "United Nations"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "us",
@@ -9089,7 +9565,9 @@
       "USA"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1347
   },
   {
     "code": "um",
@@ -9124,7 +9602,9 @@
       "UM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1347
   },
   {
     "code": "vi",
@@ -9159,7 +9639,9 @@
       "Virgin Islands, U.S."
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "uy",
@@ -9197,7 +9679,9 @@
       "UY"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "uz",
@@ -9240,7 +9724,9 @@
       "Ўзбекистон Республикаси"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "vu",
@@ -9276,7 +9762,9 @@
       "Ripablik blong Vanuatu"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1536
   },
   {
     "code": "va",
@@ -9317,7 +9805,9 @@
       "Stato della Città del Vaticano"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 2560
   },
   {
     "code": "ve",
@@ -9355,7 +9845,9 @@
       "Venezuela, Bolivarian Republic of"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "vn",
@@ -9396,7 +9888,9 @@
       "Viet Nam"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "wf",
@@ -9435,7 +9929,9 @@
       "WF"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "eh",
@@ -9474,7 +9970,9 @@
       "Taneẓroft Tutrimt"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   },
   {
     "code": "ye",
@@ -9516,7 +10014,9 @@
       "al-Jumhūriyyah al-Yamaniyyah"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "zm",
@@ -9556,7 +10056,9 @@
       "ZM"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1707
   },
   {
     "code": "zw",
@@ -9595,6 +10097,8 @@
       "ZW"
     ],
     "hasPng": true,
-    "hasSvg": true
+    "hasSvg": true,
+    "pngWidth": 2560,
+    "pngHeight": 1280
   }
 ]

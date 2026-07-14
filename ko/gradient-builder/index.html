@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS 그라데이션 생성기 - 그라디언트 코드 무료 제작 | GetNiftyKit</title>
+  <meta name="description" content="색상을 자유롭게 추가하고 각도를 조절해서 CSS 그라데이션을 실시간으로 만들고, 완성된 코드를 바로 복사하세요. 선형·원형 그라데이션 모두 지원합니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/gradient-builder/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/gradient-builder/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/gradient-builder/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/gradient-builder/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/gradient-builder/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/gradient-builder/" />
+  <base href="../../gradient-builder/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSS 그라데이션 생성기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "색상과 각도를 자유롭게 조합해 CSS 그라데이션 코드를 실시간으로 생성하고 복사할 수 있는 무료 웹 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "무료로 사용할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 회원가입 없이 무료로 그라데이션을 만들고 CSS 코드를 복사할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "색상은 몇 개까지 추가할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "최소 2개부터 최대 5개까지 색상을 추가해서 다양한 그라데이션을 만들 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "생성된 코드는 어떻게 사용하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "복사한 코드를 CSS의 background 속성 값으로 그대로 붙여넣으면 됩니다. 예: background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>CSS 그라데이션 생성기</h1>
+    <p class="subtitle">색상과 각도를 자유롭게 조합해 CSS 그라데이션을 무료로 만들어드려요</p>
+    <p class="tagline-extra">선형·원형 그라데이션을 실시간으로 미리보고, 완성된 CSS 코드를 바로 복사하세요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="grad-preview-section" aria-label="그라데이션 미리보기">
+      <div id="grad-preview" class="grad-preview"></div>
+    </section>
+
+    <section class="grad-controls-section">
+      <div class="grad-field">
+        <label>그라데이션 종류</label>
+        <div class="grad-type-tabs">
+          <button type="button" class="grad-type-tab is-active" id="grad-type-linear" data-type="linear">선형 (Linear)</button>
+          <button type="button" class="grad-type-tab" id="grad-type-radial" data-type="radial">원형 (Radial)</button>
+        </div>
+      </div>
+
+      <div class="grad-field" id="grad-angle-row">
+        <label for="grad-angle">각도 (<span id="grad-angle-value"></span>)</label>
+        <input type="range" id="grad-angle" min="0" max="360" value="90" />
+      </div>
+
+      <div class="grad-stops-section">
+        <label class="grad-stops-label">색상</label>
+        <div id="grad-stops-list" class="grad-stops-list" data-remove-label="삭제"></div>
+        <button type="button" id="grad-add-stop-btn" class="grad-add-stop-btn">색상 추가</button>
+        <p
+          class="grad-error"
+          id="grad-stops-error"
+          hidden
+          data-max-error="색상은 최대 5개까지 추가할 수 있어요."
+          data-min-error="색상은 최소 2개가 필요해요."
+        ></p>
+      </div>
+    </section>
+
+    <section class="grad-code-section" aria-label="생성된 CSS 코드">
+      <code id="grad-code" class="grad-code"></code>
+      <button
+        type="button"
+        id="grad-copy-btn"
+        class="grad-copy-btn"
+        data-copy-label="CSS 코드 복사"
+        data-copied-label="복사됨!"
+      >CSS 코드 복사</button>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>CSS 그라데이션 생성기란?</h2>
+      <p>
+        CSS 그라데이션 생성기는 원하는 색상을 자유롭게 추가하고 각도를 조절해서 선형(linear) 또는 원형(radial) 그라데이션을 실시간으로 만들어주는 도구입니다. 결과를 눈으로 바로 확인하면서 조정할 수 있고, 완성되면 바로 사용할 수 있는 CSS 코드를 클릭 한 번으로 복사할 수 있습니다. 배경 디자인이나 버튼, 배너 등에 그라데이션이 필요할 때 코드를 직접 계산하지 않고도 원하는 결과를 빠르게 얻을 수 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        먼저 선형(Linear) 또는 원형(Radial) 중 원하는 그라데이션 종류를 선택하세요. 색상 피커로 각 색상을 원하는 대로 바꾸고, &quot;색상 추가&quot; 버튼으로 색을 더 넣거나 필요 없는 색은 삭제할 수 있습니다. 선형을 선택했다면 각도 슬라이더로 그라데이션 방향도 조절해 보세요. 미리보기 화면에 결과가 바로 반영되며, 마음에 드는 결과가 나오면 &quot;CSS 코드 복사&quot; 버튼으로 바로 복사해서 사용하면 됩니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>웹사이트 배경이나 히어로 섹션에 그라데이션을 넣고 싶을 때</li>
+        <li>버튼이나 배지에 은은한 색상 효과를 주고 싶을 때</li>
+        <li>카드나 배너 디자인에 트렌디한 그라데이션을 적용하고 싶을 때</li>
+        <li>디자인 시안에서 정확한 CSS 그라데이션 코드가 바로 필요할 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>무료로 사용할 수 있나요?</dt>
+          <dd>네, 회원가입 없이 무료로 그라데이션을 만들고 CSS 코드를 복사할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>색상은 몇 개까지 추가할 수 있나요?</dt>
+          <dd>최소 2개부터 최대 5개까지 색상을 추가해서 다양한 그라데이션을 만들 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>생성된 코드는 어떻게 사용하나요?</dt>
+          <dd>복사한 코드를 CSS의 background 속성 값으로 그대로 붙여넣으면 됩니다. 예: background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 그라데이션 생성을 브라우저 로컬에서만 처리하며, 입력하신 내용을 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

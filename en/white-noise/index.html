@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>White Noise Player - White, Pink &amp; Brown Noise | GetNiftyKit</title>
+  <meta name="description" content="A white noise player that synthesizes white, pink, and brown noise directly in your browser and loops it endlessly. Adjust the volume and set an auto-stop timer for focus or sleep." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/white-noise/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/white-noise/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/white-noise/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/white-noise/" />
+  <base href="../../white-noise/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "White Noise Player",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free white noise player that synthesizes white, pink, and brown noise in real time using the Web Audio API and loops it endlessly. No audio files are used, so there are no copyright concerns.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the difference between the noise types?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "White noise mixes every frequency evenly and sounds the crispest, pink noise emphasizes lower frequencies for a softer sound, and brown noise emphasizes the low end even further, sounding like deep waves or a waterfall."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this download a real recorded nature sound?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool doesn't use any audio files at all — the sound waveform is computed in real time in your browser using the Web Audio API, so there are no copyright concerns and no file size to worry about."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the auto-stop timer work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose an auto-stop time before you press Play, and playback stops automatically once that much time has passed. Leave it set to \"Off\" and it keeps playing until you press Stop yourself."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>White Noise</h1>
+    <p class="subtitle">White, pink, and brown noise, synthesized right in your browser</p>
+    <p class="tagline-extra">No audio files to download — your browser generates the sound itself, with adjustable volume and an auto-stop timer.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="wn-display-section"
+      id="wn-display"
+      aria-label="White noise player display"
+      data-ready-label="Stopped"
+      data-playing-label="Playing"
+      data-remaining-template="Auto-stop in {time}"
+    >
+      <p class="wn-status-label" id="wn-status-label">Stopped</p>
+      <p class="wn-remaining" id="wn-remaining"></p>
+    </section>
+
+    <section class="wn-setup-section" aria-label="White noise settings">
+      <fieldset class="wn-field">
+        <legend>Noise type</legend>
+        <div class="wn-radio-group" role="radiogroup">
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-white" value="white" checked />
+            White Noise
+          </label>
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-pink" value="pink" />
+            Pink Noise
+          </label>
+          <label class="wn-radio">
+            <input type="radio" name="wn-noise-type" id="wn-type-brown" value="brown" />
+            Brown Noise
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="wn-field">
+        <label for="wn-volume">Volume</label>
+        <input type="range" id="wn-volume" min="0" max="100" value="60" />
+      </div>
+
+      <div class="wn-field">
+        <label for="wn-auto-stop">Auto-stop</label>
+        <select id="wn-auto-stop">
+          <option value="0">Off (keep playing)</option>
+          <option value="15">After 15 min</option>
+          <option value="30">After 30 min</option>
+          <option value="45">After 45 min</option>
+          <option value="60">After 60 min</option>
+        </select>
+      </div>
+
+      <div class="wn-controls">
+        <button type="button" id="wn-play-btn" class="wn-btn wn-btn-primary">Play</button>
+        <button type="button" id="wn-stop-btn" class="wn-btn wn-btn-stop" hidden>Stop</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a white noise player?</h2>
+      <p>
+        The White Noise player generates white, pink, and brown noise directly in your browser using the Web Audio API. Instead of downloading a recorded nature-sound file, it computes the sound waveform in code on the spot, so there are no copyright concerns and playback never stutters even on a slow connection. White noise mixes every frequency evenly, pink noise emphasizes the lower frequencies for a softer sound, and brown noise emphasizes the low end even further for a deep, wave-like rumble.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Pick the noise type you want and press &quot;Play&quot; to start hearing it right away. You can adjust the volume with the slider while it's playing, and if you set an auto-stop time in advance, playback stops on its own once that time has passed. To switch noise types, press &quot;Stop&quot; first, then pick a new one.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Masking background noise to stay focused while studying or working</li>
+        <li>Playing a soothing background sound before falling asleep (use the auto-stop timer so it doesn't run all night)</li>
+        <li>Blocking out office or café noise</li>
+        <li>Providing a steady background sound while putting a baby to sleep or meditating</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>What's the difference between the noise types?</dt>
+          <dd>White noise mixes every frequency evenly and sounds the crispest, pink noise emphasizes lower frequencies for a softer sound, and brown noise emphasizes the low end even further, sounding like deep waves or a waterfall.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Does this download a real recorded nature sound?</dt>
+          <dd>No. This tool doesn't use any audio files at all — the sound waveform is computed in real time in your browser using the Web Audio API, so there are no copyright concerns and no file size to worry about.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How does the auto-stop timer work?</dt>
+          <dd>Choose an auto-stop time before you press Play, and playback stops automatically once that much time has passed. Leave it set to &quot;Off&quot; and it keeps playing until you press Stop yourself.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool handles all sound synthesis and playback entirely in your browser. No data is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

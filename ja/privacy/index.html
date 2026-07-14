@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー | GetNiftyKit</title>
+  <meta name="description" content="GetNiftyKitのデータの取り扱いについて：ブラウザ内でのみ処理される情報、Google アドセンス・Google Fontsが収集する情報、お問い合わせ方法をご案内します。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/privacy/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/privacy/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/privacy/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/privacy/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/privacy/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/privacy/" />
+  <base href="../../" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>プライバシーポリシー</h1>
+    <p class="subtitle">最終更新日: 2026年7月10日</p>
+  </header>
+
+  <main class="info-section">
+    <p>GetNiftyKit（以下「当サイト」）は、国旗ダウンロード、絵文字検索、特殊文字コピーなど、ブラウザ上で動作する無料ツールを提供しています。このページでは、ツールをご利用いただく際にどのような情報が収集され、または収集されないかについて説明します。</p>
+
+    <h2>ブラウザ内で処理されるデータ</h2>
+    <p>GetNiftyKitの各ツールの検索・絞り込み・コピーやダウンロードといった主要機能は、すべてお使いのブラウザ内でのみ動作します。検索語句、フィルターの選択、クリップボード操作が、当サイトが運営するサーバーに送信・保存されることはありません。一部のツールでは「よく使う項目」を記憶するためにブラウザのlocalStorageを使用しますが、このデータはお使いの端末内にのみ保存され、外部に送信されることはありません。</p>
+
+    <h2>クッキーと広告</h2>
+    <p>GetNiftyKitはGoogle アドセンスを通じて広告を配信しています。Googleおよびそのパートナーは、当サイトや他のサイトへの過去のアクセス履歴に基づいて広告を配信するために、クッキー（DoubleClickクッキーを含む）を使用する場合があります。パーソナライズ広告を望まれない場合は、Google広告設定（adssettings.google.com）またはwww.aboutads.infoからオプトアウトできます。</p>
+
+    <h2>第三者サービス</h2>
+    <p>当サイトは、ウェブフォントの提供にGoogle Fontsを、広告配信にGoogle アドセンスを使用しています。これらのサービスは、提供の過程でIPアドレスなどの基本的な技術情報を収集する場合があります。当サイトはこれら第三者がその情報をどのように処理するかについて直接管理する権限を持たないため、詳細はGoogle自身のプライバシーポリシーをご確認ください。</p>
+
+    <h2>児童のプライバシー</h2>
+    <p>GetNiftyKitは、13歳未満の児童の個人情報を意図的に収集することはありません。</p>
+
+    <h2>本ポリシーの変更</h2>
+    <p>本ポリシーは随時変更される場合があります。変更内容はこのページに掲載されます。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本ポリシーやGetNiftyKitの利用方法についてご質問がございましたら、 <a href="https://forms.gle/3NPQoMPL7oJo2pwV7" target="_blank" rel="noopener noreferrer">こちらからお問い合わせください</a></p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

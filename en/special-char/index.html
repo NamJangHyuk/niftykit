@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special Character Copier - Arrows, Math Symbols &amp; Copyright Signs | GetNiftyKit</title>
+  <meta name="description" content="Search 170+ special characters by meaning — arrows, math symbols, currency signs, roman numerals — and copy them with one click. No sign-up required." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/special-char/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/special-char/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/special-char/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/special-char/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/special-char/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/special-char/" />
+  <base href="../../special-char/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Special Character Copier",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free web tool to search special characters like arrows, math symbols, and currency signs by name and copy them to your clipboard with one click.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are these symbols free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every character here is a standard Unicode text character, so it isn't subject to copyright and can be used freely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I search in other languages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can search character names in English, Korean, Japanese, or Chinese."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to sign up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You can search and copy symbols immediately, no account required."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Special Character Copier</h1>
+    <p class="subtitle">Search special characters by meaning and copy them with one click</p>
+    <p class="tagline-extra">170+ characters shown at a large, readable size — so look-alikes like × and x are never mixed up.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="recent-section" id="recent-section" hidden aria-label="Frequently used characters">
+      <div class="recent-header">
+        <h2>Frequently Used</h2>
+        <button type="button" class="recent-clear" id="recent-clear">Clear history</button>
+      </div>
+      <div class="recent-grid" id="recent-grid"></div>
+    </section>
+
+    <section class="search-section" aria-label="Symbol search and category filter">
+      <div class="search-input-wrap">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 20 20" width="18" height="18">
+          <circle cx="8.5" cy="8.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search symbols (e.g. arrow, copyright, star...)"
+          autocomplete="off"
+        />
+      </div>
+      <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Filter by category">
+        <button type="button" class="category-tab is-active" data-group="all" role="tab" aria-selected="true">All</button>
+        <!-- 나머지 카테고리 탭은 script.js가 specialchars.json의 groups로 채웁니다 -->
+      </div>
+    </section>
+
+    <p class="result-count" id="result-count"></p>
+
+    <section class="char-sections" id="char-grid" aria-label="Symbol list">
+      <!-- script.js가 여기에 특수문자 카드들을 렌더링합니다 -->
+    </section>
+
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is Special Character Copier?</h2>
+      <p>
+        Special Character Copier is a tool for finding any of 170+ special characters — arrows, math symbols, currency signs, stars and shapes, punctuation, roman numerals, circled letters, and Greek letters — by name or meaning, and copying them to your clipboard with a single click. Unlike most symbol pickers, characters here are shown at a large size, so look-alikes such as × and x are never confused. Every search and copy happens instantly in your browser, with no sign-up or installation required.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Type a character's name or a related keyword into the search box — for example, searching &quot;arrow&quot; brings up directional arrows, and &quot;copyright&quot; brings up the © sign. If there are too many results to scan, use the category tabs (arrows, math symbols, currency, and more) to narrow things down. Click any character to copy it straight to your clipboard.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Adding arrows, check marks, or similar marks to a document or slide deck</li>
+        <li>Marking currency symbols in a price list or product description</li>
+        <li>Inserting math or Greek letter symbols into a paper or report</li>
+        <li>Numbering a list with circled numbers (①②③)</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Are these symbols free to use?</dt>
+          <dd>Yes. Every character here is a standard Unicode text character, so it isn't subject to copyright and can be used freely.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Can I search in other languages?</dt>
+          <dd>Yes. You can search character names in English, Korean, Japanese, or Chinese.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Do I need to sign up?</dt>
+          <dd>No. You can search and copy symbols immediately, no account required.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool processes every search and copy locally in your browser. Your search terms and personal data are never sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

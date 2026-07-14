@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>パスワード生成 - 安全なランダムパスワードを無料作成 | GetNiftyKit</title>
+  <meta name="description" content="大文字・小文字・数字・記号を組み合わせて、安全なランダムパスワードを無料で生成。長さや文字種類を自由に設定でき、強度もすぐに確認できます。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/password-generator/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/password-generator/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/password-generator/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/password-generator/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/password-generator/" />
+  <base href="../../password-generator/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "パスワード生成",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "ブラウザの暗号学的乱数生成機能（crypto.getRandomValues）を使って、安全なランダムパスワードを即座に作成できる無料のウェブツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "生成されたパスワードは安全ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Math.random()ではなく、ブラウザの暗号学的乱数生成機能（crypto.getRandomValues）を使用しているため、予測がほぼ不可能な本物のランダムな値が生成されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "パスワードはサーバーに保存されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。すべての生成処理はブラウザ内でのみ行われ、入力または生成された値がサーバーに送信・保存されることは一切ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "パスワードの長さはどのくらいが安全ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般的には12文字以上が推奨され、重要なアカウントほど16文字以上で大文字・小文字・数字・記号をすべて含めるとより安全です。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Password Generator</h1>
+    <p class="subtitle">大文字・数字・記号を組み合わせて、安全なパスワードを無料で作成します</p>
+    <p class="tagline-extra">長さと文字種類を自由に設定し、パスワードの強度もすぐに確認できます。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="pw-display-section" aria-label="生成されたパスワード">
+      <div class="pw-display-box">
+        <span id="pw-output" class="pw-output"></span>
+        <button
+          type="button"
+          id="pw-copy-btn"
+          class="pw-copy-btn"
+          data-copy-label="コピー"
+          data-copied-label="コピーしました！"
+        >コピー</button>
+      </div>
+      <div class="pw-strength-row">
+        <div class="pw-strength-bar"><div id="pw-strength-fill" class="pw-strength-fill"></div></div>
+        <span
+          id="pw-strength-label"
+          class="pw-strength-label"
+          data-weak="弱い"
+          data-medium="普通"
+          data-strong="強い"
+          data-very-strong="非常に強い"
+        ></span>
+      </div>
+      <button type="button" id="pw-generate-btn" class="pw-generate-btn">再生成</button>
+      <p class="pw-error" id="pw-error" hidden>文字の種類を1つ以上選択してください</p>
+    </section>
+
+    <section class="pw-options-section" aria-label="パスワードのオプション">
+      <div class="pw-option-field">
+        <label for="pw-length">長さ (<span id="pw-length-value"></span>)</label>
+        <input type="range" id="pw-length" min="4" max="64" value="16" />
+      </div>
+      <div class="pw-checkbox-grid">
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-upper" checked /> 大文字 (A-Z)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-lower" checked /> 小文字 (a-z)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-numbers" checked /> 数字 (0-9)</label>
+        <label class="pw-checkbox-item"><input type="checkbox" id="pw-symbols" checked /> 記号 (!@#$...)</label>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>パスワード生成とは？</h2>
+      <p>
+        パスワード生成は、大文字・小文字・数字・記号を自由に組み合わせて、安全なランダムパスワードを即座に作成するツールです。ブラウザの暗号学的に安全な乱数生成機能（crypto.getRandomValues）を使用しているため、予測がほぼ不可能な本物のランダムパスワードが得られます。新しいアカウントを作成するときや、既存のパスワードをより安全なものに変更したいときにすぐ使えます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        スライダーで希望のパスワードの長さを設定し、含める文字種類（大文字・小文字・数字・記号）にチェックを入れてください。オプションを変更するたびにパスワードが自動的に再生成され、画面には強度（弱い〜非常に強い）も表示されます。気に入ったパスワードが出たら「コピー」ボタンを押してクリップボードにコピーしてください。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>新しいアカウントを作成するときに安全なパスワードが必要なとき</li>
+        <li>既存のパスワードをより強力なものに変更したいとき</li>
+        <li>サイトごとに異なるパスワードを使いたいとき</li>
+        <li>Wi-Fiルーターや機器の新しいパスワードを設定するとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>生成されたパスワードは安全ですか？</dt>
+          <dd>はい。Math.random()ではなく、ブラウザの暗号学的乱数生成機能（crypto.getRandomValues）を使用しているため、予測がほぼ不可能な本物のランダムな値が生成されます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>パスワードはサーバーに保存されますか？</dt>
+          <dd>いいえ。すべての生成処理はブラウザ内でのみ行われ、入力または生成された値がサーバーに送信・保存されることは一切ありません。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>パスワードの長さはどのくらいが安全ですか？</dt>
+          <dd>一般的には12文字以上が推奨され、重要なアカウントほど16文字以上で大文字・小文字・数字・記号をすべて含めるとより安全です。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはパスワードの生成をすべてブラウザ上でローカルに行い、生成されたパスワードをサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

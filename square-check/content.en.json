@@ -1,0 +1,61 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Right Triangle Side Calculator - Solve Any Side or Hypotenuse | GetNiftyKit",
+  "metaDescription": "Enter any two sides of a right triangle and the third — including the hypotenuse — is calculated automatically. The diagram updates to match your actual ratio, and you can verify a square corner against a real measurement.",
+  "softwareAppName": "Right Triangle Side Calculator",
+  "softwareAppDescription": "A free tool that uses the Pythagorean theorem to solve for the missing side of a right triangle from any two known sides, with a diagram that reflects the actual ratio you enter. Also checks a measured diagonal against the ideal for verifying square corners.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Right Triangle Calculator",
+  "subtitle": "Enter any two sides and the third is calculated automatically",
+  "taglineExtra": "Whichever two sides you enter, the third is calculated instantly, and the triangle diagram is drawn to match your actual ratio.",
+  "setupAria": "Triangle side lengths",
+  "resultAria": "Calculated result diagram",
+  "verifyAria": "On-site verification",
+  "setupIntro": "Enter values for any two of the triangle's three sides, and the third is calculated automatically using the Pythagorean theorem. Side A is the horizontal side (base) in the diagram below, and Side B is the vertical side (height). Change a value and both the calculation and the diagram's ratio update to match.",
+  "sideALabel": "Side A (horizontal, base)",
+  "sideAPlaceholder": "e.g. 3",
+  "sideBLabel": "Side B (vertical, height)",
+  "sideBPlaceholder": "e.g. 4",
+  "hypotenuseLabel": "Hypotenuse (diagonal)",
+  "hypotenusePlaceholder": "e.g. 5",
+  "resetBtnText": "Reset",
+  "invalidNumberError": "Please enter a value greater than 0.",
+  "invalidTriangleError": "The hypotenuse must be longer than both other sides for a right triangle to exist. Please check your values.",
+  "diagramAriaLabel": "Right triangle diagram",
+  "verifyHeading": "On-site verification (optional)",
+  "verifyIntro": "Mark out the two sides on-site, measure the actual diagonal, and enter it below to see exactly how far off it is from the calculated hypotenuse above.",
+  "actualDiagonalLabel": "Measured diagonal length",
+  "actualDiagonalPlaceholder": "The diagonal length you actually measured",
+  "verifyPassTemplate": "✓ This is very close to a true right angle (off by {diff})",
+  "verifyFailTemplate": "✗ This differs from a true right angle (off by {diff})",
+  "invalidActualDiagonalError": "Please enter a measured diagonal length greater than 0.",
+  "verifyNeedsHypotenuseMessage": "The hypotenuse needs to be calculated first before you can verify against it.",
+  "infoIntroH2": "What is this right triangle calculator?",
+  "infoIntroP": "This calculator uses the Pythagorean theorem (sideA² + sideB² = hypotenuse²) to instantly solve for the missing side of a right triangle from any two known values. Enter Side A and Side B and it solves for the hypotenuse (diagonal); enter the hypotenuse and one side and it solves for the other side. The classic \"3-4-5 rule\" used in carpentry, framing, landscaping, and deck building works perfectly here too, but you're not limited to it — plug in whatever real measurements you have. Change any value and the diagram below redraws to match your actual ratio.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter any two of Side A, Side B, and the Hypotenuse — the remaining field fills in automatically. If all three are already filled and you enter a new value somewhere, the field you filled in longest ago gets recalculated and updated instead. Mark out the two sides on-site using the calculated hypotenuse, measure the actual diagonal, and enter it in the \"On-site verification\" field to see how far off it is from the ideal and whether the corner is square.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Quickly checking whether a wall or floor corner is square without a framing square or protractor",
+    "Squaring up baselines for deck, tile, or landscaping projects",
+    "Working out a diagonal length in advance for furniture or woodworking frames",
+    "Quickly back-calculating a missing side from two measurements you already have"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Do I have to use a 3:4:5 ratio?",
+      "a": "No. Any two values that form a right triangle will work — 3:4:5 is just the most well-known example, and this calculator works for any ratio."
+    },
+    {
+      "q": "What happens if I enter a new value when all three are already filled?",
+      "a": "Type into any of the three fields and the field you filled in longest ago gets recalculated and updated automatically."
+    },
+    {
+      "q": "What's the tolerance for the on-site verification check?",
+      "a": "A difference within about 0.5% of the ideal hypotenuse length is treated as \"very close to a true right angle\" — a margin that accounts for typical tape-measure accuracy on a job site."
+    }
+  ],
+  "privacyNote": "This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server."
+}

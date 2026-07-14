@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이미지 변환기 - PNG JPG WebP 무료 변환 | GetNiftyKit</title>
+  <meta name="description" content="이미지 파일을 첨부하고 원하는 포맷 버튼만 누르면 즉시 변환됩니다. PNG, JPG, WebP 간 무료 이미지 포맷 변환기, 브라우저에서 바로 실행되고 서버 업로드 없이 안전합니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/image-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/image-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/image-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/image-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <base href="../../image-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "이미지 변환기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "여러 이미지 파일을 PNG, JPG, WebP 포맷 중 원하는 것만 골라 즉시 변환하는 무료 이미지 변환기입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "여러 이미지를 한꺼번에 변환할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 여러 파일을 한 번에 올릴 수 있고, 파일마다 원하는 포맷을 따로 선택해서 변환할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "업로드한 이미지가 서버로 전송되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 모든 변환은 브라우저 안에서만 처리되며, 파일이 서버로 전송되거나 저장되지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "어떤 포맷을 지원하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG, JPG(JPEG), WebP 세 가지 포맷으로 변환할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "화질이 손상되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG는 무손실이라 화질 손상이 없고, JPG와 WebP는 약간의 손실 압축이 적용되지만 일반적인 용도로는 차이를 거의 느끼기 어렵습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "확장자만 바뀌는 건가요, 실제로 포맷이 변환되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "단순히 파일 이름의 확장자만 바꾸는 것이 아니라, 이미지를 캔버스에 다시 그린 뒤 선택한 포맷의 실제 인코딩 방식으로 새로 압축합니다. 그래서 변환 전후로 파일 용량이 실제로 달라지는 것을 확인할 수 있습니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>이미지 변환기</h1>
+    <p class="subtitle">이미지를 올리고 원하는 포맷 버튼만 누르면 바로 변환돼요</p>
+    <p class="tagline-extra">PNG, JPG, WebP 중 필요한 포맷만 골라서 변환하고 저장하세요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="ic-card" aria-label="이미지 파일 업로드">
+      <div class="ic-dropzone" id="ic-dropzone" tabindex="0" role="button" aria-label="이미지 파일 업로드">
+        <svg class="ic-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="ic-dropzone-text">여기에 이미지를 끌어다 놓거나 클릭해서 선택하세요</p>
+        <p class="ic-dropzone-hint">PNG, JPG, WebP, GIF 등 이미지 파일 지원</p>
+        <button type="button" class="ic-choose-btn" id="ic-choose-btn">파일 선택</button>
+        <input type="file" id="ic-file-input" accept="image/*" multiple hidden />
+      </div>
+      <p class="ic-error" id="ic-global-error" hidden></p>
+    </section>
+
+    <section
+      class="ic-file-list-section"
+      aria-label="첨부된 파일 목록"
+      id="ic-file-list-section"
+      hidden
+      data-format-png-label="PNG로 변환"
+      data-format-jpg-label="JPG로 변환"
+      data-format-webp-label="WebP로 변환"
+      data-same-format-hint="원본과 같은 포맷이에요. 크기나 화질만 바꿀 때 사용하세요"
+      data-save-btn-text="저장하기"
+      data-remove-btn-text="삭제"
+      data-converting-text="변환 중..."
+      data-size-change-template="{fromSize} ({fromDim}) → {toSize} ({toDim})"
+      data-unsupported-file-error="지원하지 않는 파일 형식입니다. 이미지 파일만 첨부할 수 있어요."
+      data-decode-error-text="이미지를 불러오지 못했습니다. 파일이 손상되었을 수 있어요."
+      data-file-count-template="파일 {count}개"
+    >
+      <div class="ic-file-list-header">
+        <span class="ic-file-count" id="ic-file-count"></span>
+        <button type="button" class="ic-clear-all-btn" id="ic-clear-all-btn">전체 지우기</button>
+      </div>
+
+      <div class="ic-settings">
+        <div class="ic-setting">
+          <label for="ic-scale-range">이미지 크기 <span class="ic-setting-value" id="ic-scale-value">100%</span></label>
+          <input type="range" id="ic-scale-range" min="10" max="100" step="5" value="100" />
+        </div>
+        <div class="ic-setting">
+          <label for="ic-quality-range">화질(용량) <span class="ic-setting-value" id="ic-quality-value">92%</span></label>
+          <input type="range" id="ic-quality-range" min="50" max="100" step="1" value="92" />
+          <p class="ic-setting-hint">PNG는 무손실 포맷이라 화질 설정이 적용되지 않아요</p>
+        </div>
+      </div>
+
+      <div class="ic-file-list" id="ic-file-list"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>이미지 변환기란?</h2>
+      <p>
+        이미지 변환기는 PNG, JPG, WebP 같은 이미지 파일 포맷을 브라우저에서 바로 서로 변환해주는 무료 도구입니다. 프로그램을 설치하거나 서버에 파일을 업로드할 필요 없이, 이미지를 올리고 원하는 포맷 버튼을 누르기만 하면 즉시 변환된 파일을 받을 수 있습니다. 웹사이트에 올릴 이미지 용량을 줄이고 싶을 때 WebP로 변환하거나, 투명 배경이 필요 없는 사진을 JPG로 바꿔 용량을 줄이거나, 반대로 편집을 위해 무손실 PNG로 바꾸는 등 다양한 상황에 활용할 수 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        변환하고 싶은 이미지 파일을 드래그해서 놓거나 파일 선택 버튼으로 첨부하세요. 여러 장을 한 번에 올릴 수 있습니다. 파일이 추가되면 그 아래에 PNG, JPG, WebP 변환 버튼이 나타나는데, 원하는 포맷 버튼을 누르면 그 형식으로만 즉시 변환됩니다. 변환이 끝나면 저장하기 버튼이 나타나고, 버튼을 누르면 변환된 파일이 다운로드됩니다. 다른 포맷으로도 받고 싶다면 같은 파일에서 다른 포맷 버튼을 눌러 추가로 변환할 수 있습니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>웹사이트 로딩 속도를 높이기 위해 이미지를 용량이 작은 WebP로 바꿀 때</li>
+        <li>특정 프로그램에서 요구하는 이미지 포맷으로 변환해야 할 때</li>
+        <li>투명 배경이 필요 없는 사진을 JPG로 바꿔서 용량을 줄이고 싶을 때</li>
+        <li>편집 작업을 위해 무손실 PNG 포맷이 필요할 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>여러 이미지를 한꺼번에 변환할 수 있나요?</dt>
+          <dd>네, 여러 파일을 한 번에 올릴 수 있고, 파일마다 원하는 포맷을 따로 선택해서 변환할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>업로드한 이미지가 서버로 전송되나요?</dt>
+          <dd>아니요. 모든 변환은 브라우저 안에서만 처리되며, 파일이 서버로 전송되거나 저장되지 않습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>어떤 포맷을 지원하나요?</dt>
+          <dd>PNG, JPG(JPEG), WebP 세 가지 포맷으로 변환할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>화질이 손상되나요?</dt>
+          <dd>PNG는 무손실이라 화질 손상이 없고, JPG와 WebP는 약간의 손실 압축이 적용되지만 일반적인 용도로는 차이를 거의 느끼기 어렵습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>확장자만 바뀌는 건가요, 실제로 포맷이 변환되나요?</dt>
+          <dd>단순히 파일 이름의 확장자만 바꾸는 것이 아니라, 이미지를 캔버스에 다시 그린 뒤 선택한 포맷의 실제 인코딩 방식으로 새로 압축합니다. 그래서 변환 전후로 파일 용량이 실제로 달라지는 것을 확인할 수 있습니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 변환 작업을 브라우저에서만 처리하며, 업로드한 이미지를 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

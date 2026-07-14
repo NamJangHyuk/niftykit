@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>楼梯计算器 - 台阶数·踢面·踏面深度自动计算免费应用 | GetNiftyKit</title>
+  <meta name="description" content="只需输入层高，即可按标准设计基准自动计算楼梯台阶数、踢面高度、踏面深度和总水平长度的免费工具。适合自装修和施工现场直接使用。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/stair-calc/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/stair-calc/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/stair-calc/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/stair-calc/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <base href="../../stair-calc/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "楼梯计算器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "输入层高后，按照标准设计指南自动计算楼梯台阶数、踢面高度、踏面深度和总水平长度的免费施工工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "这个计算结果完全符合建筑法规吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不完全符合。本工具仅按常见的通用设计指南进行参考计算，实际法定标准会因建筑用途和地区而异。施工前请务必确认当地建筑法规。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "为什么踢面高度以15~20cm为基准范围？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "该范围是被广泛采用的舒适上下楼梯标准，不会造成负担。高于此范围会感觉陡峭，低于此范围则会使楼梯总长度不必要地增加。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "踏面深度是如何计算的？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "采用「2R+T公式」。踢面高度（R）的2倍加上踏面深度（T）之和约为60~65cm时，被认为最符合自然的行走步幅。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Stair Calc</h1>
+    <p class="subtitle">只需输入层高，即可立即计算楼梯台阶数·踢面高度·踏面深度</p>
+    <p class="tagline-extra">使用经典设计公式（2R+T法则）自动计算出均等的踢面高度和舒适的踏面深度。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="stc-setup-section" aria-label="层高输入">
+      <div class="stc-field">
+        <label for="stc-height">层高（总高度）</label>
+        <div class="stc-input-with-unit">
+          <input type="number" id="stc-height" min="0.1" step="any" placeholder="例如：285" />
+          <span class="stc-unit">cm</span>
+        </div>
+      </div>
+      <p class="stc-error" id="stc-error" hidden>请输入大于0的层高数值（建议范围：50~600cm）。</p>
+    </section>
+
+    <section class="stc-result-section" aria-label="计算结果" data-steps-unit="阶">
+      <svg class="stc-diagram" viewBox="0 0 320 240" role="img" aria-label="楼梯侧面示意图">
+        <line id="stc-dim-rise-line" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick1" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick2" class="stc-dim-line" />
+        <text id="stc-dim-rise-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <line id="stc-dim-run-line" class="stc-dim-line" />
+        <line id="stc-dim-run-tick1" class="stc-dim-line" />
+        <line id="stc-dim-run-tick2" class="stc-dim-line" />
+        <text id="stc-dim-run-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <path id="stc-diagram-path" fill="none" stroke="var(--stc-accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+
+        <path id="stc-angle-arc" class="stc-angle-arc" fill="none" />
+        <text id="stc-angle-label" class="stc-angle-label" text-anchor="end"></text>
+
+        <!-- 계단 단수가 많아 한 칸이 아주 작아지는 경우에도 치수가 겹쳐 보이지 않도록,
+             첫 단을 일정한 크기로 확대해 보여주는 상세 박스입니다. 실제 축척과는
+             무관하며, 점선 리더 라인으로 실제 첫 단 모서리와 연결됩니다. -->
+        <line id="stc-dim-leader" class="stc-dim-leader" />
+        <path id="stc-detail-path" fill="none" stroke="var(--stc-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+
+        <line id="stc-dim-riser-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-riser-label" class="stc-dim-label-detail" text-anchor="end"></text>
+
+        <line id="stc-dim-tread-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-tread-label" class="stc-dim-label-detail" text-anchor="middle"></text>
+      </svg>
+
+      <div class="stc-result-grid">
+        <div class="stc-result-card">
+          <span class="stc-result-label">台阶数</span>
+          <span class="stc-result-value" id="stc-result-steps">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">实际踢面高度</span>
+          <span class="stc-result-value" id="stc-result-riser">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">建议踏面深度</span>
+          <span class="stc-result-value" id="stc-result-tread">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">总水平长度</span>
+          <span class="stc-result-value" id="stc-result-run">–</span>
+        </div>
+      </div>
+
+      <p class="stc-warning" id="stc-riser-warning" hidden>⚠ 踢面高度超出标准建议范围（15~20cm），请重新确认层高。</p>
+      <p class="stc-warning" id="stc-tread-warning" hidden>⚠ 踏面深度小于最小建议值（26cm），实际施工时建议适当加宽。</p>
+
+      <p class="stc-disclaimer">本计算结果仅供参考，基于常见设计指南得出，不保证符合法定建筑标准。实际施工前请务必确认当地建筑法规。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是楼梯计算器？</h2>
+      <p>
+        楼梯计算器是一款只需输入层高（从一层地面到上一层地面的总高度），就能自动计算楼梯设计所需关键数值的工具。楼梯踢面高度通常建议保持在15~20cm之间，其中17~18cm被认为是上下最舒适的范围，本工具会在该范围内自动确定台阶数，使每一级踏步高度均等。随后利用沿用已久的「2R+T公式」（踢面高度×2 + 踏面深度 ≈ 60~65cm）计算出便于行走的踏面深度，并一并显示整个楼梯所占的水平长度。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        以厘米为单位输入层高后，台阶数、实际踢面高度、建议踏面深度和总水平长度会立即计算并显示出来。如果计算出的踢面高度或踏面深度超出标准建议范围，会同时显示警告信息，此时建议重新确认层高或咨询专业人士。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想在自装修中亲自设计阁楼或复式楼梯时</li>
+        <li>木工或施工人员想在现场快速确认标准楼梯规格时</li>
+        <li>装修改造前想检查现有楼梯是否符合标准范围时</li>
+        <li>绘制设计图前想预先掌握大致楼梯数值时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>这个计算结果完全符合建筑法规吗？</dt>
+          <dd>不完全符合。本工具仅按常见的通用设计指南进行参考计算，实际法定标准会因建筑用途和地区而异。施工前请务必确认当地建筑法规。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>为什么踢面高度以15~20cm为基准范围？</dt>
+          <dd>该范围是被广泛采用的舒适上下楼梯标准，不会造成负担。高于此范围会感觉陡峭，低于此范围则会使楼梯总长度不必要地增加。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>踏面深度是如何计算的？</dt>
+          <dd>采用「2R+T公式」。踢面高度（R）的2倍加上踏面深度（T）之和约为60~65cm时，被认为最符合自然的行走步幅。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的所有计算均在浏览器中处理，不会将您输入的数值发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

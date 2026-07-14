@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSSグラデーション生成 - 無料でグラデーションコード作成 | GetNiftyKit</title>
+  <meta name="description" content="色を自由に追加して角度を調整し、CSSグラデーションをリアルタイムで作成、完成したコードをすぐにコピーできます。線形・円形グラデーションに対応。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/gradient-builder/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/gradient-builder/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/gradient-builder/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/gradient-builder/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/gradient-builder/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/gradient-builder/" />
+  <base href="../../gradient-builder/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSSグラデーション生成",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "色と角度を自由に組み合わせてCSSグラデーションコードをリアルタイムで生成し、コピーできる無料のウェブツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "無料で使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、会員登録なしで無料でグラデーションを作成し、CSSコードをコピーできます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "色は何個まで追加できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "最小2個から最大5個まで色を追加して、さまざまなグラデーションを作成できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "生成されたコードはどうやって使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "コピーしたコードをCSSのbackgroundプロパティの値としてそのまま貼り付けてください。例: background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>CSS グラデーション生成</h1>
+    <p class="subtitle">色と角度を自由に組み合わせて、CSSグラデーションを無料で作成します</p>
+    <p class="tagline-extra">線形・円形グラデーションをリアルタイムでプレビューし、完成したCSSコードをすぐにコピーできます。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="grad-preview-section" aria-label="グラデーションのプレビュー">
+      <div id="grad-preview" class="grad-preview"></div>
+    </section>
+
+    <section class="grad-controls-section">
+      <div class="grad-field">
+        <label>グラデーションの種類</label>
+        <div class="grad-type-tabs">
+          <button type="button" class="grad-type-tab is-active" id="grad-type-linear" data-type="linear">線形 (Linear)</button>
+          <button type="button" class="grad-type-tab" id="grad-type-radial" data-type="radial">円形 (Radial)</button>
+        </div>
+      </div>
+
+      <div class="grad-field" id="grad-angle-row">
+        <label for="grad-angle">角度 (<span id="grad-angle-value"></span>)</label>
+        <input type="range" id="grad-angle" min="0" max="360" value="90" />
+      </div>
+
+      <div class="grad-stops-section">
+        <label class="grad-stops-label">色</label>
+        <div id="grad-stops-list" class="grad-stops-list" data-remove-label="削除"></div>
+        <button type="button" id="grad-add-stop-btn" class="grad-add-stop-btn">色を追加</button>
+        <p
+          class="grad-error"
+          id="grad-stops-error"
+          hidden
+          data-max-error="色は最大5個まで追加できます。"
+          data-min-error="色は最低2個必要です。"
+        ></p>
+      </div>
+    </section>
+
+    <section class="grad-code-section" aria-label="生成されたCSSコード">
+      <code id="grad-code" class="grad-code"></code>
+      <button
+        type="button"
+        id="grad-copy-btn"
+        class="grad-copy-btn"
+        data-copy-label="CSSコードをコピー"
+        data-copied-label="コピーしました！"
+      >CSSコードをコピー</button>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>CSSグラデーション生成とは？</h2>
+      <p>
+        CSSグラデーション生成は、好きな色を自由に追加して角度を調整し、線形（linear）または円形（radial）グラデーションをリアルタイムで作成できるツールです。結果を見ながら調整でき、完成したらすぐに使えるCSSコードをワンクリックでコピーできます。背景デザインやボタン、バナーなどにグラデーションが必要なとき、コードを自分で計算せずに欲しい結果をすぐ得られます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        まず線形（Linear）か円形（Radial）か、希望のグラデーションの種類を選んでください。カラーピッカーで各色を好きなように変更し、「色を追加」ボタンで色を増やしたり、不要な色を削除したりできます。線形を選んだ場合は、角度スライダーでグラデーションの方向も調整できます。プレビュー画面に結果が即座に反映されるので、気に入った結果になったら「CSSコードをコピー」ボタンでそのままコピーして使用してください。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>ウェブサイトの背景やヒーローセクションにグラデーションを入れたいとき</li>
+        <li>ボタンやバッジにさりげない色の効果を加えたいとき</li>
+        <li>カードやバナーのデザインにトレンドのグラデーションを取り入れたいとき</li>
+        <li>デザイン案から正確なCSSグラデーションコードがすぐに必要なとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>無料で使えますか？</dt>
+          <dd>はい、会員登録なしで無料でグラデーションを作成し、CSSコードをコピーできます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>色は何個まで追加できますか？</dt>
+          <dd>最小2個から最大5個まで色を追加して、さまざまなグラデーションを作成できます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>生成されたコードはどうやって使いますか？</dt>
+          <dd>コピーしたコードをCSSのbackgroundプロパティの値としてそのまま貼り付けてください。例: background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはグラデーションの生成をすべてブラウザ上でローカルに行い、入力された内容をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ポモドーロタイマー - 集中・休憩自動繰り返し学習タイマー無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="集中時間と休憩時間を入力すると、ポモドーロ・テクニックに沿って自動で繰り返し進行する学習タイマーです。区間が切り替わるたびに音とブラウザ通知でお知らせします。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/pomodoro-timer/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/pomodoro-timer/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/pomodoro-timer/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <base href="../../pomodoro-timer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ポモドーロタイマー",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "集中・短い休憩・長い休憩の区間をポモドーロ・テクニックに沿って自動で繰り返し進行し、区間が切り替わるたびに音とブラウザ通知を送る無料の学習タイマーです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "他のタブを見ていても正確に動作しますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。毎回、開始時刻からの実際の経過時間を再計算する方式のため、ブラウザがバックグラウンドタブのタイマー周期を遅らせても、タブに戻れば常に正確な地点に自動的に合わせられます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ブラウザ通知は必ずオンにする必要がありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。通知を許可しなくても、音と画面表示で区間の切り替わりを確認できます。通知は他のタブを見ているときに追加で役立つ任意機能です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "集中・休憩時間は自由に変更できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。集中時間、短い休憩、長い休憩、長い休憩までの繰り返し回数をすべて自分で入力して、好きなように設定できます。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Pomodoro Timer</h1>
+    <p class="subtitle">集中と休憩を自動で繰り返しながら、完了したポモドーロ数を数えます</p>
+    <p class="tagline-extra">区間が切り替わるたびに音とブラウザ通知でお知らせし、タブを他の場所に置いても時間がズレません。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="pomo-display-section"
+      id="pomo-display"
+      aria-label="ポモドーロタイマー画面"
+      data-focus-label="集中"
+      data-short-break-label="短い休憩"
+      data-long-break-label="長い休憩"
+      data-ready-label="準備"
+      data-set-template="ポモドーロ {current}/{total}"
+      data-completed-label="完了したポモドーロ"
+      data-notify-focus-title="集中開始"
+      data-notify-focus-body="このポモドーロに集中してみましょう。"
+      data-notify-short-break-title="短い休憩"
+      data-notify-short-break-body="少し休んでからまた始めましょう。"
+      data-notify-long-break-title="長い休憩"
+      data-notify-long-break-body="しっかり休んで次のセットに備えましょう。"
+    >
+      <p class="pomo-completed-badge" id="pomo-completed"></p>
+
+      <div class="pomo-tabs" id="pomo-tabs">
+        <span class="pomo-tab" id="pomo-tab-focus" data-phase="focus">集中</span>
+        <span class="pomo-tab" id="pomo-tab-shortBreak" data-phase="shortBreak">短い休憩</span>
+        <span class="pomo-tab" id="pomo-tab-longBreak" data-phase="longBreak">長い休憩</span>
+      </div>
+
+      <div class="pomo-ring-wrap">
+        <svg class="pomo-ring-svg" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="pomo-ring-track" cx="120" cy="120" r="108" />
+          <circle class="pomo-ring-progress" id="pomo-ring-progress" cx="120" cy="120" r="108" />
+        </svg>
+        <div class="pomo-ring-content">
+          <p class="pomo-time" id="pomo-time">00:00</p>
+          <p class="pomo-phase-pill" id="pomo-phase-label">準備</p>
+        </div>
+      </div>
+
+      <p class="pomo-set-progress" id="pomo-set-progress"></p>
+    </section>
+
+    <section class="pomo-setup-section" aria-label="ポモドーロ設定">
+      <div class="pomo-time-field">
+        <label id="pomo-work-label">集中時間</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-work-label">
+          <input type="number" id="pomo-work-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">時間</span>
+          <input type="number" id="pomo-work-m" min="0" max="59" value="25" />
+          <span class="pomo-time-unit">分</span>
+          <input type="number" id="pomo-work-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">秒</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-short-break-label">短い休憩</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-short-break-label">
+          <input type="number" id="pomo-short-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">時間</span>
+          <input type="number" id="pomo-short-break-m" min="0" max="59" value="5" />
+          <span class="pomo-time-unit">分</span>
+          <input type="number" id="pomo-short-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">秒</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-long-break-label">長い休憩</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-long-break-label">
+          <input type="number" id="pomo-long-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">時間</span>
+          <input type="number" id="pomo-long-break-m" min="0" max="59" value="15" />
+          <span class="pomo-time-unit">分</span>
+          <input type="number" id="pomo-long-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">秒</span>
+        </div>
+      </div>
+
+      <div class="pomo-field">
+        <label for="pomo-cycles">長い休憩までの繰り返し回数</label>
+        <input type="number" id="pomo-cycles" min="1" max="12" value="4" />
+      </div>
+
+      <p class="pomo-error" id="pomo-error" hidden>集中・短い休憩・長い休憩の時間はそれぞれ最低1秒以上、繰り返し回数は1以上の数字で入力してください。</p>
+
+      <div class="pomo-controls">
+        <button type="button" id="pomo-start-btn" class="pomo-btn pomo-btn-primary">開始</button>
+        <button
+          type="button"
+          id="pomo-pause-btn"
+          class="pomo-btn"
+          hidden
+          data-pause-label="一時停止"
+          data-resume-label="再開"
+        >一時停止</button>
+        <button type="button" id="pomo-reset-btn" class="pomo-btn" hidden>リセット</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>ポモドーロタイマーとは？</h2>
+      <p>
+        ポモドーロタイマーは、イタリア語でトマトを意味する「ポモドーロ・テクニック」から名付けられた時間管理ツールです。決められた集中時間（デフォルト25分）の間ひとつの作業に集中し、その後短い休憩（デフォルト5分）を取り、これを何度か繰り返した後により長い休憩（デフォルト15分）を取るという方式で進行します。このツールは集中・休憩の区間を自動的に計算して繰り返し進行し、ブラウザのタブを別の画面に切り替えていても、実際の経過時間を基準に正確に再調整されるため、時間がズレることはありません。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        集中時間、短い休憩時間、長い休憩時間をそれぞれ時間・分・秒単位で好きなだけ細かく入力し、長い休憩が来るまでの繰り返し回数を決めてから「開始」ボタンを押すと、すぐに最初の集中区間が始まります。区間が切り替わるたびに音が再生され、ブラウザ通知を許可すると、他のタブを見ていても通知でお知らせを受け取れます。集中区間が終わるたびに、完了したポモドーロの数が1つずつ増えます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>長時間座って勉強や仕事をするときに集中力を維持したいとき</li>
+        <li>休憩のタイミングを自分で判断せず自動的に案内してほしいとき</li>
+        <li>今日何回ポモドーロを完了したか記録して達成感を得たいとき</li>
+        <li>他のタブで作業していても区間が切り替わったら通知で確認したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>他のタブを見ていても正確に動作しますか？</dt>
+          <dd>はい。毎回、開始時刻からの実際の経過時間を再計算する方式のため、ブラウザがバックグラウンドタブのタイマー周期を遅らせても、タブに戻れば常に正確な地点に自動的に合わせられます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>ブラウザ通知は必ずオンにする必要がありますか？</dt>
+          <dd>いいえ。通知を許可しなくても、音と画面表示で区間の切り替わりを確認できます。通知は他のタブを見ているときに追加で役立つ任意機能です。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>集中・休憩時間は自由に変更できますか？</dt>
+          <dd>はい。集中時間、短い休憩、長い休憩、長い休憩までの繰り返し回数をすべて自分で入力して、好きなように設定できます。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールは時間計算と通知をすべてブラウザ上で処理し、サーバーに送信・保存するデータはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

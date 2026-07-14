@@ -1,0 +1,57 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Flashcards - Random-Order Study Cards | GetNiftyKit",
+  "metaDescription": "Create your own question-and-answer cards and study them in random order. Click a card to flip it and reveal the answer — your cards are saved right in your browser.",
+  "softwareAppName": "Flashcards",
+  "softwareAppDescription": "A free memorization tool where you build your own question-and-answer cards, study them in random order via a Fisher-Yates shuffle, and click to flip each card and reveal the answer.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Flashcards",
+  "subtitle": "Study your own cards in random order",
+  "taglineExtra": "Click a card to flip it and reveal the answer — your cards are saved in your browser, so they're still there next time you visit.",
+  "studyAria": "Flashcard study area",
+  "manageAria": "Manage cards",
+  "questionLabel": "Question",
+  "questionPlaceholder": "Enter a question",
+  "answerLabel": "Answer",
+  "answerPlaceholder": "Enter an answer",
+  "addBtnText": "Add Card",
+  "deleteBtnText": "Delete",
+  "shuffleBtnText": "Reshuffle",
+  "prevBtnText": "Previous",
+  "nextBtnText": "Next",
+  "flipHintText": "Click the card to reveal the answer",
+  "progressTemplate": "{current} / {total}",
+  "cardListHeadingTemplate": "Card List ({count})",
+  "emptyStudyMessage": "No cards yet. Add one below to get started.",
+  "emptyListMessage": "Cards you add will show up here.",
+  "questionRequiredError": "Please enter a question.",
+  "answerRequiredError": "Please enter an answer.",
+  "infoIntroH2": "What are flashcards?",
+  "infoIntroP": "Flashcards bring the classic study method — a question on the front, an answer on the back, flipped through repeatedly to memorize — onto the web. This tool lets you freely add your own question-and-answer pairs, and shuffles the card order randomly using the Fisher-Yates algorithm every time you study, so you can't just memorize the sequence. Clicking a card flips it with a smooth animation to reveal the answer, and every card you create is saved to your browser's local storage, so it's still there even after a refresh or a return visit later.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter a question and answer in the card management area below and press \"Add Card\" to add it to your study list. On the study screen, click a card to flip it and reveal the answer, use \"Previous\"/\"Next\" to move between cards, or \"Reshuffle\" to randomize the order again. Cards you no longer need can be removed with the \"Delete\" button in the card list.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Repeatedly memorizing foreign-language vocabulary or exam terms",
+    "Testing yourself in random order instead of memorizing a fixed sequence",
+    "Managing your own set of custom question-and-answer cards",
+    "Studying quickly with no login required, saved only in your browser"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Where are my cards saved?",
+      "a": "Cards are saved in your browser's local storage, not on a server. They'll still be there the next time you open the same browser, but they won't show up on a different device or browser."
+    },
+    {
+      "q": "Is the card order always random?",
+      "a": "Yes. The order is reshuffled using the Fisher-Yates algorithm whenever you add or delete a card, and whenever you press \"Reshuffle\"."
+    },
+    {
+      "q": "I made a mistake on a card. Can I edit it?",
+      "a": "There's no edit feature yet — delete the card from the card list and add it again with the correct content."
+    }
+  ],
+  "privacyNote": "This tool stores card data only in your browser's local storage. Nothing is sent to a server."
+}

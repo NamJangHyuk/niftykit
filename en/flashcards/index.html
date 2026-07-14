@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcards - Random-Order Study Cards | GetNiftyKit</title>
+  <meta name="description" content="Create your own question-and-answer cards and study them in random order. Click a card to flip it and reveal the answer — your cards are saved right in your browser." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/flashcards/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/flashcards/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/flashcards/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <base href="../../flashcards/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Flashcards",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free memorization tool where you build your own question-and-answer cards, study them in random order via a Fisher-Yates shuffle, and click to flip each card and reveal the answer.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where are my cards saved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cards are saved in your browser's local storage, not on a server. They'll still be there the next time you open the same browser, but they won't show up on a different device or browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the card order always random?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The order is reshuffled using the Fisher-Yates algorithm whenever you add or delete a card, and whenever you press \"Reshuffle\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I made a mistake on a card. Can I edit it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no edit feature yet — delete the card from the card list and add it again with the correct content."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Flashcards</h1>
+    <p class="subtitle">Study your own cards in random order</p>
+    <p class="tagline-extra">Click a card to flip it and reveal the answer — your cards are saved in your browser, so they're still there next time you visit.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="fc-study-section"
+      aria-label="Flashcard study area"
+      data-flip-hint="Click the card to reveal the answer"
+      data-progress-template="{current} / {total}"
+      data-empty-study-message="No cards yet. Add one below to get started."
+    >
+      <p class="fc-progress" id="fc-progress"></p>
+      <div class="fc-card" id="fc-card" tabindex="0" role="button">
+        <div class="fc-card-inner" id="fc-card-inner">
+          <div class="fc-card-face fc-card-front">
+            <p class="fc-card-text" id="fc-card-question"></p>
+          </div>
+          <div class="fc-card-face fc-card-back">
+            <p class="fc-card-text" id="fc-card-answer"></p>
+          </div>
+        </div>
+      </div>
+      <p class="fc-flip-hint" id="fc-flip-hint">Click the card to reveal the answer</p>
+
+      <div class="fc-study-controls">
+        <button type="button" id="fc-prev-btn" class="fc-btn">Previous</button>
+        <button type="button" id="fc-shuffle-btn" class="fc-btn">Reshuffle</button>
+        <button type="button" id="fc-next-btn" class="fc-btn">Next</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <section class="fc-manage-section" aria-label="Manage cards">
+      <div class="fc-form-row">
+        <div class="fc-field">
+          <label for="fc-question-input">Question</label>
+          <input type="text" id="fc-question-input" placeholder="Enter a question" autocomplete="off" />
+        </div>
+        <div class="fc-field">
+          <label for="fc-answer-input">Answer</label>
+          <input type="text" id="fc-answer-input" placeholder="Enter an answer" autocomplete="off" />
+        </div>
+        <button type="button" id="fc-add-btn" class="fc-add-btn">Add Card</button>
+      </div>
+      <p
+        class="fc-error"
+        id="fc-error"
+        hidden
+        data-question-error="Please enter a question."
+        data-answer-error="Please enter an answer."
+      ></p>
+
+      <h2 class="fc-list-heading" id="fc-list-heading"></h2>
+      <p class="fc-empty" id="fc-empty">Cards you add will show up here.</p>
+      <div id="fc-list" class="fc-list" data-delete-label="Delete" data-heading-template="Card List ({count})"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What are flashcards?</h2>
+      <p>
+        Flashcards bring the classic study method — a question on the front, an answer on the back, flipped through repeatedly to memorize — onto the web. This tool lets you freely add your own question-and-answer pairs, and shuffles the card order randomly using the Fisher-Yates algorithm every time you study, so you can't just memorize the sequence. Clicking a card flips it with a smooth animation to reveal the answer, and every card you create is saved to your browser's local storage, so it's still there even after a refresh or a return visit later.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter a question and answer in the card management area below and press &quot;Add Card&quot; to add it to your study list. On the study screen, click a card to flip it and reveal the answer, use &quot;Previous&quot;/&quot;Next&quot; to move between cards, or &quot;Reshuffle&quot; to randomize the order again. Cards you no longer need can be removed with the &quot;Delete&quot; button in the card list.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Repeatedly memorizing foreign-language vocabulary or exam terms</li>
+        <li>Testing yourself in random order instead of memorizing a fixed sequence</li>
+        <li>Managing your own set of custom question-and-answer cards</li>
+        <li>Studying quickly with no login required, saved only in your browser</li>
+      </ul>
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Where are my cards saved?</dt>
+          <dd>Cards are saved in your browser's local storage, not on a server. They'll still be there the next time you open the same browser, but they won't show up on a different device or browser.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Is the card order always random?</dt>
+          <dd>Yes. The order is reshuffled using the Fisher-Yates algorithm whenever you add or delete a card, and whenever you press &quot;Reshuffle&quot;.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>I made a mistake on a card. Can I edit it?</dt>
+          <dd>There's no edit feature yet — delete the card from the card list and add it again with the correct content.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool stores card data only in your browser's local storage. Nothing is sent to a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

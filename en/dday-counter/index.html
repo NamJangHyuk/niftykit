@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-Day Counter - Free Countdown to Any Date | GetNiftyKit</title>
+  <meta name="description" content="Enter a target date and instantly see the D-Day count in big numbers. Track exams, trips, anniversaries, and more, all saved right in your browser." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/dday-counter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/dday-counter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/dday-counter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <base href="../../dday-counter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "D-Day Counter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free web tool that counts down to any target date and displays it as a D-Day number, with support for tracking multiple goals at once.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where are my goals stored?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only in this browser's local storage on this device. Nothing is sent to a server, and your goals won't appear on other devices or browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add a date that's already passed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you add a past date, it will show how many days have passed, like D+3."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is D-Day calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's calculated from midnight today to the target date, counting whole days rather than hours — so if your goal is tomorrow, it shows D-1 no matter what time of day you check."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>D-Day Counter</h1>
+    <p class="subtitle">Enter a target date and instantly see the D-Day count in big numbers</p>
+    <p class="tagline-extra">Exams, trips, anniversaries — track as many goals as you want, all in one place.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="dday-form-section" aria-label="Add a new goal">
+      <div class="dday-form-row">
+        <div class="dday-field dday-field-name">
+          <label for="dday-name">Goal name</label>
+          <input type="text" id="dday-name" placeholder="e.g. Final exam day" autocomplete="off" />
+        </div>
+        <div class="dday-field dday-field-date">
+          <label for="dday-date-trigger">Target date</label>
+          <button
+            type="button"
+            id="dday-date-trigger"
+            class="dday-date-trigger"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            data-placeholder="Choose a date"
+          >Choose a date</button>
+        </div>
+        <button type="button" id="dday-add-btn" class="dday-add-btn">Add</button>
+      </div>
+      <p
+        class="dday-error"
+        id="dday-error"
+        hidden
+        data-name-error="Please enter a goal name."
+        data-date-error="Please choose a target date."
+      ></p>
+
+      <div class="dday-calendar" id="dday-calendar" role="dialog" aria-label="Target date" hidden>
+        <div class="dday-calendar-header">
+          <button type="button" id="dday-cal-prev" class="dday-cal-nav" aria-label="Previous month">‹</button>
+          <span class="dday-cal-title" id="dday-cal-title"></span>
+          <button type="button" id="dday-cal-next" class="dday-cal-nav" aria-label="Next month">›</button>
+        </div>
+        <div class="dday-calendar-weekdays" id="dday-cal-weekdays"></div>
+        <div class="dday-calendar-grid" id="dday-cal-grid"></div>
+      </div>
+    </section>
+
+    <section class="dday-list-section" aria-label="Your saved goals">
+      <p class="dday-empty" id="dday-empty">No goals yet — add your first one above.</p>
+      <div
+        id="dday-list"
+        class="dday-list"
+        data-today-label="D-DAY"
+        data-delete-label="Delete"
+      ></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a D-Day counter?</h2>
+      <p>
+        D-Day Counter is a tool that shows how many days remain until a date you choose, displayed as a large, easy-to-read number like D-5, D-DAY, or D+3. Whether you're tracking an exam, a trip, a wedding anniversary, or a project deadline, you can keep several dates in view at once, and every goal you add is saved in your browser so it's still there the next time you visit.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter a goal name and date, then click &quot;Add&quot; — a new card appears in the list showing the D-Day count calculated from today. Add as many goals as you like, and remove any you no longer need with the &quot;Delete&quot; button. Everything is saved in this browser, so your goals will still be there the next time you come back.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Tracking how much time is left before an exam, interview, or presentation</li>
+        <li>Counting down to a trip or event</li>
+        <li>Keeping track of anniversaries and birthdays so you never miss one</li>
+        <li>Managing multiple project or assignment deadlines at a glance</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Where are my goals stored?</dt>
+          <dd>Only in this browser's local storage on this device. Nothing is sent to a server, and your goals won't appear on other devices or browsers.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Can I add a date that's already passed?</dt>
+          <dd>Yes. If you add a past date, it will show how many days have passed, like D+3.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How is D-Day calculated?</dt>
+          <dd>It's calculated from midnight today to the target date, counting whole days rather than hours — so if your goal is tomorrow, it shows D-1 no matter what time of day you check.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool stores your goals only in this browser's local storage. Nothing is sent to a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

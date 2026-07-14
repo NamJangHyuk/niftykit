@@ -1,0 +1,52 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "CSS Gradient Generator - Create Gradient Code Free | GetNiftyKit",
+  "metaDescription": "Add colors and adjust the angle to build a CSS gradient in real time, then copy the finished code instantly. Supports both linear and radial gradients.",
+  "softwareAppName": "CSS Gradient Generator",
+  "softwareAppDescription": "A free web tool that generates CSS gradient code in real time as you combine colors and angles, ready to copy and use.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "CSS Gradient Generator",
+  "subtitle": "Combine colors and angles freely to build a CSS gradient for free",
+  "taglineExtra": "Preview linear and radial gradients live, and copy the finished CSS code instantly.",
+  "previewAria": "Gradient preview",
+  "codeAria": "Generated CSS code",
+  "typeLabel": "Gradient type",
+  "typeLinear": "Linear",
+  "typeRadial": "Radial",
+  "angleLabel": "Angle",
+  "stopsLabel": "Colors",
+  "addStopBtnText": "Add color",
+  "removeStopBtnText": "Remove",
+  "copyBtnText": "Copy CSS code",
+  "copiedText": "Copied!",
+  "maxStopsError": "You can add up to 5 colors.",
+  "minStopsError": "At least 2 colors are required.",
+  "infoIntroH2": "What is a CSS gradient generator?",
+  "infoIntroP": "This CSS gradient generator lets you freely add colors and adjust the angle to build a linear or radial gradient in real time. You can see the result instantly as you tweak it, and once you're happy with it, copy the ready-to-use CSS code with a single click. Whenever you need a gradient for a background, button, or banner, you can get exactly what you want without calculating the code by hand.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "First choose the gradient type you want: Linear or Radial. Use the color pickers to change each color, and add more colors with the \"Add color\" button or remove ones you don't need. If you picked Linear, adjust the angle slider to set the gradient's direction. The preview updates instantly, and once you're happy with the result, click \"Copy CSS code\" to copy it right away.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Adding a gradient to a website background or hero section",
+    "Giving a button or badge a subtle color effect",
+    "Applying a trendy gradient to a card or banner design",
+    "Getting exact CSS gradient code straight from a design mockup"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Is this free to use?",
+      "a": "Yes. You can create gradients and copy the CSS code for free, with no account required."
+    },
+    {
+      "q": "How many colors can I add?",
+      "a": "You can use anywhere from 2 up to 5 colors to build a variety of gradients."
+    },
+    {
+      "q": "How do I use the generated code?",
+      "a": "Paste the copied code directly as the value of a CSS background property. For example: background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);"
+    }
+  ],
+  "privacyNote": "This tool generates gradients entirely in your browser. Your input is never sent to or stored on a server."
+}

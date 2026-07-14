@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>フラッシュカード - 暗記用カードランダム学習無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="質問と答えのカードを自分で作成し、ランダムな順序で学習できるフラッシュカードアプリです。カードをクリックすると裏返って答えが表示され、作成したカードはブラウザに保存されます。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/flashcards/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/flashcards/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/flashcards/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/flashcards/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <base href="../../flashcards/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "フラッシュカード",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "質問・答えのカードを作成してFisher-Yatesシャッフルでランダムな順序で学習し、クリックするとカードが裏返って答えが見える無料の暗記学習ツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "作成したカードはどこに保存されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "カードはサーバーではなく、使用しているブラウザのローカルストレージ（localStorage）に保存されます。同じブラウザで再度アクセスすればそのまま残っていますが、他の端末や別のブラウザでは表示されません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "カードの順序は常にランダムですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。カードを追加・削除したときや、「シャッフルし直す」ボタンを押したときに、Fisher-Yatesシャッフルで順序が新しくランダムに並び替えられます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "カードを間違って作成してしまいました。修正できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現在は編集機能がなく、削除してから再度追加する方式となっています。カード一覧の「削除」ボタンで消してから、正しい内容で再度追加してください。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Flashcards</h1>
+    <p class="subtitle">自分で作ったカードでランダムな順序で暗記学習してみましょう</p>
+    <p class="tagline-extra">カードをクリックすると裏返って答えが見え、作成したカードはブラウザに保存されるので次回開いてもそのまま残っています。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="fc-study-section"
+      aria-label="フラッシュカード学習画面"
+      data-flip-hint="カードをクリックすると答えが見えます"
+      data-progress-template="{current} / {total}"
+      data-empty-study-message="まだカードがありません。下からカードを追加してみましょう。"
+    >
+      <p class="fc-progress" id="fc-progress"></p>
+      <div class="fc-card" id="fc-card" tabindex="0" role="button">
+        <div class="fc-card-inner" id="fc-card-inner">
+          <div class="fc-card-face fc-card-front">
+            <p class="fc-card-text" id="fc-card-question"></p>
+          </div>
+          <div class="fc-card-face fc-card-back">
+            <p class="fc-card-text" id="fc-card-answer"></p>
+          </div>
+        </div>
+      </div>
+      <p class="fc-flip-hint" id="fc-flip-hint">カードをクリックすると答えが見えます</p>
+
+      <div class="fc-study-controls">
+        <button type="button" id="fc-prev-btn" class="fc-btn">前へ</button>
+        <button type="button" id="fc-shuffle-btn" class="fc-btn">シャッフルし直す</button>
+        <button type="button" id="fc-next-btn" class="fc-btn">次へ</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <section class="fc-manage-section" aria-label="カード管理">
+      <div class="fc-form-row">
+        <div class="fc-field">
+          <label for="fc-question-input">質問</label>
+          <input type="text" id="fc-question-input" placeholder="質問を入力してください" autocomplete="off" />
+        </div>
+        <div class="fc-field">
+          <label for="fc-answer-input">答え</label>
+          <input type="text" id="fc-answer-input" placeholder="答えを入力してください" autocomplete="off" />
+        </div>
+        <button type="button" id="fc-add-btn" class="fc-add-btn">カードを追加</button>
+      </div>
+      <p
+        class="fc-error"
+        id="fc-error"
+        hidden
+        data-question-error="質問を入力してください。"
+        data-answer-error="答えを入力してください。"
+      ></p>
+
+      <h2 class="fc-list-heading" id="fc-list-heading"></h2>
+      <p class="fc-empty" id="fc-empty">追加したカードがここに表示されます。</p>
+      <div id="fc-list" class="fc-list" data-delete-label="削除" data-heading-template="カード一覧（{count}枚）"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>フラッシュカードとは？</h2>
+      <p>
+        フラッシュカードは、表に質問、裏に答えを書いて繰り返しめくりながら暗記する伝統的な学習法をウェブに移したものです。このツールでは好きな質問と答えのペアを自由に追加でき、学習時にはFisher-Yatesシャッフルアルゴリズムでカードの順序をランダムに並び替えるため、順番を覚えてしまうことを防ぎます。カードをクリックすると滑らかなアニメーションとともに裏返って答えが表示され、作成したカードはブラウザのローカルストレージに保存されるため、ページを更新したり後で再訪問してもそのまま残っています。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        下のカード管理エリアで質問と答えを入力して「カードを追加」ボタンを押すと、学習リストにカードが追加されます。学習画面でカードをクリックすると裏返って答えが表示され、「前へ」「次へ」ボタンでカードをめくったり、「シャッフルし直す」ボタンで順序を新しく並び替えたりできます。不要になったカードはカード一覧の「削除」ボタンで消すことができます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>外国語の単語や試験範囲の用語を繰り返し暗記したいとき</li>
+        <li>順番を覚えずにランダムに実力をチェックしたいとき</li>
+        <li>自分で作った問題と答えを自分だけのカードセットとして管理したいとき</li>
+        <li>ブラウザだけに保存して、ログイン不要で気軽に暗記学習をしたいとき</li>
+      </ul>
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>作成したカードはどこに保存されますか？</dt>
+          <dd>カードはサーバーではなく、使用しているブラウザのローカルストレージ（localStorage）に保存されます。同じブラウザで再度アクセスすればそのまま残っていますが、他の端末や別のブラウザでは表示されません。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>カードの順序は常にランダムですか？</dt>
+          <dd>はい。カードを追加・削除したときや、「シャッフルし直す」ボタンを押したときに、Fisher-Yatesシャッフルで順序が新しくランダムに並び替えられます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>カードを間違って作成してしまいました。修正できますか？</dt>
+          <dd>現在は編集機能がなく、削除してから再度追加する方式となっています。カード一覧の「削除」ボタンで消してから、正しい内容で再度追加してください。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはカードのデータをブラウザのローカルストレージにのみ保管し、サーバーに送信することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

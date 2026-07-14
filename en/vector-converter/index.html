@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Line Art Vector Converter - Free Image to SVG | GetNiftyKit</title>
+  <meta name="description" content="Upload an image and get a precise black-and-white line art SVG vector instantly in your browser. Great for sketches, logos, and hand-drawn art, completely free." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/vector-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/vector-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/vector-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <base href="../../vector-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Line Art Vector Converter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free tool that instantly converts PNG and JPG images into precise black-and-white line art SVG vectors.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What kind of images does this tool convert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It converts images with clear light/dark contrast into black-and-white SVG vectors made entirely of lines. It works especially well for hand-drawn art, pen sketches, logos, and stamp-style images."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my uploaded image sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All conversion happens entirely in your browser, and your image is never sent to or stored on a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I upload a color image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — a color image is automatically converted based on brightness. Keep in mind this tool always produces a black-and-white line art result; it does not preserve colors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the lines look jagged, or too blobby?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drag the 'Line Smoothness' slider below the result — it converts again instantly. Slide toward Smooth if the lines look jagged and angular; slide toward Crisp if fine lines look merged or blobby. The right spot depends on your image, so it's worth trying a few positions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use the converted SVG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click the download button to save the SVG file. You can open and edit it directly in vector design software like Illustrator or Figma, or use it with equipment that requires vector files, like laser engravers or cutting machines."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Line Art Vector Converter</h1>
+    <p class="subtitle">Upload an image and get a precise black-and-white SVG line art instantly</p>
+    <p class="tagline-extra">Sketches, logos, and hand-drawn art become crisp vector lines — converted automatically the moment you upload.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="vc-card" aria-label="Upload image file">
+      <div class="vc-dropzone" id="vc-dropzone" tabindex="0" role="button" aria-label="Upload image file">
+        <svg class="vc-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="vc-dropzone-text">Drag and drop an image here, or click to select one</p>
+        <p class="vc-dropzone-hint">Supports PNG, JPG, WebP and more (great for sketches, logos, and hand-drawn art)</p>
+        <button type="button" class="vc-choose-btn" id="vc-choose-btn">Choose File</button>
+        <input type="file" id="vc-file-input" accept="image/*" hidden />
+      </div>
+      <p class="vc-error" id="vc-global-error" hidden></p>
+    </section>
+
+    <section
+      class="vc-workspace"
+      id="vc-workspace"
+      hidden
+      aria-label="Conversion result"
+      data-converting-text="Converting..."
+      data-file-size-template="{size} · {width}×{height}"
+      data-svg-size-template="{size} · {paths} paths"
+      data-unsupported-file-error="Unsupported file type. Please attach an image file."
+      data-decode-error-text="Couldn't load the image. The file may be corrupted."
+      data-conversion-error-text="Something went wrong during conversion. Please try a different image."
+      data-engine-load-error-text="Couldn't load the conversion engine. Please check your internet connection and reload."
+      data-too-large-warning="The image was large, so it was automatically resized before converting"
+    >
+      <div class="vc-preview-row">
+        <figure class="vc-preview-box" id="vc-original-box">
+          <div class="vc-preview-frame">
+            <img id="vc-original-img" alt="" />
+          </div>
+          <figcaption>
+            <span class="vc-preview-label">Original</span>
+            <span class="vc-preview-meta" id="vc-original-meta"></span>
+          </figcaption>
+        </figure>
+        <figure class="vc-preview-box" id="vc-result-box" hidden>
+          <div class="vc-preview-frame" id="vc-result-frame">
+            <div class="vc-spinner" id="vc-spinner" aria-hidden="true"></div>
+          </div>
+          <figcaption>
+            <span class="vc-preview-label">Result (SVG)</span>
+            <span class="vc-preview-meta" id="vc-result-meta"></span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="vc-advanced">
+        <p class="vc-advanced-label">Line Smoothness <span class="vc-detail-value" id="vc-detail-value">35</span></p>
+        <div class="vc-advanced-body">
+          <input type="range" id="vc-detail-range" min="0" max="100" step="1" value="35" />
+          <div class="vc-detail-labels">
+            <span>Crisp</span>
+            <span>Smooth</span>
+          </div>
+          <p class="vc-advanced-hint">If the lines look jagged, slide toward Smooth; if they look blobby or merged, slide toward Crisp — then it converts again instantly. Depending on the image, nothing may change for a while and then shift suddenly past a certain point, so try nudging it a little at a time</p>
+        </div>
+      </div>
+
+      <p class="vc-warning" id="vc-too-large-warning" hidden>The image was large, so it was automatically resized before converting</p>
+      <p class="vc-error" id="vc-convert-error" hidden></p>
+
+      <div class="vc-result-actions" id="vc-result-actions" hidden>
+        <a class="vc-download-btn" id="vc-download-btn" download>Download SVG</a>
+        <button type="button" class="vc-secondary-btn" id="vc-convert-another-btn">Convert Another Image</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a Line Art Vector Converter?</h2>
+      <p>
+        A line art vector converter is a free tool that turns pixel-based (raster) images like PNG and JPG into black-and-white SVG vector files made entirely of lines, right in your browser. Pixel images lose quality when zoomed in, but vector images made of mathematical lines and curves stay smooth no matter how much you zoom. There's nothing to install and nothing to upload to a server — just add your image and download a precise SVG file instantly.
+      </p>
+
+      <h2>How to Use</h2>
+      <p>
+        Drag and drop the image you want to convert, or attach it with the file selector. Once it's uploaded, it converts to a black-and-white line art SVG automatically — no button to press. If the lines look jagged or blobby, drag the 'Line Smoothness' slider to find the spot that suits your image, and it converts again right away. Once you're satisfied, click the download button to save the SVG file.
+      </p>
+
+      <h2>Great For</h2>
+      <ul>
+        <li>Turning a hand-drawn sketch into clean black-and-white line art vector</li>
+        <li>Reusing a logo or stamp image at large sizes — print, banners — without quality loss</li>
+        <li>Preparing image files for laser engravers, cutting machines, and other vector-based equipment</li>
+        <li>Freely editing a pixel image line by line in design software like Illustrator or Figma</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>What kind of images does this tool convert?</dt>
+          <dd>It converts images with clear light/dark contrast into black-and-white SVG vectors made entirely of lines. It works especially well for hand-drawn art, pen sketches, logos, and stamp-style images.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Is my uploaded image sent to a server?</dt>
+          <dd>No. All conversion happens entirely in your browser, and your image is never sent to or stored on a server.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Can I upload a color image?</dt>
+          <dd>Yes — a color image is automatically converted based on brightness. Keep in mind this tool always produces a black-and-white line art result; it does not preserve colors.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What if the lines look jagged, or too blobby?</dt>
+          <dd>Drag the 'Line Smoothness' slider below the result — it converts again instantly. Slide toward Smooth if the lines look jagged and angular; slide toward Crisp if fine lines look merged or blobby. The right spot depends on your image, so it's worth trying a few positions.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How do I use the converted SVG?</dt>
+          <dd>Click the download button to save the SVG file. You can open and edit it directly in vector design software like Illustrator or Figma, or use it with equipment that requires vector files, like laser engravers or cutting machines.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool processes all conversion entirely in your browser and never sends or stores your uploaded images on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script type="module" src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

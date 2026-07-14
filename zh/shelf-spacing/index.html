@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>层板间距计算器 - 书柜·收纳柜均匀布局免费应用 | GetNiftyKit</title>
+  <meta name="description" content="只需输入总长度、层板数量和层板厚度，即可自动计算出使每格均匀分布的各层板精确安装位置的免费木工工具。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/shelf-spacing/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/shelf-spacing/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/shelf-spacing/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/shelf-spacing/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <base href="../../shelf-spacing/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "层板间距计算器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "输入书柜·收纳柜的总长度、层板数量和厚度，即可自动计算出使每格保持均匀间距的各层板安装位置的免费木工工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "层板数量指的是层板本身的数量，还是格数？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "指层板本身的数量。例如放入4块层板，上下会形成共5格（compartments），本工具会计算使这5格都保持均匀间距。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "为什么需要输入层板厚度？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "因为层板本身也会占用空间。如果不扣除层板厚度进行计算，实际安装后的格间距会比计算值更窄。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "计算出的位置是以哪里为基准的？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "以柜体（书柜·收纳柜）最底部的底面为0，计算从该处到各层板底面的距离。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>层板间距计算器</h1>
+    <p class="subtitle">只需输入总长度和层板数量，即可立即计算出均匀的安装位置</p>
+    <p class="tagline-extra">连层板厚度也一并计入，让每一格都精确保持相同间距。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="shsp-setup-section" aria-label="层板信息输入">
+      <div class="shsp-field">
+        <label for="shsp-length">内部总长度</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-length" min="0.1" step="any" placeholder="例如：180" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-count">层板数量</label>
+        <input type="number" id="shsp-count" min="1" step="1" placeholder="例如：4" />
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-thickness">层板厚度</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-thickness" min="0.01" step="any" placeholder="例如：1.8" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <p class="shsp-error" id="shsp-error" hidden data-invalid-input-error="请将总长度·层板数量·层板厚度均输入为大于0的数值。" data-invalid-fit-error="层板厚度与数量之和大于总长度，请减少层板数量或使用更薄的层板。"></p>
+    </section>
+
+    <section class="shsp-result-section" aria-label="计算结果" data-compartments-unit="格">
+      <svg class="shsp-diagram" viewBox="0 0 260 280" role="img" aria-label="层板布局示意图">
+        <rect id="shsp-case-outline" fill="none" stroke="var(--shsp-line)" stroke-width="2.5" />
+        <g id="shsp-shelves-group"></g>
+
+        <line id="shsp-dim-total-line" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick1" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick2" class="shsp-dim-line" />
+        <text id="shsp-dim-total-label" class="shsp-dim-label" text-anchor="middle"></text>
+
+        <line id="shsp-dim-gap-line" class="shsp-dim-line-detail" />
+        <text id="shsp-dim-gap-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+
+        <line id="shsp-dim-leader" class="shsp-dim-leader" />
+        <rect id="shsp-detail-shelf" fill="var(--shsp-accent)" />
+        <text id="shsp-dim-thickness-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+      </svg>
+
+      <div class="shsp-result-grid">
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">格间距（有效空间）</span>
+          <span class="shsp-result-value" id="shsp-result-gap">–</span>
+        </div>
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">格数</span>
+          <span class="shsp-result-value" id="shsp-result-compartments">–</span>
+        </div>
+      </div>
+
+      <p class="shsp-warning" id="shsp-gap-warning" hidden>⚠ 格间距小于10cm，请提前确认实际要收纳的物品是否放得下。</p>
+
+      <div class="shsp-positions" aria-label="各层板安装位置">
+        <h2 class="shsp-positions-heading">各层板安装位置（以底部为基准）</h2>
+        <ul class="shsp-positions-list" id="shsp-positions-list" data-position-template="层板 {index}：距底部 {position}"></ul>
+      </div>
+
+      <p class="shsp-disclaimer">实际木材的厚度可能存在细微误差，建议裁切前用实测数值再次确认。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是层板间距计算器？</h2>
+      <p>
+        层板间距计算器是一款只需输入书柜或收纳柜内部的总长度、想要安装的层板数量和层板厚度，就能自动计算出使每一格保持精确相同间距的各层板安装位置的工具。它会将扣除层板本身厚度后剩余的空间，按格数（层板数量+1）均匀分配，因此可以避免凭目测标记导致每格间距参差不齐的问题。计算结果会同时以底部为基准的精确位置列表，以及按实际比例绘制的示意图呈现。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        请输入书柜或收纳柜的内部总长度、想要安装的层板数量和层板厚度。系统会立即计算并显示格间距和格数，下方还会以列表形式列出以底部为基准的各层板精确安装位置。示意图会按照实际输入数值的比例绘制，方便您提前预览完成后的样子。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>自己制作书柜或收纳柜，想让层板保持均匀间距时</li>
+        <li>想提前计算并标记嵌入式衣柜或食品柜的层板位置时</li>
+        <li>想在为现有家具加装层板前确认精确位置时</li>
+        <li>想通过更改层板数量来比较哪种布局更实用时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>层板数量指的是层板本身的数量，还是格数？</dt>
+          <dd>指层板本身的数量。例如放入4块层板，上下会形成共5格（compartments），本工具会计算使这5格都保持均匀间距。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>为什么需要输入层板厚度？</dt>
+          <dd>因为层板本身也会占用空间。如果不扣除层板厚度进行计算，实际安装后的格间距会比计算值更窄。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>计算出的位置是以哪里为基准的？</dt>
+          <dd>以柜体（书柜·收纳柜）最底部的底面为0，计算从该处到各层板底面的距离。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的所有计算均在浏览器中处理，不会将您输入的数值发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

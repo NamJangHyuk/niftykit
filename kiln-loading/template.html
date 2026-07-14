@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="{{HTML_LANG}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+{{HREFLANG_LINKS}}
+{{BASE_TAG}}  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{{SOFTWAREAPP_JSONLD}}
+  </script>
+  <script type="application/ld+json">
+{{FAQ_JSONLD}}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="{{BACK_LINK_HREF}}" class="back-link">{{BACK_LINK_TEXT}}</a>
+  </div>
+
+  <header class="page-header">
+    <h1>{{H1}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <p class="tagline-extra">{{TAGLINE_EXTRA}}</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="kl-card" aria-label="{{KILN_SIZE_ARIA}}">
+      <h2 class="kl-card-heading">{{KILN_SIZE_HEADING}}</h2>
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-kiln-width">{{WIDTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-kiln-width" min="0.1" step="any" placeholder="{{WIDTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-kiln-depth">{{DEPTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-kiln-depth" min="0.1" step="any" placeholder="{{DEPTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-kiln-height">{{HEIGHT_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-kiln-height" min="0.1" step="any" placeholder="{{HEIGHT_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kl-card" aria-label="{{SHELF_SIZE_ARIA}}">
+      <h2 class="kl-card-heading">{{SHELF_SIZE_HEADING}}</h2>
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-shelf-width">{{WIDTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-shelf-width" min="0.1" step="any" placeholder="{{WIDTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-shelf-depth">{{DEPTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-shelf-depth" min="0.1" step="any" placeholder="{{DEPTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-shelf-thickness">{{THICKNESS_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-shelf-thickness" min="0.01" step="any" placeholder="{{THICKNESS_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kl-card" aria-label="{{PIECE_SHAPE_ARIA}}">
+      <h2 class="kl-card-heading">{{PIECE_SHAPE_HEADING}}</h2>
+      <div class="kl-radio-group" role="radiogroup">
+        <label class="kl-radio">
+          <input type="radio" name="kl-shape" id="kl-shape-round" value="round" checked />
+          {{SHAPE_ROUND_LABEL}}
+        </label>
+        <label class="kl-radio">
+          <input type="radio" name="kl-shape" id="kl-shape-square" value="square" />
+          {{SHAPE_SQUARE_LABEL}}
+        </label>
+        <label class="kl-radio">
+          <input type="radio" name="kl-shape" id="kl-shape-rect" value="rect" />
+          {{SHAPE_RECT_LABEL}}
+        </label>
+      </div>
+
+      <div class="kl-field-row" id="kl-round-fields">
+        <div class="kl-field">
+          <label for="kl-piece-diameter">{{DIAMETER_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-diameter" min="0.1" step="any" placeholder="{{DIAMETER_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-field-row" id="kl-square-fields" hidden>
+        <div class="kl-field">
+          <label for="kl-piece-side">{{SIDE_LENGTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-side" min="0.1" step="any" placeholder="{{SIDE_LENGTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-field-row" id="kl-rect-fields" hidden>
+        <div class="kl-field">
+          <label for="kl-piece-width">{{WIDTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-width" min="0.1" step="any" placeholder="{{PIECE_WIDTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-piece-depth">{{DEPTH_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-depth" min="0.1" step="any" placeholder="{{PIECE_DEPTH_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-piece-height">{{HEIGHT_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-height" min="0.1" step="any" placeholder="{{PIECE_HEIGHT_PLACEHOLDER}}" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kl-card" aria-label="{{SPACING_ARIA}}">
+      <h2 class="kl-card-heading">{{SPACING_HEADING}}</h2>
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-gap">{{PIECE_GAP_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-gap" min="0" step="any" value="0.5" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-margin">{{EDGE_MARGIN_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-margin" min="0" step="any" value="1" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-clearance">{{CLEARANCE_LABEL}}</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-clearance" min="0" step="any" value="3" />
+            <span class="kl-unit">{{DIMENSION_UNIT}}</span>
+          </div>
+        </div>
+      </div>
+      <p
+        class="kl-error"
+        id="kl-error"
+        hidden
+        data-invalid-input-error="{{INVALID_INPUT_ERROR}}"
+        data-shelf-too-big-error="{{SHELF_TOO_BIG_ERROR}}"
+        data-no-fit-error="{{NO_FIT_ERROR}}"
+        data-kiln-too-short-error="{{KILN_TOO_SHORT_ERROR}}"
+      ></p>
+    </section>
+
+    <section
+      class="kl-result-section"
+      aria-label="{{RESULT_ARIA}}"
+      data-boards-per-layer-template="{{RESULT_BOARDS_PER_LAYER_TEMPLATE}}"
+      data-grid-template="{{RESULT_GRID_TEMPLATE}}"
+      data-top-view-label="{{TOP_VIEW_LABEL}}"
+      data-side-view-label="{{SIDE_VIEW_LABEL}}"
+      data-shelves-unit="{{RESULT_SHELVES_UNIT}}"
+      data-total-boards-unit="{{RESULT_TOTAL_BOARDS_UNIT}}"
+      data-total-unit="{{RESULT_TOTAL_UNIT}}"
+      data-kiln-size-template="{{DIAGRAM_KILN_SIZE_TEMPLATE}}"
+      data-shelf-size-template="{{DIAGRAM_SHELF_SIZE_TEMPLATE}}"
+      data-piece-round-template="{{DIAGRAM_PIECE_ROUND_TEMPLATE}}"
+      data-piece-square-template="{{DIAGRAM_PIECE_SQUARE_TEMPLATE}}"
+      data-piece-rect-template="{{DIAGRAM_PIECE_RECT_TEMPLATE}}"
+      data-height-template="{{DIAGRAM_HEIGHT_TEMPLATE}}"
+      data-boards-per-layer-caption="{{DIAGRAM_BOARDS_PER_LAYER_TEMPLATE}}"
+    >
+      <div class="kl-result-grid">
+        <div class="kl-result-card">
+          <span class="kl-result-label">{{RESULT_BOARDS_PER_LAYER_LABEL}}</span>
+          <span class="kl-result-value" id="kl-result-boards-per-layer">–</span>
+        </div>
+        <div class="kl-result-card">
+          <span class="kl-result-label">{{RESULT_PER_SHELF_LABEL}}</span>
+          <span class="kl-result-value" id="kl-result-per-shelf">–</span>
+        </div>
+        <div class="kl-result-card">
+          <span class="kl-result-label">{{RESULT_SHELVES_LABEL}}</span>
+          <span class="kl-result-value" id="kl-result-shelves">–</span>
+        </div>
+        <div class="kl-result-card">
+          <span class="kl-result-label">{{RESULT_TOTAL_BOARDS_LABEL}}</span>
+          <span class="kl-result-value" id="kl-result-total-boards">–</span>
+        </div>
+        <div class="kl-result-card kl-result-card-accent">
+          <span class="kl-result-label">{{RESULT_TOTAL_LABEL}}</span>
+          <span class="kl-result-value" id="kl-result-total">–</span>
+        </div>
+      </div>
+
+      <div class="kl-diagrams" id="kl-diagrams" hidden>
+        <div class="kl-diagram-block">
+          <p class="kl-diagram-caption">{{TOP_VIEW_LABEL}}</p>
+          <svg class="kl-diagram" id="kl-diagram-top" viewBox="0 0 240 260" role="img" aria-label="{{DIAGRAM_ARIA_LABEL}}">
+            <rect id="kl-top-kiln" fill="none" stroke="var(--kl-line)" stroke-width="2" stroke-dasharray="4 3" />
+            <g id="kl-top-boards"></g>
+            <text id="kl-top-kiln-label" class="kl-diagram-dim-label" text-anchor="middle"></text>
+            <text id="kl-top-shelf-label" class="kl-diagram-dim-label kl-diagram-dim-label-accent" text-anchor="middle"></text>
+            <text id="kl-top-piece-label" class="kl-diagram-dim-label" text-anchor="middle"></text>
+          </svg>
+        </div>
+        <div class="kl-diagram-block">
+          <p class="kl-diagram-caption">{{SIDE_VIEW_LABEL}}</p>
+          <svg class="kl-diagram" id="kl-diagram-side" viewBox="0 0 180 260" role="img" aria-label="{{DIAGRAM_ARIA_LABEL}}">
+            <rect id="kl-side-kiln" fill="none" stroke="var(--kl-line)" stroke-width="2" />
+            <g id="kl-side-layers"></g>
+            <text id="kl-side-height-label" class="kl-diagram-dim-label" text-anchor="middle"></text>
+            <text id="kl-side-boards-label" class="kl-diagram-dim-label kl-diagram-dim-label-accent" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+
+      <p class="kl-disclaimer">{{DISCLAIMER_TEXT}}</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>{{INFO_INTRO_H2}}</h2>
+      <p>
+        {{INFO_INTRO_P}}
+      </p>
+
+      <h2>{{INFO_HOWTO_H2}}</h2>
+      <p>
+        {{INFO_HOWTO_P}}
+      </p>
+
+      <h2>{{INFO_USECASES_H2}}</h2>
+      <ul>
+{{INFO_USECASES_HTML}}
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">{{FAQ_HEADING}}</h2>
+      <dl class="faq-list">
+{{FAQ_HTML}}
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      {{PRIVACY_NOTE}}
+    </p>
+    <p class="footer-links">
+      <a href="{{FOOTER_PRIVACY_HREF}}">{{FOOTER_PRIVACY_TEXT}}</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{FOOTER_ABOUT_HREF}}">{{FOOTER_ABOUT_TEXT}}</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="{{SCROLL_TOP_ARIA}}" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

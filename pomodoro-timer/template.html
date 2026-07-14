@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="{{HTML_LANG}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}" />
+  <link rel="canonical" href="{{CANONICAL_URL}}" />
+{{HREFLANG_LINKS}}
+{{BASE_TAG}}  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{{SOFTWAREAPP_JSONLD}}
+  </script>
+  <script type="application/ld+json">
+{{FAQ_JSONLD}}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="{{BACK_LINK_HREF}}" class="back-link">{{BACK_LINK_TEXT}}</a>
+  </div>
+
+  <header class="page-header">
+    <h1>{{H1}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <p class="tagline-extra">{{TAGLINE_EXTRA}}</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="pomo-display-section"
+      id="pomo-display"
+      aria-label="{{DISPLAY_ARIA}}"
+      data-focus-label="{{FOCUS_PHASE_LABEL}}"
+      data-short-break-label="{{SHORT_BREAK_PHASE_LABEL}}"
+      data-long-break-label="{{LONG_BREAK_PHASE_LABEL}}"
+      data-ready-label="{{READY_LABEL}}"
+      data-set-template="{{SET_PROGRESS_TEMPLATE}}"
+      data-completed-label="{{COMPLETED_LABEL}}"
+      data-notify-focus-title="{{NOTIFY_FOCUS_START_TITLE}}"
+      data-notify-focus-body="{{NOTIFY_FOCUS_START_BODY}}"
+      data-notify-short-break-title="{{NOTIFY_SHORT_BREAK_START_TITLE}}"
+      data-notify-short-break-body="{{NOTIFY_SHORT_BREAK_START_BODY}}"
+      data-notify-long-break-title="{{NOTIFY_LONG_BREAK_START_TITLE}}"
+      data-notify-long-break-body="{{NOTIFY_LONG_BREAK_START_BODY}}"
+    >
+      <p class="pomo-completed-badge" id="pomo-completed"></p>
+
+      <div class="pomo-tabs" id="pomo-tabs">
+        <span class="pomo-tab" id="pomo-tab-focus" data-phase="focus">{{FOCUS_PHASE_LABEL}}</span>
+        <span class="pomo-tab" id="pomo-tab-shortBreak" data-phase="shortBreak">{{SHORT_BREAK_PHASE_LABEL}}</span>
+        <span class="pomo-tab" id="pomo-tab-longBreak" data-phase="longBreak">{{LONG_BREAK_PHASE_LABEL}}</span>
+      </div>
+
+      <div class="pomo-ring-wrap">
+        <svg class="pomo-ring-svg" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="pomo-ring-track" cx="120" cy="120" r="108" />
+          <circle class="pomo-ring-progress" id="pomo-ring-progress" cx="120" cy="120" r="108" />
+        </svg>
+        <div class="pomo-ring-content">
+          <p class="pomo-time" id="pomo-time">00:00</p>
+          <p class="pomo-phase-pill" id="pomo-phase-label">{{READY_LABEL}}</p>
+        </div>
+      </div>
+
+      <p class="pomo-set-progress" id="pomo-set-progress"></p>
+    </section>
+
+    <section class="pomo-setup-section" aria-label="{{SETUP_ARIA}}">
+      <div class="pomo-time-field">
+        <label id="pomo-work-label">{{WORK_LABEL}}</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-work-label">
+          <input type="number" id="pomo-work-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">{{UNIT_HOUR_LABEL}}</span>
+          <input type="number" id="pomo-work-m" min="0" max="59" value="25" />
+          <span class="pomo-time-unit">{{UNIT_MINUTE_LABEL}}</span>
+          <input type="number" id="pomo-work-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">{{UNIT_SECOND_LABEL}}</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-short-break-label">{{SHORT_BREAK_LABEL}}</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-short-break-label">
+          <input type="number" id="pomo-short-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">{{UNIT_HOUR_LABEL}}</span>
+          <input type="number" id="pomo-short-break-m" min="0" max="59" value="5" />
+          <span class="pomo-time-unit">{{UNIT_MINUTE_LABEL}}</span>
+          <input type="number" id="pomo-short-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">{{UNIT_SECOND_LABEL}}</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-long-break-label">{{LONG_BREAK_LABEL}}</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-long-break-label">
+          <input type="number" id="pomo-long-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">{{UNIT_HOUR_LABEL}}</span>
+          <input type="number" id="pomo-long-break-m" min="0" max="59" value="15" />
+          <span class="pomo-time-unit">{{UNIT_MINUTE_LABEL}}</span>
+          <input type="number" id="pomo-long-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">{{UNIT_SECOND_LABEL}}</span>
+        </div>
+      </div>
+
+      <div class="pomo-field">
+        <label for="pomo-cycles">{{CYCLES_LABEL}}</label>
+        <input type="number" id="pomo-cycles" min="1" max="12" value="4" />
+      </div>
+
+      <p class="pomo-error" id="pomo-error" hidden>{{INVALID_INPUT_ERROR}}</p>
+
+      <div class="pomo-controls">
+        <button type="button" id="pomo-start-btn" class="pomo-btn pomo-btn-primary">{{START_BTN_TEXT}}</button>
+        <button
+          type="button"
+          id="pomo-pause-btn"
+          class="pomo-btn"
+          hidden
+          data-pause-label="{{PAUSE_BTN_TEXT}}"
+          data-resume-label="{{RESUME_BTN_TEXT}}"
+        >{{PAUSE_BTN_TEXT}}</button>
+        <button type="button" id="pomo-reset-btn" class="pomo-btn" hidden>{{RESET_BTN_TEXT}}</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>{{INFO_INTRO_H2}}</h2>
+      <p>
+        {{INFO_INTRO_P}}
+      </p>
+
+      <h2>{{INFO_HOWTO_H2}}</h2>
+      <p>
+        {{INFO_HOWTO_P}}
+      </p>
+
+      <h2>{{INFO_USECASES_H2}}</h2>
+      <ul>
+{{INFO_USECASES_HTML}}
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">{{FAQ_HEADING}}</h2>
+      <dl class="faq-list">
+{{FAQ_HTML}}
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      {{PRIVACY_NOTE}}
+    </p>
+    <p class="footer-links">
+      <a href="{{FOOTER_PRIVACY_HREF}}">{{FOOTER_PRIVACY_TEXT}}</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{FOOTER_ABOUT_HREF}}">{{FOOTER_ABOUT_TEXT}}</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="{{SCROLL_TOP_ARIA}}" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

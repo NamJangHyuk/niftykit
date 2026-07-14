@@ -1,0 +1,59 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Flag Downloader - Download Country Flag PNG & SVG Free | GetNiftyKit",
+  "metaDescription": "Search any country by name and download its flag as a free PNG or SVG image. No sign-up, no attribution required — all 252 countries and territories.",
+  "softwareAppName": "Flag Downloader",
+  "softwareAppDescription": "A free web tool to search and download country flag images in PNG or SVG format.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Flag Downloader",
+  "subtitle": "Search any country and download its national flag with one click",
+  "taglineExtra": "The complete country flag library — 252 nations and territories, free PNG and SVG downloads with no sign-up or attribution required.",
+  "recentSectionAria": "Recently viewed countries",
+  "recentSectionH2": "Recently Viewed",
+  "recentClearText": "Clear history",
+  "searchSectionAria": "Country search and continent filter",
+  "searchPlaceholder": "Search by country name (e.g. Korea, Japan, France...)",
+  "continentTabsAria": "Filter by continent",
+  "continentTabs": {
+    "all": "All",
+    "europe": "Europe",
+    "americas": "Americas",
+    "asia": "Asia",
+    "africa": "Africa",
+    "oceania": "Oceania",
+    "other": "Other"
+  },
+  "flagGridAria": "Flag list",
+  "infoIntroH2": "What is Flag Downloader?",
+  "infoIntroP": "Flag Downloader is a free tool for downloading country flag images from 252 countries around the world. Whether you're building a presentation, writing a travel blog post, or visualizing country-level data, you often need a high-quality flag image on short notice. Just search for a country by name to instantly find its flag, then download it as a PNG or SVG file with one click. Everything runs directly in your browser — no sign-up or installation required.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Type a country name into the search box in English or its native spelling — searching \"France\" works just as well as typing the country's own local name. If you're not sure where to look, use the continent tabs (Asia, Europe, Africa, Americas, Oceania) to narrow things down. Once you find the flag you want, just click the \"PNG\" or \"SVG\" button — the image downloads instantly with no page reload. Country names are also automatically shown in your browser's language.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Adding country flags to a slide deck or report",
+    "Illustrating countries you've visited in a travel blog post",
+    "Building a language or country picker UI for a multilingual site",
+    "Preparing materials for a geography or social studies class"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Are flag images free to use?",
+      "a": "Yes. National flags are public symbols that represent each country, so they aren't subject to copyright and can be used freely."
+    },
+    {
+      "q": "What formats are available?",
+      "a": "Both PNG and SVG. PNG works great for documents and slide decks, while SVG is a scalable vector format that stays crisp at any size — ideal for print and design work. Both formats use real flag data from flagcdn.com."
+    },
+    {
+      "q": "Do I need to sign up?",
+      "a": "No. You can search for a country and download its flag immediately — no account required."
+    },
+    {
+      "q": "Which countries are included?",
+      "a": "252 countries and territories in total, including every UN member state plus major regions like Hong Kong and Puerto Rico."
+    }
+  ],
+  "privacyNote": "This tool processes every search and download locally in your browser. Your search terms and personal data are never sent to or stored on a server."
+}

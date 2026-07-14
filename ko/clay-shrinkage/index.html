@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>점토 수축률 계산기 - 초벌·재벌 사이즈 자동 계산 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="초벌 사이즈와 재벌(완성) 사이즈 중 한쪽만 입력하면, 점토 수축률을 반영해 반대쪽 크기를 자동으로 계산해주는 무료 도예 도구입니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/clay-shrinkage/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/clay-shrinkage/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/clay-shrinkage/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <base href="../../clay-shrinkage/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "점토 수축률 계산기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "초벌 사이즈와 재벌(완성) 사이즈 중 한쪽을 입력하면 점토 수축률을 반영해 반대쪽 크기를 자동으로 계산해주는 무료 도예 도구입니다. 가로·세로·높이를 함께 계산하고 도자기 실루엣으로 크기를 비교해 보여줍니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "초벌과 재벌 사이의 수축만 계산하나요, 성형부터의 전체 수축인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "입력하신 수축률(%)을 초벌 사이즈와 재벌 사이즈 사이의 비율로 그대로 적용합니다. 성형 단계부터의 전체 수축률을 알고 계시다면 초벌 사이즈 칸에 성형 크기를 입력하는 방식으로도 활용할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "양쪽에 이미 값이 있는데 하나를 바꾸면 어떻게 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "방금 수정한 쪽의 값을 기준으로 반대쪽 칸이 새로 계산되어 자동으로 갱신됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "점토 수축률은 보통 얼마나 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "점토 종류에 따라 다르지만 일반적으로 5~15% 정도이며, 일부 고령토·포세린 계열은 15~20%까지도 수축할 수 있습니다. 사용하는 점토 제조사의 자료나 직접 시험 소성으로 확인하는 것이 가장 정확합니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>점토 수축률 계산기</h1>
+    <p class="subtitle">초벌과 재벌, 어느 한쪽 사이즈만 입력해도 반대쪽이 자동으로 계산돼요</p>
+    <p class="tagline-extra">소성 과정에서 줄어드는 만큼을 반영해서, 가로·세로·높이를 초벌↔재벌 양방향으로 계산해요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="cs-setup-section" aria-label="수축률 입력">
+      <div class="cs-field">
+        <label for="cs-shrinkage">점토 수축률 (%)</label>
+        <input type="number" id="cs-shrinkage" min="0.01" max="99.99" step="any" placeholder="예: 12" />
+      </div>
+
+      <div class="cs-preset-group">
+        <span class="cs-preset-label">자주 쓰는 수축률</span>
+        <div class="cs-preset-buttons">
+          <button type="button" class="cs-preset-btn" data-value="8">8%</button>
+          <button type="button" class="cs-preset-btn" data-value="10">10%</button>
+          <button type="button" class="cs-preset-btn" data-value="12">12%</button>
+          <button type="button" class="cs-preset-btn" data-value="15">15%</button>
+        </div>
+      </div>
+
+      <p class="cs-error" id="cs-shrinkage-error" hidden>수축률은 0보다 크고 100보다 작은 숫자로 입력하세요.</p>
+      <p class="cs-warning" id="cs-shrinkage-warning" hidden>⚠ 수축률이 일반적인 범위(5~20%)를 벗어났어요. 사용하는 점토의 수축률을 다시 확인해 보세요.</p>
+    </section>
+
+    <section class="cs-dimensions-section" aria-label="초벌·재벌 치수 입력">
+      <div class="cs-dimensions-grid">
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">초벌 사이즈</h2>
+          <div class="cs-field">
+            <label for="cs-bisque-width">가로</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-width" min="0.01" step="any" placeholder="예: 12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-depth">세로</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-depth" min="0.01" step="any" placeholder="예: 10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-height">높이</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-height" min="0.01" step="any" placeholder="예: 15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-dimensions-arrow" aria-hidden="true">⇄</div>
+
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">재벌 (완성) 사이즈</h2>
+          <div class="cs-field">
+            <label for="cs-final-width">가로</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-width" min="0.01" step="any" placeholder="예: 12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-depth">세로</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-depth" min="0.01" step="any" placeholder="예: 10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-height">높이</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-height" min="0.01" step="any" placeholder="예: 15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cs-error" id="cs-dimension-error" hidden>치수는 0보다 큰 숫자로 입력하세요.</p>
+    </section>
+
+    <section
+      class="cs-result-section"
+      aria-label="초벌·재벌 크기 비교"
+      data-bisque-label="초벌"
+      data-final-label="재벌"
+      data-depth-template="세로 {value}"
+    >
+      <p class="cs-empty-hint" id="cs-empty-hint">가로와 높이를 입력하면 비교 그림이 나타나요.</p>
+      <svg class="cs-diagram" id="cs-diagram" viewBox="0 0 320 220" role="img" aria-label="초벌 사이즈와 재벌 사이즈 도자기 실루엣 비교" hidden>
+        <line id="cs-diagram-baseline" class="cs-diagram-baseline" />
+        <path id="cs-vase-bisque" class="cs-vase cs-vase-bisque" />
+        <path id="cs-vase-final" class="cs-vase cs-vase-final" />
+        <text id="cs-vase-bisque-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-final-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-final-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-depth" class="cs-vase-depth" text-anchor="middle"></text>
+        <text id="cs-vase-final-depth" class="cs-vase-depth" text-anchor="middle"></text>
+      </svg>
+      <p class="cs-disclaimer">실제 수축률은 점토 종류·소성 온도·건조 습도에 따라 달라질 수 있으니, 중요한 작업 전에는 시험 소성으로 정확한 수축률을 확인하는 것을 권장합니다.</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>점토 수축률 계산기란?</h2>
+      <p>
+        점토는 초벌구이(초벌)와 재벌구이(재벌)를 거치며 계속 부피가 줄어듭니다. 이 수축률은 보통 5~20% 사이이며 점토 종류에 따라 다릅니다. 점토 수축률 계산기(Clay Shrinkage Calculator)는 초벌 단계의 사이즈와 완성된 재벌 사이즈 중 어느 한쪽만 입력해도, '재벌 크기 = 초벌 크기 × (1 − 수축률)' 공식으로 반대쪽 크기를 자동으로 계산해줍니다. 가로·세로·높이를 각각 초벌↔재벌 양방향으로 계산할 수 있어서, 이미 초벌된 작품의 완성 크기를 미리 가늠하거나 반대로 원하는 완성 크기에 맞춰 초벌 단계 크기를 확인하는 데 모두 활용할 수 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        사용하는 점토의 수축률(%)을 입력하거나 자주 쓰는 수축률 버튼을 눌러 빠르게 선택하세요. 그다음 초벌 사이즈 또는 재벌(완성) 사이즈 중 알고 있는 값을 가로·세로·높이 칸에 입력하면, 반대쪽 칸이 자동으로 채워집니다. 이미 양쪽 다 값이 있는 상태에서 어느 한쪽을 다시 수정하면, 그 값을 기준으로 반대쪽이 새로 계산됩니다. 가로와 높이 값이 준비되면 두 도자기 실루엣이 실제 크기 비율 그대로 그려져 한눈에 비교할 수 있습니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>이미 초벌한 작품이 재벌 후 어떤 크기가 될지 미리 가늠하고 싶을 때</li>
+        <li>원하는 완성(재벌) 크기에 맞춰 초벌 단계에서 얼마나 크게 만들어야 할지 확인하고 싶을 때</li>
+        <li>새로운 점토를 처음 써서 수축률에 맞춰 크기를 다시 계산해야 할 때</li>
+        <li>가로·세로·높이를 동시에 맞춰야 하는 작업에서 양쪽 크기를 한 번에 비교하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>초벌과 재벌 사이의 수축만 계산하나요, 성형부터의 전체 수축인가요?</dt>
+          <dd>입력하신 수축률(%)을 초벌 사이즈와 재벌 사이즈 사이의 비율로 그대로 적용합니다. 성형 단계부터의 전체 수축률을 알고 계시다면 초벌 사이즈 칸에 성형 크기를 입력하는 방식으로도 활용할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>양쪽에 이미 값이 있는데 하나를 바꾸면 어떻게 되나요?</dt>
+          <dd>방금 수정한 쪽의 값을 기준으로 반대쪽 칸이 새로 계산되어 자동으로 갱신됩니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>점토 수축률은 보통 얼마나 되나요?</dt>
+          <dd>점토 종류에 따라 다르지만 일반적으로 5~15% 정도이며, 일부 고령토·포세린 계열은 15~20%까지도 수축할 수 있습니다. 사용하는 점토 제조사의 자료나 직접 시험 소성으로 확인하는 것이 가장 정확합니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 계산을 브라우저에서만 처리하며, 입력한 값을 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

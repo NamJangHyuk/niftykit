@@ -1,0 +1,63 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Tempo Counter - Workout BPM & Rep Counter | GetNiftyKit",
+  "metaDescription": "Enter a BPM and this tempo counter plays precisely timed beep tones while counting your reps — with a different tone for the down and up phase of every rep.",
+  "softwareAppName": "Tempo Counter",
+  "softwareAppDescription": "A free workout tool that plays drift-free, precisely timed beat tones using AudioContext scheduling based on your chosen BPM, while counting reps.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Tempo Counter",
+  "subtitle": "Enter a BPM and it plays precisely timed beats while counting your reps",
+  "taglineExtra": "A different tone for the down and up phase of every rep, with drift-free audio scheduling that never falls out of time.",
+  "displayAria": "Tempo counter display",
+  "setupAria": "Tempo settings",
+  "categoryLabel": "Exercise",
+  "categories": [
+    { "id": "pushup", "label": "Push-up", "bpm": 40 },
+    { "id": "situp", "label": "Sit-up", "bpm": 30 },
+    { "id": "squat", "label": "Squat", "bpm": 30 },
+    { "id": "lunge", "label": "Lunge", "bpm": 28 },
+    { "id": "dip", "label": "Dip", "bpm": 35 },
+    { "id": "calfraise", "label": "Calf Raise", "bpm": 50 },
+    { "id": "custom", "label": "Custom", "bpm": null }
+  ],
+  "bpmLabel": "BPM (beats per minute)",
+  "startBtnText": "Start",
+  "stopBtnText": "Stop",
+  "repLabel": "Reps",
+  "downPhaseLabel": "Down",
+  "upPhaseLabel": "Up",
+  "readyLabel": "Ready",
+  "invalidBpmError": "Please enter a BPM between 20 and 240.",
+  "infoIntroH2": "What is a tempo counter?",
+  "infoIntroP": "Tempo Counter is a workout metronome that plays precisely timed beep tones at whatever BPM (beats per minute) you set. It uses the browser's audio scheduling capabilities directly, so the beat stays accurate from start to finish without gradually drifting out of time the way a simple timer would. Each rep's down phase and up phase play a different tone, so you can keep the beat by ear without watching the screen, and the rep counter automatically increases every time a pair of beats completes. Not every exercise suits the same speed, so picking an exercise like push-up, sit-up, or squat — anything with a clear down/up motion — automatically fills in a sensible default BPM for that movement.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Pick the exercise you're doing from the list and a sensible default BPM fills in automatically. You can still edit the BPM by hand if you like, or pick \"Custom\" if your exercise isn't listed and set whatever speed you want. Press \"Start\" and the beat begins playing at that speed right away. The down phase plays a lower tone and the up phase plays a higher tone, and the rep counter increases by one every time a down-up pair completes. When you're done, press \"Stop\" to end the session.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Keeping a consistent tempo during weight training",
+    "Timing exercises with a clear down/up motion, like squats or push-ups",
+    "Counting reps accurately while training at a fixed tempo",
+    "Following the beat by sound alone, without watching the screen"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Does the beat drift out of time over a long session?",
+      "a": "No. Upcoming beats are scheduled in advance at precise times using the browser's audio scheduling engine (AudioContext), which keeps the beat far more accurate than a regular timer would."
+    },
+    {
+      "q": "How are reps counted?",
+      "a": "The rep count goes up by one every time a down beat and an up beat — two beats total — complete."
+    },
+    {
+      "q": "What BPM range is supported?",
+      "a": "You can set anywhere from 20 to 240 BPM."
+    },
+    {
+      "q": "Does picking an exercise lock the BPM?",
+      "a": "No. Picking an exercise just fills in a sensible default BPM for it — you can still edit the BPM field freely afterward."
+    }
+  ],
+  "privacyNote": "This tool handles sound playback and counting entirely in your browser. No data is sent to or stored on a server."
+}

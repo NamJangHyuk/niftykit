@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clay Shrinkage Calculator - Bisque &amp; Final Size | GetNiftyKit</title>
+  <meta name="description" content="Enter either your bisque size or your final (glaze-fired) size, and this free pottery tool calculates the other automatically based on your clay's shrinkage rate." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/clay-shrinkage/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/clay-shrinkage/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/clay-shrinkage/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/clay-shrinkage/" />
+  <base href="../../clay-shrinkage/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Clay Shrinkage Calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free pottery tool that calculates the bisque size or final (glaze-fired) size from whichever one you enter, based on your clay's shrinkage rate. Width, depth, and height are calculated together, with a silhouette comparing the two sizes.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this only account for shrinkage between bisque and final, or the whole process from wet clay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It applies your entered shrinkage rate (%) directly between the bisque size and the final size fields. If you know the total shrinkage rate from the wet/forming stage instead, you can enter your forming size into the bisque field and use it the same way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if both sides already have values and I change one?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The field you just edited becomes the new reference, and the opposite field recalculates and updates automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's a typical clay shrinkage rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It varies by clay body, but it's generally around 5-15%, with some kaolin-heavy or porcelain bodies shrinking as much as 15-20%. Check your clay manufacturer's spec sheet or run a test firing for the most accurate number."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Clay Shrinkage Calculator</h1>
+    <p class="subtitle">Enter either your bisque size or final size, and the other is calculated automatically</p>
+    <p class="tagline-extra">Calculates width, depth, and height both ways — bisque to final and final to bisque — based on how much the clay shrinks during firing.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="cs-setup-section" aria-label="Shrinkage rate">
+      <div class="cs-field">
+        <label for="cs-shrinkage">Clay shrinkage rate (%)</label>
+        <input type="number" id="cs-shrinkage" min="0.01" max="99.99" step="any" placeholder="e.g. 12" />
+      </div>
+
+      <div class="cs-preset-group">
+        <span class="cs-preset-label">Common shrinkage rates</span>
+        <div class="cs-preset-buttons">
+          <button type="button" class="cs-preset-btn" data-value="8">8%</button>
+          <button type="button" class="cs-preset-btn" data-value="10">10%</button>
+          <button type="button" class="cs-preset-btn" data-value="12">12%</button>
+          <button type="button" class="cs-preset-btn" data-value="15">15%</button>
+        </div>
+      </div>
+
+      <p class="cs-error" id="cs-shrinkage-error" hidden>Please enter a shrinkage rate greater than 0 and less than 100.</p>
+      <p class="cs-warning" id="cs-shrinkage-warning" hidden>⚠ This shrinkage rate is outside the typical range (5-20%). Double-check the rate for your clay body.</p>
+    </section>
+
+    <section class="cs-dimensions-section" aria-label="Bisque and final dimensions">
+      <div class="cs-dimensions-grid">
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">Bisque size</h2>
+          <div class="cs-field">
+            <label for="cs-bisque-width">Width</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-width" min="0.01" step="any" placeholder="e.g. 12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-depth">Depth</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-depth" min="0.01" step="any" placeholder="e.g. 10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-bisque-height">Height</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-bisque-height" min="0.01" step="any" placeholder="e.g. 15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-dimensions-arrow" aria-hidden="true">⇄</div>
+
+        <div class="cs-dimensions-col">
+          <h2 class="cs-col-heading">Final (glaze-fired) size</h2>
+          <div class="cs-field">
+            <label for="cs-final-width">Width</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-width" min="0.01" step="any" placeholder="e.g. 12" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-depth">Depth</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-depth" min="0.01" step="any" placeholder="e.g. 10" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+          <div class="cs-field">
+            <label for="cs-final-height">Height</label>
+            <div class="cs-input-with-unit">
+              <input type="number" id="cs-final-height" min="0.01" step="any" placeholder="e.g. 15" />
+              <span class="cs-unit">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cs-error" id="cs-dimension-error" hidden>Please enter a dimension greater than 0.</p>
+    </section>
+
+    <section
+      class="cs-result-section"
+      aria-label="Bisque vs. final size comparison"
+      data-bisque-label="Bisque"
+      data-final-label="Final"
+      data-depth-template="Depth {value}"
+    >
+      <p class="cs-empty-hint" id="cs-empty-hint">Enter width and height to see the comparison illustration.</p>
+      <svg class="cs-diagram" id="cs-diagram" viewBox="0 0 320 220" role="img" aria-label="Pottery silhouette comparing bisque size and final size" hidden>
+        <line id="cs-diagram-baseline" class="cs-diagram-baseline" />
+        <path id="cs-vase-bisque" class="cs-vase cs-vase-bisque" />
+        <path id="cs-vase-final" class="cs-vase cs-vase-final" />
+        <text id="cs-vase-bisque-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-final-label" class="cs-vase-name" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-final-size" class="cs-vase-size" text-anchor="middle"></text>
+        <text id="cs-vase-bisque-depth" class="cs-vase-depth" text-anchor="middle"></text>
+        <text id="cs-vase-final-depth" class="cs-vase-depth" text-anchor="middle"></text>
+      </svg>
+      <p class="cs-disclaimer">Actual shrinkage varies by clay body, firing temperature, and drying humidity, so for important work it's a good idea to verify the exact rate with a test firing.</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a clay shrinkage calculator?</h2>
+      <p>
+        Clay keeps shrinking as it goes through bisque firing and then glaze (final) firing, typically somewhere between 5-20% depending on the clay body. The Clay Shrinkage Calculator takes either your bisque-stage size or your finished final size — whichever you know — and calculates the other automatically using the formula &quot;final size = bisque size × (1 − shrinkage rate)&quot;. Width, depth, and height can each be calculated in either direction, so you can preview what an already-bisqued piece will measure once fired, or work backward from a target final size to see how big it needs to be at the bisque stage.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter your clay's shrinkage rate (%), or tap one of the common-rate preset buttons to select one quickly. Then enter whichever you know — bisque size or final size — into the width, depth, and height fields, and the other side fills in automatically. If both sides already have values and you edit one of them, the other recalculates based on your latest edit. Once width and height are available, two pottery silhouettes are drawn to scale so you can compare the sizes at a glance.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Previewing what size an already-bisqued piece will end up after the final firing</li>
+        <li>Working out how big to make something at the bisque stage to hit a target final size</li>
+        <li>Recalculating sizes when switching to a new clay body with a different shrinkage rate</li>
+        <li>Comparing bisque and final sizes at once for work where width, depth, and height all matter</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Does this only account for shrinkage between bisque and final, or the whole process from wet clay?</dt>
+          <dd>It applies your entered shrinkage rate (%) directly between the bisque size and the final size fields. If you know the total shrinkage rate from the wet/forming stage instead, you can enter your forming size into the bisque field and use it the same way.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What happens if both sides already have values and I change one?</dt>
+          <dd>The field you just edited becomes the new reference, and the opposite field recalculates and updates automatically.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What's a typical clay shrinkage rate?</dt>
+          <dd>It varies by clay body, but it's generally around 5-15%, with some kaolin-heavy or porcelain bodies shrinking as much as 15-20%. Check your clay manufacturer's spec sheet or run a test firing for the most accurate number.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

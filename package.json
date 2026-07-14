@@ -1,0 +1,9 @@
+{
+  "name": "niftykit",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-i18n.mjs",
+    "watch": "node scripts/watch-i18n.mjs"
+  }
+}

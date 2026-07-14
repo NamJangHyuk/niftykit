@@ -1,0 +1,54 @@
+{
+  "htmlLang": "zh",
+  "pageTitle": "密码生成器 - 免费生成安全的随机密码 | GetNiftyKit",
+  "metaDescription": "组合大写字母、小写字母、数字和符号，免费生成安全的随机密码。自由设置长度和字符类型，还能立即查看密码强度。",
+  "softwareAppName": "密码生成器",
+  "softwareAppDescription": "利用浏览器的加密安全随机数生成功能（crypto.getRandomValues），即时生成安全随机密码的免费网页工具。",
+  "osLabel": "Any (网页浏览器)",
+  "backLinkText": "← 返回全部工具",
+  "h1": "Password Generator",
+  "subtitle": "组合大写字母、数字和符号，免费创建安全密码",
+  "taglineExtra": "自由设置长度和字符类型，并立即查看密码强度。",
+  "pwDisplayAria": "生成的密码",
+  "pwOptionsAria": "密码选项",
+  "lengthLabel": "长度",
+  "upperLabel": "大写字母 (A-Z)",
+  "lowerLabel": "小写字母 (a-z)",
+  "numbersLabel": "数字 (0-9)",
+  "symbolsLabel": "符号 (!@#$...)",
+  "generateBtnText": "重新生成",
+  "copyBtnText": "复制",
+  "copiedText": "已复制！",
+  "strengthWeak": "弱",
+  "strengthMedium": "中等",
+  "strengthStrong": "强",
+  "strengthVeryStrong": "非常强",
+  "noCharsetError": "请至少选择一种字符类型",
+  "infoIntroH2": "什么是密码生成器？",
+  "infoIntroP": "密码生成器是一款可以按您的需求自由组合大写字母、小写字母、数字和符号，即时生成安全随机密码的工具。它使用浏览器的加密安全随机数生成功能（crypto.getRandomValues），因此生成的是几乎无法预测的真正随机密码。无论是创建新账户，还是想把现有密码换成更安全的密码，都可以立即使用。",
+  "infoHowtoH2": "使用方法",
+  "infoHowtoP": "通过滑块设置所需的密码长度，并勾选要包含的字符类型（大写字母、小写字母、数字、符号）。每次更改选项时都会自动重新生成密码，屏幕上还会同时显示密码强度（弱~非常强）。满意后点击「复制」按钮，即可将密码复制到剪贴板。",
+  "infoUseCasesH2": "适用场景",
+  "infoUseCases": [
+    "创建新账户时需要安全密码",
+    "想把现有密码换成更强的密码",
+    "希望每个网站使用不同的密码",
+    "为Wi-Fi路由器或设备设置新密码"
+  ],
+  "faqHeading": "常见问题",
+  "faq": [
+    {
+      "q": "生成的密码安全吗？",
+      "a": "安全。本工具不使用Math.random()，而是使用浏览器的加密安全随机数生成功能（crypto.getRandomValues），生成几乎无法预测的真正随机值。"
+    },
+    {
+      "q": "密码会被存储到服务器吗？",
+      "a": "不会。所有生成过程均在浏览器本地完成，您输入或生成的任何内容都不会被发送或存储到服务器。"
+    },
+    {
+      "q": "密码长度设置多长比较安全？",
+      "a": "一般建议12位以上，对于重要账户，建议16位以上并同时包含大写字母、小写字母、数字和符号。"
+    }
+  ],
+  "privacyNote": "本工具的密码生成过程完全在您的浏览器本地完成，生成的密码不会被发送或存储到服务器。"
+}

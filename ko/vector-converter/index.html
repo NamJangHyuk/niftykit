@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>라인아트 벡터 변환기 - 이미지를 흑백 SVG로 무료 변환 | GetNiftyKit</title>
+  <meta name="description" content="이미지를 올리면 브라우저에서 즉시 정교한 흑백 라인아트 SVG 벡터로 변환해드려요. 스케치, 로고, 손그림에 적합한 무료 온라인 벡터화 도구입니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/vector-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/vector-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/vector-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/vector-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <base href="../../vector-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "라인아트 벡터 변환기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "PNG, JPG 이미지를 선으로만 이루어진 정교한 흑백 SVG 벡터로 즉시 변환하는 무료 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "이 도구는 어떤 이미지를 SVG로 바꿔주나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "명암 대비가 뚜렷한 이미지를 선(라인)으로만 이루어진 흑백 SVG 벡터로 변환합니다. 손그림, 펜화, 스케치, 로고, 도장 이미지처럼 흑백 라인아트 스타일에 잘 맞습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "업로드한 이미지가 서버로 전송되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 모든 변환은 브라우저 안에서만 처리되며, 이미지가 서버로 전송되거나 저장되지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "컬러 이미지를 올려도 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 컬러 이미지를 올려도 명암(밝기) 기준으로 자동 변환됩니다. 다만 이 도구는 색상을 살리지 않고 항상 흑백 라인아트로만 결과물을 만듭니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "결과가 너무 각지거나 반대로 뭉개져 보이면 어떻게 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "결과 아래 '선 매끄러움 조절' 슬라이더를 옮기면 바로 다시 변환됩니다. 선이 삐죽삐죽 각져 보이면 '부드럽게' 쪽으로, 반대로 가는 선이 뭉개지거나 뭉쳐 보이면 '선명하게' 쪽으로 옮겨서 이미지에 맞는 지점을 찾아보세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "변환된 SVG를 어떻게 사용하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "다운로드 버튼을 누르면 SVG 파일이 저장됩니다. 일러스트레이터, 피그마 등 벡터 편집 프로그램에서 바로 열어 수정하거나, 레이저 각인·커팅기처럼 벡터 파일이 필요한 장비에 사용할 수 있습니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>라인아트 벡터 변환기</h1>
+    <p class="subtitle">이미지를 올리면 정교한 흑백 SVG 라인아트로 바로 변환돼요</p>
+    <p class="tagline-extra">스케치, 로고, 손그림도 선명한 벡터 라인으로 — 업로드 즉시 자동 변환됩니다.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="vc-card" aria-label="이미지 파일 업로드">
+      <div class="vc-dropzone" id="vc-dropzone" tabindex="0" role="button" aria-label="이미지 파일 업로드">
+        <svg class="vc-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="vc-dropzone-text">여기에 이미지를 끌어다 놓거나 클릭해서 선택하세요</p>
+        <p class="vc-dropzone-hint">PNG, JPG, WebP 등 이미지 파일 지원 (스케치, 로고, 손그림에 적합)</p>
+        <button type="button" class="vc-choose-btn" id="vc-choose-btn">파일 선택</button>
+        <input type="file" id="vc-file-input" accept="image/*" hidden />
+      </div>
+      <p class="vc-error" id="vc-global-error" hidden></p>
+    </section>
+
+    <section
+      class="vc-workspace"
+      id="vc-workspace"
+      hidden
+      aria-label="변환 결과"
+      data-converting-text="변환 중..."
+      data-file-size-template="{size} · {width}×{height}"
+      data-svg-size-template="{size} · 경로 {paths}개"
+      data-unsupported-file-error="지원하지 않는 파일 형식입니다. 이미지 파일만 첨부할 수 있어요."
+      data-decode-error-text="이미지를 불러오지 못했습니다. 파일이 손상되었을 수 있어요."
+      data-conversion-error-text="변환 중 문제가 발생했습니다. 다른 이미지로 다시 시도해 주세요."
+      data-engine-load-error-text="변환 엔진을 불러오지 못했습니다. 인터넷 연결을 확인하고 새로고침해 주세요."
+      data-too-large-warning="이미지가 커서 자동으로 크기를 줄여 변환했어요"
+    >
+      <div class="vc-preview-row">
+        <figure class="vc-preview-box" id="vc-original-box">
+          <div class="vc-preview-frame">
+            <img id="vc-original-img" alt="" />
+          </div>
+          <figcaption>
+            <span class="vc-preview-label">원본</span>
+            <span class="vc-preview-meta" id="vc-original-meta"></span>
+          </figcaption>
+        </figure>
+        <figure class="vc-preview-box" id="vc-result-box" hidden>
+          <div class="vc-preview-frame" id="vc-result-frame">
+            <div class="vc-spinner" id="vc-spinner" aria-hidden="true"></div>
+          </div>
+          <figcaption>
+            <span class="vc-preview-label">변환 결과 (SVG)</span>
+            <span class="vc-preview-meta" id="vc-result-meta"></span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="vc-advanced">
+        <p class="vc-advanced-label">선 매끄러움 조절 <span class="vc-detail-value" id="vc-detail-value">35</span></p>
+        <div class="vc-advanced-body">
+          <input type="range" id="vc-detail-range" min="0" max="100" step="1" value="35" />
+          <div class="vc-detail-labels">
+            <span>선명하게</span>
+            <span>부드럽게</span>
+          </div>
+          <p class="vc-advanced-hint">각진 느낌이면 오른쪽(부드럽게)으로, 뭉개진 느낌이면 왼쪽(선명하게)으로 옮겨서 다시 변환해 보세요. 이미지에 따라 어느 구간까지는 큰 변화가 없다가 특정 지점을 지나면서 갑자기 달라지기도 하니, 조금씩 움직이며 확인해 보세요</p>
+        </div>
+      </div>
+
+      <p class="vc-warning" id="vc-too-large-warning" hidden>이미지가 커서 자동으로 크기를 줄여 변환했어요</p>
+      <p class="vc-error" id="vc-convert-error" hidden></p>
+
+      <div class="vc-result-actions" id="vc-result-actions" hidden>
+        <a class="vc-download-btn" id="vc-download-btn" download>SVG 다운로드</a>
+        <button type="button" class="vc-secondary-btn" id="vc-convert-another-btn">다른 이미지 변환하기</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>라인아트 벡터 변환기란?</h2>
+      <p>
+        라인아트 벡터 변환기는 PNG, JPG 같은 픽셀(래스터) 이미지를 선으로만 이루어진 흑백 SVG 벡터 파일로 브라우저에서 바로 변환해주는 무료 도구입니다. 픽셀로 이루어진 이미지는 확대하면 화질이 깨지지만, 선과 곡선의 수학적 좌표로 이루어진 벡터 이미지는 아무리 확대해도 매끄러움을 유지합니다. 프로그램 설치나 서버 업로드 없이, 이미지를 올리기만 하면 즉시 정교한 SVG 파일을 내려받을 수 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        변환하고 싶은 이미지를 드래그해서 놓거나 파일 선택 버튼으로 첨부하세요. 이미지가 올라가면 별도 버튼 없이 곧바로 흑백 라인아트 SVG로 변환됩니다. 선이 각지거나 반대로 뭉개져 보이면 '선 매끄러움 조절' 슬라이더를 좌우로 옮겨서 다시 변환해 이미지에 맞는 지점을 찾을 수 있고, 만족스러우면 다운로드 버튼으로 SVG 파일을 저장하세요.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>손그림이나 스케치를 깔끔한 흑백 라인아트 벡터로 만들고 싶을 때</li>
+        <li>로고나 도장 이미지를 인쇄물, 현수막 등 큰 사이즈로 깨짐 없이 재사용하고 싶을 때</li>
+        <li>레이저 각인, 커팅기 등 벡터 파일이 필요한 장비에 이미지를 사용하고 싶을 때</li>
+        <li>픽셀 이미지를 편집 프로그램(일러스트레이터, 피그마 등)에서 선 단위로 자유롭게 수정하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>이 도구는 어떤 이미지를 SVG로 바꿔주나요?</dt>
+          <dd>명암 대비가 뚜렷한 이미지를 선(라인)으로만 이루어진 흑백 SVG 벡터로 변환합니다. 손그림, 펜화, 스케치, 로고, 도장 이미지처럼 흑백 라인아트 스타일에 잘 맞습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>업로드한 이미지가 서버로 전송되나요?</dt>
+          <dd>아니요. 모든 변환은 브라우저 안에서만 처리되며, 이미지가 서버로 전송되거나 저장되지 않습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>컬러 이미지를 올려도 되나요?</dt>
+          <dd>네, 컬러 이미지를 올려도 명암(밝기) 기준으로 자동 변환됩니다. 다만 이 도구는 색상을 살리지 않고 항상 흑백 라인아트로만 결과물을 만듭니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>결과가 너무 각지거나 반대로 뭉개져 보이면 어떻게 하나요?</dt>
+          <dd>결과 아래 '선 매끄러움 조절' 슬라이더를 옮기면 바로 다시 변환됩니다. 선이 삐죽삐죽 각져 보이면 '부드럽게' 쪽으로, 반대로 가는 선이 뭉개지거나 뭉쳐 보이면 '선명하게' 쪽으로 옮겨서 이미지에 맞는 지점을 찾아보세요.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>변환된 SVG를 어떻게 사용하나요?</dt>
+          <dd>다운로드 버튼을 누르면 SVG 파일이 저장됩니다. 일러스트레이터, 피그마 등 벡터 편집 프로그램에서 바로 열어 수정하거나, 레이저 각인·커팅기처럼 벡터 파일이 필요한 장비에 사용할 수 있습니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 변환 작업을 브라우저에서만 처리하며, 업로드한 이미지를 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script type="module" src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

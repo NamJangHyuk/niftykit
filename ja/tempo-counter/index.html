@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>テンポカウンター - 運動BPM・レップカウンター無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="BPM（1分あたりの拍数）を入力すると、正確なタイミングでビープ音を再生しながらレップ数を数える運動用テンポカウンターです。下降・上昇の区間ごとに異なる音でお知らせします。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/tempo-counter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/tempo-counter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/tempo-counter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/tempo-counter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <base href="../../tempo-counter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "テンポカウンター",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "BPMを入力すると、AudioContextによる精密なスケジューリングでズレのない正確な拍のビープ音を再生し、レップ数を数える無料の運動ツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "拍が後半になるほどズレませんか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ、ズレません。ブラウザのオーディオスケジューリング機能（AudioContext）で次の拍をあらかじめ正確な時刻に予約しておく方式のため、一般的なタイマーよりもはるかに精密に拍が保たれます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "レップ数はどのように計算されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "下降の拍1つと上昇の拍1つ、合計2拍が終わるたびにレップ数が1ずつ増えます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "BPMの範囲はどのくらいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "20〜240 BPMの間で設定できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "運動の種類を選ぶとBPMが固定されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。運動の種類を選ぶと、その運動に合った基本BPMが入力されるだけで、その後もBPM入力欄で自由に値を変更できます。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Tempo Counter</h1>
+    <p class="subtitle">BPMを入力すると、正確なタイミングで拍を再生しながらレップ数を数えます</p>
+    <p class="tagline-extra">下降・上昇の区間ごとに異なる音でお知らせし、誤差のないオーディオスケジューリングで拍がズレません。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="tcounter-display-section is-ready"
+      id="tcounter-display"
+      aria-label="テンポカウンター画面"
+      data-down-label="下降"
+      data-up-label="上昇"
+      data-ready-label="準備"
+    >
+      <p class="tcounter-phase-label" id="tcounter-phase-label">準備</p>
+      <p class="tcounter-rep-count" id="tcounter-rep-count">0</p>
+      <p class="tcounter-rep-label">レップ</p>
+    </section>
+
+    <section class="tcounter-setup-section" aria-label="テンポ設定">
+      <div class="tcounter-field">
+        <label for="tcounter-category">運動の種類</label>
+        <select id="tcounter-category">
+          <option value="pushup" data-bpm="40">プッシュアップ (40 BPM)</option>
+          <option value="situp" data-bpm="30">シットアップ (30 BPM)</option>
+          <option value="squat" data-bpm="30">スクワット (30 BPM)</option>
+          <option value="lunge" data-bpm="28">ランジ (28 BPM)</option>
+          <option value="dip" data-bpm="35">ディップス (35 BPM)</option>
+          <option value="calfraise" data-bpm="50">カーフレイズ (50 BPM)</option>
+          <option value="custom">カスタム設定</option>
+        </select>
+      </div>
+      <div class="tcounter-field">
+        <label for="tcounter-bpm">BPM（1分あたりの拍数）</label>
+        <input type="number" id="tcounter-bpm" min="20" max="240" value="40" />
+      </div>
+      <p class="tcounter-error" id="tcounter-error" hidden>BPMは20から240の間で入力してください。</p>
+
+      <div class="tcounter-controls">
+        <button type="button" id="tcounter-start-btn" class="tcounter-btn tcounter-btn-primary">開始</button>
+        <button type="button" id="tcounter-stop-btn" class="tcounter-btn tcounter-btn-stop" hidden>停止</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>テンポカウンターとは？</h2>
+      <p>
+        テンポカウンターは、希望のBPM（1分あたりの拍数）を入力すると、その速度に合わせて正確なタイミングでビープ音を再生してくれる運動用メトロノームツールです。ブラウザのオーディオ再生スケジューリング機能を直接活用しているため、拍がだんだんズレていくドリフト現象がなく、最初から最後まで正確に合います。下降動作と上昇動作でそれぞれ異なる音が鳴るため、画面を見なくても音だけで拍を合わせることができ、2拍が終わるたびにレップ数が自動的に増えます。すべての運動が同じ速度に合うわけではないため、プッシュアップ・シットアップ・スクワットのように下降・上昇がはっきりした運動の種類を選ぶと、その運動に無理のない基本BPMが自動的に入力されます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        運動の種類からやりたい運動を選ぶと、その運動に合った基本BPMが自動的に入力されます。必要であればBPMの値を直接変更することもでき、リストにない運動の場合は「カスタム設定」を選んで好きな速度に合わせてください。「開始」ボタンを押すと、その速度で拍の音が再生され始めます。下降区間では低い音、上昇区間では高い音が鳴り、2拍（下降＋上昇）が終わるたびにレップカウンターが1つずつ増えます。運動が終わったら「停止」ボタンを押して止めてください。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>ウェイトトレーニングで一定のテンポで動作の速度を保ちたいとき</li>
+        <li>スクワットやプッシュアップのように下降・上昇がはっきりした運動の拍を合わせたいとき</li>
+        <li>決まったテンポでレップ数を正確に数えながら運動したいとき</li>
+        <li>画面を見ずに音だけで運動の拍を確認したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>拍が後半になるほどズレませんか？</dt>
+          <dd>いいえ、ズレません。ブラウザのオーディオスケジューリング機能（AudioContext）で次の拍をあらかじめ正確な時刻に予約しておく方式のため、一般的なタイマーよりもはるかに精密に拍が保たれます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>レップ数はどのように計算されますか？</dt>
+          <dd>下降の拍1つと上昇の拍1つ、合計2拍が終わるたびにレップ数が1ずつ増えます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>BPMの範囲はどのくらいですか？</dt>
+          <dd>20〜240 BPMの間で設定できます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>運動の種類を選ぶとBPMが固定されますか？</dt>
+          <dd>いいえ。運動の種類を選ぶと、その運動に合った基本BPMが入力されるだけで、その後もBPM入力欄で自由に値を変更できます。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールは音の再生とカウントをすべてブラウザ上で処理し、サーバーに送信・保存するデータはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

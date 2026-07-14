@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>记忆卡片 - 随机顺序背诵学习免费应用 | GetNiftyKit</title>
+  <meta name="description" content="自己制作问答卡片，按随机顺序进行学习的记忆卡片应用。点击卡片即可翻转显示答案，制作的卡片会保存在浏览器中。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/flashcards/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/flashcards/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/flashcards/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/flashcards/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/flashcards/" />
+  <base href="../../flashcards/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "记忆卡片",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "自己制作问答卡片，通过Fisher-Yates洗牌算法按随机顺序学习，点击即可翻转显示答案的免费背诵学习工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "制作的卡片保存在哪里？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "卡片不会保存到服务器，而是保存在您所使用浏览器的本地存储（localStorage）中。用同一浏览器再次访问时依然保留，但在其他设备或浏览器上不会显示。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "卡片顺序总是随机的吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "是的。每当您添加或删除卡片，以及点击「重新洗牌」按钮时，都会通过Fisher-Yates洗牌算法重新随机排列顺序。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "卡片做错了，可以修改吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "目前还没有编辑功能，需要先删除该卡片，再重新添加正确内容。请在卡片列表中点击「删除」按钮删除后，重新添加正确的内容。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Flashcards</h1>
+    <p class="subtitle">用您自己制作的卡片，按随机顺序进行背诵学习</p>
+    <p class="tagline-extra">点击卡片即可翻转显示答案，制作的卡片会保存在浏览器中，下次打开依然保留。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="fc-study-section"
+      aria-label="记忆卡片学习画面"
+      data-flip-hint="点击卡片即可查看答案"
+      data-progress-template="{current} / {total}"
+      data-empty-study-message="还没有任何卡片，请在下方添加卡片吧。"
+    >
+      <p class="fc-progress" id="fc-progress"></p>
+      <div class="fc-card" id="fc-card" tabindex="0" role="button">
+        <div class="fc-card-inner" id="fc-card-inner">
+          <div class="fc-card-face fc-card-front">
+            <p class="fc-card-text" id="fc-card-question"></p>
+          </div>
+          <div class="fc-card-face fc-card-back">
+            <p class="fc-card-text" id="fc-card-answer"></p>
+          </div>
+        </div>
+      </div>
+      <p class="fc-flip-hint" id="fc-flip-hint">点击卡片即可查看答案</p>
+
+      <div class="fc-study-controls">
+        <button type="button" id="fc-prev-btn" class="fc-btn">上一张</button>
+        <button type="button" id="fc-shuffle-btn" class="fc-btn">重新洗牌</button>
+        <button type="button" id="fc-next-btn" class="fc-btn">下一张</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <section class="fc-manage-section" aria-label="卡片管理">
+      <div class="fc-form-row">
+        <div class="fc-field">
+          <label for="fc-question-input">问题</label>
+          <input type="text" id="fc-question-input" placeholder="请输入问题" autocomplete="off" />
+        </div>
+        <div class="fc-field">
+          <label for="fc-answer-input">答案</label>
+          <input type="text" id="fc-answer-input" placeholder="请输入答案" autocomplete="off" />
+        </div>
+        <button type="button" id="fc-add-btn" class="fc-add-btn">添加卡片</button>
+      </div>
+      <p
+        class="fc-error"
+        id="fc-error"
+        hidden
+        data-question-error="请输入问题。"
+        data-answer-error="请输入答案。"
+      ></p>
+
+      <h2 class="fc-list-heading" id="fc-list-heading"></h2>
+      <p class="fc-empty" id="fc-empty">添加的卡片会显示在这里。</p>
+      <div id="fc-list" class="fc-list" data-delete-label="删除" data-heading-template="卡片列表（{count}张）"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是记忆卡片？</h2>
+      <p>
+        记忆卡片是将正面写问题、背面写答案，通过反复翻看来记忆的传统学习方法搬到网页上的工具。您可以自由添加想要的问答组合，学习时会通过Fisher-Yates洗牌算法将卡片顺序随机打乱，避免死记硬背固定顺序。点击卡片会伴随流畅的翻转动画显示答案，制作的卡片会保存在浏览器的本地存储中，因此即使刷新页面或稍后再次访问也会保留。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        在下方的卡片管理区域输入问题和答案，点击「添加卡片」按钮，卡片就会加入学习列表。在学习画面中点击卡片即可翻转显示答案，使用「上一张」「下一张」按钮切换卡片，或点击「重新洗牌」按钮重新打乱顺序。不再需要的卡片可以在卡片列表中点击「删除」按钮移除。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想反复背诵外语单词或考试范围术语时</li>
+        <li>不想死记顺序，想随机检验自己的实力时</li>
+        <li>想把自己出的题目和答案整理成专属卡片集时</li>
+        <li>只想保存在浏览器中，无需登录即可轻松背诵学习时</li>
+      </ul>
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>制作的卡片保存在哪里？</dt>
+          <dd>卡片不会保存到服务器，而是保存在您所使用浏览器的本地存储（localStorage）中。用同一浏览器再次访问时依然保留，但在其他设备或浏览器上不会显示。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>卡片顺序总是随机的吗？</dt>
+          <dd>是的。每当您添加或删除卡片，以及点击「重新洗牌」按钮时，都会通过Fisher-Yates洗牌算法重新随机排列顺序。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>卡片做错了，可以修改吗？</dt>
+          <dd>目前还没有编辑功能，需要先删除该卡片，再重新添加正确内容。请在卡片列表中点击「删除」按钮删除后，重新添加正确的内容。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具仅将卡片数据保存在浏览器的本地存储中，不会发送到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

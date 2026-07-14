@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ラインアートベクター変換 - 画像を白黒SVGに無料変換 | GetNiftyKit</title>
+  <meta name="description" content="画像をアップロードすると、ブラウザで即座に精密な白黒ラインアートSVGベクターに変換します。スケッチ、ロゴ、手描きイラストに適した無料オンラインベクター化ツールです。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/vector-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/vector-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/vector-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/vector-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/vector-converter/" />
+  <base href="../../vector-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ラインアートベクター変換",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "PNG、JPG画像を線だけで構成された精密な白黒SVGベクターに即座に変換する無料ツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "このツールはどんな画像をSVGに変換できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "明暗のコントラストがはっきりした画像を、線だけで構成された白黒SVGベクターに変換します。手描きイラスト、ペン画、スケッチ、ロゴ、印鑑画像のような白黒ラインアートスタイルによく合います。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "アップロードした画像はサーバーに送信されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。すべての変換はブラウザ内でのみ処理され、画像がサーバーに送信・保存されることはありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "カラー画像をアップロードしてもいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、カラー画像をアップロードしても明暗（明るさ）を基準に自動的に変換されます。ただし、このツールは色を残さず常に白黒ラインアートの結果のみを作成します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "結果が角張りすぎたり、逆につぶれて見える場合はどうすればいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "結果の下にある「線の滑らかさ調整」スライダーを動かすとすぐに再変換されます。線がギザギザと角張って見える場合は「滑らかに」側へ、逆に細い線がつぶれたりくっついて見える場合は「鮮明に」側へ動かして、画像に合う地点を探してみてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "変換されたSVGはどのように使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ダウンロードボタンを押すとSVGファイルが保存されます。イラストレーターやFigmaなどのベクター編集ソフトで直接開いて編集したり、レーザー刻印機やカッティングマシンのようなベクターファイルが必要な機器に使用したりできます。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>ラインアートベクター変換</h1>
+    <p class="subtitle">画像をアップロードすると、精密な白黒SVGラインアートにすぐ変換されます</p>
+    <p class="tagline-extra">スケッチ、ロゴ、手描きイラストも鮮明なベクターラインに — アップロードするだけで自動変換されます。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="vc-card" aria-label="画像ファイルのアップロード">
+      <div class="vc-dropzone" id="vc-dropzone" tabindex="0" role="button" aria-label="画像ファイルのアップロード">
+        <svg class="vc-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="vc-dropzone-text">ここに画像をドラッグ＆ドロップするか、クリックして選択してください</p>
+        <p class="vc-dropzone-hint">PNG、JPG、WebPなどの画像ファイルに対応（スケッチ、ロゴ、手描きイラストに最適）</p>
+        <button type="button" class="vc-choose-btn" id="vc-choose-btn">ファイルを選択</button>
+        <input type="file" id="vc-file-input" accept="image/*" hidden />
+      </div>
+      <p class="vc-error" id="vc-global-error" hidden></p>
+    </section>
+
+    <section
+      class="vc-workspace"
+      id="vc-workspace"
+      hidden
+      aria-label="変換結果"
+      data-converting-text="変換中..."
+      data-file-size-template="{size} · {width}×{height}"
+      data-svg-size-template="{size} · パス{paths}個"
+      data-unsupported-file-error="対応していないファイル形式です。画像ファイルのみ添付できます。"
+      data-decode-error-text="画像を読み込めませんでした。ファイルが破損している可能性があります。"
+      data-conversion-error-text="変換中に問題が発生しました。別の画像で再度お試しください。"
+      data-engine-load-error-text="変換エンジンを読み込めませんでした。インターネット接続を確認して再読み込みしてください。"
+      data-too-large-warning="画像が大きいため、自動的にサイズを縮小して変換しました"
+    >
+      <div class="vc-preview-row">
+        <figure class="vc-preview-box" id="vc-original-box">
+          <div class="vc-preview-frame">
+            <img id="vc-original-img" alt="" />
+          </div>
+          <figcaption>
+            <span class="vc-preview-label">元画像</span>
+            <span class="vc-preview-meta" id="vc-original-meta"></span>
+          </figcaption>
+        </figure>
+        <figure class="vc-preview-box" id="vc-result-box" hidden>
+          <div class="vc-preview-frame" id="vc-result-frame">
+            <div class="vc-spinner" id="vc-spinner" aria-hidden="true"></div>
+          </div>
+          <figcaption>
+            <span class="vc-preview-label">変換結果（SVG）</span>
+            <span class="vc-preview-meta" id="vc-result-meta"></span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="vc-advanced">
+        <p class="vc-advanced-label">線の滑らかさ調整 <span class="vc-detail-value" id="vc-detail-value">35</span></p>
+        <div class="vc-advanced-body">
+          <input type="range" id="vc-detail-range" min="0" max="100" step="1" value="35" />
+          <div class="vc-detail-labels">
+            <span>鮮明に</span>
+            <span>滑らかに</span>
+          </div>
+          <p class="vc-advanced-hint">角ばって見える場合は右側（滑らかに）へ、逆に線がつぶれて見える場合は左側（鮮明に）へ動かして再変換してみてください。画像によっては、ある区間まで大きな変化がなく、特定の地点を過ぎると急に変わることがあるので、少しずつ動かしながら確認してください</p>
+        </div>
+      </div>
+
+      <p class="vc-warning" id="vc-too-large-warning" hidden>画像が大きいため、自動的にサイズを縮小して変換しました</p>
+      <p class="vc-error" id="vc-convert-error" hidden></p>
+
+      <div class="vc-result-actions" id="vc-result-actions" hidden>
+        <a class="vc-download-btn" id="vc-download-btn" download>SVGをダウンロード</a>
+        <button type="button" class="vc-secondary-btn" id="vc-convert-another-btn">別の画像を変換する</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>ラインアートベクター変換とは？</h2>
+      <p>
+        ラインアートベクター変換は、PNGやJPGのようなピクセル（ラスター）画像を、線だけで構成された白黒SVGベクターファイルにブラウザ上でそのまま変換してくれる無料ツールです。ピクセルで構成された画像は拡大すると画質が劣化しますが、線や曲線の数学的座標で構成されたベクター画像はどれだけ拡大しても滑らかさを保ちます。プログラムのインストールやサーバーへのアップロードは不要で、画像をアップロードするだけですぐに精密なSVGファイルをダウンロードできます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        変換したい画像をドラッグ＆ドロップするか、ファイル選択ボタンで添付してください。画像がアップロードされると、別途ボタンを押すことなく自動的に白黒ラインアートSVGに変換されます。線が角張っていたり、逆につぶれて見える場合は「線の滑らかさ調整」スライダーを左右に動かして再変換し、画像に合う地点を見つけることができます。満足のいく結果になったら、ダウンロードボタンでSVGファイルを保存してください。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>手描きイラストやスケッチをきれいな白黒ラインアートベクターにしたいとき</li>
+        <li>ロゴや印鑑画像を印刷物や横断幕など大きなサイズで劣化なく再利用したいとき</li>
+        <li>レーザー刻印機やカッティングマシンなどベクターファイルが必要な機器に画像を使いたいとき</li>
+        <li>ピクセル画像を編集ソフト（イラストレーター、Figmaなど）で線単位で自由に修正したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>このツールはどんな画像をSVGに変換できますか？</dt>
+          <dd>明暗のコントラストがはっきりした画像を、線だけで構成された白黒SVGベクターに変換します。手描きイラスト、ペン画、スケッチ、ロゴ、印鑑画像のような白黒ラインアートスタイルによく合います。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>アップロードした画像はサーバーに送信されますか？</dt>
+          <dd>いいえ。すべての変換はブラウザ内でのみ処理され、画像がサーバーに送信・保存されることはありません。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>カラー画像をアップロードしてもいいですか？</dt>
+          <dd>はい、カラー画像をアップロードしても明暗（明るさ）を基準に自動的に変換されます。ただし、このツールは色を残さず常に白黒ラインアートの結果のみを作成します。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>結果が角張りすぎたり、逆につぶれて見える場合はどうすればいいですか？</dt>
+          <dd>結果の下にある「線の滑らかさ調整」スライダーを動かすとすぐに再変換されます。線がギザギザと角張って見える場合は「滑らかに」側へ、逆に細い線がつぶれたりくっついて見える場合は「鮮明に」側へ動かして、画像に合う地点を探してみてください。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>変換されたSVGはどのように使いますか？</dt>
+          <dd>ダウンロードボタンを押すとSVGファイルが保存されます。イラストレーターやFigmaなどのベクター編集ソフトで直接開いて編集したり、レーザー刻印機やカッティングマシンのようなベクターファイルが必要な機器に使用したりできます。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはすべての変換作業をブラウザ上でのみ処理し、アップロードした画像をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script type="module" src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

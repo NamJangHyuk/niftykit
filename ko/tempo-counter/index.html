@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>템포 카운터 - 운동 박자 BPM 렙 카운터 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="BPM(분당 박자 수)을 입력하면 정확한 타이밍으로 비프음을 재생하면서 렙 수를 세어주는 운동 템포 카운터입니다. 하강·상승 구간마다 다른 소리로 박자를 안내해요." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/tempo-counter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/tempo-counter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/tempo-counter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/tempo-counter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <base href="../../tempo-counter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "템포 카운터",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "BPM을 입력하면 AudioContext 정밀 스케줄링으로 드리프트 없이 정확한 박자 비프음을 재생하고 렙 수를 세어주는 무료 운동 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "박자가 뒤로 갈수록 밀리지 않나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 밀리지 않습니다. 브라우저의 오디오 스케줄링 기능(AudioContext)으로 다음 박자들을 미리 정확한 시각에 예약해두는 방식이라, 일반적인 타이머보다 훨씬 정밀하게 박자가 유지됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "렙 수는 어떻게 계산되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "하강 박자 하나와 상승 박자 하나, 총 두 박자가 끝날 때마다 렙 수가 1씩 올라갑니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "BPM 범위는 어떻게 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "20~240 BPM 사이에서 설정할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "운동 종류를 선택하면 BPM이 고정되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 운동 종류를 선택하면 그 운동에 맞는 기본 BPM이 채워질 뿐이며, 이후에도 BPM 입력란에서 자유롭게 값을 수정할 수 있습니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Tempo Counter</h1>
+    <p class="subtitle">BPM을 입력하면 정확한 타이밍으로 박자를 재생하면서 렙 수를 세어드려요</p>
+    <p class="tagline-extra">하강·상승 구간마다 다른 소리로 안내하고, 오차 없는 오디오 스케줄링으로 박자가 밀리지 않아요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="tcounter-display-section is-ready"
+      id="tcounter-display"
+      aria-label="템포 카운터 화면"
+      data-down-label="하강"
+      data-up-label="상승"
+      data-ready-label="준비"
+    >
+      <p class="tcounter-phase-label" id="tcounter-phase-label">준비</p>
+      <p class="tcounter-rep-count" id="tcounter-rep-count">0</p>
+      <p class="tcounter-rep-label">렙</p>
+    </section>
+
+    <section class="tcounter-setup-section" aria-label="템포 설정">
+      <div class="tcounter-field">
+        <label for="tcounter-category">운동 종류</label>
+        <select id="tcounter-category">
+          <option value="pushup" data-bpm="40">푸시업 (40 BPM)</option>
+          <option value="situp" data-bpm="30">싯업 (30 BPM)</option>
+          <option value="squat" data-bpm="30">스쿼트 (30 BPM)</option>
+          <option value="lunge" data-bpm="28">런지 (28 BPM)</option>
+          <option value="dip" data-bpm="35">딥스 (35 BPM)</option>
+          <option value="calfraise" data-bpm="50">카프레이즈 (50 BPM)</option>
+          <option value="custom">직접 설정</option>
+        </select>
+      </div>
+      <div class="tcounter-field">
+        <label for="tcounter-bpm">BPM (분당 박자 수)</label>
+        <input type="number" id="tcounter-bpm" min="20" max="240" value="40" />
+      </div>
+      <p class="tcounter-error" id="tcounter-error" hidden>BPM은 20에서 240 사이로 입력하세요.</p>
+
+      <div class="tcounter-controls">
+        <button type="button" id="tcounter-start-btn" class="tcounter-btn tcounter-btn-primary">시작</button>
+        <button type="button" id="tcounter-stop-btn" class="tcounter-btn tcounter-btn-stop" hidden>정지</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>템포 카운터란?</h2>
+      <p>
+        템포 카운터(Tempo Counter)는 원하는 BPM(분당 박자 수)을 입력하면 그 속도에 맞춰 정확한 타이밍으로 비프음을 재생해주는 운동용 메트로놈 도구입니다. 브라우저의 오디오 재생 스케줄링 기능을 직접 활용해서 박자가 점점 밀리는 드리프트 현상 없이 처음부터 끝까지 정확하게 맞습니다. 하강 동작과 상승 동작마다 서로 다른 음으로 소리가 나기 때문에 화면을 보지 않고 소리만 듣고도 박자를 맞출 수 있고, 두 박자가 끝날 때마다 렙 수가 자동으로 올라갑니다. 모든 운동이 같은 속도에 맞는 건 아니기 때문에, 푸시업·싯업·스쿼트처럼 하강·상승이 뚜렷한 운동 종류를 선택하면 그 운동에 무리 없는 기본 BPM이 자동으로 채워집니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        운동 종류에서 하려는 운동을 선택하면 그 운동에 맞는 기본 BPM이 자동으로 입력됩니다. 원하면 BPM 값을 직접 수정할 수도 있고, 목록에 없는 운동이라면 &quot;직접 설정&quot;을 선택해 원하는 속도로 맞추면 됩니다. &quot;시작&quot; 버튼을 누르면 그 속도로 박자 소리가 재생되기 시작합니다. 하강 구간에서는 낮은 음, 상승 구간에서는 높은 음이 나며, 두 박자(하강+상승)가 끝날 때마다 렙 카운터가 하나씩 올라갑니다. 운동을 마쳤으면 &quot;정지&quot; 버튼을 눌러 멈추면 됩니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>웨이트 트레이닝에서 일정한 템포로 동작 속도를 유지하고 싶을 때</li>
+        <li>스쿼트나 푸시업처럼 하강·상승이 뚜렷한 운동의 박자를 맞추고 싶을 때</li>
+        <li>정해진 템포로 렙 수를 정확하게 세면서 운동하고 싶을 때</li>
+        <li>화면을 보지 않고 소리만으로 운동 박자를 확인하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>박자가 뒤로 갈수록 밀리지 않나요?</dt>
+          <dd>네, 밀리지 않습니다. 브라우저의 오디오 스케줄링 기능(AudioContext)으로 다음 박자들을 미리 정확한 시각에 예약해두는 방식이라, 일반적인 타이머보다 훨씬 정밀하게 박자가 유지됩니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>렙 수는 어떻게 계산되나요?</dt>
+          <dd>하강 박자 하나와 상승 박자 하나, 총 두 박자가 끝날 때마다 렙 수가 1씩 올라갑니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>BPM 범위는 어떻게 되나요?</dt>
+          <dd>20~240 BPM 사이에서 설정할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>운동 종류를 선택하면 BPM이 고정되나요?</dt>
+          <dd>아니요. 운동 종류를 선택하면 그 운동에 맞는 기본 BPM이 채워질 뿐이며, 이후에도 BPM 입력란에서 자유롭게 값을 수정할 수 있습니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 소리 재생과 카운팅을 브라우저에서만 처리하며, 서버로 전송하거나 저장하는 데이터가 없습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

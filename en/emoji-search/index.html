@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emoji Search - Search &amp; Copy Emoji by Name | GetNiftyKit</title>
+  <meta name="description" content="Search emojis by name or keyword and copy them to your clipboard with one click. Multilingual search in English, Korean, Japanese and Chinese — no sign-up needed." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/emoji-search/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/emoji-search/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/emoji-search/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <base href="../../emoji-search/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Emoji Search",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free web tool to search emojis by name in English, Korean, Japanese or Chinese and copy them to your clipboard with one click.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I search emojis in languages other than English?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can search by emoji name and related keywords in English, Korean, Japanese, or Chinese."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use an emoji I find?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click it to copy it straight to your clipboard. From there you can paste it (Ctrl+V or Cmd+V) into any messenger, social app, or document."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to sign up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You can search and copy emojis immediately, no account required."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Emoji Search</h1>
+    <p class="subtitle">Search emojis by name and copy them with one click</p>
+    <p class="tagline-extra">1,900+ emojis, searchable in English, Korean, Japanese, and Chinese — free emoji copy and paste, no sign-up required.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="recent-section" id="recent-section" hidden aria-label="Frequently used emojis">
+      <div class="recent-header">
+        <h2>Frequently Used</h2>
+        <button type="button" class="recent-clear" id="recent-clear">Clear history</button>
+      </div>
+      <div class="recent-grid" id="recent-grid"></div>
+    </section>
+
+    <section class="search-section" aria-label="Emoji search and category filter">
+      <div class="search-input-wrap">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 20 20" width="18" height="18">
+          <circle cx="8.5" cy="8.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search emoji (e.g. smile, dog, heart...)"
+          autocomplete="off"
+        />
+      </div>
+      <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Filter by category">
+        <button type="button" class="category-tab is-active" data-group="all" role="tab" aria-selected="true">All</button>
+        <!-- 나머지 카테고리 탭은 script.js가 emojis.json의 groups로 채웁니다 -->
+      </div>
+    </section>
+
+    <p class="result-count" id="result-count"></p>
+
+    <section class="emoji-sections" id="emoji-grid" aria-label="Emoji list">
+      <!-- script.js가 여기에 이모지 카드들을 렌더링합니다 -->
+    </section>
+
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is Emoji Search?</h2>
+      <p>
+        Emoji Search is a tool for finding any of 1,900+ emojis by name or keyword — in English, Korean, Japanese, or Chinese — and copying them to your clipboard with a single click. Can't quite remember the exact name of an emoji you want for a chat or social post? Just search a related word and you'll find it. Every search and copy happens instantly in your browser, with no sign-up or installation required.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Type an emoji's name or a related keyword into the search box — it works in English (e.g. &quot;smile&quot;) as well as Korean, Japanese, and Chinese. If there are too many results to scan, use the category tabs (faces, animals, food, and more) to narrow things down. Click any emoji to copy it straight to your clipboard. Emoji names are also automatically shown in your browser's language.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Quickly finding an emoji by name for a chat message or social post</li>
+        <li>Checking the exact name or meaning of a specific emoji</li>
+        <li>Pasting an emoji that isn't available on your keyboard into a document</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Can I search emojis in languages other than English?</dt>
+          <dd>Yes. You can search by emoji name and related keywords in English, Korean, Japanese, or Chinese.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How do I use an emoji I find?</dt>
+          <dd>Click it to copy it straight to your clipboard. From there you can paste it (Ctrl+V or Cmd+V) into any messenger, social app, or document.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Do I need to sign up?</dt>
+          <dd>No. You can search and copy emojis immediately, no account required.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool processes every search and copy locally in your browser. Your search terms and personal data are never sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

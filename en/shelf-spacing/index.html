@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shelf Spacing Calculator - Even Bookcase Layout | GetNiftyKit</title>
+  <meta name="description" content="Enter the total length, number of shelves, and shelf thickness, and this free woodworking tool calculates the exact even-spaced position of every shelf automatically." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/shelf-spacing/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/shelf-spacing/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/shelf-spacing/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <base href="../../shelf-spacing/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Shelf Spacing Calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free woodworking tool that calculates the exact even-spaced position of every shelf in a bookcase or cabinet from the total internal length, shelf count, and shelf thickness.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does \"number of shelves\" mean the shelf boards themselves, or the compartments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's the number of shelf boards. For example, adding 4 shelves creates 5 compartments total (above and below each shelf), and this tool makes sure all 5 compartments end up evenly spaced."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I need to enter the shelf thickness?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the shelves themselves take up space. Without subtracting shelf thickness, the actual gap once installed would end up smaller than the calculated value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the calculated positions measured from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The very bottom of the case (bookcase or cabinet) is treated as position 0, and each shelf's position is the distance from there to the bottom face of that shelf."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Shelf Spacing</h1>
+    <p class="subtitle">Enter the total length and shelf count to get even spacing instantly</p>
+    <p class="tagline-extra">Accounts for shelf thickness too, so every compartment ends up exactly the same size.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="shsp-setup-section" aria-label="Shelf details">
+      <div class="shsp-field">
+        <label for="shsp-length">Total internal length</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-length" min="0.1" step="any" placeholder="e.g. 180" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-count">Number of shelves</label>
+        <input type="number" id="shsp-count" min="1" step="1" placeholder="e.g. 4" />
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-thickness">Shelf thickness</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-thickness" min="0.01" step="any" placeholder="e.g. 1.8" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <p class="shsp-error" id="shsp-error" hidden data-invalid-input-error="Please enter the total length, shelf count, and shelf thickness as numbers greater than 0." data-invalid-fit-error="The shelves' combined thickness is larger than the total length. Try fewer shelves or a thinner material."></p>
+    </section>
+
+    <section class="shsp-result-section" aria-label="Calculated results" data-compartments-unit="compartments">
+      <svg class="shsp-diagram" viewBox="0 0 260 280" role="img" aria-label="Shelf layout diagram">
+        <rect id="shsp-case-outline" fill="none" stroke="var(--shsp-line)" stroke-width="2.5" />
+        <g id="shsp-shelves-group"></g>
+
+        <line id="shsp-dim-total-line" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick1" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick2" class="shsp-dim-line" />
+        <text id="shsp-dim-total-label" class="shsp-dim-label" text-anchor="middle"></text>
+
+        <line id="shsp-dim-gap-line" class="shsp-dim-line-detail" />
+        <text id="shsp-dim-gap-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+
+        <line id="shsp-dim-leader" class="shsp-dim-leader" />
+        <rect id="shsp-detail-shelf" fill="var(--shsp-accent)" />
+        <text id="shsp-dim-thickness-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+      </svg>
+
+      <div class="shsp-result-grid">
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">Compartment gap (clear space)</span>
+          <span class="shsp-result-value" id="shsp-result-gap">–</span>
+        </div>
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">Compartments</span>
+          <span class="shsp-result-value" id="shsp-result-compartments">–</span>
+        </div>
+      </div>
+
+      <p class="shsp-warning" id="shsp-gap-warning" hidden>⚠ The compartment gap is under 10cm. Double-check that what you plan to store will actually fit.</p>
+
+      <div class="shsp-positions" aria-label="Shelf-by-shelf install positions">
+        <h2 class="shsp-positions-heading">Shelf-by-shelf positions (from the bottom)</h2>
+        <ul class="shsp-positions-list" id="shsp-positions-list" data-position-template="Shelf {index}: {position} from the bottom"></ul>
+      </div>
+
+      <p class="shsp-disclaimer">Real lumber can have slight thickness variance, so it's a good idea to double-check with an actual measurement before cutting.</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a shelf spacing calculator?</h2>
+      <p>
+        The Shelf Spacing Calculator works out the exact even-spaced position of every shelf in a bookcase or cabinet from just three numbers: the total internal length, how many shelves you want, and the shelf thickness. It divides the remaining space — after subtracting the room the shelves themselves take up — evenly across every compartment (shelf count + 1), so you don't end up with uneven gaps from eyeballing the layout. The result comes with both an exact position list measured from the bottom of the case and a diagram drawn to match your actual proportions.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter the total internal length of your bookcase or cabinet, how many shelves you want, and the shelf thickness. The compartment gap and compartment count are calculated instantly, and a list below shows the exact install position of every shelf measured from the bottom. The diagram is drawn to match your actual input proportions, so you can preview roughly what the finished piece will look like.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Building your own bookcase or cabinet and wanting evenly spaced shelves</li>
+        <li>Pre-calculating and marking shelf positions for a built-in closet or pantry</li>
+        <li>Checking exact positions before adding shelves to existing furniture</li>
+        <li>Comparing different shelf counts to see which layout is most practical</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Does &quot;number of shelves&quot; mean the shelf boards themselves, or the compartments?</dt>
+          <dd>It's the number of shelf boards. For example, adding 4 shelves creates 5 compartments total (above and below each shelf), and this tool makes sure all 5 compartments end up evenly spaced.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Why do I need to enter the shelf thickness?</dt>
+          <dd>Because the shelves themselves take up space. Without subtracting shelf thickness, the actual gap once installed would end up smaller than the calculated value.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What are the calculated positions measured from?</dt>
+          <dd>The very bottom of the case (bookcase or cabinet) is treated as position 0, and each shelf's position is the distance from there to the bottom face of that shelf.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>インターバルタイマー - PT運動セット・休憩タイマー無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="セット数、運動時間、休憩時間を入力すると、全体のタイムラインを自動で計算してくれるインターバルタイマーです。区間が切り替わるたびに音と画面表示でお知らせします。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/interval-timer/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/interval-timer/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/interval-timer/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/interval-timer/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/interval-timer/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/interval-timer/" />
+  <base href="../../interval-timer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "インターバルタイマー",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "セット数と運動・休憩時間を入力すると、セッション全体を自動で進行し、区間の切り替わりごとに音でお知らせする無料のPT運動タイマーです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "画面を消したり別のタブを見ていても時間は正確ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。タイマーは経過時間を実際の時刻（タイムスタンプ）の差で計算しているため、ブラウザがバックグラウンドにあり画面の更新が遅くなっても、実際の区間切り替えのタイミングは正確です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "音はどのように再生されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "別途音源ファイルは使わず、ブラウザのWeb Audio APIでその都度アラーム音を直接生成して再生します。著作権の心配なく軽快に動作します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "最後のセットが終わったあとも休憩時間は含まれますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。最後のセットの運動が終わるとすぐにセッションが完了し、休憩区間はセットとセットの間にのみ入ります。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Interval Timer</h1>
+    <p class="subtitle">セット数と運動・休憩時間を入力するだけで、セッション全体を自動で進行します</p>
+    <p class="tagline-extra">区間が切り替わるたびに音と画面表示でお知らせし、バックグラウンドでも正確に時間を計測します。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="itimer-display-section"
+      id="itimer-display"
+      aria-label="タイマー画面"
+      data-work-label="運動中"
+      data-rest-label="休憩中"
+      data-ready-label="準備"
+      data-done-label="完了！"
+      data-set-template="セット {current} / {total}"
+    >
+      <p class="itimer-phase-label" id="itimer-phase-label">準備</p>
+      <p class="itimer-time" id="itimer-time">00:00</p>
+      <p class="itimer-set-progress" id="itimer-set-progress"></p>
+    </section>
+
+    <section class="itimer-setup-section" aria-label="タイマー設定">
+      <div class="itimer-setup-row">
+        <div class="itimer-field">
+          <label for="itimer-sets">セット数</label>
+          <input type="number" id="itimer-sets" min="1" max="99" value="5" />
+        </div>
+        <div class="itimer-field">
+          <label for="itimer-work">運動時間（秒）</label>
+          <input type="number" id="itimer-work" min="1" max="3600" value="30" />
+        </div>
+        <div class="itimer-field">
+          <label for="itimer-rest">休憩時間（秒）</label>
+          <input type="number" id="itimer-rest" min="1" max="3600" value="15" />
+        </div>
+      </div>
+      <p class="itimer-error" id="itimer-error" hidden>セット数と運動・休憩時間は1以上で入力してください。</p>
+
+      <div class="itimer-controls">
+        <button type="button" id="itimer-start-btn" class="itimer-btn itimer-btn-primary">開始</button>
+        <button
+          type="button"
+          id="itimer-pause-btn"
+          class="itimer-btn"
+          hidden
+          data-pause-label="一時停止"
+          data-resume-label="再開"
+        >一時停止</button>
+        <button type="button" id="itimer-reset-btn" class="itimer-btn" hidden>リセット</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>インターバルタイマーとは？</h2>
+      <p>
+        インターバルタイマーは、セット数、運動時間、休憩時間を入力すると、PTセッション全体のタイムラインを自動で計算して進行してくれるツールです。運動区間と休憩区間が切り替わるたびに音と画面の色でお知らせするので、タイマー画面をずっと見ている必要はありません。時間の計算は実際の時刻（タイムスタンプ）を基準に行われるため、画面が消えたり別のタブを見ていても誤差なく正確に動作します。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        希望のセット数、運動時間、休憩時間（秒単位）を入力して「開始」ボタンを押してください。運動区間が終わると自動的に休憩区間に切り替わり、次のセットの運動区間へと、最後のセットまで自動的に繰り返されます。いつでも「一時停止」で止めて「再開」で続きから進めることができ、「リセット」を押せば最初から設定し直せます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>ウェイトトレーニングでセット間の休憩時間を正確に守りたいとき</li>
+        <li>サーキットトレーニングやタバタなどのインターバル運動をするとき</li>
+        <li>自宅トレーニングでスマホをずっと見ずに音だけで区間を確認したいとき</li>
+        <li>PTやグループ運動クラスで決められたセット・休憩構成をそのまま再現したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>画面を消したり別のタブを見ていても時間は正確ですか？</dt>
+          <dd>はい。タイマーは経過時間を実際の時刻（タイムスタンプ）の差で計算しているため、ブラウザがバックグラウンドにあり画面の更新が遅くなっても、実際の区間切り替えのタイミングは正確です。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>音はどのように再生されますか？</dt>
+          <dd>別途音源ファイルは使わず、ブラウザのWeb Audio APIでその都度アラーム音を直接生成して再生します。著作権の心配なく軽快に動作します。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>最後のセットが終わったあとも休憩時間は含まれますか？</dt>
+          <dd>いいえ。最後のセットの運動が終わるとすぐにセッションが完了し、休憩区間はセットとセットの間にのみ入ります。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはタイマーの進行をすべてブラウザ上で処理し、入力された設定値をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

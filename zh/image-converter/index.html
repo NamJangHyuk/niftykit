@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>图片转换器 - PNG JPG WebP免费转换 | GetNiftyKit</title>
+  <meta name="description" content="添加图片文件后，只需点击想要的格式按钮即可立即转换。PNG、JPG、WebP之间的免费图片格式转换器，直接在浏览器中运行，无需上传服务器，安全可靠。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/image-converter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/image-converter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/image-converter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/image-converter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/image-converter/" />
+  <base href="../../image-converter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "图片转换器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "可将多个图片文件按需转换为PNG、JPG、WebP格式的免费图片转换工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "可以一次转换多张图片吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，您可以一次添加多个文件，并为每个文件单独选择所需的格式进行转换。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "上传的图片会发送到服务器吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不会。所有转换均在浏览器中处理，文件不会被发送或存储到服务器。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "支持哪些格式？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以转换为PNG、JPG（JPEG）、WebP三种格式。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "画质会受损吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG为无损格式，不会损失画质；JPG和WebP会应用轻微的有损压缩，但日常使用中差异几乎难以察觉。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "只是更改扩展名，还是真正转换了格式？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "并非只是简单更改文件名的扩展名，而是将图片重新绘制到画布上，再以所选格式的实际编码方式重新压缩。因此转换前后文件容量会发生实际变化。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>图片转换器</h1>
+    <p class="subtitle">上传图片后点击想要的格式按钮，即可立即转换</p>
+    <p class="tagline-extra">只需从PNG、JPG、WebP中选择所需格式进行转换并保存。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="ic-card" aria-label="上传图片文件">
+      <div class="ic-dropzone" id="ic-dropzone" tabindex="0" role="button" aria-label="上传图片文件">
+        <svg class="ic-dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3M12 3l-4 4M12 3l4 4" />
+          <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+        </svg>
+        <p class="ic-dropzone-text">将图片拖放到此处，或点击选择文件</p>
+        <p class="ic-dropzone-hint">支持PNG、JPG、WebP、GIF等图片文件</p>
+        <button type="button" class="ic-choose-btn" id="ic-choose-btn">选择文件</button>
+        <input type="file" id="ic-file-input" accept="image/*" multiple hidden />
+      </div>
+      <p class="ic-error" id="ic-global-error" hidden></p>
+    </section>
+
+    <section
+      class="ic-file-list-section"
+      aria-label="已添加的文件列表"
+      id="ic-file-list-section"
+      hidden
+      data-format-png-label="转换为PNG"
+      data-format-jpg-label="转换为JPG"
+      data-format-webp-label="转换为WebP"
+      data-same-format-hint="与原文件格式相同，仅需更改尺寸或画质时可使用"
+      data-save-btn-text="保存"
+      data-remove-btn-text="删除"
+      data-converting-text="转换中..."
+      data-size-change-template="{fromSize}（{fromDim}）→ {toSize}（{toDim}）"
+      data-unsupported-file-error="不支持的文件格式，只能添加图片文件。"
+      data-decode-error-text="无法加载该图片，文件可能已损坏。"
+      data-file-count-template="{count}个文件"
+    >
+      <div class="ic-file-list-header">
+        <span class="ic-file-count" id="ic-file-count"></span>
+        <button type="button" class="ic-clear-all-btn" id="ic-clear-all-btn">全部清除</button>
+      </div>
+
+      <div class="ic-settings">
+        <div class="ic-setting">
+          <label for="ic-scale-range">图片尺寸 <span class="ic-setting-value" id="ic-scale-value">100%</span></label>
+          <input type="range" id="ic-scale-range" min="10" max="100" step="5" value="100" />
+        </div>
+        <div class="ic-setting">
+          <label for="ic-quality-range">画质（容量） <span class="ic-setting-value" id="ic-quality-value">92%</span></label>
+          <input type="range" id="ic-quality-range" min="50" max="100" step="1" value="92" />
+          <p class="ic-setting-hint">PNG为无损格式，因此画质设置不适用</p>
+        </div>
+      </div>
+
+      <div class="ic-file-list" id="ic-file-list"></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是图片转换器？</h2>
+      <p>
+        图片转换器是一款可以直接在浏览器中相互转换PNG、JPG、WebP等图片文件格式的免费工具。无需安装程序，也无需上传文件到服务器，只需添加图片并点击想要的格式按钮，即可立即获得转换后的文件。想为网站减小图片体积时可转换为WebP，不需要透明背景的照片可转换为JPG以减小体积，或者反过来为方便编辑转换为无损的PNG格式，可应用于多种场景。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        将想要转换的图片文件拖放进来，或通过选择文件按钮添加，可以一次添加多张图片。文件添加后，下方会出现PNG、JPG、WebP转换按钮，点击想要的格式按钮即可立即转换为该格式。转换完成后会出现保存按钮，点击即可下载转换后的文件。如果还想要其他格式，只需在同一文件上点击其他格式按钮即可继续转换。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想将图片转换为体积更小的WebP以提升网站加载速度时</li>
+        <li>需要转换为特定程序要求的图片格式时</li>
+        <li>想将不需要透明背景的照片转换为JPG以减小体积时</li>
+        <li>编辑作业中需要无损的PNG格式时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>可以一次转换多张图片吗？</dt>
+          <dd>可以，您可以一次添加多个文件，并为每个文件单独选择所需的格式进行转换。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>上传的图片会发送到服务器吗？</dt>
+          <dd>不会。所有转换均在浏览器中处理，文件不会被发送或存储到服务器。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>支持哪些格式？</dt>
+          <dd>可以转换为PNG、JPG（JPEG）、WebP三种格式。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>画质会受损吗？</dt>
+          <dd>PNG为无损格式，不会损失画质；JPG和WebP会应用轻微的有损压缩，但日常使用中差异几乎难以察觉。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>只是更改扩展名，还是真正转换了格式？</dt>
+          <dd>并非只是简单更改文件名的扩展名，而是将图片重新绘制到画布上，再以所选格式的实际编码方式重新压缩。因此转换前后文件容量会发生实际变化。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的所有转换操作均在浏览器中处理，不会将您上传的图片发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

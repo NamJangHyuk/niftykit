@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS渐变生成器 - 免费制作渐变代码 | GetNiftyKit</title>
+  <meta name="description" content="自由添加颜色并调整角度，实时生成CSS渐变，完成后立即复制代码。支持线性和径向渐变。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/gradient-builder/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/gradient-builder/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/gradient-builder/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/gradient-builder/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/gradient-builder/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/gradient-builder/" />
+  <base href="../../gradient-builder/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSS渐变生成器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "自由组合颜色和角度，实时生成可直接复制使用的CSS渐变代码的免费网页工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "可以免费使用吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，无需注册即可免费创建渐变并复制CSS代码。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "最多可以添加几种颜色？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "最少2种，最多5种颜色，可以组合出多种多样的渐变效果。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "生成的代码怎么使用？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "将复制的代码直接粘贴为CSS的background属性值即可。例如：background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>CSS 渐变生成器</h1>
+    <p class="subtitle">自由组合颜色和角度，免费创建CSS渐变</p>
+    <p class="tagline-extra">实时预览线性和径向渐变，并立即复制完成的CSS代码。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="grad-preview-section" aria-label="渐变预览">
+      <div id="grad-preview" class="grad-preview"></div>
+    </section>
+
+    <section class="grad-controls-section">
+      <div class="grad-field">
+        <label>渐变类型</label>
+        <div class="grad-type-tabs">
+          <button type="button" class="grad-type-tab is-active" id="grad-type-linear" data-type="linear">线性 (Linear)</button>
+          <button type="button" class="grad-type-tab" id="grad-type-radial" data-type="radial">径向 (Radial)</button>
+        </div>
+      </div>
+
+      <div class="grad-field" id="grad-angle-row">
+        <label for="grad-angle">角度 (<span id="grad-angle-value"></span>)</label>
+        <input type="range" id="grad-angle" min="0" max="360" value="90" />
+      </div>
+
+      <div class="grad-stops-section">
+        <label class="grad-stops-label">颜色</label>
+        <div id="grad-stops-list" class="grad-stops-list" data-remove-label="删除"></div>
+        <button type="button" id="grad-add-stop-btn" class="grad-add-stop-btn">添加颜色</button>
+        <p
+          class="grad-error"
+          id="grad-stops-error"
+          hidden
+          data-max-error="最多可添加5种颜色。"
+          data-min-error="至少需要2种颜色。"
+        ></p>
+      </div>
+    </section>
+
+    <section class="grad-code-section" aria-label="生成的CSS代码">
+      <code id="grad-code" class="grad-code"></code>
+      <button
+        type="button"
+        id="grad-copy-btn"
+        class="grad-copy-btn"
+        data-copy-label="复制CSS代码"
+        data-copied-label="已复制！"
+      >复制CSS代码</button>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是CSS渐变生成器？</h2>
+      <p>
+        CSS渐变生成器是一款可以自由添加颜色并调整角度，实时生成线性（linear）或径向（radial）渐变的工具。您可以边看效果边调整，完成后一键复制即可使用的CSS代码。当背景设计、按钮或横幅需要渐变效果时，无需手动计算代码即可快速获得想要的结果。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        首先选择您需要的渐变类型：线性（Linear）或径向（Radial）。使用取色器自由更改每种颜色，通过「添加颜色」按钮增加颜色，或删除不需要的颜色。如果选择了线性渐变，还可以通过角度滑块调整渐变方向。预览画面会立即显示效果，满意后点击「复制CSS代码」按钮即可直接复制使用。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想在网站背景或首屏区域添加渐变时</li>
+        <li>想为按钮或徽章增添柔和的色彩效果时</li>
+        <li>想在卡片或横幅设计中应用流行的渐变效果时</li>
+        <li>需要从设计稿中直接获取精确的CSS渐变代码时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>可以免费使用吗？</dt>
+          <dd>可以，无需注册即可免费创建渐变并复制CSS代码。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>最多可以添加几种颜色？</dt>
+          <dd>最少2种，最多5种颜色，可以组合出多种多样的渐变效果。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>生成的代码怎么使用？</dt>
+          <dd>将复制的代码直接粘贴为CSS的background属性值即可。例如：background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的渐变生成过程完全在您的浏览器本地完成，不会将您输入的内容发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

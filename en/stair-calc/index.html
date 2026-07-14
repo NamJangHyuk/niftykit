@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stair Calculator - Steps, Riser &amp; Tread Depth | GetNiftyKit</title>
+  <meta name="description" content="Enter just the floor-to-floor height and this free tool automatically calculates the number of steps, riser height, tread depth, and total horizontal run using standard design guidelines." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/stair-calc/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/stair-calc/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/stair-calc/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <base href="../../stair-calc/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Stair Calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free construction tool that calculates the number of stair steps, riser height, tread depth, and total horizontal run from a single floor-to-floor height input, using standard stair design guidelines.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this result fully satisfy building codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool only calculates a reference based on commonly used design guidelines — actual legal requirements vary by building type and jurisdiction. Always check your local building regulations before construction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the riser height based on a 15-20cm range?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This range is a widely used comfort standard for climbing stairs without strain. Anything higher feels steep, and anything lower makes the staircase unnecessarily long."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the tread depth calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses the \"2R+T rule\": twice the riser height (R) plus the tread depth (T) totaling roughly 60-65cm is considered the most natural match for a typical walking stride."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Stair Calc</h1>
+    <p class="subtitle">Enter the floor-to-floor height and get the step count, riser, and tread depth instantly</p>
+    <p class="tagline-extra">Uses the classic 2R+T design formula to work out even risers and a comfortable tread depth automatically.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="stc-setup-section" aria-label="Floor-to-floor height">
+      <div class="stc-field">
+        <label for="stc-height">Floor-to-floor height</label>
+        <div class="stc-input-with-unit">
+          <input type="number" id="stc-height" min="0.1" step="any" placeholder="e.g. 285" />
+          <span class="stc-unit">cm</span>
+        </div>
+      </div>
+      <p class="stc-error" id="stc-error" hidden>Please enter a height greater than 0 (recommended range: 50-600cm).</p>
+    </section>
+
+    <section class="stc-result-section" aria-label="Calculated results" data-steps-unit="steps">
+      <svg class="stc-diagram" viewBox="0 0 320 240" role="img" aria-label="Stair side-profile diagram">
+        <line id="stc-dim-rise-line" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick1" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick2" class="stc-dim-line" />
+        <text id="stc-dim-rise-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <line id="stc-dim-run-line" class="stc-dim-line" />
+        <line id="stc-dim-run-tick1" class="stc-dim-line" />
+        <line id="stc-dim-run-tick2" class="stc-dim-line" />
+        <text id="stc-dim-run-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <path id="stc-diagram-path" fill="none" stroke="var(--stc-accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+
+        <path id="stc-angle-arc" class="stc-angle-arc" fill="none" />
+        <text id="stc-angle-label" class="stc-angle-label" text-anchor="end"></text>
+
+        <!-- 계단 단수가 많아 한 칸이 아주 작아지는 경우에도 치수가 겹쳐 보이지 않도록,
+             첫 단을 일정한 크기로 확대해 보여주는 상세 박스입니다. 실제 축척과는
+             무관하며, 점선 리더 라인으로 실제 첫 단 모서리와 연결됩니다. -->
+        <line id="stc-dim-leader" class="stc-dim-leader" />
+        <path id="stc-detail-path" fill="none" stroke="var(--stc-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+
+        <line id="stc-dim-riser-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-riser-label" class="stc-dim-label-detail" text-anchor="end"></text>
+
+        <line id="stc-dim-tread-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-tread-label" class="stc-dim-label-detail" text-anchor="middle"></text>
+      </svg>
+
+      <div class="stc-result-grid">
+        <div class="stc-result-card">
+          <span class="stc-result-label">Number of steps</span>
+          <span class="stc-result-value" id="stc-result-steps">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">Actual riser height</span>
+          <span class="stc-result-value" id="stc-result-riser">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">Recommended tread depth</span>
+          <span class="stc-result-value" id="stc-result-tread">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">Total horizontal run</span>
+          <span class="stc-result-value" id="stc-result-run">–</span>
+        </div>
+      </div>
+
+      <p class="stc-warning" id="stc-riser-warning" hidden>⚠ The riser height falls outside the standard recommended range (15-20cm). Please double-check your floor height.</p>
+      <p class="stc-warning" id="stc-tread-warning" hidden>⚠ The tread depth is narrower than the recommended minimum (26cm). Consider widening it for the actual build.</p>
+
+      <p class="stc-disclaimer">This result is a reference based on common design guidelines and does not guarantee compliance with legal building codes. Always check your local building regulations before construction.</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is this stair calculator?</h2>
+      <p>
+        Stair Calc automatically works out the key numbers for stair design from a single input: the floor-to-floor height (the total vertical rise between floors). Riser height is generally recommended to stay between 15-20cm, with 17-18cm considered the most comfortable range to climb, and this tool automatically picks a step count so every riser within that range comes out equal. It then applies the long-used &quot;2R+T rule&quot; (2 × riser height + tread depth ≈ 60-65cm) to calculate a comfortable tread depth, and shows the total horizontal run the whole staircase takes up.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter the floor-to-floor height in centimeters, and the step count, actual riser height, recommended tread depth, and total horizontal run are calculated and shown instantly. If the calculated riser or tread falls outside the standard recommended range, a warning appears — in that case, double-check your height or consult a professional.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Designing a loft or mezzanine staircase yourself for a self-renovation project</li>
+        <li>Quickly checking standard stair dimensions on-site as a carpenter or contractor</li>
+        <li>Checking whether an existing staircase falls within standard ranges before a remodel</li>
+        <li>Getting a rough sense of stair dimensions before drawing up detailed plans</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Does this result fully satisfy building codes?</dt>
+          <dd>No. This tool only calculates a reference based on commonly used design guidelines — actual legal requirements vary by building type and jurisdiction. Always check your local building regulations before construction.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Why is the riser height based on a 15-20cm range?</dt>
+          <dd>This range is a widely used comfort standard for climbing stairs without strain. Anything higher feels steep, and anything lower makes the staircase unnecessarily long.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How is the tread depth calculated?</dt>
+          <dd>It uses the &quot;2R+T rule&quot;: twice the riser height (R) plus the tread depth (T) totaling roughly 60-65cm is considered the most natural match for a typical walking stride.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

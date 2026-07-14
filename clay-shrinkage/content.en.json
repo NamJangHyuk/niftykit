@@ -1,0 +1,67 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Clay Shrinkage Calculator - Bisque & Final Size | GetNiftyKit",
+  "metaDescription": "Enter either your bisque size or your final (glaze-fired) size, and this free pottery tool calculates the other automatically based on your clay's shrinkage rate.",
+  "softwareAppName": "Clay Shrinkage Calculator",
+  "softwareAppDescription": "A free pottery tool that calculates the bisque size or final (glaze-fired) size from whichever one you enter, based on your clay's shrinkage rate. Width, depth, and height are calculated together, with a silhouette comparing the two sizes.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Clay Shrinkage Calculator",
+  "subtitle": "Enter either your bisque size or final size, and the other is calculated automatically",
+  "taglineExtra": "Calculates width, depth, and height both ways — bisque to final and final to bisque — based on how much the clay shrinks during firing.",
+  "setupAria": "Shrinkage rate",
+  "dimensionsAria": "Bisque and final dimensions",
+  "resultAria": "Bisque vs. final size comparison",
+  "shrinkageLabel": "Clay shrinkage rate (%)",
+  "shrinkagePlaceholder": "e.g. 12",
+  "presetLabel": "Common shrinkage rates",
+  "preset1": "8%",
+  "preset2": "10%",
+  "preset3": "12%",
+  "preset4": "15%",
+  "invalidShrinkageError": "Please enter a shrinkage rate greater than 0 and less than 100.",
+  "highShrinkageWarning": "⚠ This shrinkage rate is outside the typical range (5-20%). Double-check the rate for your clay body.",
+  "bisqueHeading": "Bisque size",
+  "finalHeading": "Final (glaze-fired) size",
+  "widthLabel": "Width",
+  "widthPlaceholder": "e.g. 12",
+  "depthLabel": "Depth",
+  "depthPlaceholder": "e.g. 10",
+  "heightLabel": "Height",
+  "heightPlaceholder": "e.g. 15",
+  "dimensionUnit": "cm",
+  "invalidDimensionError": "Please enter a dimension greater than 0.",
+  "diagramAriaLabel": "Pottery silhouette comparing bisque size and final size",
+  "diagramBisqueLabel": "Bisque",
+  "diagramFinalLabel": "Final",
+  "diagramDepthTemplate": "Depth {value}",
+  "diagramHint": "Enter width and height to see the comparison illustration.",
+  "disclaimerText": "Actual shrinkage varies by clay body, firing temperature, and drying humidity, so for important work it's a good idea to verify the exact rate with a test firing.",
+  "infoIntroH2": "What is a clay shrinkage calculator?",
+  "infoIntroP": "Clay keeps shrinking as it goes through bisque firing and then glaze (final) firing, typically somewhere between 5-20% depending on the clay body. The Clay Shrinkage Calculator takes either your bisque-stage size or your finished final size — whichever you know — and calculates the other automatically using the formula \"final size = bisque size × (1 − shrinkage rate)\". Width, depth, and height can each be calculated in either direction, so you can preview what an already-bisqued piece will measure once fired, or work backward from a target final size to see how big it needs to be at the bisque stage.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter your clay's shrinkage rate (%), or tap one of the common-rate preset buttons to select one quickly. Then enter whichever you know — bisque size or final size — into the width, depth, and height fields, and the other side fills in automatically. If both sides already have values and you edit one of them, the other recalculates based on your latest edit. Once width and height are available, two pottery silhouettes are drawn to scale so you can compare the sizes at a glance.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Previewing what size an already-bisqued piece will end up after the final firing",
+    "Working out how big to make something at the bisque stage to hit a target final size",
+    "Recalculating sizes when switching to a new clay body with a different shrinkage rate",
+    "Comparing bisque and final sizes at once for work where width, depth, and height all matter"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Does this only account for shrinkage between bisque and final, or the whole process from wet clay?",
+      "a": "It applies your entered shrinkage rate (%) directly between the bisque size and the final size fields. If you know the total shrinkage rate from the wet/forming stage instead, you can enter your forming size into the bisque field and use it the same way."
+    },
+    {
+      "q": "What happens if both sides already have values and I change one?",
+      "a": "The field you just edited becomes the new reference, and the opposite field recalculates and updates automatically."
+    },
+    {
+      "q": "What's a typical clay shrinkage rate?",
+      "a": "It varies by clay body, but it's generally around 5-15%, with some kaolin-heavy or porcelain bodies shrinking as much as 15-20%. Check your clay manufacturer's spec sheet or run a test firing for the most accurate number."
+    }
+  ],
+  "privacyNote": "This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server."
+}

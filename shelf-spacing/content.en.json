@@ -1,0 +1,59 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Shelf Spacing Calculator - Even Bookcase Layout | GetNiftyKit",
+  "metaDescription": "Enter the total length, number of shelves, and shelf thickness, and this free woodworking tool calculates the exact even-spaced position of every shelf automatically.",
+  "softwareAppName": "Shelf Spacing Calculator",
+  "softwareAppDescription": "A free woodworking tool that calculates the exact even-spaced position of every shelf in a bookcase or cabinet from the total internal length, shelf count, and shelf thickness.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Shelf Spacing",
+  "subtitle": "Enter the total length and shelf count to get even spacing instantly",
+  "taglineExtra": "Accounts for shelf thickness too, so every compartment ends up exactly the same size.",
+  "setupAria": "Shelf details",
+  "resultAria": "Calculated results",
+  "positionsAria": "Shelf-by-shelf install positions",
+  "totalLengthLabel": "Total internal length",
+  "totalLengthUnit": "cm",
+  "totalLengthPlaceholder": "e.g. 180",
+  "shelfCountLabel": "Number of shelves",
+  "shelfCountPlaceholder": "e.g. 4",
+  "shelfThicknessLabel": "Shelf thickness",
+  "shelfThicknessPlaceholder": "e.g. 1.8",
+  "invalidInputError": "Please enter the total length, shelf count, and shelf thickness as numbers greater than 0.",
+  "invalidFitError": "The shelves' combined thickness is larger than the total length. Try fewer shelves or a thinner material.",
+  "resultGapLabel": "Compartment gap (clear space)",
+  "resultCompartmentsLabel": "Compartments",
+  "resultCompartmentsUnit": "compartments",
+  "narrowGapWarning": "⚠ The compartment gap is under 10cm. Double-check that what you plan to store will actually fit.",
+  "diagramAriaLabel": "Shelf layout diagram",
+  "positionsHeading": "Shelf-by-shelf positions (from the bottom)",
+  "positionTemplate": "Shelf {index}: {position} from the bottom",
+  "disclaimerText": "Real lumber can have slight thickness variance, so it's a good idea to double-check with an actual measurement before cutting.",
+  "infoIntroH2": "What is a shelf spacing calculator?",
+  "infoIntroP": "The Shelf Spacing Calculator works out the exact even-spaced position of every shelf in a bookcase or cabinet from just three numbers: the total internal length, how many shelves you want, and the shelf thickness. It divides the remaining space — after subtracting the room the shelves themselves take up — evenly across every compartment (shelf count + 1), so you don't end up with uneven gaps from eyeballing the layout. The result comes with both an exact position list measured from the bottom of the case and a diagram drawn to match your actual proportions.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter the total internal length of your bookcase or cabinet, how many shelves you want, and the shelf thickness. The compartment gap and compartment count are calculated instantly, and a list below shows the exact install position of every shelf measured from the bottom. The diagram is drawn to match your actual input proportions, so you can preview roughly what the finished piece will look like.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Building your own bookcase or cabinet and wanting evenly spaced shelves",
+    "Pre-calculating and marking shelf positions for a built-in closet or pantry",
+    "Checking exact positions before adding shelves to existing furniture",
+    "Comparing different shelf counts to see which layout is most practical"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Does \"number of shelves\" mean the shelf boards themselves, or the compartments?",
+      "a": "It's the number of shelf boards. For example, adding 4 shelves creates 5 compartments total (above and below each shelf), and this tool makes sure all 5 compartments end up evenly spaced."
+    },
+    {
+      "q": "Why do I need to enter the shelf thickness?",
+      "a": "Because the shelves themselves take up space. Without subtracting shelf thickness, the actual gap once installed would end up smaller than the calculated value."
+    },
+    {
+      "q": "What are the calculated positions measured from?",
+      "a": "The very bottom of the case (bookcase or cabinet) is treated as position 0, and each shelf's position is the distance from there to the bottom face of that shelf."
+    }
+  ],
+  "privacyNote": "This tool performs all calculations entirely in your browser. Nothing you enter is sent to or stored on a server."
+}

@@ -1,0 +1,34 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Privacy Policy | GetNiftyKit",
+  "metaDescription": "How GetNiftyKit handles your data: what's processed locally in your browser, what Google AdSense and Google Fonts collect, and how to contact us.",
+  "backLinkText": "← All Tools",
+  "h1": "Privacy Policy",
+  "lastUpdated": "Last updated: July 10, 2026",
+  "intro": "GetNiftyKit (\"we\", \"us\", or \"this site\") provides free browser-based tools such as Flag Downloader, Emoji Search, and Special Character Copier. This page explains what information is, and isn't, collected when you use these tools.",
+  "sections": [
+    {
+      "heading": "Data processed in your browser",
+      "body": "All core features of GetNiftyKit's tools — searching, filtering, and copying or downloading content — run entirely in your browser. Search terms, filter selections, and clipboard actions are never transmitted to or stored on any server we operate. Some tools use your browser's localStorage to remember things like recently used items; this data stays on your device and is never sent anywhere."
+    },
+    {
+      "heading": "Cookies and advertising",
+      "body": "GetNiftyKit displays ads served by Google AdSense. Google and its partners may use cookies (including the DoubleClick cookie) to serve ads based on your prior visits to this or other websites. You can opt out of personalized advertising by visiting Google's Ads Settings (adssettings.google.com) or www.aboutads.info."
+    },
+    {
+      "heading": "Third-party services",
+      "body": "This site uses Google Fonts to load web fonts and Google AdSense to display advertising. These services may collect standard technical information (such as your IP address) as part of delivering their service. We don't control how these third parties process that data — please refer to Google's own privacy policy for details."
+    },
+    {
+      "heading": "Children's privacy",
+      "body": "GetNiftyKit does not knowingly collect personal information from children under 13."
+    },
+    {
+      "heading": "Changes to this policy",
+      "body": "We may update this policy from time to time. Any changes will be posted on this page."
+    }
+  ],
+  "contactHeading": "Contact",
+  "contactBody": "Questions about this policy or how GetNiftyKit works?",
+  "contactLinkText": "Contact us here"
+}

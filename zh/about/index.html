@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>关于 GetNiftyKit</title>
+  <meta name="description" content="GetNiftyKit 是一套无需注册即可专注把一件事做好的免费浏览器工具集，工具仍在持续增加中。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/about/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/about/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/about/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/about/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <base href="../../" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>关于 GetNiftyKit</h1>
+    <p class="subtitle">无需注册、无需安装、无需任何设置，专注把一件事做好的小巧免费浏览器工具集。</p>
+  </header>
+
+  <main class="info-section">
+    <h2>什么是 GetNiftyKit？</h2>
+    <p>GetNiftyKit 是一套无需注册、无需安装即可在浏览器中直接使用的免费网页工具集。下载国旗图片、按名称搜索并复制表情符号或特殊符号、生成二维码——这些都是日常或工作中偶尔需要、但真要找起来却很麻烦的小任务，我们把每一类任务做成一个只专注于该目的的工具，让您能快速、简单地完成。如果您是通过搜索找到这个页面的，我们希望您能不被多余的内容干扰，直接获得想要的结果。工具会持续增加，新增的工具也都遵循同样的原则——没有强制注册，没有繁琐设置，您输入的内容只会在浏览器本地处理，不会被发送或保存到服务器。</p>
+
+    <h2>工作原理</h2>
+    <p>所有工具均完全在您的浏览器中运行。无需注册账号，您的搜索词不会发送到服务器，我们不会收集隐私政策中未说明的任何数据。</p>
+
+    <h2>联系我们</h2>
+    <p>如果您有意见反馈、发现问题或有工具创意，欢迎 <a href="https://forms.gle/3NPQoMPL7oJo2pwV7" target="_blank" rel="noopener noreferrer">点击这里告诉我们</a></p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

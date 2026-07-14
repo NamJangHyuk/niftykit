@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이모지 검색 - 한글로 찾는 이모지 복사 | GetNiftyKit</title>
+  <meta name="description" content="이모지를 한글, 영어, 일본어, 중국어로 검색해서 클릭 한 번으로 복사하세요. 회원가입 없이 바로 사용 가능합니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/emoji-search/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/emoji-search/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/emoji-search/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/emoji-search/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <base href="../../emoji-search/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "이모지 검색",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "한글·영어·일본어·중국어로 이모지를 검색하고 클릭 한 번으로 클립보드에 복사할 수 있는 웹 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "이모지를 한글로 검색할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 이모지 이름과 관련 키워드를 한글로 검색할 수 있습니다. 영어, 일본어, 중국어 검색도 함께 지원합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "이모지는 어떻게 사용하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "이모지를 클릭하면 클립보드에 바로 복사됩니다. 복사된 이모지는 메신저, SNS, 문서 등 어디에나 붙여넣기(Ctrl+V 또는 Cmd+V)할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "회원가입이 필요한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요, 회원가입 없이 바로 검색하고 복사하실 수 있습니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>이모지 검색</h1>
+    <p class="subtitle">이모지를 검색하고 클릭 한 번으로 복사하세요</p>
+    <p class="tagline-extra">1,900여 개 이모지를 한글·영어·일본어·중국어 이름으로 검색하고, 무료로 바로 복사하세요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="recent-section" id="recent-section" hidden aria-label="자주 사용한 이모지">
+      <div class="recent-header">
+        <h2>자주 사용한 이모지</h2>
+        <button type="button" class="recent-clear" id="recent-clear">기록 지우기</button>
+      </div>
+      <div class="recent-grid" id="recent-grid"></div>
+    </section>
+
+    <section class="search-section" aria-label="이모지 검색 및 카테고리 필터">
+      <div class="search-input-wrap">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 20 20" width="18" height="18">
+          <circle cx="8.5" cy="8.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="이모지 검색 (예: 웃는 얼굴, smile, 강아지, dog...)"
+          autocomplete="off"
+        />
+      </div>
+      <div class="category-tabs" id="category-tabs" role="tablist" aria-label="카테고리별 필터">
+        <button type="button" class="category-tab is-active" data-group="all" role="tab" aria-selected="true">전체</button>
+        <!-- 나머지 카테고리 탭은 script.js가 emojis.json의 groups로 채웁니다 -->
+      </div>
+    </section>
+
+    <p class="result-count" id="result-count"></p>
+
+    <section class="emoji-sections" id="emoji-grid" aria-label="이모지 목록">
+      <!-- script.js가 여기에 이모지 카드들을 렌더링합니다 -->
+    </section>
+
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>이모지 검색이란?</h2>
+      <p>
+        이모지 검색은 1,900여 개의 이모지를 한글, 영어, 일본어, 중국어 이름과 키워드로 찾아서 클릭 한 번으로 복사하거나 이미지 파일로 다운로드할 수 있는 도구입니다. 메신저나 SNS에 올릴 이모지를 찾을 때, 정확한 이름이 기억나지 않아도 관련 단어로 검색하면 원하는 이모지를 쉽게 찾을 수 있습니다. 모든 검색과 복사는 브라우저에서 즉시 처리되며, 별도의 회원가입이나 설치 과정이 필요하지 않습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        검색창에 원하는 이모지의 이름이나 관련 키워드를 입력하세요. 한글(예: &quot;웃는 얼굴&quot;)과 영어(예: &quot;smile&quot;) 모두 검색이 가능합니다. 이모지가 너무 많아 찾기 어려우시면 표정, 동물, 음식 등 카테고리 탭으로 원하는 분류만 모아볼 수도 있습니다. 이모지를 클릭하면 클립보드에 바로 복사됩니다. 또한 접속하신 브라우저 언어에 맞춰 이모지 이름이 자동으로 표시됩니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>메신저나 SNS에 올릴 이모지를 이름으로 검색해서 빠르게 찾을 때</li>
+        <li>특정 이모지의 정확한 이름이나 의미를 확인하고 싶을 때</li>
+        <li>키보드에 없는 이모지를 문서에 붙여넣고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>이모지를 한글로 검색할 수 있나요?</dt>
+          <dd>네, 이모지 이름과 관련 키워드를 한글로 검색할 수 있습니다. 영어, 일본어, 중국어 검색도 함께 지원합니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>이모지는 어떻게 사용하나요?</dt>
+          <dd>이모지를 클릭하면 클립보드에 바로 복사됩니다. 복사된 이모지는 메신저, SNS, 문서 등 어디에나 붙여넣기(Ctrl+V 또는 Cmd+V)할 수 있습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>회원가입이 필요한가요?</dt>
+          <dd>아니요, 회원가입 없이 바로 검색하고 복사하실 수 있습니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 검색과 복사·다운로드 과정을 브라우저 로컬에서 처리하며, 입력하신 검색어나 개인정보를 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -144,6 +144,18 @@ async function main() {
         }
       }
 
+      // 다운로드 버튼에 실제 이미지 크기(예: "2560×1707px")를 표시하기 위해 실제 파일에서
+      // 읽습니다. flagcdn의 w2560은 가로는 항상 2560으로 고정이지만, 국기마다 가로세로
+      // 비율이 달라서(네팔처럼 세로가 긴 경우 등) 세로 길이는 나라마다 다릅니다 — 임의로
+      // 계산하지 않고 실제 파일의 메타데이터를 그대로 읽습니다.
+      let pngWidth = null;
+      let pngHeight = null;
+      if (hasPng) {
+        const meta = await sharp(pngDest).metadata();
+        pngWidth = meta.width;
+        pngHeight = meta.height;
+      }
+
       let hasSvg = await fileExists(svgDest);
       if (!hasSvg) {
         // SVG도 같은 flagcdn.com(실제 국기 벡터 소스)에서 받아옵니다.
@@ -166,6 +178,8 @@ async function main() {
         searchTerms: buildSearchTerms(names, wc),
         hasPng,
         hasSvg,
+        pngWidth,
+        pngHeight,
       });
     } catch (err) {
       console.warn(`skip ${code} (${nameEn}): ${err.message}`);

@@ -1,0 +1,506 @@
+/* 포모도로 타이머 도구 전용 스타일 (v2 디자인 업그레이드)
+   참고: https://pomodorotimer.online/ — 어두운 그라디언트 배경 위에 은은하게 빛나는
+   원형 링 타이머를 중심에 두는 구성을 이 사이트의 다른 도구들과는 다른, 이 도구만의
+   독립적인 "몰입 앱" 톤으로 가져왔습니다. 집중은 바이올렛, 짧은 휴식은 앰버, 긴 휴식은
+   그린으로 링과 배지 색이 바뀌는 기존 신호등 패턴은 그대로 유지합니다. */
+
+:root {
+  --pomo-focus: #8b5cf6;
+  --pomo-focus-glow: rgba(139, 92, 246, 0.55);
+  --pomo-short-break: #f59e0b;
+  --pomo-short-break-glow: rgba(245, 158, 11, 0.5);
+  --pomo-long-break: #22c55e;
+  --pomo-long-break-glow: rgba(34, 197, 94, 0.5);
+  --pomo-active: var(--pomo-focus);
+  --pomo-active-glow: var(--pomo-focus-glow);
+  --pomo-card-bg: rgba(255, 255, 255, 0.04);
+  --pomo-card-border: rgba(255, 255, 255, 0.09);
+  --pomo-text: #f1f5f9;
+  --pomo-text-muted: #97a0b3;
+  --pomo-radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(139, 92, 246, 0.28), transparent 42%),
+    radial-gradient(circle at 88% 20%, rgba(56, 189, 248, 0.14), transparent 46%),
+    radial-gradient(circle at 60% 100%, rgba(34, 197, 94, 0.14), transparent 50%),
+    #0b0a16;
+  background-attachment: fixed;
+  color: var(--pomo-text);
+  line-height: 1.6;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: rgba(11, 10, 22, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--pomo-card-bg);
+  border: 1px solid var(--pomo-card-border);
+  border-radius: 999px;
+  color: var(--pomo-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.back-link:hover {
+  color: var(--pomo-focus);
+  border-color: var(--pomo-focus);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #c4b5fd, #8b5cf6 60%, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--pomo-text-muted);
+  font-size: 1.05rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--pomo-text-muted);
+  font-size: 0.88rem;
+}
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+/* ---- 원형 링 타이머 ---- */
+
+.pomo-display-section {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 20px 28px;
+}
+
+.pomo-display-section.is-focus {
+  --pomo-active: var(--pomo-focus);
+  --pomo-active-glow: var(--pomo-focus-glow);
+}
+
+.pomo-display-section.is-short-break {
+  --pomo-active: var(--pomo-short-break);
+  --pomo-active-glow: var(--pomo-short-break-glow);
+}
+
+.pomo-display-section.is-long-break {
+  --pomo-active: var(--pomo-long-break);
+  --pomo-active-glow: var(--pomo-long-break-glow);
+}
+
+.pomo-completed-badge {
+  margin: 0 0 16px;
+  padding: 6px 16px;
+  min-height: 1em;
+  border-radius: 999px;
+  background: var(--pomo-card-bg);
+  border: 1px solid var(--pomo-card-border);
+  color: var(--pomo-text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.pomo-completed-badge:empty {
+  visibility: hidden;
+}
+
+.pomo-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 28px;
+  background: var(--pomo-card-bg);
+  border: 1px solid var(--pomo-card-border);
+  border-radius: 999px;
+}
+
+.pomo-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--pomo-text-muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pomo-tab.is-active {
+  background: var(--pomo-active);
+  color: #fff;
+  box-shadow: 0 0 16px var(--pomo-active-glow);
+}
+
+.pomo-ring-wrap {
+  position: relative;
+  width: min(78vw, 300px);
+  height: min(78vw, 300px);
+}
+
+.pomo-ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.pomo-ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 10;
+}
+
+.pomo-ring-progress {
+  fill: none;
+  stroke: var(--pomo-active);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 678.58;
+  stroke-dashoffset: 0;
+  filter: drop-shadow(0 0 10px var(--pomo-active-glow));
+  transition: stroke 0.3s ease, filter 0.3s ease;
+}
+
+.pomo-ring-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pomo-time {
+  margin: 0;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 3.4rem;
+  letter-spacing: -0.02em;
+  color: #fff;
+  /* 가변폭 폰트라 숫자마다 너비가 달라 :이 흔들려 보이는 문제 방지: 모든 숫자를 동일한 폭으로 고정 */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.pomo-phase-pill {
+  margin: 0;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--pomo-card-bg);
+  border: 1px solid var(--pomo-card-border);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--pomo-active);
+}
+
+.pomo-set-progress {
+  margin: 22px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--pomo-text-muted);
+  min-height: 1.2em;
+}
+
+/* ---- 설정 카드 ---- */
+
+.pomo-setup-section {
+  margin-top: 20px;
+  background: var(--pomo-card-bg);
+  border: 1px solid var(--pomo-card-border);
+  border-radius: var(--pomo-radius);
+  padding: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.pomo-field,
+.pomo-time-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pomo-field + .pomo-field,
+.pomo-field + .pomo-time-field,
+.pomo-time-field + .pomo-field,
+.pomo-time-field + .pomo-time-field {
+  margin-top: 14px;
+}
+
+.pomo-field label,
+.pomo-time-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--pomo-text-muted);
+}
+
+.pomo-field input {
+  padding: 11px 12px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--pomo-card-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--pomo-text);
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.pomo-field input:focus {
+  border-color: var(--pomo-focus);
+}
+
+.pomo-field input:disabled {
+  background: rgba(255, 255, 255, 0.015);
+  color: var(--pomo-text-muted);
+}
+
+.pomo-time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pomo-time-inputs input {
+  width: 60px;
+  padding: 11px 6px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--pomo-card-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--pomo-text);
+  font-family: inherit;
+  text-align: center;
+  transition: border-color 0.15s ease;
+}
+
+.pomo-time-inputs input:focus {
+  border-color: var(--pomo-focus);
+}
+
+.pomo-time-inputs input:disabled {
+  background: rgba(255, 255, 255, 0.015);
+  color: var(--pomo-text-muted);
+}
+
+.pomo-time-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pomo-text-muted);
+  margin-right: 6px;
+}
+
+.pomo-error {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+}
+
+.pomo-controls {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+}
+
+.pomo-btn {
+  flex: 1;
+  padding: 14px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--pomo-card-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--pomo-text-muted);
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.08s ease, box-shadow 0.2s ease;
+}
+
+.pomo-btn-primary {
+  border: none;
+  background: linear-gradient(135deg, var(--pomo-focus), #6d28d9);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.45);
+}
+
+.pomo-btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.pomo-btn:active {
+  transform: scale(0.98);
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pomo-card-bg);
+  border: 1px solid var(--pomo-card-border);
+  border-radius: var(--pomo-radius);
+  color: var(--pomo-text-muted);
+  font-size: 0.85rem;
+}
+
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 892px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: #c4b5fd;
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--pomo-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--pomo-text-muted);
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--pomo-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--pomo-focus);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--pomo-text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--pomo-focus);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 14px rgba(139, 92, 246, 0.5);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: #6d28d9;
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .pomo-time {
+    font-size: 2.6rem;
+  }
+
+  .pomo-tabs {
+    gap: 2px;
+  }
+
+  .pomo-tab {
+    padding: 7px 10px;
+    font-size: 0.74rem;
+  }
+
+  .pomo-time-inputs input {
+    width: 52px;
+  }
+}

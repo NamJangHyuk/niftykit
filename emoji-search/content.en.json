@@ -1,0 +1,46 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Emoji Search - Search & Copy Emoji by Name | GetNiftyKit",
+  "metaDescription": "Search emojis by name or keyword and copy them to your clipboard with one click. Multilingual search in English, Korean, Japanese and Chinese — no sign-up needed.",
+  "softwareAppName": "Emoji Search",
+  "softwareAppDescription": "A free web tool to search emojis by name in English, Korean, Japanese or Chinese and copy them to your clipboard with one click.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Emoji Search",
+  "subtitle": "Search emojis by name and copy them with one click",
+  "taglineExtra": "1,900+ emojis, searchable in English, Korean, Japanese, and Chinese — free emoji copy and paste, no sign-up required.",
+  "searchSectionAria": "Emoji search and category filter",
+  "searchPlaceholder": "Search emoji (e.g. smile, dog, heart...)",
+  "categoryTabsAria": "Filter by category",
+  "tabAll": "All",
+  "emojiGridAria": "Emoji list",
+  "recentSectionAria": "Frequently used emojis",
+  "recentSectionH2": "Frequently Used",
+  "recentClearText": "Clear history",
+  "infoIntroH2": "What is Emoji Search?",
+  "infoIntroP": "Emoji Search is a tool for finding any of 1,900+ emojis by name or keyword — in English, Korean, Japanese, or Chinese — and copying them to your clipboard with a single click. Can't quite remember the exact name of an emoji you want for a chat or social post? Just search a related word and you'll find it. Every search and copy happens instantly in your browser, with no sign-up or installation required.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Type an emoji's name or a related keyword into the search box — it works in English (e.g. \"smile\") as well as Korean, Japanese, and Chinese. If there are too many results to scan, use the category tabs (faces, animals, food, and more) to narrow things down. Click any emoji to copy it straight to your clipboard. Emoji names are also automatically shown in your browser's language.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Quickly finding an emoji by name for a chat message or social post",
+    "Checking the exact name or meaning of a specific emoji",
+    "Pasting an emoji that isn't available on your keyboard into a document"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Can I search emojis in languages other than English?",
+      "a": "Yes. You can search by emoji name and related keywords in English, Korean, Japanese, or Chinese."
+    },
+    {
+      "q": "How do I use an emoji I find?",
+      "a": "Click it to copy it straight to your clipboard. From there you can paste it (Ctrl+V or Cmd+V) into any messenger, social app, or document."
+    },
+    {
+      "q": "Do I need to sign up?",
+      "a": "No. You can search and copy emojis immediately, no account required."
+    }
+  ],
+  "privacyNote": "This tool processes every search and copy locally in your browser. Your search terms and personal data are never sent to or stored on a server."
+}

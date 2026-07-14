@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>계단 계산기 - 단수·단높이·디딤판 깊이 자동 계산 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="층고만 입력하면 표준 설계 기준에 맞춰 계단 단수, 단높이, 디딤판 깊이, 전체 수평 길이를 자동으로 계산해주는 무료 도구입니다. 셀프 인테리어와 시공 현장에서 바로 활용하세요." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/stair-calc/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/stair-calc/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/stair-calc/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/stair-calc/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/stair-calc/" />
+  <base href="../../stair-calc/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "계단 계산기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "층고를 입력하면 표준 설계 가이드라인에 맞춰 계단 단수, 단높이, 디딤판 깊이, 전체 수평 길이를 자동으로 계산해주는 무료 시공 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "이 계산 결과가 건축 법규를 완전히 만족하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 이 도구는 일반적으로 널리 쓰이는 설계 가이드라인을 참고용으로 계산해줄 뿐이며, 실제 법적 기준은 건물 용도와 지역에 따라 다릅니다. 시공 전에는 반드시 관할 지자체의 건축 법규를 확인하세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "단높이는 왜 15~20cm 범위를 기준으로 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "이 범위는 오르내릴 때 무리가 가지 않는 일반적인 보행 편의 기준으로 널리 쓰입니다. 이보다 높으면 가파르게 느껴지고, 낮으면 계단 전체 길이가 불필요하게 길어집니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "디딤판 깊이는 어떻게 계산되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "'2R+T 공식'을 사용합니다. 단높이(R)를 2배 한 값과 디딤판 깊이(T)를 더한 값이 약 60~65cm가 되도록 하는 것이 보행 시 가장 자연스러운 보폭과 맞는다고 알려져 있습니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Stair Calc</h1>
+    <p class="subtitle">층고만 입력하면 계단 단수·단높이·디딤판 깊이를 바로 계산해드려요</p>
+    <p class="tagline-extra">표준 설계 공식(2R+T 법칙)으로 균등한 단높이와 편안한 디딤판 깊이를 자동으로 산출해요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="stc-setup-section" aria-label="층고 입력">
+      <div class="stc-field">
+        <label for="stc-height">층고 (전체 높이)</label>
+        <div class="stc-input-with-unit">
+          <input type="number" id="stc-height" min="0.1" step="any" placeholder="예: 285" />
+          <span class="stc-unit">cm</span>
+        </div>
+      </div>
+      <p class="stc-error" id="stc-error" hidden>층고를 0보다 큰 숫자로 입력하세요 (권장 범위: 50~600cm).</p>
+    </section>
+
+    <section class="stc-result-section" aria-label="계산 결과" data-steps-unit="단">
+      <svg class="stc-diagram" viewBox="0 0 320 240" role="img" aria-label="계단 옆면 다이어그램">
+        <line id="stc-dim-rise-line" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick1" class="stc-dim-line" />
+        <line id="stc-dim-rise-tick2" class="stc-dim-line" />
+        <text id="stc-dim-rise-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <line id="stc-dim-run-line" class="stc-dim-line" />
+        <line id="stc-dim-run-tick1" class="stc-dim-line" />
+        <line id="stc-dim-run-tick2" class="stc-dim-line" />
+        <text id="stc-dim-run-label" class="stc-dim-label" text-anchor="middle"></text>
+
+        <path id="stc-diagram-path" fill="none" stroke="var(--stc-accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+
+        <path id="stc-angle-arc" class="stc-angle-arc" fill="none" />
+        <text id="stc-angle-label" class="stc-angle-label" text-anchor="end"></text>
+
+        <!-- 계단 단수가 많아 한 칸이 아주 작아지는 경우에도 치수가 겹쳐 보이지 않도록,
+             첫 단을 일정한 크기로 확대해 보여주는 상세 박스입니다. 실제 축척과는
+             무관하며, 점선 리더 라인으로 실제 첫 단 모서리와 연결됩니다. -->
+        <line id="stc-dim-leader" class="stc-dim-leader" />
+        <path id="stc-detail-path" fill="none" stroke="var(--stc-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+
+        <line id="stc-dim-riser-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-riser-label" class="stc-dim-label-detail" text-anchor="end"></text>
+
+        <line id="stc-dim-tread-line" class="stc-dim-line-detail" />
+        <text id="stc-dim-tread-label" class="stc-dim-label-detail" text-anchor="middle"></text>
+      </svg>
+
+      <div class="stc-result-grid">
+        <div class="stc-result-card">
+          <span class="stc-result-label">단수</span>
+          <span class="stc-result-value" id="stc-result-steps">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">실제 단높이</span>
+          <span class="stc-result-value" id="stc-result-riser">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">권장 디딤판 깊이</span>
+          <span class="stc-result-value" id="stc-result-tread">–</span>
+        </div>
+        <div class="stc-result-card">
+          <span class="stc-result-label">전체 수평 길이</span>
+          <span class="stc-result-value" id="stc-result-run">–</span>
+        </div>
+      </div>
+
+      <p class="stc-warning" id="stc-riser-warning" hidden>⚠ 단높이가 표준 권장 범위(15~20cm)를 벗어났어요. 층고를 다시 확인해 주세요.</p>
+      <p class="stc-warning" id="stc-tread-warning" hidden>⚠ 디딤판 깊이가 최소 권장값(26cm)보다 좁아요. 실제 시공 시 더 넓게 조정하는 것이 좋아요.</p>
+
+      <p class="stc-disclaimer">이 계산 결과는 일반적인 설계 가이드라인을 참고용으로 제공하는 것이며, 법적 기준을 보장하지 않습니다. 실제 시공 전에는 반드시 관할 지자체의 건축 법규를 확인하세요.</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>계단 계산기란?</h2>
+      <p>
+        계단 계산기(Stair Calc)는 층고(바닥에서 다음 층 바닥까지의 전체 높이)만 입력하면 계단 설계에 필요한 핵심 수치를 자동으로 계산해주는 도구입니다. 계단 단높이는 보통 15~20cm, 그 중에서도 17~18cm가 오르내리기 편한 범위로 권장되는데, 이 도구는 그 범위 안에서 모든 단의 높이가 균등해지도록 단수를 자동으로 정합니다. 이어서 오래전부터 쓰여온 '2R+T 공식'(단높이×2 + 디딤판 깊이 ≈ 60~65cm)을 이용해 걷기 편안한 디딤판 깊이를 계산하고, 계단 전체가 차지하는 수평 길이까지 함께 보여줍니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        층고를 cm 단위로 입력하면 단수, 실제 단높이, 권장 디딤판 깊이, 전체 수평 길이가 즉시 계산되어 표시됩니다. 계산된 단높이나 디딤판 깊이가 표준 권장 범위를 벗어나면 경고 문구가 함께 나타나니, 그런 경우 층고를 다시 확인하거나 전문가와 상담하는 것이 좋습니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>셀프 인테리어로 다락방이나 복층 계단을 직접 설계하고 싶을 때</li>
+        <li>목수·시공자가 현장에서 빠르게 표준 계단 규격을 확인하고 싶을 때</li>
+        <li>리모델링 전 기존 계단이 표준 범위에 맞는지 점검하고 싶을 때</li>
+        <li>설계 도면을 그리기 전 대략적인 계단 수치를 미리 가늠하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>이 계산 결과가 건축 법규를 완전히 만족하나요?</dt>
+          <dd>아니요. 이 도구는 일반적으로 널리 쓰이는 설계 가이드라인을 참고용으로 계산해줄 뿐이며, 실제 법적 기준은 건물 용도와 지역에 따라 다릅니다. 시공 전에는 반드시 관할 지자체의 건축 법규를 확인하세요.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>단높이는 왜 15~20cm 범위를 기준으로 하나요?</dt>
+          <dd>이 범위는 오르내릴 때 무리가 가지 않는 일반적인 보행 편의 기준으로 널리 쓰입니다. 이보다 높으면 가파르게 느껴지고, 낮으면 계단 전체 길이가 불필요하게 길어집니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>디딤판 깊이는 어떻게 계산되나요?</dt>
+          <dd>'2R+T 공식'을 사용합니다. 단높이(R)를 2배 한 값과 디딤판 깊이(T)를 더한 값이 약 60~65cm가 되도록 하는 것이 보행 시 가장 자연스러운 보폭과 맞는다고 알려져 있습니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 계산을 브라우저에서만 처리하며, 입력한 값을 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

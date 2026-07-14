@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>番茄钟 - 专注·休息自动循环学习计时器免费应用 | GetNiftyKit</title>
+  <meta name="description" content="输入专注时间和休息时间，即可按番茄工作法自动循环运行的学习计时器。每次阶段切换都会有声音和浏览器通知提示。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/pomodoro-timer/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/pomodoro-timer/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/pomodoro-timer/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <base href="../../pomodoro-timer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "番茄钟",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "按照番茄工作法自动循环进行专注·短休息·长休息阶段，并在每次阶段切换时发出声音和浏览器通知的免费学习计时器。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "切换到其他标签页时还能保持准确吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。计时器每次都会重新计算自开始以来实际经过的时间，因此即使浏览器在后台标签页中降低了计时器运行频率，只要您切换回来，就会自动校准到正确的时间点。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一定要开启浏览器通知吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不需要。即使不允许通知，您也能通过声音和画面显示了解阶段切换。通知只是在您查看其他标签页时提供额外帮助的可选功能。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以自由更改专注·休息时间吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。您可以自行输入专注时间、短休息、长休息以及长休息前的循环次数，按自己喜欢的方式设置。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Pomodoro Timer</h1>
+    <p class="subtitle">自动循环专注与休息，并统计已完成的番茄钟数量</p>
+    <p class="tagline-extra">每次阶段切换都有声音和浏览器通知提示，即使切换到其他标签页时间也不会出错。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="pomo-display-section"
+      id="pomo-display"
+      aria-label="番茄钟画面"
+      data-focus-label="专注"
+      data-short-break-label="短休息"
+      data-long-break-label="长休息"
+      data-ready-label="准备"
+      data-set-template="番茄钟 {current}/{total}"
+      data-completed-label="已完成的番茄钟"
+      data-notify-focus-title="开始专注"
+      data-notify-focus-body="让我们专注于这个番茄钟吧。"
+      data-notify-short-break-title="短休息"
+      data-notify-short-break-body="稍作休息后再重新开始吧。"
+      data-notify-long-break-title="长休息"
+      data-notify-long-break-body="好好休息，为下一轮做好准备。"
+    >
+      <p class="pomo-completed-badge" id="pomo-completed"></p>
+
+      <div class="pomo-tabs" id="pomo-tabs">
+        <span class="pomo-tab" id="pomo-tab-focus" data-phase="focus">专注</span>
+        <span class="pomo-tab" id="pomo-tab-shortBreak" data-phase="shortBreak">短休息</span>
+        <span class="pomo-tab" id="pomo-tab-longBreak" data-phase="longBreak">长休息</span>
+      </div>
+
+      <div class="pomo-ring-wrap">
+        <svg class="pomo-ring-svg" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="pomo-ring-track" cx="120" cy="120" r="108" />
+          <circle class="pomo-ring-progress" id="pomo-ring-progress" cx="120" cy="120" r="108" />
+        </svg>
+        <div class="pomo-ring-content">
+          <p class="pomo-time" id="pomo-time">00:00</p>
+          <p class="pomo-phase-pill" id="pomo-phase-label">准备</p>
+        </div>
+      </div>
+
+      <p class="pomo-set-progress" id="pomo-set-progress"></p>
+    </section>
+
+    <section class="pomo-setup-section" aria-label="番茄钟设置">
+      <div class="pomo-time-field">
+        <label id="pomo-work-label">专注时间</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-work-label">
+          <input type="number" id="pomo-work-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">时</span>
+          <input type="number" id="pomo-work-m" min="0" max="59" value="25" />
+          <span class="pomo-time-unit">分</span>
+          <input type="number" id="pomo-work-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">秒</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-short-break-label">短休息</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-short-break-label">
+          <input type="number" id="pomo-short-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">时</span>
+          <input type="number" id="pomo-short-break-m" min="0" max="59" value="5" />
+          <span class="pomo-time-unit">分</span>
+          <input type="number" id="pomo-short-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">秒</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-long-break-label">长休息</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-long-break-label">
+          <input type="number" id="pomo-long-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">时</span>
+          <input type="number" id="pomo-long-break-m" min="0" max="59" value="15" />
+          <span class="pomo-time-unit">分</span>
+          <input type="number" id="pomo-long-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">秒</span>
+        </div>
+      </div>
+
+      <div class="pomo-field">
+        <label for="pomo-cycles">长休息前的循环次数</label>
+        <input type="number" id="pomo-cycles" min="1" max="12" value="4" />
+      </div>
+
+      <p class="pomo-error" id="pomo-error" hidden>专注·短休息·长休息时间必须各至少为1秒，循环次数须输入1以上的数字。</p>
+
+      <div class="pomo-controls">
+        <button type="button" id="pomo-start-btn" class="pomo-btn pomo-btn-primary">开始</button>
+        <button
+          type="button"
+          id="pomo-pause-btn"
+          class="pomo-btn"
+          hidden
+          data-pause-label="暂停"
+          data-resume-label="继续"
+        >暂停</button>
+        <button type="button" id="pomo-reset-btn" class="pomo-btn" hidden>重置</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是番茄钟？</h2>
+      <p>
+        番茄钟（Pomodoro Timer）的名字来源于意大利语中意为「番茄」的「番茄工作法」，是一种时间管理方法：在设定的专注时间（默认25分钟）内全神贯注于一项任务，随后进行短休息（默认5分钟），如此循环数次后再进行更长的休息（默认15分钟）。本工具会自动计算并循环进行专注·休息阶段，即使将浏览器标签页切换到其他画面，也会以实际经过的时间为基准精确校准，因此时间不会出现偏差。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        请分别以时·分·秒为单位，按需精细设置专注时间、短休息时间和长休息时间，并确定长休息前要循环的次数，然后点击「开始」按钮，即可立即开始第一个专注阶段。每次阶段切换时都会播放提示音，如果允许浏览器通知，即使您在查看其他标签页，也能通过通知收到提醒。每完成一个专注阶段，已完成的番茄钟数量就会增加一个。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>长时间学习或工作时想保持专注力</li>
+        <li>不想自己判断休息时机，希望自动获得提示</li>
+        <li>想记录今天完成了几个番茄钟，获得成就感</li>
+        <li>在其他标签页工作时，也想通过通知确认阶段切换</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>切换到其他标签页时还能保持准确吗？</dt>
+          <dd>可以。计时器每次都会重新计算自开始以来实际经过的时间，因此即使浏览器在后台标签页中降低了计时器运行频率，只要您切换回来，就会自动校准到正确的时间点。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>一定要开启浏览器通知吗？</dt>
+          <dd>不需要。即使不允许通知，您也能通过声音和画面显示了解阶段切换。通知只是在您查看其他标签页时提供额外帮助的可选功能。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>可以自由更改专注·休息时间吗？</dt>
+          <dd>可以。您可以自行输入专注时间、短休息、长休息以及长休息前的循环次数，按自己喜欢的方式设置。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的时间计算和通知功能完全在浏览器中处理，没有任何数据会被发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GetNiftyKitについて</title>
+  <meta name="description" content="GetNiftyKitは、会員登録不要で一つのことを確実にこなす無料ブラウザツール集です。ツールは今後も追加され続けます。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/about/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/about/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/about/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/about/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/about/" />
+  <base href="../../" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>GetNiftyKitについて</h1>
+    <p class="subtitle">会員登録もインストールも設定も不要で、一つのことを確実にこなす小さな無料ブラウザツール集です。</p>
+  </header>
+
+  <main class="info-section">
+    <h2>GetNiftyKitとは？</h2>
+    <p>GetNiftyKitは、会員登録もソフトウェアのインストールも不要で、ブラウザからすぐに使える無料のウェブツール集です。国旗画像のダウンロード、絵文字や特殊文字の検索・コピー、QRコードの作成など、日常や仕事でときどき必要になるのに、いざ探すと面倒な作業を、それぞれ一つの目的に絞ったツールですばやく簡単にこなせるようにしています。検索でこのページにたどり着いた方が、余計な画面に惑わされず欲しい結果にすぐたどり着けることを目指しています。ツールは今後も追加され続けますが、新しいツールもすべて同じ方針に従います——強制的な会員登録や複雑な設定はなく、入力内容はサーバーに送信・保存されず、ブラウザ内だけで処理されます。</p>
+
+    <h2>仕組み</h2>
+    <p>すべてのツールはブラウザ内でのみ動作します。会員登録は不要で、検索語句がサーバーに送信されることもなく、プライバシーポリシーに記載されている以上のデータを収集することはありません。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>ご意見やバグ報告、ツールのアイデアがございましたら、 <a href="https://forms.gle/3NPQoMPL7oJo2pwV7" target="_blank" rel="noopener noreferrer">こちらからお知らせください</a></p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+/* 가마 적재 개수 계산기(Kiln Loading) 전용 스타일
+   테마: 같은 CLAUDE.md 5-4 "전문가용 시공 도구" 카테고리라 절제된 다크모드를
+   이어가되, 인디고 포인트 컬러로 다른 다크모드 도구(시안·앰버·그린·테라코타)와
+   확실히 구분되게 했습니다. */
+
+:root {
+  --kl-bg: #0f172a;
+  --kl-card-bg: #1e293b;
+  --kl-border: #334155;
+  --kl-text: #e2e8f0;
+  --kl-text-muted: #94a3b8;
+  --kl-accent: #6366f1;
+  --kl-accent-dark: #4f46e5;
+  --kl-line: #64748b;
+  --kl-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--kl-bg);
+  color: var(--kl-text);
+  line-height: 1.6;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--kl-bg);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--kl-card-bg);
+  border: 1px solid var(--kl-border);
+  border-radius: 999px;
+  color: var(--kl-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.back-link:hover {
+  color: var(--kl-accent);
+  border-color: var(--kl-accent);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  color: var(--kl-accent);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--kl-text-muted);
+  font-size: 1.1rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--kl-text-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.kl-card {
+  margin-top: 20px;
+  background: var(--kl-card-bg);
+  border: 1px solid var(--kl-border);
+  border-radius: var(--kl-radius);
+  padding: 20px;
+}
+
+.kl-card-heading {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  color: var(--kl-accent);
+}
+
+.kl-field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.kl-field-row[hidden] {
+  display: none;
+}
+
+.kl-field-row + .kl-field-row {
+  margin-top: 14px;
+}
+
+.kl-field {
+  flex: 1;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kl-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--kl-text-muted);
+}
+
+.kl-input-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kl-input-with-unit input {
+  flex: 1;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 2px solid var(--kl-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--kl-text);
+  background: var(--kl-bg);
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.kl-input-with-unit input:focus {
+  border-color: var(--kl-accent);
+}
+
+.kl-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--kl-text-muted);
+}
+
+.kl-radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.kl-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border: 2px solid var(--kl-border);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--kl-text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.kl-radio:has(input:checked) {
+  border-color: var(--kl-accent);
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--kl-accent);
+  font-weight: 600;
+}
+
+.kl-radio input {
+  accent-color: var(--kl-accent);
+}
+
+.kl-error {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+.kl-result-section {
+  margin-top: 20px;
+  background: var(--kl-card-bg);
+  border: 1px solid var(--kl-border);
+  border-radius: var(--kl-radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.kl-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.kl-result-card {
+  background: var(--kl-bg);
+  border: 1px solid var(--kl-border);
+  border-radius: 10px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kl-result-card-accent {
+  grid-column: 1 / -1;
+  border-color: var(--kl-accent);
+}
+
+.kl-result-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--kl-text-muted);
+}
+
+.kl-result-value {
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--kl-text);
+}
+
+.kl-result-card-accent .kl-result-value {
+  color: var(--kl-accent);
+}
+
+.kl-diagrams {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kl-diagrams[hidden] {
+  display: none;
+}
+
+.kl-diagram-block {
+  flex: 1;
+  min-width: 220px;
+  max-width: 320px;
+}
+
+.kl-diagram-caption {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--kl-text-muted);
+}
+
+.kl-diagram {
+  width: 100%;
+  height: auto;
+}
+
+.kl-piece-shape {
+  fill: var(--kl-accent);
+  opacity: 0.85;
+}
+
+.kl-board-outline {
+  fill: rgba(99, 102, 241, 0.08);
+  stroke: var(--kl-accent);
+  stroke-width: 1.2;
+}
+
+.kl-shelf-line {
+  fill: var(--kl-accent);
+}
+
+.kl-diagram-dim-label {
+  font-size: 13px;
+  fill: var(--kl-text-muted);
+  font-weight: 600;
+}
+
+/* 위에서 본 다이어그램(viewBox 240)은 옆에서 본 다이어그램(viewBox 180)보다 배율이 낮아
+   같은 font-size라도 실제 렌더링 크기가 더 작게 보입니다. 두 다이어그램의 글씨 크기를
+   맞추기 위해 위에서 본 다이어그램 쪽만 배율 차이(240/180)만큼 키웁니다. */
+#kl-diagram-top .kl-diagram-dim-label {
+  font-size: 17.3px;
+}
+
+.kl-diagram-dim-label-accent {
+  fill: var(--kl-accent);
+  font-weight: 700;
+}
+
+.kl-disclaimer {
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--kl-border);
+  font-size: 0.78rem;
+  color: var(--kl-text-muted);
+  text-align: left;
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--kl-card-bg);
+  border: 1px solid var(--kl-border);
+  border-radius: var(--kl-radius);
+  color: var(--kl-text-muted);
+  font-size: 0.85rem;
+}
+
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 932px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: var(--kl-accent);
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--kl-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--kl-text-muted);
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--kl-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--kl-accent);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--kl-text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--kl-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: var(--kl-accent-dark);
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .kl-result-grid {
+    grid-template-columns: 1fr;
+  }
+}

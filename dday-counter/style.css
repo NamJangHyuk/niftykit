@@ -1,0 +1,490 @@
+/* 디데이 계산기 도구 전용 스타일
+   테마: 카운트다운의 긴장감·설렘을 살린 크림슨/로즈 계열 — 다른 도구들(블루/오렌지/
+   보라/청록/인디고/마젠타)과 확실히 다른 톤으로 구분합니다. */
+
+:root {
+  --dday-primary: #e11d48;
+  --dday-primary-dark: #be123c;
+  --dday-bg: #f7f7f7;
+  --dday-card-bg: #ffffff;
+  --dday-border: #e2e8f0;
+  --dday-text: #212529;
+  --dday-text-muted: #53575e;
+  --dday-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--dday-bg);
+  color: var(--dday-text);
+  line-height: 1.6;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--dday-bg);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--dday-card-bg);
+  border: 1px solid var(--dday-border);
+  border-radius: 999px;
+  color: var(--dday-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.back-link:hover {
+  color: var(--dday-primary);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  color: var(--dday-primary-dark);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--dday-text-muted);
+  font-size: 1.1rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--dday-text-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.dday-form-section {
+  margin-top: 24px;
+  background: var(--dday-card-bg);
+  border: 1px solid var(--dday-border);
+  border-radius: var(--dday-radius);
+  padding: 20px;
+}
+
+.dday-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.dday-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dday-field-name {
+  flex: 1;
+  min-width: 160px;
+}
+
+.dday-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dday-text-muted);
+}
+
+.dday-field input {
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  border: 2px solid var(--dday-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--dday-text);
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.dday-field input:focus {
+  border-color: var(--dday-primary);
+}
+
+/* 네이티브 <input type="date"> 대신 직접 만든 달력 UI를 씁니다. 트리거는 입력창과
+   똑같이 생긴 버튼이고, 누르면 아래에 큼직한 날짜 그리드가 펼쳐집니다. */
+.dday-date-trigger {
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  border: 2px solid var(--dday-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--dday-text-muted);
+  background: var(--dday-card-bg);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-width: 180px;
+  transition: border-color 0.15s ease;
+}
+
+.dday-date-trigger.has-value {
+  color: var(--dday-text);
+}
+
+.dday-date-trigger:hover,
+.dday-date-trigger:focus {
+  border-color: var(--dday-primary);
+}
+
+.dday-calendar {
+  margin-top: 14px;
+  padding: 16px;
+  background: var(--dday-card-bg);
+  border: 2px solid var(--dday-border);
+  border-radius: var(--dday-radius);
+}
+
+.dday-calendar[hidden] {
+  display: none;
+}
+
+.dday-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.dday-cal-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--dday-text);
+}
+
+.dday-cal-nav {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border: 1px solid var(--dday-border);
+  border-radius: 50%;
+  background: var(--dday-card-bg);
+  color: var(--dday-text-muted);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.dday-cal-nav:hover {
+  border-color: var(--dday-primary);
+  color: var(--dday-primary);
+}
+
+.dday-calendar-weekdays,
+.dday-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.dday-calendar-weekdays span {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--dday-text-muted);
+  padding: 4px 0;
+}
+
+.dday-cal-day {
+  aspect-ratio: 1;
+  min-height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: var(--dday-bg);
+  color: var(--dday-text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.dday-cal-day:hover {
+  background: #fde2e8;
+}
+
+.dday-cal-day.is-today {
+  box-shadow: inset 0 0 0 2px var(--dday-primary);
+}
+
+.dday-cal-day.is-selected {
+  background: var(--dday-primary);
+  color: #fff;
+}
+
+.dday-add-btn {
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  background: var(--dday-primary);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.dday-add-btn:hover {
+  background: var(--dday-primary-dark);
+}
+
+.dday-error {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #b91c1c;
+  font-size: 0.85rem;
+}
+
+.dday-list-section {
+  margin-top: 24px;
+}
+
+.dday-empty {
+  text-align: center;
+  color: var(--dday-text-muted);
+  padding: 40px 16px;
+  background: var(--dday-card-bg);
+  border: 1px dashed var(--dday-border);
+  border-radius: var(--dday-radius);
+}
+
+.dday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dday-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--dday-card-bg);
+  border: 1px solid var(--dday-border);
+  border-radius: var(--dday-radius);
+  padding: 16px 20px;
+}
+
+.dday-card.is-today {
+  border-color: var(--dday-primary);
+  box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.15);
+}
+
+.dday-card.is-past {
+  opacity: 0.65;
+}
+
+.dday-number {
+  flex: 0 0 auto;
+  min-width: 88px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 1.7rem;
+  color: var(--dday-primary);
+  text-align: center;
+}
+
+.dday-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dday-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dday-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dday-date {
+  font-size: 0.82rem;
+  color: var(--dday-text-muted);
+  margin-top: 2px;
+}
+
+.dday-delete-btn {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--dday-border);
+  border-radius: 999px;
+  background: none;
+  color: var(--dday-text-muted);
+  cursor: pointer;
+}
+
+.dday-delete-btn:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dday-card-bg);
+  border: 1px solid var(--dday-border);
+  border-radius: var(--dday-radius);
+  color: var(--dday-text-muted);
+  font-size: 0.85rem;
+}
+
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 972px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: var(--dday-primary-dark);
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--dday-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--dday-text-muted);
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--dday-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--dday-primary);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--dday-text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--dday-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(225, 29, 72, 0.3);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: var(--dday-primary-dark);
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .dday-form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dday-add-btn {
+    width: 100%;
+  }
+
+  .dday-card {
+    flex-wrap: wrap;
+  }
+
+  .dday-number {
+    min-width: 70px;
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포모도로 타이머 - 집중·휴식 자동 반복 학습 타이머 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="집중 시간과 휴식 시간을 입력하면 포모도로 기법대로 자동으로 반복 진행되는 학습 타이머입니다. 구간이 바뀔 때마다 소리와 브라우저 알림으로 알려드려요." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/pomodoro-timer/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/pomodoro-timer/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/pomodoro-timer/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/pomodoro-timer/" />
+  <base href="../../pomodoro-timer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "포모도로 타이머",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "집중·짧은 휴식·긴 휴식 구간을 포모도로 기법에 따라 자동으로 반복 진행하고, 구간이 바뀔 때마다 소리와 브라우저 알림을 보내주는 무료 학습 타이머입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "다른 탭에 있어도 정확하게 동작하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 매 순간 시작 시각과의 실제 경과 시간을 다시 계산하는 방식이라, 브라우저가 백그라운드 탭의 타이머 주기를 늦추더라도 탭으로 돌아오면 항상 정확한 지점으로 스스로 맞춰집니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "브라우저 알림은 꼭 켜야 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 알림을 허용하지 않아도 소리와 화면 표시로 구간 전환을 안내받을 수 있습니다. 알림은 다른 탭을 보고 있을 때 추가로 도움이 되는 선택 기능입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "집중/휴식 시간을 자유롭게 바꿀 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 집중 시간, 짧은 휴식, 긴 휴식, 긴 휴식 전 반복 횟수를 모두 직접 입력해서 원하는 방식으로 설정할 수 있습니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Pomodoro Timer</h1>
+    <p class="subtitle">집중과 휴식을 자동으로 반복하며 완료한 포모도로 개수를 세어드려요</p>
+    <p class="tagline-extra">구간이 바뀔 때마다 소리와 브라우저 알림으로 알려드리고, 탭을 다른 곳에 두어도 시간이 어긋나지 않아요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="pomo-display-section"
+      id="pomo-display"
+      aria-label="포모도로 타이머 화면"
+      data-focus-label="집중"
+      data-short-break-label="짧은 휴식"
+      data-long-break-label="긴 휴식"
+      data-ready-label="준비"
+      data-set-template="포모도로 {current}/{total}"
+      data-completed-label="완료한 포모도로"
+      data-notify-focus-title="집중 시작"
+      data-notify-focus-body="이번 포모도로에 집중해 보세요."
+      data-notify-short-break-title="짧은 휴식"
+      data-notify-short-break-body="잠깐 쉬었다가 다시 시작해요."
+      data-notify-long-break-title="긴 휴식"
+      data-notify-long-break-body="충분히 쉬고 다음 세트를 준비하세요."
+    >
+      <p class="pomo-completed-badge" id="pomo-completed"></p>
+
+      <div class="pomo-tabs" id="pomo-tabs">
+        <span class="pomo-tab" id="pomo-tab-focus" data-phase="focus">집중</span>
+        <span class="pomo-tab" id="pomo-tab-shortBreak" data-phase="shortBreak">짧은 휴식</span>
+        <span class="pomo-tab" id="pomo-tab-longBreak" data-phase="longBreak">긴 휴식</span>
+      </div>
+
+      <div class="pomo-ring-wrap">
+        <svg class="pomo-ring-svg" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="pomo-ring-track" cx="120" cy="120" r="108" />
+          <circle class="pomo-ring-progress" id="pomo-ring-progress" cx="120" cy="120" r="108" />
+        </svg>
+        <div class="pomo-ring-content">
+          <p class="pomo-time" id="pomo-time">00:00</p>
+          <p class="pomo-phase-pill" id="pomo-phase-label">준비</p>
+        </div>
+      </div>
+
+      <p class="pomo-set-progress" id="pomo-set-progress"></p>
+    </section>
+
+    <section class="pomo-setup-section" aria-label="포모도로 설정">
+      <div class="pomo-time-field">
+        <label id="pomo-work-label">집중 시간</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-work-label">
+          <input type="number" id="pomo-work-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">시간</span>
+          <input type="number" id="pomo-work-m" min="0" max="59" value="25" />
+          <span class="pomo-time-unit">분</span>
+          <input type="number" id="pomo-work-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">초</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-short-break-label">짧은 휴식</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-short-break-label">
+          <input type="number" id="pomo-short-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">시간</span>
+          <input type="number" id="pomo-short-break-m" min="0" max="59" value="5" />
+          <span class="pomo-time-unit">분</span>
+          <input type="number" id="pomo-short-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">초</span>
+        </div>
+      </div>
+
+      <div class="pomo-time-field">
+        <label id="pomo-long-break-label">긴 휴식</label>
+        <div class="pomo-time-inputs" role="group" aria-labelledby="pomo-long-break-label">
+          <input type="number" id="pomo-long-break-h" min="0" max="23" value="0" />
+          <span class="pomo-time-unit">시간</span>
+          <input type="number" id="pomo-long-break-m" min="0" max="59" value="15" />
+          <span class="pomo-time-unit">분</span>
+          <input type="number" id="pomo-long-break-s" min="0" max="59" value="0" />
+          <span class="pomo-time-unit">초</span>
+        </div>
+      </div>
+
+      <div class="pomo-field">
+        <label for="pomo-cycles">긴 휴식 전 반복 횟수</label>
+        <input type="number" id="pomo-cycles" min="1" max="12" value="4" />
+      </div>
+
+      <p class="pomo-error" id="pomo-error" hidden>집중·짧은 휴식·긴 휴식 시간은 각각 최소 1초 이상이어야 하고, 반복 횟수는 1 이상의 숫자로 입력하세요.</p>
+
+      <div class="pomo-controls">
+        <button type="button" id="pomo-start-btn" class="pomo-btn pomo-btn-primary">시작</button>
+        <button
+          type="button"
+          id="pomo-pause-btn"
+          class="pomo-btn"
+          hidden
+          data-pause-label="일시정지"
+          data-resume-label="재개"
+        >일시정지</button>
+        <button type="button" id="pomo-reset-btn" class="pomo-btn" hidden>초기화</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>포모도로 타이머란?</h2>
+      <p>
+        포모도로 타이머(Pomodoro Timer)는 이탈리아어로 토마토를 뜻하는 '포모도로 기법'에서 이름을 딴 시간 관리 도구입니다. 정해진 집중 시간(기본 25분) 동안 한 가지 작업에 몰입한 뒤 짧은 휴식(기본 5분)을 갖고, 이 과정을 여러 번 반복한 뒤에는 더 긴 휴식(기본 15분)을 취하는 방식으로 진행됩니다. 이 도구는 집중·휴식 구간을 자동으로 계산해서 반복 진행하며, 브라우저 탭을 다른 화면으로 전환해두어도 실제 경과 시간을 기준으로 정확하게 다시 맞춰지기 때문에 시간이 밀리지 않습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        집중 시간, 짧은 휴식 시간, 긴 휴식 시간을 각각 시간·분·초 단위로 원하는 만큼 세밀하게 입력하고, 긴 휴식이 오기 전까지 반복할 횟수를 정한 뒤 &quot;시작&quot; 버튼을 누르면 바로 첫 집중 구간이 시작됩니다. 구간이 바뀔 때마다 소리가 재생되고, 브라우저 알림 권한을 허용하면 다른 탭을 보고 있어도 알림으로 안내받을 수 있습니다. 집중 구간이 끝날 때마다 완료한 포모도로 개수가 하나씩 올라갑니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>장시간 앉아서 공부하거나 업무를 볼 때 집중력을 유지하고 싶을 때</li>
+        <li>쉬는 타이밍을 스스로 판단하지 않고 자동으로 안내받고 싶을 때</li>
+        <li>오늘 몇 번의 포모도로를 완료했는지 기록하며 성취감을 느끼고 싶을 때</li>
+        <li>다른 탭에서 작업하면서도 구간이 바뀔 때 알림으로 확인하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>다른 탭에 있어도 정확하게 동작하나요?</dt>
+          <dd>네. 매 순간 시작 시각과의 실제 경과 시간을 다시 계산하는 방식이라, 브라우저가 백그라운드 탭의 타이머 주기를 늦추더라도 탭으로 돌아오면 항상 정확한 지점으로 스스로 맞춰집니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>브라우저 알림은 꼭 켜야 하나요?</dt>
+          <dd>아니요. 알림을 허용하지 않아도 소리와 화면 표시로 구간 전환을 안내받을 수 있습니다. 알림은 다른 탭을 보고 있을 때 추가로 도움이 되는 선택 기능입니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>집중/휴식 시간을 자유롭게 바꿀 수 있나요?</dt>
+          <dd>네. 집중 시간, 짧은 휴식, 긴 휴식, 긴 휴식 전 반복 횟수를 모두 직접 입력해서 원하는 방식으로 설정할 수 있습니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 시간 계산과 알림을 브라우저에서만 처리하며, 서버로 전송하거나 저장하는 데이터가 없습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

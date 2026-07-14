@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>絵文字検索 - 名前で探してコピー | GetNiftyKit</title>
+  <meta name="description" content="絵文字を名前やキーワードで検索して、ワンクリックでコピーできます。日本語・英語・韓国語・中国語に対応、会員登録は不要です。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/emoji-search/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/emoji-search/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/emoji-search/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/emoji-search/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/emoji-search/" />
+  <base href="../../emoji-search/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "絵文字検索",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "日本語・英語・韓国語・中国語で絵文字を名前検索し、ワンクリックでクリップボードにコピーできる無料のウェブツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "絵文字は日本語で検索できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。絵文字の名前や関連キーワードを日本語で検索できます。英語・韓国語・中国語での検索にも対応しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "絵文字はどうやって使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "絵文字をクリックすると、そのままクリップボードにコピーされます。コピーした絵文字はメッセージアプリやSNS、文書など、どこにでも貼り付け（Ctrl+VまたはCmd+V）できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会員登録は必要ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ、会員登録なしですぐに検索・コピーができます。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>絵文字検索</h1>
+    <p class="subtitle">絵文字を名前で検索して、ワンクリックでコピー</p>
+    <p class="tagline-extra">1900種類以上の絵文字を日本語・英語・韓国語・中国語で検索。会員登録不要の無料コピー&amp;ペーストツールです。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="recent-section" id="recent-section" hidden aria-label="よく使う絵文字">
+      <div class="recent-header">
+        <h2>よく使う絵文字</h2>
+        <button type="button" class="recent-clear" id="recent-clear">履歴を削除</button>
+      </div>
+      <div class="recent-grid" id="recent-grid"></div>
+    </section>
+
+    <section class="search-section" aria-label="絵文字検索とカテゴリフィルター">
+      <div class="search-input-wrap">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 20 20" width="18" height="18">
+          <circle cx="8.5" cy="8.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="絵文字を検索（例: 笑顔, smile, 犬, dog...）"
+          autocomplete="off"
+        />
+      </div>
+      <div class="category-tabs" id="category-tabs" role="tablist" aria-label="カテゴリで絞り込み">
+        <button type="button" class="category-tab is-active" data-group="all" role="tab" aria-selected="true">すべて</button>
+        <!-- 나머지 카테고리 탭은 script.js가 emojis.json의 groups로 채웁니다 -->
+      </div>
+    </section>
+
+    <p class="result-count" id="result-count"></p>
+
+    <section class="emoji-sections" id="emoji-grid" aria-label="絵文字一覧">
+      <!-- script.js가 여기에 이모지 카드들을 렌더링합니다 -->
+    </section>
+
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>絵文字検索とは？</h2>
+      <p>
+        絵文字検索は、1,900種類以上の絵文字を日本語・英語・韓国語・中国語の名前やキーワードで検索して、ワンクリックでクリップボードにコピーできるツールです。チャットやSNSに使いたい絵文字の正確な名前を思い出せなくても、関連する単語で検索すればすぐに見つかります。検索・コピーはすべてブラウザ上で即座に処理され、会員登録やインストールは一切不要です。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        検索欄に絵文字の名前や関連キーワードを入力してください。日本語（例:「笑顔」）と英語（例:「smile」）どちらでも検索できます。絵文字が多すぎて探しにくいときは、表情・動物・食べ物などのカテゴリタブで絞り込むこともできます。絵文字をクリックすると、そのままクリップボードにコピーされます。また、お使いのブラウザの言語に合わせて絵文字の名前が自動的に表示されます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>チャットやSNSに使う絵文字を名前ですばやく探したいとき</li>
+        <li>特定の絵文字の正確な名前や意味を確認したいとき</li>
+        <li>キーボードにない絵文字を文書に貼り付けたいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>絵文字は日本語で検索できますか？</dt>
+          <dd>はい。絵文字の名前や関連キーワードを日本語で検索できます。英語・韓国語・中国語での検索にも対応しています。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>絵文字はどうやって使いますか？</dt>
+          <dd>絵文字をクリックすると、そのままクリップボードにコピーされます。コピーした絵文字はメッセージアプリやSNS、文書など、どこにでも貼り付け（Ctrl+VまたはCmd+V）できます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>会員登録は必要ですか？</dt>
+          <dd>いいえ、会員登録なしですぐに検索・コピーができます。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはすべての検索とコピー処理をブラウザ上でローカルに行い、入力された検索語や個人情報をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

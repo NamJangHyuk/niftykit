@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선반 간격 계산기 - 책장·수납장 균등 배치 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="전체 길이, 선반 개수, 선반 두께만 입력하면 모든 칸이 균등한 간격이 되도록 각 선반의 정확한 설치 위치를 자동으로 계산해주는 무료 목공 도구입니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/shelf-spacing/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/shelf-spacing/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/shelf-spacing/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/shelf-spacing/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <base href="../../shelf-spacing/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "선반 간격 계산기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "책장·수납장의 전체 길이와 선반 개수, 두께를 입력하면 모든 칸이 균등한 간격이 되도록 각 선반의 설치 위치를 자동으로 계산해주는 무료 목공 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "선반 개수는 선반 자체의 개수를 말하나요, 칸 수를 말하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "선반 자체의 개수입니다. 예를 들어 선반 4개를 넣으면 위아래로 총 5개 칸(compartments)이 생기고, 이 도구는 그 5칸이 모두 균등한 간격이 되도록 계산합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "선반 두께는 왜 입력해야 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "선반 자체도 공간을 차지하기 때문입니다. 선반 두께를 빼지 않고 계산하면 실제로 설치했을 때 칸 간격이 계산값보다 좁아집니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "계산된 위치는 어디를 기준으로 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "케이스(책장·수납장) 맨 아래 바닥면을 0으로 두고, 그로부터 각 선반의 아랫면까지의 거리를 기준으로 계산합니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>선반 간격 계산기</h1>
+    <p class="subtitle">전체 길이와 선반 개수만 입력하면 균등한 설치 위치를 바로 계산해드려요</p>
+    <p class="tagline-extra">선반 두께까지 반영해서 모든 칸이 정확히 같은 간격이 되도록 각 선반의 위치를 계산해요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="shsp-setup-section" aria-label="선반 정보 입력">
+      <div class="shsp-field">
+        <label for="shsp-length">전체 내부 길이</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-length" min="0.1" step="any" placeholder="예: 180" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-count">선반 개수</label>
+        <input type="number" id="shsp-count" min="1" step="1" placeholder="예: 4" />
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-thickness">선반 두께</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-thickness" min="0.01" step="any" placeholder="예: 1.8" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <p class="shsp-error" id="shsp-error" hidden data-invalid-input-error="전체 길이·선반 개수·선반 두께를 모두 0보다 큰 숫자로 입력하세요." data-invalid-fit-error="선반 두께와 개수의 합이 전체 길이보다 커요. 선반 개수를 줄이거나 더 얇은 선반을 사용해 보세요."></p>
+    </section>
+
+    <section class="shsp-result-section" aria-label="계산 결과" data-compartments-unit="칸">
+      <svg class="shsp-diagram" viewBox="0 0 260 280" role="img" aria-label="선반 배치 다이어그램">
+        <rect id="shsp-case-outline" fill="none" stroke="var(--shsp-line)" stroke-width="2.5" />
+        <g id="shsp-shelves-group"></g>
+
+        <line id="shsp-dim-total-line" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick1" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick2" class="shsp-dim-line" />
+        <text id="shsp-dim-total-label" class="shsp-dim-label" text-anchor="middle"></text>
+
+        <line id="shsp-dim-gap-line" class="shsp-dim-line-detail" />
+        <text id="shsp-dim-gap-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+
+        <line id="shsp-dim-leader" class="shsp-dim-leader" />
+        <rect id="shsp-detail-shelf" fill="var(--shsp-accent)" />
+        <text id="shsp-dim-thickness-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+      </svg>
+
+      <div class="shsp-result-grid">
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">칸 간격 (유효 공간)</span>
+          <span class="shsp-result-value" id="shsp-result-gap">–</span>
+        </div>
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">칸 수</span>
+          <span class="shsp-result-value" id="shsp-result-compartments">–</span>
+        </div>
+      </div>
+
+      <p class="shsp-warning" id="shsp-gap-warning" hidden>⚠ 칸 간격이 10cm보다 좁아요. 실제 수납할 물건이 들어갈지 미리 확인해 보세요.</p>
+
+      <div class="shsp-positions" aria-label="선반별 설치 위치">
+        <h2 class="shsp-positions-heading">선반별 설치 위치 (바닥 기준)</h2>
+        <ul class="shsp-positions-list" id="shsp-positions-list" data-position-template="선반 {index}: 바닥에서 {position}"></ul>
+      </div>
+
+      <p class="shsp-disclaimer">실제 목재는 두께에 약간의 오차가 있을 수 있으니, 절단 전에 실측값으로 한 번 더 확인하는 것을 권장합니다.</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>선반 간격 계산기란?</h2>
+      <p>
+        선반 간격 계산기(Shelf Spacing Calculator)는 책장이나 수납장 내부의 전체 길이와 넣고 싶은 선반 개수, 선반 두께만 입력하면 모든 칸이 정확히 같은 간격이 되도록 각 선반의 설치 위치를 자동으로 계산해주는 도구입니다. 선반 자체가 차지하는 두께를 뺀 나머지 공간을 칸 수(선반 개수+1)로 균등하게 나누는 방식이라, 눈대중으로 표시하다 칸마다 간격이 들쭉날쭉해지는 것을 막을 수 있습니다. 계산된 결과는 바닥을 기준으로 한 각 선반의 정확한 위치 목록과, 실제 비율 그대로 그려지는 다이어그램으로 함께 확인할 수 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        책장이나 수납장의 전체 내부 길이, 넣고 싶은 선반 개수, 선반 두께를 입력하세요. 칸 간격과 칸 수가 즉시 계산되어 표시되고, 아래쪽에는 바닥을 기준으로 한 각 선반의 정확한 설치 위치가 목록으로 나옵니다. 다이어그램은 실제 입력값 비율 그대로 그려지므로, 완성됐을 때의 모습을 미리 가늠해볼 수 있습니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>책장이나 수납장을 직접 짜면서 선반을 균등한 간격으로 배치하고 싶을 때</li>
+        <li>붙박이장이나 팬트리 선반 위치를 미리 계산해서 마킹하고 싶을 때</li>
+        <li>기존 가구에 선반을 추가로 설치하기 전에 정확한 위치를 확인하고 싶을 때</li>
+        <li>선반 개수를 바꿔가며 어떤 배치가 가장 실용적인지 비교해보고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>선반 개수는 선반 자체의 개수를 말하나요, 칸 수를 말하나요?</dt>
+          <dd>선반 자체의 개수입니다. 예를 들어 선반 4개를 넣으면 위아래로 총 5개 칸(compartments)이 생기고, 이 도구는 그 5칸이 모두 균등한 간격이 되도록 계산합니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>선반 두께는 왜 입력해야 하나요?</dt>
+          <dd>선반 자체도 공간을 차지하기 때문입니다. 선반 두께를 빼지 않고 계산하면 실제로 설치했을 때 칸 간격이 계산값보다 좁아집니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>계산된 위치는 어디를 기준으로 하나요?</dt>
+          <dd>케이스(책장·수납장) 맨 아래 바닥면을 0으로 두고, 그로부터 각 선반의 아랫면까지의 거리를 기준으로 계산합니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 모든 계산을 브라우저에서만 처리하며, 입력한 값을 서버로 전송하거나 저장하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

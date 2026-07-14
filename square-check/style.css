@@ -1,0 +1,348 @@
+/* 직각 확인 계산기(Square Check) 전용 스타일
+   테마: CLAUDE.md 5-4 가이드에 따라 "현장에서 빠르게 값만 확인" 하는 전문가용
+   시공 도구는 절제된 다크모드를 권장합니다. 청사진(blueprint)을 연상시키는
+   딥 슬레이트 배경 + 시안(cyan) 포인트 컬러로, 이 프로젝트의 다른 밝은 톤
+   도구들과 확실히 구분되는 전문적인 느낌을 줍니다(이 프로젝트 최초의 다크모드 도구). */
+
+:root {
+  --sqc-bg: #0f172a;
+  --sqc-card-bg: #1e293b;
+  --sqc-border: #334155;
+  --sqc-text: #e2e8f0;
+  --sqc-text-muted: #94a3b8;
+  --sqc-accent: #22d3ee;
+  --sqc-accent-dark: #06b6d4;
+  --sqc-line: #64748b;
+  --sqc-pass: #4ade80;
+  --sqc-fail: #f87171;
+  --sqc-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--sqc-bg);
+  color: var(--sqc-text);
+  line-height: 1.6;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--sqc-bg);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--sqc-card-bg);
+  border: 1px solid var(--sqc-border);
+  border-radius: 999px;
+  color: var(--sqc-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.back-link:hover {
+  color: var(--sqc-accent);
+  border-color: var(--sqc-accent);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  color: var(--sqc-accent);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--sqc-text-muted);
+  font-size: 1.1rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--sqc-text-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.sqc-setup-section {
+  margin-top: 24px;
+  background: var(--sqc-card-bg);
+  border: 1px solid var(--sqc-border);
+  border-radius: var(--sqc-radius);
+  padding: 20px;
+}
+
+.sqc-setup-intro {
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  color: var(--sqc-text-muted);
+}
+
+.sqc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sqc-field + .sqc-field {
+  margin-top: 14px;
+}
+
+.sqc-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sqc-text-muted);
+}
+
+.sqc-field input {
+  padding: 12px 14px;
+  font-size: 1.1rem;
+  border: 2px solid var(--sqc-border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--sqc-text);
+  background: var(--sqc-bg);
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.sqc-field input:focus {
+  border-color: var(--sqc-accent);
+}
+
+.sqc-error {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 8px;
+  color: var(--sqc-fail);
+  font-size: 0.85rem;
+}
+
+.sqc-controls {
+  margin-top: 16px;
+}
+
+.sqc-reset-btn {
+  width: 100%;
+  padding: 11px 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid var(--sqc-border);
+  border-radius: 999px;
+  background: var(--sqc-bg);
+  color: var(--sqc-text-muted);
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.sqc-reset-btn:hover {
+  border-color: var(--sqc-accent);
+  color: var(--sqc-accent);
+}
+
+.sqc-result-section {
+  margin-top: 20px;
+  background: var(--sqc-card-bg);
+  border: 1px solid var(--sqc-border);
+  border-radius: var(--sqc-radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.sqc-diagram {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.sqc-diagram-label {
+  font-size: 13px;
+  fill: var(--sqc-text-muted);
+  font-weight: 600;
+}
+
+.sqc-diagram-label-accent {
+  fill: var(--sqc-accent);
+}
+
+.sqc-verify-section {
+  margin-top: 20px;
+  background: var(--sqc-card-bg);
+  border: 1px solid var(--sqc-border);
+  border-radius: var(--sqc-radius);
+  padding: 20px;
+}
+
+.sqc-verify-heading {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  color: var(--sqc-text);
+}
+
+.sqc-verify-intro {
+  margin: 0 0 14px;
+  font-size: 0.85rem;
+  color: var(--sqc-text-muted);
+}
+
+.sqc-verify-result {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.sqc-verify-result.is-pass {
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: var(--sqc-pass);
+}
+
+.sqc-verify-result.is-fail {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: var(--sqc-fail);
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sqc-card-bg);
+  border: 1px solid var(--sqc-border);
+  border-radius: var(--sqc-radius);
+  color: var(--sqc-text-muted);
+  font-size: 0.85rem;
+}
+
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 892px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: var(--sqc-accent);
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--sqc-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--sqc-text-muted);
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--sqc-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--sqc-accent);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--sqc-text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--sqc-accent);
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(34, 211, 238, 0.3);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: var(--sqc-accent-dark);
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+}

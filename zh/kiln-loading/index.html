@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>窑炉装窑数量计算器 - 陶瓷烧制数量计算免费应用 | GetNiftyKit</title>
+  <meta name="description" content="输入窑炉内部尺寸、垫板尺寸和陶瓷尺寸，即可自动计算每张垫板可摆放的数量、所需垫板数以及一次可烧制的陶瓷总数的免费陶艺工具。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/zh/kiln-loading/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/kiln-loading/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/kiln-loading/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/kiln-loading/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/kiln-loading/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/kiln-loading/" />
+  <base href="../../kiln-loading/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "窑炉装窑数量计算器",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (网页浏览器)",
+  "description": "输入窑炉内部尺寸、垫板尺寸和陶瓷尺寸，即可通过每张垫板摆放数量×垫板层数，计算出一次可烧制陶瓷总数的免费陶艺工具。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "圆形陶瓷也能精确计算吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "圆形陶瓷会按照其直径尺寸的方形格子进行保守计算。实际采用交错排列（六边形排列）等方式时可能会多装一些，但本工具提供的是安全的最小估算值。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "为什么垫板上方需要预留空间？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "为了让热量在烧制过程中均匀循环，通常会在陶瓷与上方垫板之间留出一定空间。只有考虑到这一预留空间，才能准确计算出实际可叠放的层数。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "实际数量会比计算出的数量更多吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有可能。本工具是基于网格布局的近似计算，根据陶瓷形状和实际摆放方式的不同，实际可装下的数量可能比计算值更多。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../zh/" class="back-link">← 返回全部工具</a>
+  </div>
+
+  <header class="page-header">
+    <h1>窑炉装窑数量计算器</h1>
+    <p class="subtitle">输入窑炉、垫板与陶瓷尺寸，即可计算一次能烧制多少件</p>
+    <p class="tagline-extra">将每张垫板可摆放的数量与可叠放的层数相乘，告诉您一个窑炉能装下的总数量。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="kl-card" aria-label="窑炉内部尺寸">
+      <h2 class="kl-card-heading">窑炉内部尺寸</h2>
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-kiln-width">宽度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-kiln-width" min="0.1" step="any" placeholder="例如：40" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-kiln-depth">深度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-kiln-depth" min="0.1" step="any" placeholder="例如：40" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-kiln-height">高度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-kiln-height" min="0.1" step="any" placeholder="例如：30" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kl-card" aria-label="垫板尺寸">
+      <h2 class="kl-card-heading">垫板尺寸</h2>
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-shelf-width">宽度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-shelf-width" min="0.1" step="any" placeholder="例如：40" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-shelf-depth">深度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-shelf-depth" min="0.1" step="any" placeholder="例如：40" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-shelf-thickness">厚度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-shelf-thickness" min="0.01" step="any" placeholder="例如：1.5" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kl-card" aria-label="陶瓷形状与尺寸">
+      <h2 class="kl-card-heading">陶瓷形状与尺寸</h2>
+      <div class="kl-radio-group" role="radiogroup">
+        <label class="kl-radio">
+          <input type="radio" name="kl-shape" id="kl-shape-round" value="round" checked />
+          圆形
+        </label>
+        <label class="kl-radio">
+          <input type="radio" name="kl-shape" id="kl-shape-square" value="square" />
+          正方形
+        </label>
+        <label class="kl-radio">
+          <input type="radio" name="kl-shape" id="kl-shape-rect" value="rect" />
+          长方形
+        </label>
+      </div>
+
+      <div class="kl-field-row" id="kl-round-fields">
+        <div class="kl-field">
+          <label for="kl-piece-diameter">直径</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-diameter" min="0.1" step="any" placeholder="例如：10" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-field-row" id="kl-square-fields" hidden>
+        <div class="kl-field">
+          <label for="kl-piece-side">边长</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-side" min="0.1" step="any" placeholder="例如：8" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-field-row" id="kl-rect-fields" hidden>
+        <div class="kl-field">
+          <label for="kl-piece-width">宽度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-width" min="0.1" step="any" placeholder="例如：8" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-piece-depth">深度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-depth" min="0.1" step="any" placeholder="例如：8" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-piece-height">高度</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-piece-height" min="0.1" step="any" placeholder="例如：15" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kl-card" aria-label="间距设置">
+      <h2 class="kl-card-heading">间距设置（可使用默认值）</h2>
+      <div class="kl-field-row">
+        <div class="kl-field">
+          <label for="kl-gap">陶瓷之间的间距</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-gap" min="0" step="any" value="0.5" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-margin">垫板边缘留白</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-margin" min="0" step="any" value="1" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+        <div class="kl-field">
+          <label for="kl-clearance">支柱高度（层间间距）</label>
+          <div class="kl-input-with-unit">
+            <input type="number" id="kl-clearance" min="0" step="any" value="3" />
+            <span class="kl-unit">cm</span>
+          </div>
+        </div>
+      </div>
+      <p
+        class="kl-error"
+        id="kl-error"
+        hidden
+        data-invalid-input-error="请将所有数值输入为大于0的数字。"
+        data-shelf-too-big-error="垫板比窑炉内部空间还大，请重新确认垫板尺寸。"
+        data-no-fit-error="以此尺寸无法在垫板上摆放任何一件陶瓷，请尝试缩小间距或陶瓷尺寸。"
+        data-kiln-too-short-error="窑炉高度不足以容纳一层，请尝试减少陶瓷高度或预留空间。"
+      ></p>
+    </section>
+
+    <section
+      class="kl-result-section"
+      aria-label="装窑计算结果"
+      data-boards-per-layer-template="{x} × {y} = {total}张"
+      data-grid-template="{x} × {y} = {total}件"
+      data-top-view-label="俯视垫板布局"
+      data-side-view-label="侧视窑炉分层"
+      data-shelves-unit="层"
+      data-total-boards-unit="张"
+      data-total-unit="件"
+      data-kiln-size-template="窑炉 {w} × {d} cm"
+      data-shelf-size-template="垫板 {w} × {d} cm"
+      data-piece-round-template="直径 {d} cm"
+      data-piece-square-template="边长 {s} cm"
+      data-piece-rect-template="{w} × {d} cm"
+      data-height-template="窑炉高度 {h} cm"
+      data-boards-per-layer-caption="每层垫板{count}张"
+    >
+      <div class="kl-result-grid">
+        <div class="kl-result-card">
+          <span class="kl-result-label">每层垫板数量</span>
+          <span class="kl-result-value" id="kl-result-boards-per-layer">–</span>
+        </div>
+        <div class="kl-result-card">
+          <span class="kl-result-label">每张垫板可摆放数量</span>
+          <span class="kl-result-value" id="kl-result-per-shelf">–</span>
+        </div>
+        <div class="kl-result-card">
+          <span class="kl-result-label">层数</span>
+          <span class="kl-result-value" id="kl-result-shelves">–</span>
+        </div>
+        <div class="kl-result-card">
+          <span class="kl-result-label">所需垫板总数</span>
+          <span class="kl-result-value" id="kl-result-total-boards">–</span>
+        </div>
+        <div class="kl-result-card kl-result-card-accent">
+          <span class="kl-result-label">总可烧制数量</span>
+          <span class="kl-result-value" id="kl-result-total">–</span>
+        </div>
+      </div>
+
+      <div class="kl-diagrams" id="kl-diagrams" hidden>
+        <div class="kl-diagram-block">
+          <p class="kl-diagram-caption">俯视垫板布局</p>
+          <svg class="kl-diagram" id="kl-diagram-top" viewBox="0 0 240 260" role="img" aria-label="垫板布局与窑炉分层示意图">
+            <rect id="kl-top-kiln" fill="none" stroke="var(--kl-line)" stroke-width="2" stroke-dasharray="4 3" />
+            <g id="kl-top-boards"></g>
+            <text id="kl-top-kiln-label" class="kl-diagram-dim-label" text-anchor="middle"></text>
+            <text id="kl-top-shelf-label" class="kl-diagram-dim-label kl-diagram-dim-label-accent" text-anchor="middle"></text>
+            <text id="kl-top-piece-label" class="kl-diagram-dim-label" text-anchor="middle"></text>
+          </svg>
+        </div>
+        <div class="kl-diagram-block">
+          <p class="kl-diagram-caption">侧视窑炉分层</p>
+          <svg class="kl-diagram" id="kl-diagram-side" viewBox="0 0 180 260" role="img" aria-label="垫板布局与窑炉分层示意图">
+            <rect id="kl-side-kiln" fill="none" stroke="var(--kl-line)" stroke-width="2" />
+            <g id="kl-side-layers"></g>
+            <text id="kl-side-height-label" class="kl-diagram-dim-label" text-anchor="middle"></text>
+            <text id="kl-side-boards-label" class="kl-diagram-dim-label kl-diagram-dim-label-accent" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+
+      <p class="kl-disclaimer">实际摆放会因陶瓷形状或放置方式而有所不同，此结果为近似值。圆形陶瓷按方形格子保守计算，根据实际摆放方式可能会装下更多。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>什么是窑炉装窑数量计算器？</h2>
+      <p>
+        窑炉装窑数量计算器是一款在烧制前预先计算一个窑炉能装下多少件陶瓷的工具。首先计算垫板（放置陶瓷的搁板）上纵横各能摆放多少件陶瓷（用扣除陶瓷间距和垫板边缘留白后剩余的空间除以陶瓷尺寸的方式），接着计算窑炉内部高度中能叠放多少层垫板（以陶瓷高度+垫板厚度+烧制所需预留空间为基准）。将这两个数值相乘，即可得出窑炉一次能装下的陶瓷总数。
+      </p>
+
+      <h2>使用方法</h2>
+      <p>
+        请输入窑炉内部尺寸（宽度·深度·高度）和垫板尺寸（宽度·深度·厚度）。从圆形、正方形、长方形中选择陶瓷形状，并输入直径（圆形）、边长（正方形）或宽度·深度（长方形），以及高度。陶瓷之间的间距、垫板边缘留白、垫板上方预留空间均已预填入常用的默认值，仅在需要时修改即可。输入完成后，每张垫板可摆放数量、所需垫板数、总可烧制数量会立即计算完成，并附有示意图。
+      </p>
+
+      <h2>适用场景</h2>
+      <ul>
+        <li>想提前规划下次烧制需要分几窑完成时</li>
+        <li>想在购买新窑炉或垫板前预估装窑效率时</li>
+        <li>想通过改变陶瓷尺寸或间距来比较哪种布局最高效时</li>
+        <li>工作室运营中想提前计算烧制排期和产量时</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">常见问题</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>圆形陶瓷也能精确计算吗？</dt>
+          <dd>圆形陶瓷会按照其直径尺寸的方形格子进行保守计算。实际采用交错排列（六边形排列）等方式时可能会多装一些，但本工具提供的是安全的最小估算值。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>为什么垫板上方需要预留空间？</dt>
+          <dd>为了让热量在烧制过程中均匀循环，通常会在陶瓷与上方垫板之间留出一定空间。只有考虑到这一预留空间，才能准确计算出实际可叠放的层数。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>实际数量会比计算出的数量更多吗？</dt>
+          <dd>有可能。本工具是基于网格布局的近似计算，根据陶瓷形状和实际摆放方式的不同，实际可装下的数量可能比计算值更多。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      本工具的所有计算均在浏览器中处理，不会将您输入的数值发送或存储到服务器。
+    </p>
+    <p class="footer-links">
+      <a href="../zh/privacy/">隐私政策</a>
+      <span aria-hidden="true">·</span>
+      <a href="../zh/about/">关于</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "htmlLang": "en",
+  "pageTitle": "Interval Timer - Free Workout Set & Rest Timer | GetNiftyKit",
+  "metaDescription": "Enter your number of sets, work time, and rest time, and this interval timer runs the whole session for you — with sound and visual alerts at every transition.",
+  "softwareAppName": "Interval Timer",
+  "softwareAppDescription": "A free workout timer that automatically runs a full session based on your sets and work/rest durations, alerting you with sound at every phase change.",
+  "osLabel": "Any (Web Browser)",
+  "backLinkText": "← All Tools",
+  "h1": "Interval Timer",
+  "subtitle": "Just enter your sets and work/rest times, and it runs the whole session for you",
+  "taglineExtra": "Get sound and visual alerts at every phase change, accurate even when the tab is in the background.",
+  "setupAria": "Timer setup",
+  "displayAria": "Timer display",
+  "setsLabel": "Number of sets",
+  "workLabel": "Work time (sec)",
+  "restLabel": "Rest time (sec)",
+  "startBtnText": "Start",
+  "pauseBtnText": "Pause",
+  "resumeBtnText": "Resume",
+  "resetBtnText": "Reset",
+  "workPhaseLabel": "Work",
+  "restPhaseLabel": "Rest",
+  "readyLabel": "Ready",
+  "doneLabel": "Done!",
+  "setProgressTemplate": "Set {current} / {total}",
+  "invalidInputError": "Please enter a number of sets and work/rest times of 1 or more.",
+  "infoIntroH2": "What is an interval timer?",
+  "infoIntroP": "Interval Timer is a tool that automatically calculates and runs the full timeline of a workout session based on the number of sets and your work and rest durations. It alerts you with sound and a color change every time the phase switches between work and rest, so you don't have to keep watching the screen. Timing is calculated from real timestamps, so it stays accurate even if your screen turns off or you switch to another tab.",
+  "infoHowtoH2": "How to use it",
+  "infoHowtoP": "Enter your number of sets, work time, and rest time (in seconds), then press \"Start.\" When a work phase ends, it automatically switches to rest, then back to work for the next set, repeating all the way through the last set. You can pause at any time and pick up right where you left off with \"Resume,\" or press \"Reset\" to set everything up again from scratch.",
+  "infoUseCasesH2": "When it comes in handy",
+  "infoUseCases": [
+    "Keeping exact rest times between sets during weight training",
+    "Running interval workouts like circuit training or Tabata",
+    "Following along by sound during home workouts without staring at your phone",
+    "Reproducing a specific set/rest structure from a PT or group class"
+  ],
+  "faqHeading": "Frequently Asked Questions",
+  "faq": [
+    {
+      "q": "Is it still accurate if I turn off my screen or switch tabs?",
+      "a": "Yes. The timer calculates elapsed time from real timestamps, so even if the browser is in the background and screen updates slow down, the actual phase transitions stay accurate."
+    },
+    {
+      "q": "How does the sound work?",
+      "a": "There's no audio file — the alert tones are generated on the fly using the browser's Web Audio API, so there are no licensing concerns and it stays lightweight."
+    },
+    {
+      "q": "Does the session include a rest period after the last set?",
+      "a": "No. The session ends as soon as the final set's work phase is complete — rest periods only occur between sets."
+    }
+  ],
+  "privacyNote": "This tool runs the timer entirely in your browser. Your settings are never sent to or stored on a server."
+}

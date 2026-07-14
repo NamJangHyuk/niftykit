@@ -1,0 +1,449 @@
+/* 특수문자 모음 도구 전용 스타일
+   테마: 보라색 계열 — 디자인/타이포그래피 도구라는 느낌을 살리면서
+   국기(블루)·이모지(오렌지/블랙)와는 확실히 다른 톤으로 구분 */
+
+:root {
+  --char-primary: #7c3aed;
+  --char-primary-dark: #6d28d9;
+  --char-bg: #f7f7f7;
+  --char-card-bg: #ffffff;
+  --char-border: #e9e0fb;
+  --char-text: #2e1a47;
+  --char-text-muted: #53575e;
+  --char-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--char-bg);
+  color: var(--char-text);
+  line-height: 1.6;
+}
+
+/* back-link을 position:fixed로 화면에 띄우면, 스크롤 중인 본문 텍스트가 그 아래를
+   지나가는 순간마다 겹쳐 보이는 문제가 있었습니다(실사용 스크린샷으로 발견). 그래서
+   버튼만 따로 띄우는 대신, 폭 전체를 덮는 불투명한 배경의 sticky 바(.top-bar) 안에
+   버튼을 넣는 방식으로 바꿨습니다 — 그 바 아래로 지나가는 내용은 불투명 배경에
+   완전히 가려지므로 어떤 화면 크기에서도 겹쳐 보이지 않습니다. */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--char-bg);
+}
+
+.back-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--char-card-bg);
+  border: 1px solid var(--char-border);
+  border-radius: 999px;
+  color: var(--char-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.back-link:hover {
+  color: var(--char-primary);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10px 16px 16px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-family: "Encode Sans Expanded", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  color: var(--char-primary-dark);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--char-text-muted);
+  font-size: 1.1rem;
+}
+
+.tagline-extra {
+  margin: 6px 0 0;
+  color: var(--char-text-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.recent-section {
+  margin-top: 24px;
+}
+
+.recent-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.recent-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--char-text);
+}
+
+.recent-clear {
+  border: none;
+  background: none;
+  color: var(--char-text-muted);
+  font-size: 0.83rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.recent-clear:hover {
+  color: var(--char-primary-dark);
+}
+
+.recent-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.recent-card {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.recent-card-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--char-card-bg);
+  border: 1px solid var(--char-border);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--char-text);
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.08s ease;
+}
+
+.recent-card:hover .recent-card-fallback,
+.recent-card:focus-visible .recent-card-fallback {
+  background: #f4edff;
+  border-color: var(--char-primary);
+  transform: scale(1.08);
+}
+
+@keyframes char-card-flash {
+  0%,
+  100% {
+    box-shadow: none;
+  }
+  25%,
+  75% {
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.35);
+  }
+}
+
+.char-card.is-flashing .char-visual {
+  animation: char-card-flash 0.75s ease-in-out 3;
+}
+
+.search-section {
+  position: sticky;
+  top: 56px;
+  background: var(--char-bg);
+  padding: 16px 0;
+  z-index: 10;
+}
+
+.search-input-wrap {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--char-text-muted);
+  pointer-events: none;
+}
+
+#search-input {
+  width: 100%;
+  padding: 14px 18px 14px 44px;
+  font-size: 1.2rem;
+  border: 2px solid var(--char-border);
+  border-radius: var(--char-radius);
+  outline: none;
+  background: var(--char-card-bg);
+  color: var(--char-text);
+  transition: border-color 0.15s ease;
+}
+
+#search-input:focus {
+  border-color: var(--char-primary);
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.category-tab {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--char-border);
+  border-radius: 999px;
+  background: var(--char-card-bg);
+  color: var(--char-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.category-tab:hover {
+  border-color: var(--char-primary);
+  color: var(--char-primary-dark);
+}
+
+.category-tab.is-active {
+  background: var(--char-primary);
+  border-color: var(--char-primary);
+  color: #fff;
+}
+
+.result-count {
+  margin: 8px 2px 0;
+  font-size: 0.9rem;
+  color: var(--char-text-muted);
+}
+
+.char-sections {
+  margin-top: 8px;
+}
+
+.char-subgroup {
+  margin-bottom: 28px;
+}
+
+.char-subgroup-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--char-text);
+  margin: 0 0 14px;
+}
+
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  justify-items: center;
+  gap: 6px;
+}
+
+.char-card {
+  text-align: center;
+}
+
+.char-card .char-visual {
+  cursor: pointer;
+  border: 1px solid var(--char-border);
+  background: var(--char-card-bg);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--char-text);
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.08s ease;
+}
+
+.char-card .char-visual:hover,
+.char-card .char-visual:focus-visible {
+  background: #f4edff;
+  border-color: var(--char-primary);
+  transform: scale(1.08);
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--char-text-muted);
+  padding: 40px 0;
+}
+
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 12px);
+  background: var(--char-primary);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 50;
+}
+
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.ads-container {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--char-card-bg);
+  border: 1px solid var(--char-border);
+  border-radius: var(--char-radius);
+  color: var(--char-text-muted);
+  font-size: 0.9rem;
+}
+
+/* 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고.
+   본문(max-width: 1000px)과 최대 10px까지는 겹쳐도 노출합니다(다른 도구와 동일 규칙). */
+.ads-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 160px;
+  margin: 0;
+  display: none;
+  z-index: 5;
+}
+
+.ads-rail-left {
+  left: 16px;
+}
+
+.ads-rail-right {
+  right: 16px;
+}
+
+@media (min-width: 1332px) {
+  .ads-rail {
+    display: flex;
+  }
+}
+
+.info-section {
+  margin-top: 24px;
+}
+
+.info-section h2 {
+  color: var(--char-primary-dark);
+  font-size: 1.35rem;
+  margin-top: 32px;
+}
+
+.faq-list .faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-list dt {
+  font-weight: 600;
+  color: var(--char-text);
+  margin-bottom: 4px;
+}
+
+.faq-list dd {
+  margin: 0;
+  color: var(--char-text-muted);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 24px 16px 40px;
+  color: var(--char-text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  margin: 8px 0 0;
+}
+
+.footer-links a {
+  color: var(--char-text-muted);
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: var(--char-primary);
+}
+
+@media (max-width: 480px) {
+  .char-grid {
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 8px;
+  }
+
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--char-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.scroll-top-btn:hover {
+  background: var(--char-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* [hidden] 속성과 .scroll-top-btn { display:flex }는 상세도(specificity)가 같아서
+   나중에 선언된 쪽이 이겨 hidden이 무시되는 문제가 있었습니다(카테고리 폼에서 이미
+   겪은 버그와 동일한 원인). 그래서 [hidden]을 명시적으로 다시 덮어씁니다. */
+.scroll-top-btn[hidden] {
+  display: none;
+}

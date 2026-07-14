@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>디데이 계산기 - 목표 날짜 카운트다운 무료 앱 | GetNiftyKit</title>
+  <meta name="description" content="목표 날짜를 입력하면 D-Day를 큰 숫자로 바로 보여드려요. 시험, 여행, 기념일 등 여러 목표를 한 번에 관리하고, 브라우저에 저장해서 다음에 또 확인할 수 있습니다." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ko/dday-counter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/dday-counter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/dday-counter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/dday-counter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/dday-counter/" />
+  <base href="../../dday-counter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "디데이 계산기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (웹 브라우저)",
+  "description": "목표 날짜까지 남은 일수를 계산해 D-Day로 보여주고, 여러 목표를 리스트로 관리할 수 있는 무료 웹 도구입니다.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "등록한 목표는 어디에 저장되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "이 브라우저(기기)의 로컬 저장소에만 저장됩니다. 서버로 전송되지 않으며, 다른 기기나 브라우저에서는 보이지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "지나간 날짜도 등록할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 이미 지난 날짜를 등록하면 D+3처럼 그날로부터 며칠이 지났는지 표시됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "D-Day는 어떻게 계산되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "오늘 자정을 기준으로 목표 날짜까지 남은 날짜 수를 계산합니다. 시간이 아니라 날짜(자정) 단위로 계산하므로, 예를 들어 내일이 목표일이면 몇 시에 확인하든 항상 D-1로 표시됩니다."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ko/" class="back-link">← 전체 도구</a>
+  </div>
+
+  <header class="page-header">
+    <h1>D-Day Counter</h1>
+    <p class="subtitle">목표 날짜를 입력하면 D-Day를 큰 숫자로 바로 보여드려요</p>
+    <p class="tagline-extra">시험, 여행, 기념일까지 — 여러 목표를 한 번에 등록하고 관리하세요.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="dday-form-section" aria-label="새 목표 추가">
+      <div class="dday-form-row">
+        <div class="dday-field dday-field-name">
+          <label for="dday-name">목표 이름</label>
+          <input type="text" id="dday-name" placeholder="예: 수능 시험일" autocomplete="off" />
+        </div>
+        <div class="dday-field dday-field-date">
+          <label for="dday-date-trigger">목표 날짜</label>
+          <button
+            type="button"
+            id="dday-date-trigger"
+            class="dday-date-trigger"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            data-placeholder="날짜를 선택하세요"
+          >날짜를 선택하세요</button>
+        </div>
+        <button type="button" id="dday-add-btn" class="dday-add-btn">추가</button>
+      </div>
+      <p
+        class="dday-error"
+        id="dday-error"
+        hidden
+        data-name-error="목표 이름을 입력하세요."
+        data-date-error="목표 날짜를 선택하세요."
+      ></p>
+
+      <div class="dday-calendar" id="dday-calendar" role="dialog" aria-label="목표 날짜" hidden>
+        <div class="dday-calendar-header">
+          <button type="button" id="dday-cal-prev" class="dday-cal-nav" aria-label="이전 달">‹</button>
+          <span class="dday-cal-title" id="dday-cal-title"></span>
+          <button type="button" id="dday-cal-next" class="dday-cal-nav" aria-label="다음 달">›</button>
+        </div>
+        <div class="dday-calendar-weekdays" id="dday-cal-weekdays"></div>
+        <div class="dday-calendar-grid" id="dday-cal-grid"></div>
+      </div>
+    </section>
+
+    <section class="dday-list-section" aria-label="등록된 목표 목록">
+      <p class="dday-empty" id="dday-empty">아직 등록된 목표가 없어요. 위에서 첫 목표를 추가해 보세요.</p>
+      <div
+        id="dday-list"
+        class="dday-list"
+        data-today-label="D-DAY"
+        data-delete-label="삭제"
+      ></div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>디데이 계산기란?</h2>
+      <p>
+        디데이 계산기(D-Day Counter)는 원하는 목표 날짜를 입력하면 오늘부터 그날까지 남은 일수를 D-5, D-DAY, D+3처럼 한눈에 알아보기 쉬운 형태로 큰 숫자로 보여주는 도구입니다. 시험일, 여행 출발일, 결혼기념일, 프로젝트 마감일처럼 챙겨야 할 날짜가 여러 개라도 한 화면에서 함께 관리할 수 있고, 등록한 목표는 브라우저에 저장되어 다시 방문해도 그대로 남아 있습니다.
+      </p>
+
+      <h2>사용 방법</h2>
+      <p>
+        목표 이름과 날짜를 입력하고 &quot;추가&quot; 버튼을 누르면 목록에 새 카드가 생기고, 오늘 기준으로 계산된 D-Day가 큰 숫자로 표시됩니다. 목표는 원하는 만큼 계속 추가할 수 있고, 더 이상 필요 없는 목표는 &quot;삭제&quot; 버튼으로 지우면 됩니다. 모든 목표는 이 브라우저에 저장되므로 다음에 다시 방문해도 그대로 확인할 수 있습니다.
+      </p>
+
+      <h2>이럴 때 유용해요</h2>
+      <ul>
+        <li>시험이나 면접, 발표처럼 중요한 날짜까지 남은 기간을 확인하고 싶을 때</li>
+        <li>여행이나 이벤트 출발일까지 카운트다운을 하고 싶을 때</li>
+        <li>결혼기념일이나 생일 같은 기념일을 놓치지 않고 챙기고 싶을 때</li>
+        <li>프로젝트나 과제 마감일을 한눈에 관리하고 싶을 때</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">자주 묻는 질문</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>등록한 목표는 어디에 저장되나요?</dt>
+          <dd>이 브라우저(기기)의 로컬 저장소에만 저장됩니다. 서버로 전송되지 않으며, 다른 기기나 브라우저에서는 보이지 않습니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>지나간 날짜도 등록할 수 있나요?</dt>
+          <dd>네. 이미 지난 날짜를 등록하면 D+3처럼 그날로부터 며칠이 지났는지 표시됩니다.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>D-Day는 어떻게 계산되나요?</dt>
+          <dd>오늘 자정을 기준으로 목표 날짜까지 남은 날짜 수를 계산합니다. 시간이 아니라 날짜(자정) 단위로 계산하므로, 예를 들어 내일이 목표일이면 몇 시에 확인하든 항상 D-1로 표시됩니다.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      이 도구는 목표 날짜를 이 브라우저의 로컬 저장소에만 저장하며, 서버로 전송하지 않습니다.
+    </p>
+    <p class="footer-links">
+      <a href="../ko/privacy/">개인정보 처리방침</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ko/about/">소개</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 이동" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>棚板間隔計算機 - 本棚・収納棚の均等配置無料アプリ | GetNiftyKit</title>
+  <meta name="description" content="全体の長さ、棚板の枚数、棚板の厚みを入力するだけで、すべての段が均等な間隔になるよう各棚板の正確な設置位置を自動計算してくれる無料の木工ツールです。" />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/ja/shelf-spacing/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/shelf-spacing/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/shelf-spacing/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/shelf-spacing/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/shelf-spacing/" />
+  <base href="../../shelf-spacing/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "棚板間隔計算機",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Webブラウザ)",
+  "description": "本棚・収納棚の全体の長さと棚板の枚数、厚みを入力すると、すべての段が均等な間隔になるよう各棚板の設置位置を自動計算する無料の木工ツールです。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "棚板の枚数とは、棚板そのものの枚数ですか、それとも段数ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "棚板そのものの枚数です。例えば棚板を4枚入れると、上下合わせて合計5段（compartments）ができ、このツールはその5段すべてが均等な間隔になるように計算します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "棚板の厚みはなぜ入力する必要がありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "棚板自体もスペースを占めるためです。棚板の厚みを引かずに計算すると、実際に設置したときの段の間隔が計算値より狭くなってしまいます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "計算された位置はどこを基準にしていますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ケース（本棚・収納棚）の一番下の底面を0とし、そこから各棚板の下面までの距離を基準に計算しています。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../ja/" class="back-link">← ツール一覧に戻る</a>
+  </div>
+
+  <header class="page-header">
+    <h1>棚板間隔計算機</h1>
+    <p class="subtitle">全体の長さと棚板の枚数を入力するだけで、均等な設置位置をすぐに計算します</p>
+    <p class="tagline-extra">棚板の厚みまで考慮して、すべての段が正確に同じ間隔になるよう各棚板の位置を計算します。</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section class="shsp-setup-section" aria-label="棚板情報の入力">
+      <div class="shsp-field">
+        <label for="shsp-length">全体の内寸の長さ</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-length" min="0.1" step="any" placeholder="例: 180" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-count">棚板の枚数</label>
+        <input type="number" id="shsp-count" min="1" step="1" placeholder="例: 4" />
+      </div>
+      <div class="shsp-field">
+        <label for="shsp-thickness">棚板の厚み</label>
+        <div class="shsp-input-with-unit">
+          <input type="number" id="shsp-thickness" min="0.01" step="any" placeholder="例: 1.8" />
+          <span class="shsp-unit">cm</span>
+        </div>
+      </div>
+      <p class="shsp-error" id="shsp-error" hidden data-invalid-input-error="全体の長さ・棚板の枚数・棚板の厚みはすべて0より大きい数字で入力してください。" data-invalid-fit-error="棚板の厚みと枚数の合計が全体の長さより大きくなっています。棚板の枚数を減らすか、より薄い棚板を使ってみてください。"></p>
+    </section>
+
+    <section class="shsp-result-section" aria-label="計算結果" data-compartments-unit="段">
+      <svg class="shsp-diagram" viewBox="0 0 260 280" role="img" aria-label="棚板配置ダイアグラム">
+        <rect id="shsp-case-outline" fill="none" stroke="var(--shsp-line)" stroke-width="2.5" />
+        <g id="shsp-shelves-group"></g>
+
+        <line id="shsp-dim-total-line" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick1" class="shsp-dim-line" />
+        <line id="shsp-dim-total-tick2" class="shsp-dim-line" />
+        <text id="shsp-dim-total-label" class="shsp-dim-label" text-anchor="middle"></text>
+
+        <line id="shsp-dim-gap-line" class="shsp-dim-line-detail" />
+        <text id="shsp-dim-gap-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+
+        <line id="shsp-dim-leader" class="shsp-dim-leader" />
+        <rect id="shsp-detail-shelf" fill="var(--shsp-accent)" />
+        <text id="shsp-dim-thickness-label" class="shsp-dim-label-detail" text-anchor="start"></text>
+      </svg>
+
+      <div class="shsp-result-grid">
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">段の間隔（有効スペース）</span>
+          <span class="shsp-result-value" id="shsp-result-gap">–</span>
+        </div>
+        <div class="shsp-result-card">
+          <span class="shsp-result-label">段数</span>
+          <span class="shsp-result-value" id="shsp-result-compartments">–</span>
+        </div>
+      </div>
+
+      <p class="shsp-warning" id="shsp-gap-warning" hidden>⚠ 段の間隔が10cmより狭くなっています。実際に収納する物が入るか事前に確認してください。</p>
+
+      <div class="shsp-positions" aria-label="棚板ごとの設置位置">
+        <h2 class="shsp-positions-heading">棚板ごとの設置位置（底面基準）</h2>
+        <ul class="shsp-positions-list" id="shsp-positions-list" data-position-template="棚板 {index}: 底面から{position}"></ul>
+      </div>
+
+      <p class="shsp-disclaimer">実際の木材は厚みにわずかな誤差がある場合があるため、切断前に実測値でもう一度確認することをおすすめします。</p>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>棚板間隔計算機とは？</h2>
+      <p>
+        棚板間隔計算機は、本棚や収納棚内部の全体の長さと、入れたい棚板の枚数、棚板の厚みを入力するだけで、すべての段が正確に同じ間隔になるよう各棚板の設置位置を自動的に計算してくれるツールです。棚板自体が占める厚みを引いた残りのスペースを段数（棚板の枚数+1）で均等に分割する方式のため、目分量で印をつけて段ごとに間隔がバラバラになってしまうことを防げます。計算結果は、底面を基準にした各棚板の正確な位置リストと、実際の比率どおりに描かれるダイアグラムで一緒に確認できます。
+      </p>
+
+      <h2>使い方</h2>
+      <p>
+        本棚や収納棚の全体の内寸の長さ、入れたい棚板の枚数、棚板の厚みを入力してください。段の間隔と段数がすぐに計算されて表示され、下側には底面を基準にした各棚板の正確な設置位置がリストで表示されます。ダイアグラムは実際の入力値の比率どおりに描かれるため、完成したときの様子を事前に把握できます。
+      </p>
+
+      <h2>こんなときに便利です</h2>
+      <ul>
+        <li>本棚や収納棚を自分で作りながら棚板を均等な間隔で配置したいとき</li>
+        <li>作り付けクローゼットやパントリーの棚位置を事前に計算してマーキングしたいとき</li>
+        <li>既存の家具に棚板を追加設置する前に正確な位置を確認したいとき</li>
+        <li>棚板の枚数を変えながらどの配置が最も実用的か比較したいとき</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">よくある質問</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>棚板の枚数とは、棚板そのものの枚数ですか、それとも段数ですか？</dt>
+          <dd>棚板そのものの枚数です。例えば棚板を4枚入れると、上下合わせて合計5段（compartments）ができ、このツールはその5段すべてが均等な間隔になるように計算します。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>棚板の厚みはなぜ入力する必要がありますか？</dt>
+          <dd>棚板自体もスペースを占めるためです。棚板の厚みを引かずに計算すると、実際に設置したときの段の間隔が計算値より狭くなってしまいます。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>計算された位置はどこを基準にしていますか？</dt>
+          <dd>ケース（本棚・収納棚）の一番下の底面を0とし、そこから各棚板の下面までの距離を基準に計算しています。</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      このツールはすべての計算をブラウザ上でのみ処理し、入力した値をサーバーに送信・保存することはありません。
+    </p>
+    <p class="footer-links">
+      <a href="../ja/privacy/">プライバシーポリシー</a>
+      <span aria-hidden="true">·</span>
+      <a href="../ja/about/">概要</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="トップに戻る" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

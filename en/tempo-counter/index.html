@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tempo Counter - Workout BPM &amp; Rep Counter | GetNiftyKit</title>
+  <meta name="description" content="Enter a BPM and this tempo counter plays precisely timed beep tones while counting your reps — with a different tone for the down and up phase of every rep." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/tempo-counter/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/tempo-counter/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/tempo-counter/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/tempo-counter/" />
+  <base href="../../tempo-counter/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Tempo Counter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free workout tool that plays drift-free, precisely timed beat tones using AudioContext scheduling based on your chosen BPM, while counting reps.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the beat drift out of time over a long session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Upcoming beats are scheduled in advance at precise times using the browser's audio scheduling engine (AudioContext), which keeps the beat far more accurate than a regular timer would."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are reps counted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The rep count goes up by one every time a down beat and an up beat — two beats total — complete."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What BPM range is supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can set anywhere from 20 to 240 BPM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does picking an exercise lock the BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Picking an exercise just fills in a sensible default BPM for it — you can still edit the BPM field freely afterward."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Tempo Counter</h1>
+    <p class="subtitle">Enter a BPM and it plays precisely timed beats while counting your reps</p>
+    <p class="tagline-extra">A different tone for the down and up phase of every rep, with drift-free audio scheduling that never falls out of time.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="tcounter-display-section is-ready"
+      id="tcounter-display"
+      aria-label="Tempo counter display"
+      data-down-label="Down"
+      data-up-label="Up"
+      data-ready-label="Ready"
+    >
+      <p class="tcounter-phase-label" id="tcounter-phase-label">Ready</p>
+      <p class="tcounter-rep-count" id="tcounter-rep-count">0</p>
+      <p class="tcounter-rep-label">Reps</p>
+    </section>
+
+    <section class="tcounter-setup-section" aria-label="Tempo settings">
+      <div class="tcounter-field">
+        <label for="tcounter-category">Exercise</label>
+        <select id="tcounter-category">
+          <option value="pushup" data-bpm="40">Push-up (40 BPM)</option>
+          <option value="situp" data-bpm="30">Sit-up (30 BPM)</option>
+          <option value="squat" data-bpm="30">Squat (30 BPM)</option>
+          <option value="lunge" data-bpm="28">Lunge (28 BPM)</option>
+          <option value="dip" data-bpm="35">Dip (35 BPM)</option>
+          <option value="calfraise" data-bpm="50">Calf Raise (50 BPM)</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div class="tcounter-field">
+        <label for="tcounter-bpm">BPM (beats per minute)</label>
+        <input type="number" id="tcounter-bpm" min="20" max="240" value="40" />
+      </div>
+      <p class="tcounter-error" id="tcounter-error" hidden>Please enter a BPM between 20 and 240.</p>
+
+      <div class="tcounter-controls">
+        <button type="button" id="tcounter-start-btn" class="tcounter-btn tcounter-btn-primary">Start</button>
+        <button type="button" id="tcounter-stop-btn" class="tcounter-btn tcounter-btn-stop" hidden>Stop</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is a tempo counter?</h2>
+      <p>
+        Tempo Counter is a workout metronome that plays precisely timed beep tones at whatever BPM (beats per minute) you set. It uses the browser's audio scheduling capabilities directly, so the beat stays accurate from start to finish without gradually drifting out of time the way a simple timer would. Each rep's down phase and up phase play a different tone, so you can keep the beat by ear without watching the screen, and the rep counter automatically increases every time a pair of beats completes. Not every exercise suits the same speed, so picking an exercise like push-up, sit-up, or squat — anything with a clear down/up motion — automatically fills in a sensible default BPM for that movement.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Pick the exercise you're doing from the list and a sensible default BPM fills in automatically. You can still edit the BPM by hand if you like, or pick &quot;Custom&quot; if your exercise isn't listed and set whatever speed you want. Press &quot;Start&quot; and the beat begins playing at that speed right away. The down phase plays a lower tone and the up phase plays a higher tone, and the rep counter increases by one every time a down-up pair completes. When you're done, press &quot;Stop&quot; to end the session.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Keeping a consistent tempo during weight training</li>
+        <li>Timing exercises with a clear down/up motion, like squats or push-ups</li>
+        <li>Counting reps accurately while training at a fixed tempo</li>
+        <li>Following the beat by sound alone, without watching the screen</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Does the beat drift out of time over a long session?</dt>
+          <dd>No. Upcoming beats are scheduled in advance at precise times using the browser's audio scheduling engine (AudioContext), which keeps the beat far more accurate than a regular timer would.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How are reps counted?</dt>
+          <dd>The rep count goes up by one every time a down beat and an up beat — two beats total — complete.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>What BPM range is supported?</dt>
+          <dd>You can set anywhere from 20 to 240 BPM.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Does picking an exercise lock the BPM?</dt>
+          <dd>No. Picking an exercise just fills in a sensible default BPM for it — you can still edit the BPM field freely afterward.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool handles sound playback and counting entirely in your browser. No data is sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>

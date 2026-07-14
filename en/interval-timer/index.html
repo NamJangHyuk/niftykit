@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interval Timer - Free Workout Set &amp; Rest Timer | GetNiftyKit</title>
+  <meta name="description" content="Enter your number of sets, work time, and rest time, and this interval timer runs the whole session for you — with sound and visual alerts at every transition." />
+  <link rel="canonical" href="https://namjanghyuk.github.io/getniftykit/en/interval-timer/" />
+  <link rel="alternate" hreflang="ko" href="https://namjanghyuk.github.io/getniftykit/ko/interval-timer/" />
+  <link rel="alternate" hreflang="en" href="https://namjanghyuk.github.io/getniftykit/en/interval-timer/" />
+  <link rel="alternate" hreflang="ja" href="https://namjanghyuk.github.io/getniftykit/ja/interval-timer/" />
+  <link rel="alternate" hreflang="zh" href="https://namjanghyuk.github.io/getniftykit/zh/interval-timer/" />
+  <link rel="alternate" hreflang="x-default" href="https://namjanghyuk.github.io/getniftykit/en/interval-timer/" />
+  <base href="../../interval-timer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Interval Timer",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "description": "A free workout timer that automatically runs a full session based on your sets and work/rest durations, alerting you with sound at every phase change.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it still accurate if I turn off my screen or switch tabs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The timer calculates elapsed time from real timestamps, so even if the browser is in the background and screen updates slow down, the actual phase transitions stay accurate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the sound work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no audio file — the alert tones are generated on the fly using the browser's Web Audio API, so there are no licensing concerns and it stays lightweight."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the session include a rest period after the last set?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The session ends as soon as the final set's work phase is complete — rest periods only occur between sets."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="../en/" class="back-link">← All Tools</a>
+  </div>
+
+  <header class="page-header">
+    <h1>Interval Timer</h1>
+    <p class="subtitle">Just enter your sets and work/rest times, and it runs the whole session for you</p>
+    <p class="tagline-extra">Get sound and visual alerts at every phase change, accurate even when the tab is in the background.</p>
+  </header>
+
+  <main>
+    <!-- <div class="ads-container ads-container-top" style="min-height: 100px;"></div> -->
+
+    <section
+      class="itimer-display-section"
+      id="itimer-display"
+      aria-label="Timer display"
+      data-work-label="Work"
+      data-rest-label="Rest"
+      data-ready-label="Ready"
+      data-done-label="Done!"
+      data-set-template="Set {current} / {total}"
+    >
+      <p class="itimer-phase-label" id="itimer-phase-label">Ready</p>
+      <p class="itimer-time" id="itimer-time">00:00</p>
+      <p class="itimer-set-progress" id="itimer-set-progress"></p>
+    </section>
+
+    <section class="itimer-setup-section" aria-label="Timer setup">
+      <div class="itimer-setup-row">
+        <div class="itimer-field">
+          <label for="itimer-sets">Number of sets</label>
+          <input type="number" id="itimer-sets" min="1" max="99" value="5" />
+        </div>
+        <div class="itimer-field">
+          <label for="itimer-work">Work time (sec)</label>
+          <input type="number" id="itimer-work" min="1" max="3600" value="30" />
+        </div>
+        <div class="itimer-field">
+          <label for="itimer-rest">Rest time (sec)</label>
+          <input type="number" id="itimer-rest" min="1" max="3600" value="15" />
+        </div>
+      </div>
+      <p class="itimer-error" id="itimer-error" hidden>Please enter a number of sets and work/rest times of 1 or more.</p>
+
+      <div class="itimer-controls">
+        <button type="button" id="itimer-start-btn" class="itimer-btn itimer-btn-primary">Start</button>
+        <button
+          type="button"
+          id="itimer-pause-btn"
+          class="itimer-btn"
+          hidden
+          data-pause-label="Pause"
+          data-resume-label="Resume"
+        >Pause</button>
+        <button type="button" id="itimer-reset-btn" class="itimer-btn" hidden>Reset</button>
+      </div>
+    </section>
+
+    <!-- <div class="ads-container ads-container-after-grid" style="min-height: 250px;"></div> -->
+
+    <article class="info-section">
+      <h2>What is an interval timer?</h2>
+      <p>
+        Interval Timer is a tool that automatically calculates and runs the full timeline of a workout session based on the number of sets and your work and rest durations. It alerts you with sound and a color change every time the phase switches between work and rest, so you don't have to keep watching the screen. Timing is calculated from real timestamps, so it stays accurate even if your screen turns off or you switch to another tab.
+      </p>
+
+      <h2>How to use it</h2>
+      <p>
+        Enter your number of sets, work time, and rest time (in seconds), then press &quot;Start.&quot; When a work phase ends, it automatically switches to rest, then back to work for the next set, repeating all the way through the last set. You can pause at any time and pick up right where you left off with &quot;Resume,&quot; or press &quot;Reset&quot; to set everything up again from scratch.
+      </p>
+
+      <h2>When it comes in handy</h2>
+      <ul>
+        <li>Keeping exact rest times between sets during weight training</li>
+        <li>Running interval workouts like circuit training or Tabata</li>
+        <li>Following along by sound during home workouts without staring at your phone</li>
+        <li>Reproducing a specific set/rest structure from a PT or group class</li>
+      </ul>
+
+      <!-- <div class="ads-container ads-container-inline" style="min-height: 250px;"></div> -->
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Is it still accurate if I turn off my screen or switch tabs?</dt>
+          <dd>Yes. The timer calculates elapsed time from real timestamps, so even if the browser is in the background and screen updates slow down, the actual phase transitions stay accurate.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>How does the sound work?</dt>
+          <dd>There's no audio file — the alert tones are generated on the fly using the browser's Web Audio API, so there are no licensing concerns and it stays lightweight.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Does the session include a rest period after the last set?</dt>
+          <dd>No. The session ends as soon as the final set's work phase is complete — rest periods only occur between sets.</dd>
+        </div>
+      </dl>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p class="privacy-note">
+      This tool runs the timer entirely in your browser. Your settings are never sent to or stored on a server.
+    </p>
+    <p class="footer-links">
+      <a href="../en/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">·</span>
+      <a href="../en/about/">About</a>
+    </p>
+  </footer>
+
+  <!-- 넓은 화면에서만 좌우 여백에 붙어 스크롤을 따라다니는 세로형(스카이스크래퍼) 광고 슬롯 -->
+  <!-- <div class="ads-container ads-rail ads-rail-left" style="min-height: 600px;" aria-hidden="true"></div> -->
+  <!-- <div class="ads-container ads-rail ads-rail-right" style="min-height: 600px;" aria-hidden="true"></div> -->
+
+  <script src="script.js"></script>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById("scroll-top-btn");
+      var toggle = function () {
+        btn.hidden = window.scrollY < 400;
+      };
+      window.addEventListener("scroll", toggle, { passive: true });
+      toggle();
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>
