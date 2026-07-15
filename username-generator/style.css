@@ -238,7 +238,12 @@ main {
   margin-bottom: 8px;
 }
 
-.ug-checkbox-item {
+/* .ug-option-field label { display: block; }와 우선순위가 같은 단일 클래스 선택자였던
+   탓에, 저 규칙에 밀려 display:flex가 무시되고 있었습니다(체크박스 라벨도 <label>
+   태그라 그 규칙에 걸림) — 인라인 요소인 18px 체크박스가 텍스트 옆에 block으로
+   놓이면서 줄 높이가 부풀어(27.75px) 다른 라벨(21.75px)과 세로로 어긋나 보였습니다.
+   클래스 2개로 명시해서 우선순위를 올려 flex가 확실히 적용되게 합니다. */
+.ug-option-field .ug-checkbox-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -251,6 +256,7 @@ main {
 .ug-checkbox-item input {
   width: 18px;
   height: 18px;
+  margin: 0; /* 브라우저 기본 checkbox margin(보통 상하 3px)이 flex 행 높이를 부풀리는 것 방지 */
   accent-color: var(--ug-primary);
   cursor: pointer;
 }
